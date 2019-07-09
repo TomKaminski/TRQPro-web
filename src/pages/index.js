@@ -8,7 +8,7 @@ export default class IndexPage extends React.Component {
     return (
       <Layout>
         {this.props.data.allStrapiArticle.edges.map(document => (
-          <div key={document.node.id}>
+          <div key={document.node.id} className="index-item">
             <IndexArticle article={document.node} />
           </div>
         ))}

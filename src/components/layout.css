@@ -27,6 +27,11 @@ body {
 
 .article-name {
   color: black;
-  font-size: 32px;
+  font-size: 48px;
   font-weight: 600;
+  margin-top: 10px;
+}
+
+.index-item {
+  margin-bottom: 50px;
 }
