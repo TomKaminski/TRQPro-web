@@ -1,42 +1,28 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
+import { Navbar, Nav } from "react-bootstrap"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
+  <Navbar bg="white" expand="lg" className="header">
+    <Navbar.Brand href="#home">{siteTitle}</Navbar.Brand>
+    <Navbar.Toggle />
+    <Navbar.Collapse className="justify-content-end">
+      <Nav>
+        <Nav.Link href="#about">O nas</Nav.Link>
+        <Nav.Link href="#partners">Partnerzy</Nav.Link>
+        <Nav.Link href="#contacts">Kontakt</Nav.Link>
+        <Nav.Link href="#fb">
+          <FontAwesomeIcon icon={["fab", "facebook-f"]} />
+        </Nav.Link>
+        <Nav.Link href="#fb">
+          <FontAwesomeIcon icon={["fab", "twitter"]} />
+        </Nav.Link>
+        <Nav.Link href="#fb">
+          <FontAwesomeIcon icon={["fab", "youtube"]} />
+        </Nav.Link>
+      </Nav>
+    </Navbar.Collapse>
+  </Navbar>
 )
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
 
 export default Header
