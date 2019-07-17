@@ -8,9 +8,10 @@ import { faCheckSquare, faCoffee } from "@fortawesome/free-solid-svg-icons"
 
 import Header from "./header"
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css"
-import "./layout.css"
+import "../styles/layout.scss"
 import { Container } from "react-bootstrap"
-import Subheader from "./subheader"
+import CryptoRoller from "./cryptoRoller"
+import Footer from "./footer"
 
 library.add(fab, faCheckSquare, faCoffee)
 
@@ -26,12 +27,14 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <Container fluid={true} id="main-container">
+    <div>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <Subheader />
-      <main className="page-content">{children}</main>
-      <footer>© {new Date().getFullYear()}, TRQPro All Rights Reserved.</footer>
-    </Container>
+      <CryptoRoller />
+      <Container fluid={true} id="main-container">
+        <main className={"page-content"}>{children}</main>
+      </Container>
+      <Footer />
+    </div>
   )
 }
 

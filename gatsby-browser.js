@@ -1,2 +1,2 @@
 //Import required font
-require("typeface-raleway")
+require("typeface-montserrat")

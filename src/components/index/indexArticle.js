@@ -5,7 +5,6 @@ import Reactmarkdown from "react-markdown"
 
 export default class IndexArticle extends React.Component {
   render() {
-    console.log(this.props)
     return (
       <div key={this.props.article.id}>
         <Img fluid={this.props.article.image.childImageSharp.fluid} />

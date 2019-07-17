@@ -27,6 +27,7 @@
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-markdown": "^4.1.0",
+    "typeface-montserrat": "0.0.54",
     "typeface-raleway": "0.0.54"
   },
   "devDependencies": {
