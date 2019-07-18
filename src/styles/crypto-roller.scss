@@ -1,6 +1,48 @@
 .crypto-roller-container {
   border-top: 0.5px solid rgba(128, 128, 128, 0.5);
   border-bottom: 0.5px solid rgba(128, 128, 128, 0.5);
-  height: 50px;
   margin-bottom: 20px;
+
+  .element {
+    width: auto;
+    padding: 20px 0;
+
+    > .title {
+      font-size: 14px;
+      color: black;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    > .value {
+      font-size: 13px;
+      color: grey;
+      margin-right: 8px;
+    }
+
+    .arrow-up {
+      vertical-align: middle;
+      font-size: 18px;
+      color: green;
+    }
+
+    .arrow-down {
+      vertical-align: middle;
+      font-size: 18px;
+      color: red;
+    }
+
+    > .percentage {
+      margin-left: 6px;
+      padding: 2px 4px;
+      font-size: 13px;
+      color: black;
+      &.red {
+        background-color: rgba(255, 0, 0, 0.5);
+      }
+      &.green {
+        background-color: rgba(0, 128, 0, 0.5);
+      }
+    }
+  }
 }

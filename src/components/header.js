@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import "../styles/header.scss"
 
 const Header = ({ siteTitle }) => (
-  <Navbar expand="lg" bg="white">
+  <Navbar expand="lg" bg="white" sticky="top">
     <Navbar.Brand href="#home">{siteTitle}</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse className={"justify-content-end"}>
