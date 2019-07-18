@@ -5,69 +5,132 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import "../../node_modules/react-id-swiper/lib/styles/css/swiper.css"
 import "../styles/crypto-roller.scss"
 
-const CryptoRoller = () => {
-  const params = {
-    slidesPerView: "auto",
-    spaceBetween: 60,
-    loop: true,
-    centeredSlides: true,
-    containerClass: "crypto-roller-container",
-    autoplay: {
-      delay: 2500,
-      disableOnInteraction: false,
-    },
-  }
+const axios = require("axios")
 
-  return (
-    <Swiper {...params} className={"crypto-roller-container"}>
-      <div className={"element"}>
-        <span className={"title"}>Bitcoin</span>
-        <span className={"value"}>9000$</span>
-        <FontAwesomeIcon icon="sort-down" className={"arrow-down"} />
-        <span className={"percentage red"}>4.50%</span>
-      </div>
-      <div className={"element"}>
-        <span className={"title"}>Ethereum</span>
-        <span className={"value"}>9000$</span>
-        <span>
-          <FontAwesomeIcon icon="sort-up" className={"arrow-up"} />
-        </span>
-        <span className={"percentage green"}>4.50%</span>
-      </div>
-      <div className={"element"}>
-        <span className={"title"}>Litecoin</span>
-        <span className={"value"}>9000$</span>
-        <span>
-          <FontAwesomeIcon icon="sort-up" className={"arrow-up"} />
-        </span>
-        <span className={"percentage green"}>4.50%</span>
-      </div>
-      <div className={"element"}>
-        <span className={"title"}>Bitcoin CASH</span>
-        <span className={"value"}>9000$</span>
-        <span>
-          <FontAwesomeIcon icon="sort-up" className={"arrow-up"} />
-        </span>
-        <span className={"percentage green"}>4.50%</span>
-      </div>
-      <div className={"element"}>
-        <span className={"title"}>Fantom</span>
-        <span className={"value"}>9000$</span>
-        <span>
-          <FontAwesomeIcon icon="sort-up" className={"arrow-up"} />
-        </span>
-        <span className={"percentage green"}>4.50%</span>
-      </div>
-      <div className={"element"}>
-        <span className={"title"}>Waves</span>
-        <span className={"value"}>9000$</span>
-        <span>
-          <FontAwesomeIcon icon="sort-up" className={"arrow-up"} />
-        </span>
-        <span className={"percentage green"}>4.50%</span>
-      </div>
-    </Swiper>
-  )
+const params = {
+  slidesPerView: "auto",
+  spaceBetween: 60,
+  loop: true,
+  containerClass: "crypto-roller-container swiper-container",
+  autoplay: {
+    delay: 2500,
+    disableOnInteraction: false,
+  },
 }
 
-export default CryptoRoller
+export default class CryptoRoller extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      elements: [
+        {
+          name: "Bitcoin",
+          current_price: 0,
+          price_change_percentage_24h: 0,
+        },
+        {
+          name: "Ethereum",
+          current_price: 0,
+          price_change_percentage_24h: 0,
+        },
+        {
+          name: "Litecoin",
+          current_price: 0,
+          price_change_percentage_24h: 0,
+        },
+        {
+          name: "Bitcoin Cash",
+          current_price: 0,
+          price_change_percentage_24h: 0,
+        },
+        {
+          name: "EOS",
+          current_price: 0,
+          price_change_percentage_24h: 0,
+        },
+        {
+          name: "NEO",
+          current_price: 0,
+          price_change_percentage_24h: 0,
+        },
+        {
+          name: "Waves",
+          current_price: 0,
+          price_change_percentage_24h: 0,
+        },
+        {
+          name: "Fantom",
+          current_price: 0,
+          price_change_percentage_24h: 0,
+        },
+        {
+          name: "LINK",
+          current_price: 0,
+          price_change_percentage_24h: 0,
+        },
+      ],
+    }
+  }
+
+  componentDidMount() {
+    this.getData()
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timeoutId)
+  }
+
+  getData() {
+    axios
+      .get(
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=PLN&ids=bitcoin%2Cethereum%2Cbitcoin-cash%2Clitecoin%2Cwaves%2Clink%2Cfantom%2Cneo%2Cbinance-coin%2Ceos&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+      )
+      .then(response => {
+        this.setState({
+          elements: response.data,
+        })
+      })
+      .catch(function(error) {
+        console.log(error)
+      })
+      .finally(() => {
+        this.timeoutId = setTimeout(
+          function() {
+            this.getData()
+          }.bind(this),
+          60000
+        )
+      })
+  }
+
+  renderItem(item) {
+    return (
+      <div className={"element"} key={item.name}>
+        <span className={"title"}>{item.name}</span>
+        <span className={"value"}>{item.current_price} PLN</span>
+        {item.price_change_percentage_24h < 0 ? (
+          <FontAwesomeIcon icon="sort-down" className={"arrow-down"} />
+        ) : (
+          <FontAwesomeIcon icon="sort-up" className={"arrow-up"} />
+        )}
+        {item.price_change_percentage_24h < 0 ? (
+          <span className={"percentage red"}>
+            {item.price_change_percentage_24h}%
+          </span>
+        ) : (
+          <span className={"percentage green"}>
+            {item.price_change_percentage_24h}%
+          </span>
+        )}
+      </div>
+    )
+  }
+
+  render() {
+    var currencyList = this.state.elements.map(item => {
+      return this.renderItem(item)
+    })
+
+    return <Swiper {...params}>{currencyList}</Swiper>
+  }
+}

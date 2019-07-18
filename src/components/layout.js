@@ -29,7 +29,8 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <CryptoRoller />
+      <CryptoRoller style="overflow:hidden" />
+
       <Container fluid={true} id="main-container">
         <main className={"page-content"}>{children}</main>
       </Container>
