@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
     <div>
       <Header siteTitle={data.site.siteMetadata.title} />
 
-      <CryptoRoller style="overflow:hidden" />
+      <CryptoRoller />
 
       <Container fluid={true} id="main-container" className={"page-padding"}>
         <main className={"page-content"}>{children}</main>

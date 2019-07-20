@@ -1,0 +1,51 @@
+.underlined-black-text {
+  text-decoration: underline;
+  color: black;
+  font-size: 13px;
+}
+
+.black-bg {
+  background-color: black;
+}
+
+.white-text {
+  color: white !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.align-text-right {
+  text-align: right;
+}
+
+.time-and-author {
+  font-size: 13px;
+}
+
+.margin-bottom-base {
+  margin-bottom: 8px;
+}
+
+.margin-top-base {
+  margin-top: 8px;
+}
+
+.border-grey-bottom {
+  border-bottom: 1px solid #70707025;
+}
+
+.border-grey-bottom-dotted {
+  border-bottom: 2px dotted #70707025;
+}
+
+.article-padding {
+  padding: 12px 0;
+}
+
+.section-margin-and-padding {
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}

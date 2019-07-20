@@ -1,11 +1,4 @@
 @import "indexLeftArticle";
 @import "indexRightArticle";
-
-.index-article-content {
-  max-height: 250px;
-  overflow: hidden;
-}
-
-.index-article-content img {
-  display: none;
-}
+@import "indexMainArticle";
+@import "indexSection";
