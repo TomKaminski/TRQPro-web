@@ -1,0 +1,33 @@
+.index-left-article {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #70707025;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .link-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+  }
+  .description {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .read-more {
+    font-size: 14px;
+    text-decoration: underline;
+    color: black;
+  }
+  .upper-text-container {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    .upper-text-note {
+      font-size: 13px;
+      &.right {
+        text-align: right;
+      }
+    }
+  }
+}

@@ -9,6 +9,7 @@ const axios = require("axios")
 
 const params = {
   slidesPerView: "auto",
+  shouldSwiperUpdate: true,
   spaceBetween: 60,
   loop: true,
   containerClass: "crypto-roller-container swiper-container",
@@ -22,53 +23,7 @@ export default class CryptoRoller extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      elements: [
-        {
-          name: "Bitcoin",
-          current_price: 0,
-          price_change_percentage_24h: 0,
-        },
-        {
-          name: "Ethereum",
-          current_price: 0,
-          price_change_percentage_24h: 0,
-        },
-        {
-          name: "Litecoin",
-          current_price: 0,
-          price_change_percentage_24h: 0,
-        },
-        {
-          name: "Bitcoin Cash",
-          current_price: 0,
-          price_change_percentage_24h: 0,
-        },
-        {
-          name: "EOS",
-          current_price: 0,
-          price_change_percentage_24h: 0,
-        },
-        {
-          name: "NEO",
-          current_price: 0,
-          price_change_percentage_24h: 0,
-        },
-        {
-          name: "Waves",
-          current_price: 0,
-          price_change_percentage_24h: 0,
-        },
-        {
-          name: "Fantom",
-          current_price: 0,
-          price_change_percentage_24h: 0,
-        },
-        {
-          name: "LINK",
-          current_price: 0,
-          price_change_percentage_24h: 0,
-        },
-      ],
+      elements: [],
     }
   }
 
@@ -77,7 +32,7 @@ export default class CryptoRoller extends React.Component {
   }
 
   componentWillUnmount() {
-    clearTimeout(this.timeoutId)
+    //clearTimeout(this.timeoutId)
   }
 
   getData() {

@@ -17,7 +17,14 @@ export default class IndexArticle extends React.Component {
             {this.props.article.title}
           </Link>
         </h2>
-        <Reactmarkdown source={this.props.article.content} />
+        <Reactmarkdown
+          className={"index-article-content"}
+          source={this.props.article.content.substring(0, 500).concat("...")}
+          transformImageUri={uri =>
+            uri.startsWith("http") ? uri : `${process.env.IMAGE_BASE_URL}${uri}`
+          }
+        />
+        <Link to={`/article/${this.props.article.id}`}>Czytaj dalej</Link>
       </div>
     )
   }
