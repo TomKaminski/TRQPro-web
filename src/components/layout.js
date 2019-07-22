@@ -4,7 +4,12 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { fab } from "@fortawesome/free-brands-svg-icons"
-import { faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons"
+import {
+  faSortUp,
+  faSortDown,
+  faChevronRight,
+  faChevronLeft,
+} from "@fortawesome/free-solid-svg-icons"
 
 import Header from "./header"
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css"
@@ -13,7 +18,7 @@ import { Container } from "react-bootstrap"
 import CryptoRoller from "./cryptoRoller"
 import Footer from "./footer"
 
-library.add(fab, faSortUp, faSortDown)
+library.add(fab, faSortUp, faSortDown, faChevronLeft, faChevronRight)
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`

@@ -9,6 +9,10 @@ import { Row, Col } from "react-bootstrap"
 
 import "../styles/index/index.scss"
 import IndexSection from "../components/index/indexSection"
+import IndexAcademySection from "../components/index/indexAcademySection"
+import IndexMiniArticle from "../components/index/indexMiniArticle"
+import IndexICOSection from "../components/index/indexICOSection"
+import IndexAnalizaRynkowSection from "../components/index/indexAnalizaRynkowSection"
 
 export default class IndexPage extends React.Component {
   render() {
@@ -24,8 +28,8 @@ export default class IndexPage extends React.Component {
               sm={{ order: 2, span: 6 }}
             >
               <IndexArticleWithCategory />
-              <IndexArticleWithCategory />
-              <IndexArticleWithCategory />
+              <IndexMiniArticle dateAlignRight={true} />
+              <IndexMiniArticle dateAlignRight={true} />
             </Col>
             <Col
               xs={{ order: 1, span: 12 }}
@@ -54,13 +58,13 @@ export default class IndexPage extends React.Component {
         <IndexSection sectionName="Kryptowaluty" />
 
         {/* Index academy component */}
-        <IndexSection sectionName="Akademia" />
+        <IndexAcademySection sectionName="Akademia" />
 
         {/* Index ICO/Mining component */}
-        <IndexSection sectionName="ICO / Mining" />
+        <IndexICOSection sectionName="ICO / Mining" />
 
         {/* Index AT component */}
-        <IndexSection sectionName="Analiza rynków" />
+        <IndexAnalizaRynkowSection sectionName="Analiza rynków" />
       </Layout>
     )
   }

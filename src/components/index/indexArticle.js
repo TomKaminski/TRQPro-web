@@ -9,8 +9,7 @@ export default class IndexArticle extends React.Component {
     return (
       <div
         key={this.props.article.id}
-        id="index-main-article"
-        className={"article-padding "}
+        className={"article-padding index-main-article"}
       >
         <Img fluid={this.props.article.image.childImageSharp.fluid} />
         <TimeAndAuthor />
