@@ -11,7 +11,7 @@ const params = {
   slidesPerView: "auto",
   shouldSwiperUpdate: true,
   spaceBetween: 60,
-  loop: true,
+  loopMode: true,
   containerClass: "crypto-roller-container swiper-container",
   autoplay: {
     delay: 2500,

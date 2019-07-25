@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
 import Reactmarkdown from "react-markdown"
-import TimeAndAuthor from "../shared/timeAndAuthor"
+import TimeAndAuthor from "./timeAndAuthor"
 
 export default class IndexArticle extends React.Component {
   render() {

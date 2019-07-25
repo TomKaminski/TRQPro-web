@@ -1,7 +1,7 @@
 import React from "react"
 import { Row, Col } from "react-bootstrap"
 import TimeAndAuthor from "../shared/timeAndAuthor"
-import image from "../../images/img2.png"
+import image from "../../../images/img2.png"
 
 export default class IndexArticleWithCategory extends React.Component {
   render() {

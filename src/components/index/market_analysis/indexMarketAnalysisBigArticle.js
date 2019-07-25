@@ -1,8 +1,8 @@
 import React from "react"
 import TimeAndAuthor from "../shared/timeAndAuthor"
-import image from "../../images/at.png"
+import image from "../../../images/at.png"
 
-export default class IndexAnalizaRynkowBigArticle extends React.Component {
+export default class IndexMarketAnalysisBigArticle extends React.Component {
   render() {
     return (
       <div className={"index-left-article article-padding"}>

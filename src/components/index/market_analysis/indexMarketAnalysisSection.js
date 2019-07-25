@@ -1,10 +1,10 @@
 import React from "react"
 import { Row, Col } from "react-bootstrap"
-import IndexPager from "./indexPager"
-import IndexMiniArticle from "./indexMiniArticle"
-import IndexAnalizaRynkowBigArticle from "./indexAnalizaRynkowBigArticle"
+import IndexMarketAnalysisBigArticle from "./indexMarketAnalysisBigArticle"
+import IndexMiniArticle from "../shared/indexMiniArticle"
+import IndexPager from "../shared/indexPager"
 
-const IndexAnalizaRynkowSection = props => {
+const IndexMarketAnalysisSection = props => {
   return (
     <section className={"border-grey-bottom-dotted section-margin-and-padding"}>
       <Row>
@@ -19,7 +19,7 @@ const IndexAnalizaRynkowSection = props => {
       </Row>
       <Row>
         <Col xs={12} sm={12} lg={6} md={8}>
-          <IndexAnalizaRynkowBigArticle />
+          <IndexMarketAnalysisBigArticle />
         </Col>
         <Col xs={12} sm={12} lg={6} md={4}>
           <IndexMiniArticle />
@@ -28,9 +28,8 @@ const IndexAnalizaRynkowSection = props => {
           <IndexMiniArticle />
         </Col>
       </Row>
-      <IndexPager />
     </section>
   )
 }
 
-export default IndexAnalizaRynkowSection
+export default IndexMarketAnalysisSection

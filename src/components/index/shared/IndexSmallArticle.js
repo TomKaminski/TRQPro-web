@@ -1,5 +1,5 @@
 import React from "react"
-import TimeAndAuthor from "../shared/timeAndAuthor"
+import TimeAndAuthor from "./timeAndAuthor"
 
 export default class IndexRightArticle extends React.Component {
   render() {

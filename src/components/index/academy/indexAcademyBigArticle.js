@@ -1,6 +1,6 @@
 import React from "react"
 import TimeAndAuthor from "../shared/timeAndAuthor"
-import image from "../../images/img1.png"
+import image from "../../../images/img1.png"
 
 export default class IndexAcademyBigArticle extends React.Component {
   render() {

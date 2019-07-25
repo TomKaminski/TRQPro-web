@@ -1,10 +1,10 @@
 import React from "react"
 import { Row, Col } from "react-bootstrap"
-import IndexPager from "./indexPager"
-import IndexMiniArticle from "./indexMiniArticle"
-import IndexAcademyBigArticle from "./indexAcademyBigArticle"
+import IndexMiniArticle from "../shared/indexMiniArticle"
+import IndexArticleWithCategory from "../shared/IndexArticleWithCategory"
+import IndexPager from "../shared/indexPager"
 
-const IndexAcademySection = props => {
+const IndexICOSection = props => {
   return (
     <section className={"border-grey-bottom-dotted section-margin-and-padding"}>
       <Row>
@@ -18,19 +18,24 @@ const IndexAcademySection = props => {
         </Col>
       </Row>
       <Row>
-        <Col xs={12} sm={12} lg={9} md={8}>
-          <IndexAcademyBigArticle />
+        <Col xs={12} sm={12} lg={6} md={8}>
+          <IndexMiniArticle />
+          <IndexMiniArticle />
+          <IndexMiniArticle />
         </Col>
-        <Col xs={12} sm={12} lg={3} md={4}>
-          <IndexMiniArticle />
-          <IndexMiniArticle />
-          <IndexMiniArticle />
-          <IndexMiniArticle />
+        <Col xs={12} sm={12} lg={6} md={4}>
+          <Row>
+            <Col>
+              <IndexArticleWithCategory />
+            </Col>
+            <Col>
+              <IndexArticleWithCategory />
+            </Col>
+          </Row>
         </Col>
       </Row>
-      <IndexPager />
     </section>
   )
 }
 
-export default IndexAcademySection
+export default IndexICOSection
