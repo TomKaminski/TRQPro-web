@@ -1,6 +1,5 @@
 import React from "react"
 import { Row, Col } from "react-bootstrap"
-import IndexPager from "../shared/indexPager"
 import IndexArticleWithCategory from "../shared/IndexArticleWithCategory"
 
 const IndexSection = props => {
@@ -17,18 +16,13 @@ const IndexSection = props => {
         </Col>
       </Row>
       <Row>
-        <Col className={"black-bg"} xs={12} sm={6} lg={3}>
-          <IndexArticleWithCategory darkMode={true} />
-        </Col>
-        <Col xs={12} sm={6} lg={3}>
-          <IndexArticleWithCategory />
-        </Col>
-        <Col xs={12} sm={6} lg={3}>
-          <IndexArticleWithCategory />
-        </Col>
-        <Col xs={12} sm={6} lg={3}>
-          <IndexArticleWithCategory />
-        </Col>
+        {props.articles.map((element, i) => {
+          return (
+            <Col xs={12} sm={6} lg={3} className={i === 0 ? "black-bg" : ""}>
+              <IndexArticleWithCategory article={element} darkMode={i === 0} />
+            </Col>
+          )
+        })}
       </Row>
     </section>
   )

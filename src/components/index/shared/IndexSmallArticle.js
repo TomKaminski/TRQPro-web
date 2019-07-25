@@ -5,12 +5,10 @@ export default class IndexRightArticle extends React.Component {
   render() {
     return (
       <div className={"index-right-article border-grey-bottom article-padding"}>
-        <h3 className={"title"}>forex</h3>
+        <h3 className={"title"}>{this.props.article.title}</h3>
         <TimeAndAuthor />
         <p className={"description margin-top-base"}>
-          Less than a day ago, the profile of the mysterious Bitcoin investor
-          Satoshi Nakamoto returned to life for the first time since 2010. On
-          the P2P Foundation online portal, the author...
+          {this.props.article.content.substring(0, 300).concat("...")}
         </p>
         <a href="#" className={"underlined-black-text"}>
           Czytaj dalej

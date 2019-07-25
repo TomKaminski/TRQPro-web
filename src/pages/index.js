@@ -9,34 +9,72 @@ import IndexICOSection from "../components/index/ico_mining/indexICOSection"
 import IndexMarketAnalysisSection from "../components/index/market_analysis/indexMarketAnalysisSection"
 
 export default class IndexPage extends React.Component {
-  getNewestArticle() {
+  getArticlesForMainSection() {
     var computingArray = []
     this.props.data.allStrapiArticle.group.forEach(groupOfArticles => {
       console.log(groupOfArticles.fieldValue)
       groupOfArticles.edges.forEach(article => {
-        computingArray.push(article)
+        computingArray.push(article.node)
       })
     })
 
-    return computingArray[0]
+    computingArray.sort((a, b) => b.strapiId - a.strapiId)
+
+    return computingArray.slice(0, 7)
+  }
+
+  getArticlesForCategory(categoryTag) {
+    return this.props.data.allStrapiArticle.group
+      .find(group => {
+        return group.fieldValue === categoryTag
+      })
+      .edges.map((element, _) => element.node)
+  }
+
+  getArticlesForCryptocurrenciesSection() {
+    return this.getArticlesForCategory("cat-cryptocurrency").slice(0, 4)
+  }
+
+  getArticlesForMarketAnalysisSection() {
+    return this.getArticlesForCategory("cat-at")
+  }
+
+  getArticlesForICOMiningSection() {
+    return this.getArticlesForCategory("cat-ico-mining")
+  }
+
+  getArticlesForAcademySection() {
+    return this.getArticlesForCategory("cat-academy")
   }
 
   render() {
     return (
       <Layout>
-        <IndexMainSection mainArticle={this.getNewestArticle()} />
+        <IndexMainSection articles={this.getArticlesForMainSection()} />
 
         {/* Index cryptocurrencies component */}
-        <IndexSection sectionName="Kryptowaluty" />
+        <IndexSection
+          sectionName="Kryptowaluty"
+          articles={this.getArticlesForCryptocurrenciesSection()}
+        />
 
         {/* Index academy component */}
-        <IndexAcademySection sectionName="Akademia" />
+        <IndexAcademySection
+          sectionName="Akademia"
+          articles={this.getArticlesForAcademySection()}
+        />
 
         {/* Index ICO/Mining component */}
-        <IndexICOSection sectionName="ICO / Mining" />
+        <IndexICOSection
+          sectionName="ICO / Mining"
+          articles={this.getArticlesForICOMiningSection()}
+        />
 
         {/* Index AT component */}
-        <IndexMarketAnalysisSection sectionName="Analiza rynków" />
+        <IndexMarketAnalysisSection
+          sectionName="Analiza rynków"
+          articles={this.getArticlesForMarketAnalysisSection()}
+        />
       </Layout>
     )
   }
