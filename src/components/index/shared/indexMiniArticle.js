@@ -9,7 +9,10 @@ export default class IndexMiniArticle extends React.Component {
       <div className={"index-left-article article-padding"}>
         <Row className={"upper-text-container"}>
           <Col className={this.props.dateAlignRight ? "align-text-right" : ""}>
-            <TimeAndAuthor />
+            <TimeAndAuthor
+              author={this.props.article.author.username}
+              date={this.props.article.created_at}
+            />
           </Col>
         </Row>
         <Link className={"link-title"} to={`/article/${this.props.article.id}`}>
@@ -18,9 +21,12 @@ export default class IndexMiniArticle extends React.Component {
         <p className={"description"}>
           {this.props.article.content.substring(0, 350).concat("...")}
         </p>
-        <a href="#" className={"underlined-black-text"}>
+        <Link
+          className={"underlined-black-text"}
+          to={`/article/${this.props.article.id}`}
+        >
           Czytaj dalej
-        </a>
+        </Link>
       </div>
     )
   }

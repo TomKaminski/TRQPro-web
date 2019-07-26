@@ -12,7 +12,10 @@ export default class IndexArticle extends React.Component {
         className={"article-padding index-main-article"}
       >
         <Img fluid={this.props.article.image.childImageSharp.fluid} />
-        <TimeAndAuthor />
+        <TimeAndAuthor
+          author={this.props.article.author.username}
+          date={this.props.article.created_at}
+        />
         <Link className="title" to={`/article/${this.props.article.id}`}>
           {this.props.article.title}
         </Link>

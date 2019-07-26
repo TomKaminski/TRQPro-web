@@ -93,6 +93,9 @@ export const pageQuery = graphql`
             created_at
             strapiId
             content
+            author {
+              username
+            }
             image {
               publicURL
               childImageSharp {

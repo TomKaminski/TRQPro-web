@@ -12,8 +12,12 @@ export default class IndexArticleWithCategory extends React.Component {
         <Img fluid={this.props.article.image.childImageSharp.fluid} />
         <Row className={"upper-text-container" + textClass}>
           <Col className={"upper-text-note"}>forex</Col>
-          <Col className={"align-text-right"}>
-            <TimeAndAuthor textClass={textClass} />
+          <Col xs={8} className={"align-text-right"}>
+            <TimeAndAuthor
+              author={this.props.article.author.username}
+              date={this.props.article.created_at}
+              textClass={textClass}
+            />
           </Col>
         </Row>
 
@@ -26,9 +30,12 @@ export default class IndexArticleWithCategory extends React.Component {
         <p className={"description" + textClass}>
           {this.props.article.content.substring(0, 350).concat("...")}
         </p>
-        <a href="#" className={"underlined-black-text" + textClass}>
+        <Link
+          className={"underlined-black-text" + textClass}
+          to={`/article/${this.props.article.id}`}
+        >
           Czytaj dalej
-        </a>
+        </Link>
       </div>
     )
   }

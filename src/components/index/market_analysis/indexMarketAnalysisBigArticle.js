@@ -9,7 +9,10 @@ export default class IndexMarketAnalysisBigArticle extends React.Component {
       <div className={"index-left-article article-padding"}>
         <Img fluid={this.props.article.image.childImageSharp.fluid} />
         <div className={"upper-text-container"}>
-          <TimeAndAuthor />
+          <TimeAndAuthor
+            author={this.props.article.author.username}
+            date={this.props.article.created_at}
+          />
         </div>
         <Link className="link-title" to={`/article/${this.props.article.id}`}>
           {this.props.article.title}
@@ -17,9 +20,12 @@ export default class IndexMarketAnalysisBigArticle extends React.Component {
         <p className={"description"}>
           {this.props.article.content.substring(0, 700).concat("...")}
         </p>
-        <a href="#" className={"underlined-black-text"}>
+        <Link
+          className={"underlined-black-text"}
+          to={`/article/${this.props.article.id}`}
+        >
           Czytaj dalej
-        </a>
+        </Link>
       </div>
     )
   }
