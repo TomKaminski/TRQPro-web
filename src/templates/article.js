@@ -5,6 +5,14 @@ import Layout from "../components/layout"
 import Reactmarkdown from "react-markdown"
 import "../styles/article/article.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { DiscussionEmbed } from "disqus-react"
+
+const disqusConfig = (slug, title) => {
+  return {
+    shortname: process.env.GATSBY_DISQUS_NAME,
+    config: { identifier: slug, title },
+  }
+}
 
 const ArticleTemplate = ({ data }) => (
   <Layout>
@@ -41,6 +49,9 @@ const ArticleTemplate = ({ data }) => (
       </div>
 
       <Reactmarkdown source={data.strapiArticle.content} />
+      <DiscussionEmbed
+        {...disqusConfig(data.strapiArticle.id, data.strapiArticle.title)}
+      />
     </div>
   </Layout>
 )
@@ -50,6 +61,7 @@ export default ArticleTemplate
 export const query = graphql`
   query ArticleTemplate($id: String!) {
     strapiArticle(id: { eq: $id }) {
+      id
       title
       content
       created_at
