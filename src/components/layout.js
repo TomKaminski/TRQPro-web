@@ -7,7 +7,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons"
 import {
   faHashtag,
   faCalendar,
-  faShare,
+  faShareAlt,
   faSortUp,
   faSortDown,
   faChevronRight,
@@ -29,7 +29,7 @@ library.add(
   faChevronRight,
   faCalendar,
   faHashtag,
-  faShare
+  faShareAlt
 )
 
 const Layout = ({ children }) => {
