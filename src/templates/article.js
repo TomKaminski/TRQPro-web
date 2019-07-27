@@ -36,7 +36,7 @@ const ArticleTemplate = ({ data }) => (
           {"tags: satoshi, bitcoin,cryptocurency"}
         </p>
         <a href="#" className={"article-meta"}>
-          <FontAwesomeIcon icon="share-alt" /> udostępnij
+          <FontAwesomeIcon icon="share" /> udostępnij
         </a>
       </div>
 
