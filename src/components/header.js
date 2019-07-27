@@ -3,10 +3,17 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 import "../styles/header.scss"
+import { Link } from "@reach/router"
+import logoImg from "../images/brand_logo.png"
 
 const Header = ({ siteTitle }) => (
   <Navbar expand="lg" bg="white" sticky="top">
-    <Navbar.Brand href="#home">{siteTitle}</Navbar.Brand>
+    <Link to={`/`}>
+      <Navbar.Brand>
+        <img src={logoImg} id="brand-logo" />
+      </Navbar.Brand>
+    </Link>
+
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse className={"justify-content-end"}>
       <Nav>
