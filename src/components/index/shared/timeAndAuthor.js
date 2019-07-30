@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 
 const formatDate = dateString => {
   let date = new Date(dateString)
@@ -8,10 +9,14 @@ const formatDate = dateString => {
 const TimeAndAuthor = props => {
   return (
     <div className={"time-and-author"}>
-      <span className={"underlined-black-text " + props.textClass}>
-        {formatDate(props.date)}
-      </span>
-      <span> &bull; {props.author}</span>
+      <span className={props.textClass}>{formatDate(props.date)}</span>
+      <span> &bull; </span>
+      <Link
+        to={`/author/User_${props.author.id}`}
+        className={"underlined-black-text"}
+      >
+        {props.author.username}
+      </Link>
     </div>
   )
 }

@@ -24,9 +24,14 @@
 
 .article-meta-container {
   display: inline-flex;
+  flex-wrap: wrap;
   .article-meta {
     color: black;
     margin-right: 24px;
     font-size: 13px;
+    > a {
+      color: black;
+      font-size: 13px;
+    }
   }
 }

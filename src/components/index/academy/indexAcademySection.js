@@ -2,6 +2,7 @@ import React from "react"
 import { Row, Col } from "react-bootstrap"
 import IndexAcademyBigArticle from "./indexAcademyBigArticle"
 import IndexMiniArticle from "../shared/indexMiniArticle"
+import { Link } from "gatsby"
 
 const IndexAcademySection = props => {
   if (props.articles && props.articles.length > 0) {
@@ -17,7 +18,12 @@ const IndexAcademySection = props => {
             <div className={"section"}>
               <div className={"section-title-container"}>
                 <h3 className={"section-title"}>{props.sectionName}</h3>
-                <p className={"section-show-all"}>zobacz wszystkie</p>
+                <Link
+                  to={`/category/cat-academy`}
+                  className={"section-show-all"}
+                >
+                  zobacz wszystkie
+                </Link>
               </div>
             </div>
           </Col>

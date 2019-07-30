@@ -10,7 +10,7 @@ export default class IndexMarketAnalysisBigArticle extends React.Component {
         <Img fluid={this.props.article.image.childImageSharp.fluid} />
         <div className={"upper-text-container"}>
           <TimeAndAuthor
-            author={this.props.article.author.username}
+            author={this.props.article.author}
             date={this.props.article.created_at}
           />
         </div>

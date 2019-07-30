@@ -8,7 +8,7 @@ export default class IndexRightArticle extends React.Component {
       <div className={"index-right-article border-grey-bottom article-padding"}>
         <h3 className={"title"}>{this.props.article.title}</h3>
         <TimeAndAuthor
-          author={this.props.article.author.username}
+          author={this.props.article.author}
           date={this.props.article.created_at}
         />
         <p className={"description margin-top-base"}>

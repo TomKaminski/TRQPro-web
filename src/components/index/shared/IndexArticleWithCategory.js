@@ -11,10 +11,12 @@ export default class IndexArticleWithCategory extends React.Component {
       <div className={"index-left-article article-padding"}>
         <Img fluid={this.props.article.image.childImageSharp.fluid} />
         <Row className={"upper-text-container" + textClass}>
-          <Col className={"upper-text-note"}>forex</Col>
+          <Col className={"upper-text-note"}>
+            {this.props.article.category.name}
+          </Col>
           <Col xs={8} className={"align-text-right"}>
             <TimeAndAuthor
-              author={this.props.article.author.username}
+              author={this.props.article.author}
               date={this.props.article.created_at}
               textClass={textClass}
             />

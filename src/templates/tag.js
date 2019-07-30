@@ -3,11 +3,11 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Reactmarkdown from "react-markdown"
 
-const UserTemplate = ({ data }) => (
+const TagTemplate = ({ data }) => (
   <Layout>
-    <h1>{data.strapiUser.username}</h1>
+    <h1>{data.strapiTag.name}</h1>
     <ul>
-      {data.strapiUser.articles.map(article => (
+      {data.strapiTag.articles.map(article => (
         <li key={article.id}>
           <h2>
             <Link to={`/article/Article_${article.id}`}>{article.title}</Link>
@@ -19,18 +19,19 @@ const UserTemplate = ({ data }) => (
   </Layout>
 )
 
-export default UserTemplate
+export default TagTemplate
 
 export const query = graphql`
-  query UserTemplate($id: String!) {
-    strapiUser(id: { eq: $id }) {
-      id
-      username
+  query TagTemplate($key: String!) {
+    strapiTag(key: { eq: $key }) {
       articles {
+        content
         id
         title
-        content
       }
+      id
+      key
+      name
     }
   }
 `

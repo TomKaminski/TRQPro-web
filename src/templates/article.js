@@ -28,7 +28,12 @@ const ArticleTemplate = ({ data }) => (
     <div id="article-content">
       <h1 id="article-title">{data.strapiArticle.title}</h1>
       <div className="article-meta-container">
-        <p className={"article-meta"}>FOREX</p>
+        <Link
+          to={`/category/${data.strapiArticle.category.key}`}
+          className={"article-meta"}
+        >
+          {data.strapiArticle.category.name.toUpperCase()}
+        </Link>
         <p className={"article-meta"}>
           <FontAwesomeIcon icon="calendar" />{" "}
           {new Date(data.strapiArticle.created_at).toLocaleString()}
@@ -41,11 +46,14 @@ const ArticleTemplate = ({ data }) => (
         </Link>
         <p className={"article-meta"}>
           <FontAwesomeIcon icon="hashtag" />{" "}
-          {"tags: satoshi, bitcoin,cryptocurency"}
+          {data.strapiArticle.tags.map(tag => (
+            <Link to={`/tag/${tag.key}`}>{tag.name}</Link>
+          ))}
         </p>
-        <a href="#" className={"article-meta"}>
-          <FontAwesomeIcon icon="share-alt" /> udostępnij
-        </a>
+
+        <p className={"article-meta"}>
+          <FontAwesomeIcon icon="share-alt" /> <a href="#">udostępnij</a>
+        </p>
       </div>
 
       <Reactmarkdown source={data.strapiArticle.content} />
@@ -72,9 +80,17 @@ export const query = graphql`
           }
         }
       }
+      category {
+        name
+        key
+      }
       author {
         id
         username
+      }
+      tags {
+        key
+        name
       }
     }
   }

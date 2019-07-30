@@ -93,7 +93,12 @@ export const pageQuery = graphql`
             created_at
             strapiId
             content
+            category {
+              key
+              name
+            }
             author {
+              id
               username
             }
             image {

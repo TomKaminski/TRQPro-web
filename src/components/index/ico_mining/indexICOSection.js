@@ -2,6 +2,7 @@ import React from "react"
 import { Row, Col } from "react-bootstrap"
 import IndexMiniArticle from "../shared/indexMiniArticle"
 import IndexArticleWithCategory from "../shared/IndexArticleWithCategory"
+import { Link } from "gatsby"
 
 const IndexICOSection = props => {
   let leftSideArticles = props.articles.slice(0, 3)
@@ -17,7 +18,12 @@ const IndexICOSection = props => {
             <div className={"section"}>
               <div className={"section-title-container"}>
                 <h3 className={"section-title"}>{props.sectionName}</h3>
-                <p className={"section-show-all"}>zobacz wszystkie</p>
+                <Link
+                  to={`/category/cat-ico-mining`}
+                  className={"section-show-all"}
+                >
+                  zobacz wszystkie
+                </Link>
               </div>
             </div>
           </Col>

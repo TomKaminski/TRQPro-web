@@ -1,6 +1,7 @@
 import React from "react"
 import { Row, Col } from "react-bootstrap"
 import IndexArticleWithCategory from "../shared/IndexArticleWithCategory"
+import { Link } from "gatsby"
 
 const IndexSection = props => {
   return (
@@ -10,7 +11,12 @@ const IndexSection = props => {
           <div className={"section"}>
             <div className={"section-title-container"}>
               <h3 className={"section-title"}>{props.sectionName}</h3>
-              <p className={"section-show-all"}>zobacz wszystkie</p>
+              <Link
+                to={`/category/cat-cryptocurrency`}
+                className={"section-show-all"}
+              >
+                zobacz wszystkie
+              </Link>
             </div>
           </div>
         </Col>

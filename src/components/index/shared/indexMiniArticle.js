@@ -10,7 +10,7 @@ export default class IndexMiniArticle extends React.Component {
         <Row className={"upper-text-container"}>
           <Col className={this.props.dateAlignRight ? "align-text-right" : ""}>
             <TimeAndAuthor
-              author={this.props.article.author.username}
+              author={this.props.article.author}
               date={this.props.article.created_at}
             />
           </Col>

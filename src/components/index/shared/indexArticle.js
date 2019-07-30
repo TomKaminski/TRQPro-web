@@ -13,7 +13,7 @@ export default class IndexArticle extends React.Component {
       >
         <Img fluid={this.props.article.image.childImageSharp.fluid} />
         <TimeAndAuthor
-          author={this.props.article.author.username}
+          author={this.props.article.author}
           date={this.props.article.created_at}
         />
         <Link className="title" to={`/article/${this.props.article.id}`}>
