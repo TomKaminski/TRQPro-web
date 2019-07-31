@@ -47,7 +47,9 @@ const ArticleTemplate = ({ data }) => (
         <p className={"article-meta"}>
           <FontAwesomeIcon icon="hashtag" />{" "}
           {data.strapiArticle.tags.map(tag => (
-            <Link to={`/tag/${tag.key}`}>{tag.name}</Link>
+            <Link to={`/tag/${tag.key}`} key={tag.key}>
+              {tag.name}
+            </Link>
           ))}
         </p>
 

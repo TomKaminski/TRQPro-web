@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 export default class IndexPager extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { activePageIndex: 0 }
+    this.state = { activePageIndex: props.activePageIndex }
   }
 
   renderPages() {
@@ -42,10 +42,12 @@ export default class IndexPager extends React.Component {
   }
 
   onPageChange = pageIndex => {
-    this.setState({
-      activePageIndex: pageIndex,
-    })
-    this.props.onPageChangeCallback(pageIndex)
+    if (this.state.activePageIndex != pageIndex) {
+      this.setState({
+        activePageIndex: pageIndex,
+      })
+      this.props.onPageChangeCallback(pageIndex)
+    }
   }
 
   render() {

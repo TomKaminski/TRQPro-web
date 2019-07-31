@@ -1,37 +1,64 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql, navigate } from "gatsby"
 import Layout from "../components/layout"
-import Reactmarkdown from "react-markdown"
+import IndexRightArticle from "../components/index/shared/IndexSmallArticle"
+import IndexPager from "../components/index/shared/indexPager"
 
-const TagTemplate = ({ data }) => (
-  <Layout>
-    <h1>{data.strapiTag.name}</h1>
-    <ul>
-      {data.strapiTag.articles.map(article => (
-        <li key={article.id}>
-          <h2>
-            <Link to={`/article/Article_${article.id}`}>{article.title}</Link>
-          </h2>
-          <Reactmarkdown source={article.content} />
-        </li>
-      ))}
-    </ul>
-  </Layout>
-)
+class TagTemplate extends React.Component {
+  render() {
+    console.log(this)
+
+    return (
+      <Layout>
+        {this.props.data.allStrapiArticle.edges.map(article => (
+          <IndexRightArticle article={article.node} key={article.node.id} />
+        ))}
+        <IndexPager
+          activePageIndex={this.props.pageContext.currentPage - 1}
+          pageCount={this.props.data.allStrapiArticle.pageInfo.pageCount}
+          onPageChangeCallback={page => {
+            if (page === 0) {
+              navigate(`/tag/${this.props.pageContext.key}`)
+            } else {
+              navigate(`/tag/${this.props.pageContext.key}/${page + 1}`)
+            }
+          }}
+        />
+      </Layout>
+    )
+  }
+}
 
 export default TagTemplate
 
 export const query = graphql`
-  query TagTemplate($key: String!) {
-    strapiTag(key: { eq: $key }) {
-      articles {
-        content
-        id
-        title
+  query TagTemplate($key: String!, $skip: Int!, $limit: Int!) {
+    allStrapiArticle(
+      filter: { tags: { elemMatch: { key: { eq: $key } } } }
+      limit: $limit
+      sort: { order: DESC, fields: strapiId }
+      skip: $skip
+    ) {
+      edges {
+        node {
+          id
+          title
+          created_at
+          strapiId
+          content
+          category {
+            key
+            name
+          }
+          author {
+            id
+            username
+          }
+        }
       }
-      id
-      key
-      name
+      pageInfo {
+        pageCount
+      }
     }
   }
 `

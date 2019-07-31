@@ -45,84 +45,140 @@ exports.createPages = ({ actions, graphql }) => {
     })
   })
 
-  const getAuthors = makeRequest(
+  const getPagedAuthors = makeRequest(
     graphql,
     `
     {
-      allStrapiUser {
-        edges {
-          node {
-            id
+      allStrapiArticle {
+        group(field: author___id, limit: 1) {
+          fieldValue
+          pageInfo {
+            pageCount
           }
         }
       }
     }
     `
   ).then(result => {
-    // Create pages for each user.
-    result.data.allStrapiUser.edges.forEach(({ node }) => {
-      createPage({
-        path: `/author/${node.id}`,
-        component: path.resolve(`src/templates/author.js`),
-        context: {
-          id: node.id,
-        },
-      })
+    if (result.errors) {
+      reject(result.errors)
+    }
+    // ...
+    // Create paged categories based on page count lol.
+    const postsPerPage = 1
+    result.data.allStrapiArticle.group.forEach(articleGroup => {
+      Array.from({ length: articleGroup.pageInfo.pageCount }).forEach(
+        (_, i) => {
+          createPage({
+            path:
+              i === 0
+                ? `/author/${articleGroup.fieldValue}`
+                : `/author/${articleGroup.fieldValue}/${i + 1}`,
+            component: path.resolve(`src/templates/author.js`),
+            context: {
+              key: parseInt(articleGroup.fieldValue),
+              limit: postsPerPage,
+              skip: i * postsPerPage,
+              pageCount: articleGroup.pageInfo.pageCount,
+              currentPage: i + 1,
+            },
+          })
+        }
+      )
     })
   })
 
-  const getCategories = makeRequest(
+  const getPagedCategories = makeRequest(
     graphql,
     `
     {
-      allStrapiCategory {
-        edges {
-          node {
-            key
+      allStrapiArticle {
+        group(field: category___key, limit: 1) {
+          fieldValue
+          pageInfo {
+            pageCount
           }
         }
       }
     }
     `
   ).then(result => {
-    // Create pages for each user.
-    result.data.allStrapiCategory.edges.forEach(({ node }) => {
-      createPage({
-        path: `/category/${node.key}`,
-        component: path.resolve(`src/templates/category.js`),
-        context: {
-          key: node.key,
-        },
-      })
+    if (result.errors) {
+      reject(result.errors)
+    }
+    // ...
+    // Create paged categories based on page count lol.
+    const postsPerPage = 1
+    result.data.allStrapiArticle.group.forEach(articleGroup => {
+      Array.from({ length: articleGroup.pageInfo.pageCount }).forEach(
+        (_, i) => {
+          createPage({
+            path:
+              i === 0
+                ? `/category/${articleGroup.fieldValue}`
+                : `/category/${articleGroup.fieldValue}/${i + 1}`,
+            component: path.resolve(`src/templates/category.js`),
+            context: {
+              key: articleGroup.fieldValue,
+              limit: postsPerPage,
+              skip: i * postsPerPage,
+              pageCount: articleGroup.pageInfo.pageCount,
+              currentPage: i + 1,
+            },
+          })
+        }
+      )
     })
   })
 
-  const getTags = makeRequest(
+  const getPagedTags = makeRequest(
     graphql,
     `
     {
-      allStrapiTag {
-        edges {
-          node {
-            key
+      allStrapiArticle {
+        group(field: tags___key, limit: 1) {
+          fieldValue
+          pageInfo {
+            pageCount
           }
         }
       }
     }
     `
   ).then(result => {
-    // Create pages for each user.
-    result.data.allStrapiTag.edges.forEach(({ node }) => {
-      createPage({
-        path: `/tag/${node.key}`,
-        component: path.resolve(`src/templates/tag.js`),
-        context: {
-          key: node.key,
-        },
-      })
+    if (result.errors) {
+      reject(result.errors)
+    }
+    // ...
+    // Create paged categories based on page count lol.
+    const postsPerPage = 1
+    result.data.allStrapiArticle.group.forEach(articleGroup => {
+      Array.from({ length: articleGroup.pageInfo.pageCount }).forEach(
+        (_, i) => {
+          createPage({
+            path:
+              i === 0
+                ? `/tag/${articleGroup.fieldValue}`
+                : `/tag/${articleGroup.fieldValue}/${i + 1}`,
+            component: path.resolve(`src/templates/tag.js`),
+            context: {
+              key: articleGroup.fieldValue,
+              limit: postsPerPage,
+              skip: i * postsPerPage,
+              pageCount: articleGroup.pageInfo.pageCount,
+              currentPage: i + 1,
+            },
+          })
+        }
+      )
     })
   })
 
   // Queries for articles and authors nodes to use in creating pages.
-  return Promise.all([getArticles, getAuthors, getCategories, getTags])
+  return Promise.all([
+    getArticles,
+    getPagedAuthors,
+    getPagedCategories,
+    getPagedTags,
+  ])
 }
