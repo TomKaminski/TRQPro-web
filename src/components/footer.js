@@ -1,6 +1,5 @@
 import React from "react"
 import { Container, Row, Col } from "react-bootstrap"
-import Link from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import "../styles/footer.scss"
 

@@ -13,7 +13,7 @@ const Header = () => (
     <Navbar expand="lg" bg="white" sticky="top">
       <Link to={`/`}>
         <Navbar.Brand>
-          <img src={logoImg} id="brand-logo" />
+          <img src={logoImg} id="brand-logo" alt="logo" />
         </Navbar.Brand>
       </Link>
 

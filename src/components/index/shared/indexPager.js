@@ -42,7 +42,7 @@ export default class IndexPager extends React.Component {
   }
 
   onPageChange = pageIndex => {
-    if (this.state.activePageIndex != pageIndex) {
+    if (this.state.activePageIndex !== pageIndex) {
       this.setState({
         activePageIndex: pageIndex,
       })

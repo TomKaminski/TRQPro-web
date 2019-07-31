@@ -6,7 +6,7 @@ import { Link } from "gatsby"
 
 export default class IndexArticleWithCategory extends React.Component {
   render() {
-    let textClass = this.props.darkMode == true ? " white-text" : ""
+    let textClass = this.props.darkMode === true ? " white-text" : ""
     return (
       <div className={"index-left-article article-padding"}>
         <Img fluid={this.props.article.image.childImageSharp.fluid} />

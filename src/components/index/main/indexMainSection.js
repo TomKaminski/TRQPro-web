@@ -8,7 +8,7 @@ import IndexArticle from "../shared/indexArticle"
 export default class IndexMainSection extends React.Component {
   renderLeftColumn(leftSideArticles) {
     return leftSideArticles.map((element, i) => {
-      if (i == 0) {
+      if (i === 0) {
         return <IndexArticleWithCategory article={element} />
       } else {
         return <IndexMiniArticle dateAlignRight={true} article={element} />

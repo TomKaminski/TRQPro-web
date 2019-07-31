@@ -73,7 +73,7 @@ exports.createPages = ({ actions, graphql }) => {
             path:
               i === 0
                 ? `/author/${articleGroup.fieldValue}`
-                : `/author/${articleGroup.fieldValue}/${i + 1}`,
+                : `/author/${articleGroup.fieldValue}/page/${i + 1}`,
             component: path.resolve(`src/templates/author.js`),
             context: {
               key: parseInt(articleGroup.fieldValue),
@@ -116,7 +116,7 @@ exports.createPages = ({ actions, graphql }) => {
             path:
               i === 0
                 ? `/category/${articleGroup.fieldValue}`
-                : `/category/${articleGroup.fieldValue}/${i + 1}`,
+                : `/category/${articleGroup.fieldValue}/page/${i + 1}`,
             component: path.resolve(`src/templates/category.js`),
             context: {
               key: articleGroup.fieldValue,
@@ -159,7 +159,7 @@ exports.createPages = ({ actions, graphql }) => {
             path:
               i === 0
                 ? `/tag/${articleGroup.fieldValue}`
-                : `/tag/${articleGroup.fieldValue}/${i + 1}`,
+                : `/tag/${articleGroup.fieldValue}/page/${i + 1}`,
             component: path.resolve(`src/templates/tag.js`),
             context: {
               key: articleGroup.fieldValue,

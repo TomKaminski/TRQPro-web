@@ -20,7 +20,7 @@ class AuthorTemplate extends React.Component {
             if (page === 0) {
               navigate(`/author/${this.props.pageContext.key}`)
             } else {
-              navigate(`/author/${this.props.pageContext.key}/${page + 1}`)
+              navigate(`/author/${this.props.pageContext.key}/page/${page + 1}`)
             }
           }}
         />

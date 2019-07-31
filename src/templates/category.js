@@ -19,7 +19,9 @@ class CategoryTemplate extends React.Component {
             if (page === 0) {
               navigate(`/category/${this.props.pageContext.key}`)
             } else {
-              navigate(`/category/${this.props.pageContext.key}/${page + 1}`)
+              navigate(
+                `/category/${this.props.pageContext.key}/page/${page + 1}`
+              )
             }
           }}
         />
