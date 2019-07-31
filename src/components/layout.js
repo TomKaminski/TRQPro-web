@@ -1,6 +1,5 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
 
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { fab } from "@fortawesome/free-brands-svg-icons"
@@ -12,6 +11,7 @@ import {
   faSortDown,
   faChevronRight,
   faChevronLeft,
+  faSearch,
 } from "@fortawesome/free-solid-svg-icons"
 
 import Header from "./header"
@@ -29,26 +29,15 @@ library.add(
   faChevronRight,
   faCalendar,
   faHashtag,
-  faShareAlt
+  faShareAlt,
+  faSearch
 )
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return (
     <div>
-      <Header siteTitle={data.site.siteMetadata.title} />
-
+      <Header />
       <CryptoRoller />
-
       <Container fluid={true} id="main-container" className={"page-padding"}>
         <main className={"page-content"}>{children}</main>
       </Container>

@@ -43,8 +43,19 @@ module.exports = {
         display: `minimal-ui`, // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    {
+      resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
+      options: {
+        fields: [`title`, `tags`, `category`],
+        resolvers: {
+          StrapiArticle: {
+            title: node => node.title,
+            category: node => node.category.name,
+            tags: node => node.tags.map(tag => tag.name).join(","),
+            path: node => node.id,
+          },
+        },
+      },
+    },
   ],
 }
