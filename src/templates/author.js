@@ -3,13 +3,13 @@ import { graphql, navigate } from "gatsby"
 import Layout from "../components/layout"
 import IndexRightArticle from "../components/index/shared/IndexSmallArticle"
 import IndexPager from "../components/index/shared/indexPager"
+import SEO from "../components/seo"
 
 class AuthorTemplate extends React.Component {
   render() {
-    console.log(this)
-
     return (
       <Layout>
+        <SEO title="Author" />
         {this.props.data.allStrapiArticle.edges.map(article => (
           <IndexRightArticle article={article.node} key={article.node.id} />
         ))}

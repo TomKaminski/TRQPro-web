@@ -40,7 +40,7 @@ export default class Search extends Component {
         <div className={"search-result-header-container"}>
           <h5>Znalezione artykuły</h5>
           <a
-            href=""
+            href="/"
             onClick={e => {
               e.preventDefault()
               this.setState({

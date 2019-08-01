@@ -18,10 +18,7 @@ const IndexICOSection = props => {
             <div className={"section"}>
               <div className={"section-title-container"}>
                 <h3 className={"section-title"}>{props.sectionName}</h3>
-                <Link
-                  to={`/category/cat-ico-mining`}
-                  className={"section-show-all"}
-                >
+                <Link to={`/category/cat-ico`} className={"section-show-all"}>
                   zobacz wszystkie
                 </Link>
               </div>
@@ -31,14 +28,14 @@ const IndexICOSection = props => {
         <Row>
           <Col xs={12} sm={12} lg={6} md={8}>
             {leftSideArticles.map((el, _) => (
-              <IndexMiniArticle article={el} />
+              <IndexMiniArticle article={el} key={el.id} />
             ))}
           </Col>
           <Col xs={12} sm={12} lg={6} md={4}>
             <Row>
               {rightSideArticles.map((el, _) => (
                 <Col>
-                  <IndexArticleWithCategory article={el} />
+                  <IndexArticleWithCategory article={el} key={el.id} />
                 </Col>
               ))}
             </Row>

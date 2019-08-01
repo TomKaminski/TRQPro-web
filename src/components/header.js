@@ -1,10 +1,9 @@
 import React from "react"
-import { Navbar, Nav, NavDropdown } from "react-bootstrap"
+import { Navbar, Nav } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { StaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql, Link } from "gatsby"
 
 import "../styles/header.scss"
-import { Link } from "@reach/router"
 import logoImg from "../images/brand_logo.png"
 import Search from "./search"
 
@@ -20,55 +19,47 @@ const Header = () => (
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse className={"justify-content-end"}>
         <Nav>
-          <NavDropdown
-            title="Home"
-            id="basic-nav-dropdown"
-            className={"nav-link-black"}
-          >
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
-          </NavDropdown>
-          <Nav.Link href="#news" className={"nav-link-black"}>
+          <Link to={`/`} className={"nav-link-black nav-link"}>
+            Home
+          </Link>
+          {/* <Nav.Link href="#news" className={"nav-link-black"}>
             Newsy
-          </Nav.Link>
-          <Nav.Link href="#crypto" className={"nav-link-black"}>
-            Kryptowaluty
-          </Nav.Link>
-          <Nav.Link href="#forex" className={"nav-link-black"}>
-            Forex
-          </Nav.Link>
-          <Nav.Link href="#ico" className={"nav-link-black"}>
-            ICO
-          </Nav.Link>
-          <Nav.Link href="#mining" className={"nav-link-black"}>
-            Mining
-          </Nav.Link>
-          <NavDropdown
-            title="Szkolenia"
-            id="basic-nav-dropdown"
-            className={"nav-link-black"}
+          </Nav.Link> */}
+          <Link
+            to={`/category/cat-cryptocurrency`}
+            className={"nav-link-black nav-link"}
           >
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
-          </NavDropdown>
-          <Nav.Link href="#league" className={"nav-link-black"}>
+            Kryptowaluty
+          </Link>
+          <Link
+            to={`/category/cat-forex`}
+            className={"nav-link-black nav-link"}
+          >
+            Forex
+          </Link>
+          <Link to={`/category/cat-ico`} className={"nav-link-black nav-link"}>
+            ICO
+          </Link>
+          <Link
+            to={`/category/cat-mining`}
+            className={"nav-link-black nav-link"}
+          >
+            Mining
+          </Link>
+          <Link
+            to={`/category/cat-academy`}
+            className={"nav-link-black nav-link"}
+          >
+            Szkolenia
+          </Link>
+          <Link to={`/liga`} className={"nav-link-black nav-link"}>
             Liga
-          </Nav.Link>
-          <Nav.Link href="#fb" className={"nav-link-black"}>
+          </Link>
+          <Nav.Link
+            href="https://www.facebook.com/TRQPro/"
+            className={"nav-link-black"}
+            target="_blank"
+          >
             <FontAwesomeIcon icon={["fab", "facebook-f"]} />
           </Nav.Link>
           <Nav.Link href="#fb" className={"nav-link-black"}>

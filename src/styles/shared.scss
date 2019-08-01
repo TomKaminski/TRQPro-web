@@ -4,6 +4,13 @@
   font-size: 13px;
 }
 
+a {
+  cursor: pointer;
+  &:hover {
+    color: black;
+  }
+}
+
 .black-bg {
   background-color: black;
 }

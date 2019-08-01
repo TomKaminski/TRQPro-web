@@ -1,6 +1,7 @@
 import React from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { Link } from "gatsby"
 import "../styles/footer.scss"
 
 const Footer = () => {
@@ -12,13 +13,13 @@ const Footer = () => {
             <h5>O nas</h5>
             <ul className="nav-list">
               <li>
-                <a href="#">Polityka prywatności</a>
+                <Link to={"/polityka-prywatnosci"}>Polityka prywatności</Link>
               </li>
               <li>
-                <a href="#">Warunki usługi</a>
+                <Link to={"/regulamin"}>Regulamin</Link>
               </li>
               <li>
-                <a href="#">Kontakt</a>
+                <Link to={"/kontakt"}>Kontakt</Link>
               </li>
             </ul>
           </Col>
@@ -26,10 +27,10 @@ const Footer = () => {
             <h5>Informacje</h5>
             <ul className="nav-list">
               <li>
-                <a href="#">Pracuj z nami</a>
+                <Link to={"/pracuj-z-nami"}>Pracuj z nami</Link>
               </li>
               <li>
-                <a href="#">Wyślij nam tips</a>
+                <Link to={"/wyslij-nam-tips"}>Wyślij nam tips</Link>
               </li>
             </ul>
           </Col>
@@ -37,10 +38,13 @@ const Footer = () => {
             <h5>Partnerzy</h5>
             <ul className="nav-list">
               <li>
-                <a href="#">SkyRocket</a>
-              </li>
-              <li>
-                <a href="#">HolidayInn</a>
+                <a
+                  href="https://skyrocket.trade/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  SkyRocket
+                </a>
               </li>
             </ul>
           </Col>
@@ -58,7 +62,12 @@ const Footer = () => {
                 <a href="#fb" className={"social-icon"}>
                   <FontAwesomeIcon icon={["fab", "twitter"]} />
                 </a>
-                <a href="#fb" className={"social-icon"}>
+                <a
+                  href="https://www.facebook.com/TRQPro/"
+                  className={"social-icon"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FontAwesomeIcon icon={["fab", "youtube"]} />
                 </a>
               </li>

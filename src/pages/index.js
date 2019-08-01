@@ -5,14 +5,14 @@ import "../styles/index/index.scss"
 import IndexMainSection from "../components/index/main/indexMainSection"
 import IndexSection from "../components/index/currencies/indexCurrenciesSection"
 import IndexAcademySection from "../components/index/academy/indexAcademySection"
-import IndexICOSection from "../components/index/ico_mining/indexICOSection"
+import IndexICOMiningSection from "../components/index/ico_mining/indexICOSection"
 import IndexMarketAnalysisSection from "../components/index/market_analysis/indexMarketAnalysisSection"
+import SEO from "../components/seo"
 
 export default class IndexPage extends React.Component {
   getArticlesForMainSection() {
     var computingArray = []
     this.props.data.allStrapiArticle.group.forEach(groupOfArticles => {
-      console.log(groupOfArticles.fieldValue)
       groupOfArticles.edges.forEach(article => {
         computingArray.push(article.node)
       })
@@ -40,7 +40,16 @@ export default class IndexPage extends React.Component {
   }
 
   getArticlesForICOMiningSection() {
-    return this.getArticlesForCategory("cat-ico-mining")
+    let icoArticles = this.getArticlesForCategory("cat-ico")
+    let miningArticles = this.getArticlesForCategory("cat-mining")
+
+    var computingArray = []
+    computingArray.push(...icoArticles)
+    computingArray.push(...miningArticles)
+
+    computingArray.sort((a, b) => b.strapiId - a.strapiId)
+
+    return computingArray.slice(0, 5)
   }
 
   getArticlesForAcademySection() {
@@ -50,6 +59,7 @@ export default class IndexPage extends React.Component {
   render() {
     return (
       <Layout>
+        <SEO title="Home" />
         <IndexMainSection articles={this.getArticlesForMainSection()} />
 
         {/* Index cryptocurrencies component */}
@@ -65,7 +75,7 @@ export default class IndexPage extends React.Component {
         />
 
         {/* Index ICO/Mining component */}
-        <IndexICOSection
+        <IndexICOMiningSection
           sectionName="ICO / Mining"
           articles={this.getArticlesForICOMiningSection()}
         />

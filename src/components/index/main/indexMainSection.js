@@ -9,16 +9,18 @@ export default class IndexMainSection extends React.Component {
   renderLeftColumn(leftSideArticles) {
     return leftSideArticles.map((element, i) => {
       if (i === 0) {
-        return <IndexArticleWithCategory article={element} />
+        return <IndexArticleWithCategory article={element} key={i} />
       } else {
-        return <IndexMiniArticle dateAlignRight={true} article={element} />
+        return (
+          <IndexMiniArticle dateAlignRight={true} article={element} key={i} />
+        )
       }
     })
   }
 
   renderRightColumn(rightSideArticles) {
     return rightSideArticles.map((element, i) => (
-      <IndexRightArticle article={element} />
+      <IndexRightArticle article={element} key={i} />
     ))
   }
 

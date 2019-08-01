@@ -51,7 +51,7 @@ module.exports = {
           StrapiArticle: {
             title: node => node.title,
             category: node => node.category.name,
-            tags: node => node.tags.map(tag => tag.name).join(","),
+            tags: node => node.tags.map(tag => tag.name).join(", "),
             path: node => node.id,
           },
         },

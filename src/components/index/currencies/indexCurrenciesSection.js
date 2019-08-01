@@ -24,7 +24,13 @@ const IndexSection = props => {
       <Row>
         {props.articles.map((element, i) => {
           return (
-            <Col xs={12} sm={6} lg={3} className={i === 0 ? "black-bg" : ""}>
+            <Col
+              xs={12}
+              sm={6}
+              lg={3}
+              className={i === 0 ? "black-bg" : ""}
+              key={i}
+            >
               <IndexArticleWithCategory article={element} darkMode={i === 0} />
             </Col>
           )

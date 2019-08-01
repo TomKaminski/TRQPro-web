@@ -5,6 +5,7 @@ import { Link } from "gatsby"
 
 export default class IndexMiniArticle extends React.Component {
   render() {
+    console.log(this.props.article)
     return (
       <div className={"index-left-article article-padding"}>
         <Row className={"upper-text-container"}>

@@ -6,6 +6,7 @@ import Reactmarkdown from "react-markdown"
 import "../styles/article/article.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { DiscussionEmbed } from "disqus-react"
+import SEO from "../components/seo"
 
 const disqusConfig = (slug, title) => {
   return {
@@ -16,6 +17,7 @@ const disqusConfig = (slug, title) => {
 
 const ArticleTemplate = ({ data }) => (
   <Layout>
+    <SEO title={data.strapiArticle.title} />
     <div>
       <Img
         fluid={{
@@ -39,7 +41,7 @@ const ArticleTemplate = ({ data }) => (
           {new Date(data.strapiArticle.created_at).toLocaleString()}
         </p>
         <Link
-          to={`/author/User_${data.strapiArticle.author.id}`}
+          to={`/author/${data.strapiArticle.author.id}`}
           className={"article-meta"}
         >
           {data.strapiArticle.author.username}
@@ -54,7 +56,7 @@ const ArticleTemplate = ({ data }) => (
         </p>
 
         <p className={"article-meta"}>
-          <FontAwesomeIcon icon="share-alt" /> <a href="#">udostępnij</a>
+          <FontAwesomeIcon icon="share-alt" /> <a href="/">udostępnij</a>
         </p>
       </div>
 
