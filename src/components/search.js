@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import { Index } from "elasticlunr"
-import { Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import IndexMiniArticle from "./index/shared/indexMiniArticle"
+import { Link } from "gatsby"
 
 export default class Search extends Component {
   constructor(props) {
@@ -31,37 +32,97 @@ export default class Search extends Component {
     )
   }
 
+  getArticles() {
+    let articles = this.state.results.filter(element =>
+      element.id.startsWith("Article_")
+    )
+    return articles.slice(articles.length - 3, articles.length)
+  }
+
+  getCategories() {
+    return this.state.results.filter(element =>
+      element.id.startsWith("Category_")
+    )
+  }
+
+  getTags() {
+    return this.state.results.filter(element => element.id.startsWith("Tag_"))
+  }
+
   renderResults() {
-    if (this.state.results.length === 0) {
+    if (this.state.query === "") {
       return <div></div>
     }
+    let categories = this.getCategories()
+    let tags = this.getTags()
     return (
-      <div className={"search-result-container"}>
-        <div className={"search-result-header-container"}>
-          <h5>Znalezione artykuły</h5>
-          <a
-            href="/"
-            onClick={e => {
-              e.preventDefault()
-              this.setState({
-                query: ``,
-                results: [],
-              })
-            }}
-          >
-            zamknij
-          </a>
-        </div>
+      <div className={"search-result-overlay"}>
+        <div className={"search-result-container"}>
+          <div className={"search-result-header-container"}>
+            <FontAwesomeIcon icon="search" className={"icon"} />
+            <input
+              type="text"
+              placeholder="Wyszukaj.."
+              name="search"
+              className="mr-sm-2 modal-input-field"
+              value={this.state.query}
+              onChange={this.search}
+            />
+          </div>
 
-        <ul className={"result-list"}>
-          {this.state.results.map(page => (
-            <li key={page.id}>
-              <Link to={"/article/" + page.id} className={"result"}>
-                {page.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+          <ul className={"result-list"}>
+            {this.getArticles().map(page => (
+              <li key={page.id}>
+                <IndexMiniArticle article={page} />
+              </li>
+            ))}
+          </ul>
+
+          {categories.length > 0 ? (
+            <div className={"search-category-tag"}>
+              <h5>KATEGORIE</h5>
+              <div className={"search-category-tag-flex-container"}>
+                {categories.map(category => (
+                  <div className={"category-tag"}>
+                    <FontAwesomeIcon icon="folder" className={"icon"} />
+                    <Link
+                      to={`/category/${category.key}`}
+                      className={"underlined-black-text"}
+                      key={category.key}
+                    >
+                      {category.name}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div />
+          )}
+
+          {tags.length > 0 ? (
+            <div className={"search-category-tag"}>
+              <h5>TAGI</h5>
+              <div className={"search-category-tag-flex-container"}>
+                {tags.map(tag => (
+                  <div className={"category-tag"}>
+                    <FontAwesomeIcon icon="hashtag" className={"icon"} />
+
+                    <Link
+                      to={`/tag/${tag.key}`}
+                      className={"underlined-black-text"}
+                      key={tag.key}
+                    >
+                      {tag.name}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div />
+          )}
+        </div>
       </div>
     )
   }

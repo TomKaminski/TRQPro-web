@@ -12,6 +12,8 @@ import {
   faChevronRight,
   faChevronLeft,
   faSearch,
+  faFolder,
+  faFolderOpen,
 } from "@fortawesome/free-solid-svg-icons"
 
 import Header from "./header"
@@ -30,7 +32,8 @@ library.add(
   faCalendar,
   faHashtag,
   faShareAlt,
-  faSearch
+  faSearch,
+  faFolderOpen
 )
 
 const Layout = ({ children }) => {
@@ -41,6 +44,7 @@ const Layout = ({ children }) => {
       <Container fluid={true} id="main-container" className={"page-padding"}>
         <main className={"page-content"}>{children}</main>
       </Container>
+      <div id="modal-root"></div>
       <Footer />
     </div>
   )

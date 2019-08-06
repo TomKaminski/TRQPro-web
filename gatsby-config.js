@@ -46,13 +46,24 @@ module.exports = {
     {
       resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
       options: {
-        fields: [`title`, `tags`, `category`],
+        fields: [`title`, `tags`, `category`, `name`],
         resolvers: {
           StrapiArticle: {
             title: node => node.title,
             category: node => node.category.name,
             tags: node => node.tags.map(tag => tag.name).join(", "),
             path: node => node.id,
+            content: node => node.content.substring(0, 350).concat("..."),
+            author: node => node.author,
+            created_at: node => node.created_at,
+          },
+          StrapiCategory: {
+            name: node => node.name,
+            key: node => node.key,
+          },
+          StrapiTag: {
+            name: node => node.name,
+            key: node => node.key,
           },
         },
       },
