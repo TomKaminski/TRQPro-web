@@ -12,7 +12,7 @@ import {
   faChevronRight,
   faChevronLeft,
   faSearch,
-  faFolder,
+  faTimes,
   faFolderOpen,
 } from "@fortawesome/free-solid-svg-icons"
 
@@ -24,6 +24,7 @@ import CryptoRoller from "./cryptoRoller"
 import Footer from "./footer"
 
 library.add(
+  faTimes,
   fab,
   faSortUp,
   faSortDown,
@@ -39,12 +40,14 @@ library.add(
 const Layout = ({ children }) => {
   return (
     <div>
+      <div id="modal-root"></div>
+
       <Header />
       <CryptoRoller />
       <Container fluid={true} id="main-container" className={"page-padding"}>
         <main className={"page-content"}>{children}</main>
       </Container>
-      <div id="modal-root"></div>
+
       <Footer />
     </div>
   )

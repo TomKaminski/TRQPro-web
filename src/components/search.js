@@ -3,6 +3,7 @@ import { Index } from "elasticlunr"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import IndexMiniArticle from "./index/shared/indexMiniArticle"
 import { Link } from "gatsby"
+import Modal from "./modal"
 
 export default class Search extends Component {
   constructor(props) {
@@ -26,8 +27,8 @@ export default class Search extends Component {
             onChange={this.search}
           />
           <FontAwesomeIcon icon="search" className={"icon"} />
-          {this.renderResults()}
         </div>
+        {this.renderResults()}
       </div>
     )
   }
@@ -56,74 +57,92 @@ export default class Search extends Component {
     let categories = this.getCategories()
     let tags = this.getTags()
     return (
-      <div className={"search-result-overlay"}>
-        <div className={"search-result-container"}>
-          <div className={"search-result-header-container"}>
-            <FontAwesomeIcon icon="search" className={"icon"} />
-            <input
-              type="text"
-              placeholder="Wyszukaj.."
-              name="search"
-              className="mr-sm-2 modal-input-field"
-              value={this.state.query}
-              onChange={this.search}
-            />
+      <Modal>
+        <div className={"search-result-overlay"}>
+          <div className={"search-result-container"}>
+            <div className={"search-result-header-container"}>
+              <FontAwesomeIcon icon="search" className={"icon"} />
+              <input
+                type="text"
+                placeholder="Wyszukaj.."
+                name="search"
+                className="mr-sm-2 modal-input-field"
+                value={this.state.query}
+                onChange={this.search}
+              />
+              <FontAwesomeIcon
+                icon="times"
+                className={"icon"}
+                onClick={() =>
+                  this.setState({
+                    query: "",
+                  })
+                }
+              />
+            </div>
+
+            <ul className={"result-list"}>
+              {this.getArticles().map(page => (
+                <li key={page.id}>
+                  <IndexMiniArticle article={page} />
+                </li>
+              ))}
+            </ul>
+
+            {categories.length > 0 ? (
+              <div className={"search-category-tag"}>
+                <h5>KATEGORIE</h5>
+                <div className={"search-category-tag-flex-container"}>
+                  {categories.map(category => (
+                    <div className={"category-tag"} key={category.key}>
+                      <FontAwesomeIcon icon="folder" className={"icon"} />
+                      <Link
+                        to={`/category/${category.key}`}
+                        className={"underlined-black-text"}
+                        key={category.key}
+                      >
+                        {category.name}
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div />
+            )}
+
+            {tags.length > 0 ? (
+              <div className={"search-category-tag"}>
+                <h5>TAGI</h5>
+                <div className={"search-category-tag-flex-container"}>
+                  {tags.map(tag => (
+                    <div className={"category-tag"} key={tag.key}>
+                      <FontAwesomeIcon icon="hashtag" className={"icon"} />
+
+                      <Link
+                        to={`/tag/${tag.key}`}
+                        className={"underlined-black-text"}
+                        key={tag.key}
+                      >
+                        {tag.name}
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div />
+            )}
+            <Link
+              className={"search-all"}
+              to={`/wyszukaj`}
+              state={{ searchPhrase: this.state.query }}
+            >
+              Znajdź wszystko dla: {this.state.query}
+            </Link>
           </div>
-
-          <ul className={"result-list"}>
-            {this.getArticles().map(page => (
-              <li key={page.id}>
-                <IndexMiniArticle article={page} />
-              </li>
-            ))}
-          </ul>
-
-          {categories.length > 0 ? (
-            <div className={"search-category-tag"}>
-              <h5>KATEGORIE</h5>
-              <div className={"search-category-tag-flex-container"}>
-                {categories.map(category => (
-                  <div className={"category-tag"}>
-                    <FontAwesomeIcon icon="folder" className={"icon"} />
-                    <Link
-                      to={`/category/${category.key}`}
-                      className={"underlined-black-text"}
-                      key={category.key}
-                    >
-                      {category.name}
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div />
-          )}
-
-          {tags.length > 0 ? (
-            <div className={"search-category-tag"}>
-              <h5>TAGI</h5>
-              <div className={"search-category-tag-flex-container"}>
-                {tags.map(tag => (
-                  <div className={"category-tag"}>
-                    <FontAwesomeIcon icon="hashtag" className={"icon"} />
-
-                    <Link
-                      to={`/tag/${tag.key}`}
-                      className={"underlined-black-text"}
-                      key={tag.key}
-                    >
-                      {tag.name}
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div />
-          )}
         </div>
-      </div>
+      </Modal>
     )
   }
 
