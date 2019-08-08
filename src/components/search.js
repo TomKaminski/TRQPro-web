@@ -134,7 +134,7 @@ export default class Search extends Component {
               <div />
             )}
             <a
-              href={"/wyszukaj?fraza=${this.state.query}"}
+              href={`/wyszukaj?fraza=${this.state.query}`}
               className={"search-all"}
               onClick={e => {
                 e.preventDefault()
