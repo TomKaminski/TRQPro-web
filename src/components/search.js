@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Index } from "elasticlunr"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import IndexMiniArticle from "./index/shared/indexMiniArticle"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import Modal from "./modal"
 
 export default class Search extends Component {
@@ -133,13 +133,19 @@ export default class Search extends Component {
             ) : (
               <div />
             )}
-            <Link
+            <a
+              href={"/wyszukaj?fraza=${this.state.query}"}
               className={"search-all"}
-              to={`/wyszukaj`}
-              state={{ query: this.state.query, results: this.state.results }}
+              onClick={e => {
+                e.preventDefault()
+                navigate(`/wyszukaj?fraza=${this.state.query}`)
+                this.setState({
+                  query: "",
+                })
+              }}
             >
               Znajdź wszystko dla: {this.state.query}
-            </Link>
+            </a>
           </div>
         </div>
       </Modal>

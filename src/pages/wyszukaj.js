@@ -5,13 +5,10 @@ import SEO from "../components/seo"
 
 export default class SearchPage extends React.Component {
   render() {
-    console.log(this.props.location.state.query)
-    console.log(this.props.location.state.results)
-
     return (
       <Layout>
-        <SEO title={"Wyszukaj - " + this.props.location.state.query} />
-        <h1>Wyniki wyszukiwania dla "{this.props.location.state.query}"</h1>
+        <SEO title="Wyszukaj - " />
+        <h1>Wyniki wyszukiwania dla "TODO"</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a
           congue odio, vitae egestas libero. Pellentesque eget felis non felis
