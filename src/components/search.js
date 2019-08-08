@@ -136,7 +136,7 @@ export default class Search extends Component {
             <Link
               className={"search-all"}
               to={`/wyszukaj`}
-              state={{ searchPhrase: this.state.query }}
+              state={{ query: this.state.query, results: this.state.results }}
             >
               Znajdź wszystko dla: {this.state.query}
             </Link>
