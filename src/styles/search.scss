@@ -73,28 +73,24 @@
     list-style-type: none;
     margin-left: 0;
     padding-left: 0;
-    .result {
-      margin-top: 2px;
-      color: black;
-      font-size: 16px;
-    }
   }
-  .search-category-tag {
-    h5 {
-      font-size: 16px;
-      color: #404040;
-    }
-    .search-category-tag-flex-container {
-      display: flex;
-      .category-tag {
-        > .icon {
-          color: #404040;
-          margin-right: 4px;
-        }
-        margin-right: 12px;
-        display: flex;
-        align-items: center;
+}
+
+.search-category-tag {
+  h5 {
+    font-size: 16px;
+    color: #404040;
+  }
+  .search-category-tag-flex-container {
+    display: flex;
+    .category-tag {
+      > .icon {
+        color: #404040;
+        margin-right: 4px;
       }
+      margin-right: 12px;
+      display: flex;
+      align-items: center;
     }
   }
 }

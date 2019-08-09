@@ -3,6 +3,7 @@ import { Index } from "elasticlunr"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import IndexMiniArticle from "./index/shared/indexMiniArticle"
 import { Link, navigate } from "gatsby"
+
 import Modal from "./modal"
 
 export default class Search extends Component {
