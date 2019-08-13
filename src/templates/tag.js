@@ -18,13 +18,21 @@ class TagTemplate extends React.Component {
     return this.props.data.allStrapiArticle.edges.slice(5, 7)
   }
 
+  getTagName() {
+    if (this.props.location.state) {
+      return this.props.location.state.tagName
+    } else {
+      return this.props.pageContext.key
+    }
+  }
+
   render() {
     return (
       <Layout>
-        <SEO title={`Tag - ${this.props.location.state.tagName}`} />
+        <SEO title={`Tag - ${this.getTagName()}`} />
         <p className="categoryTagResults">
           Wyniki wpisów pod tagiem:{" "}
-          <span className={"name"}>{this.props.location.state.tagName}</span>{" "}
+          <span className={"name"}>{this.getTagName()}</span>{" "}
         </p>
         <Row>
           {this.getUpperArticles().map((element, i) => {

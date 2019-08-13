@@ -13,7 +13,7 @@ const TimeAndAuthor = props => {
       <span> &bull; </span>
       <Link
         to={`/author/${props.author.id}`}
-        className={"underlined-black-text"}
+        className={"underlined-black-text " + props.textClass}
       >
         {props.author.username}
       </Link>

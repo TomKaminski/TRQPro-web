@@ -18,15 +18,21 @@ class CategoryTemplate extends React.Component {
     return this.props.data.allStrapiArticle.edges.slice(5, 7)
   }
 
+  getCategoryName() {
+    if (this.props.location.state) {
+      return this.props.location.state.categoryName
+    } else {
+      return this.props.pageContext.key
+    }
+  }
+
   render() {
     return (
       <Layout>
-        <SEO title="Kategoria" />
+        <SEO title={`Kategoria - ${this.getCategoryName()}`} />
         <p className="categoryTagResults">
           Wyniki wpisów pod kategorią:{" "}
-          <span className={"name"}>
-            {this.props.location.state.categoryName}
-          </span>{" "}
+          <span className={"name"}>{this.getCategoryName()}</span>{" "}
         </p>
         <Row>
           {this.getUpperArticles().map((element, i) => {
