@@ -76,6 +76,9 @@ class ArticleTemplate extends React.Component {
                 <Link
                   to={`/category/${this.props.data.strapiArticle.category.key}`}
                   className={"article-meta"}
+                  state={{
+                    categoryName: this.props.data.strapiArticle.category.name,
+                  }}
                 >
                   {this.props.data.strapiArticle.category.name.toUpperCase()}
                 </Link>
@@ -94,7 +97,11 @@ class ArticleTemplate extends React.Component {
                 <p className={"article-meta"}>
                   <FontAwesomeIcon icon="hashtag" />{" "}
                   {this.props.data.strapiArticle.tags.map(tag => (
-                    <Link to={`/tag/${tag.key}`} key={tag.key}>
+                    <Link
+                      to={`/tag/${tag.key}`}
+                      key={tag.key}
+                      state={{ tagName: tag.name }}
+                    >
                       {tag.name}
                     </Link>
                   ))}

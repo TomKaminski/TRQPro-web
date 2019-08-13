@@ -14,6 +14,7 @@ const IndexSection = props => {
               <Link
                 to={`/category/cat-cryptocurrency`}
                 className={"section-show-all"}
+                state={{ categoryName: props.sectionName }}
               >
                 zobacz wszystkie
               </Link>

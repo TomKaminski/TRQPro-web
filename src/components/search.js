@@ -101,6 +101,7 @@ export default class Search extends Component {
                         to={`/category/${category.key}`}
                         className={"underlined-black-text"}
                         key={category.key}
+                        state={{ categoryName: category.name }}
                       >
                         {category.name}
                       </Link>
@@ -124,6 +125,7 @@ export default class Search extends Component {
                         to={`/tag/${tag.key}`}
                         className={"underlined-black-text"}
                         key={tag.key}
+                        state={{ tagName: tag.name }}
                       >
                         {tag.name}
                       </Link>

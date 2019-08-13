@@ -21,6 +21,7 @@ const IndexAcademySection = props => {
                 <Link
                   to={`/category/cat-academy`}
                   className={"section-show-all"}
+                  state={{ categoryName: props.sectionName }}
                 >
                   zobacz wszystkie
                 </Link>

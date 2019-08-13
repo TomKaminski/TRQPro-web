@@ -47,7 +47,7 @@ export default class SearchPage extends React.Component {
     return (
       <Layout>
         <SEO title={`Wyszukaj - ${this.searchPhrase}`} />
-        <h2 className={"margin-top-base margin-bottom-40"}>
+        <h2 className={"margin-top-base margin-bottom-40 search-heading"}>
           Wyniki wyszukiwania dla "{this.searchPhrase}"
         </h2>
 
@@ -64,6 +64,7 @@ export default class SearchPage extends React.Component {
                     to={`/category/${category.key}`}
                     className={"underlined-black-text"}
                     key={category.key}
+                    state={{ categoryName: category.name }}
                   >
                     {category.name}
                   </Link>
@@ -89,6 +90,7 @@ export default class SearchPage extends React.Component {
                     to={`/tag/${tag.key}`}
                     className={"underlined-black-text"}
                     key={tag.key}
+                    state={{ tagName: tag.name }}
                   >
                     {tag.name}
                   </Link>

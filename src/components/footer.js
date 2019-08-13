@@ -10,7 +10,7 @@ const Footer = () => {
       <Container>
         <Row>
           <Col md={3} sm={6} xs={12}>
-            <h5>O nas</h5>
+            <p>O nas</p>
             <ul className="nav-list">
               <li>
                 <Link to={"/polityka-prywatnosci"}>Polityka prywatności</Link>
@@ -24,7 +24,7 @@ const Footer = () => {
             </ul>
           </Col>
           <Col md={3} sm={6} xs={12}>
-            <h5>Informacje</h5>
+            <p>Informacje</p>
             <ul className="nav-list">
               <li>
                 <Link to={"/pracuj-z-nami"}>Pracuj z nami</Link>
@@ -35,7 +35,7 @@ const Footer = () => {
             </ul>
           </Col>
           <Col md={3} sm={6} xs={12}>
-            <h5>Partnerzy</h5>
+            <p>Partnerzy</p>
             <ul className="nav-list">
               <li>
                 <a
@@ -49,7 +49,7 @@ const Footer = () => {
             </ul>
           </Col>
           <Col md={3} sm={6} xs={12}>
-            <h5>Wsparcie</h5>
+            <p>Wsparcie</p>
             <ul className="nav-list">
               <li>
                 Jeśli masz jakiekolwiek problemy i chcesz się z nami

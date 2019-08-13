@@ -65,7 +65,7 @@ exports.createPages = ({ actions, graphql }) => {
     }
     // ...
     // Create paged categories based on page count lol.
-    const postsPerPage = 5
+    const postsPerPage = 7
     result.data.allStrapiArticle.group.forEach(articleGroup => {
       Array.from({ length: articleGroup.pageInfo.pageCount }).forEach(
         (_, i) => {
@@ -108,7 +108,7 @@ exports.createPages = ({ actions, graphql }) => {
     }
     // ...
     // Create paged categories based on page count lol.
-    const postsPerPage = 5
+    const postsPerPage = 7
     result.data.allStrapiArticle.group.forEach(articleGroup => {
       Array.from({ length: articleGroup.pageInfo.pageCount }).forEach(
         (_, i) => {
@@ -151,7 +151,7 @@ exports.createPages = ({ actions, graphql }) => {
     }
     // ...
     // Create paged categories based on page count lol.
-    const postsPerPage = 5
+    const postsPerPage = 7
     result.data.allStrapiArticle.group.forEach(articleGroup => {
       Array.from({ length: articleGroup.pageInfo.pageCount }).forEach(
         (_, i) => {

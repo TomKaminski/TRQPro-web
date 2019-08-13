@@ -24,21 +24,35 @@ const Header = () => (
         <Link
           to={`/category/cat-cryptocurrency`}
           className={"nav-link-black nav-link"}
+          state={{ categoryName: "Kryptowaluty" }}
         >
           Kryptowaluty
         </Link>
-        <Link to={`/category/cat-forex`} className={"nav-link-black nav-link"}>
+        <Link
+          to={`/category/cat-forex`}
+          className={"nav-link-black nav-link"}
+          state={{ categoryName: "Forex" }}
+        >
           Forex
         </Link>
-        <Link to={`/category/cat-ico`} className={"nav-link-black nav-link"}>
+        <Link
+          to={`/category/cat-ico`}
+          className={"nav-link-black nav-link"}
+          state={{ categoryName: "ICO" }}
+        >
           ICO
         </Link>
-        <Link to={`/category/cat-mining`} className={"nav-link-black nav-link"}>
+        <Link
+          to={`/category/cat-mining`}
+          className={"nav-link-black nav-link"}
+          state={{ categoryName: "Mining" }}
+        >
           Mining
         </Link>
         <Link
           to={`/category/cat-academy`}
           className={"nav-link-black nav-link"}
+          state={{ categoryName: "Szkolenia" }}
         >
           Szkolenia
         </Link>

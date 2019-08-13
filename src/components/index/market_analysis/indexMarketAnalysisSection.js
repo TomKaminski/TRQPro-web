@@ -18,7 +18,11 @@ const IndexMarketAnalysisSection = props => {
             <div className={"section"}>
               <div className={"section-title-container"}>
                 <h3 className={"section-title"}>{props.sectionName}</h3>
-                <Link to={`/category/cat-at`} className={"section-show-all"}>
+                <Link
+                  to={`/category/cat-at`}
+                  className={"section-show-all"}
+                  state={{ categoryName: props.sectionName }}
+                >
                   zobacz wszystkie
                 </Link>
               </div>
