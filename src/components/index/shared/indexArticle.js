@@ -1,8 +1,9 @@
 import React from "react"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
-import Reactmarkdown from "react-markdown"
 import TimeAndAuthor from "./timeAndAuthor"
+import marked from "marked"
+import DOMPurify from "dompurify"
 
 export default class IndexArticle extends React.Component {
   render() {
@@ -19,13 +20,16 @@ export default class IndexArticle extends React.Component {
         <Link className="title" to={`/article/${this.props.article.id}`}>
           {this.props.article.title}
         </Link>
-        <Reactmarkdown
+        <div
           className={"index-article-content description"}
-          source={this.props.article.content.substring(0, 700).concat("...")}
-          transformImageUri={uri =>
-            uri.startsWith("http") ? uri : `${process.env.IMAGE_BASE_URL}${uri}`
-          }
-        />
+          dangerouslySetInnerHTML={{
+            __html: marked(
+              DOMPurify.sanitize(
+                this.props.article.content.substring(0, 700).concat("...")
+              )
+            ),
+          }}
+        ></div>
         <Link
           to={`/article/${this.props.article.id}`}
           className="underlined-black-text"
