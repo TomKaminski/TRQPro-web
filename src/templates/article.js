@@ -9,7 +9,6 @@ import SEO from "../components/seo"
 import { Row, Col } from "react-bootstrap"
 import marked from "marked"
 import tocbot from "tocbot"
-import DOMPurify from "dompurify"
 
 const disqusConfig = (slug, title) => {
   return {
@@ -110,9 +109,7 @@ class ArticleTemplate extends React.Component {
               <div
                 className={"js-toc-content"}
                 dangerouslySetInnerHTML={{
-                  __html: marked(
-                    DOMPurify.sanitize(this.props.data.strapiArticle.content)
-                  ),
+                  __html: marked(this.props.data.strapiArticle.content),
                 }}
               ></div>
             </div>

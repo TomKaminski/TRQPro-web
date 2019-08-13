@@ -3,7 +3,6 @@ import { Link } from "gatsby"
 import Img from "gatsby-image"
 import TimeAndAuthor from "./timeAndAuthor"
 import marked from "marked"
-import DOMPurify from "dompurify"
 
 export default class IndexArticle extends React.Component {
   render() {
@@ -24,9 +23,7 @@ export default class IndexArticle extends React.Component {
           className={"index-article-content description"}
           dangerouslySetInnerHTML={{
             __html: marked(
-              DOMPurify.sanitize(
-                this.props.article.content.substring(0, 700).concat("...")
-              )
+              this.props.article.content.substring(0, 700).concat("...")
             ),
           }}
         ></div>
