@@ -69,7 +69,7 @@ class ArticleTemplate extends React.Component {
 
         <Row>
           <Col lg={2}>{renderArticleNavigation()}</Col>
-          <Col>
+          <Col lg={10} xl={8}>
             <div id="article-content">
               <h1 id="article-title">{this.props.data.strapiArticle.title}</h1>
               <div className="article-meta-container">
@@ -123,8 +123,8 @@ class ArticleTemplate extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col lg={2}></Col>
-          <Col>
+          <Col lg={2} xl={0}></Col>
+          <Col lg={10} xl={8}>
             <DiscussionEmbed
               {...disqusConfig(
                 this.props.data.strapiArticle.id,
