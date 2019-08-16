@@ -8,6 +8,9 @@
 
 .navbar-nav {
   padding: 15px 0px;
+  &.always-row-directed {
+    flex-direction: row !important;
+  }
 }
 
 .nav-link-black,

@@ -13,6 +13,7 @@ import {
   faChevronLeft,
   faSearch,
   faTimes,
+  faBars,
   faFolderOpen,
 } from "@fortawesome/free-solid-svg-icons"
 
@@ -22,9 +23,11 @@ import "../styles/layout.scss"
 import { Container } from "react-bootstrap"
 import CryptoRoller from "./cryptoRoller"
 import Footer from "./footer"
+import MobileSidebar from "./mobile_sidebar"
 
 library.add(
   faTimes,
+  faBars,
   fab,
   faSortUp,
   faSortDown,
@@ -41,7 +44,7 @@ const Layout = ({ children }) => {
   return (
     <div>
       <div id="modal-root"></div>
-
+      <div id="sidebar-root"></div>
       <Header />
       <CryptoRoller />
       <Container fluid={true} id="main-container" className={"page-padding"}>

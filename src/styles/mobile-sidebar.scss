@@ -1,0 +1,58 @@
+/* The sidebar menu */
+#mobile-sidebar {
+  height: 100%;
+  position: fixed;
+  width: 0;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  padding-top: 110px;
+  transition: 0.5s;
+  z-index: 2;
+
+  &.expanded {
+    padding-right: 100px;
+    width: auto;
+  }
+  ul {
+    list-style-type: none;
+    padding-left: 30px;
+  }
+  li {
+    color: blue;
+    font-weight: bold;
+    &.sidebar-title {
+      padding: 10px 0px;
+    }
+  }
+  a {
+    color: black !important;
+    font-size: 14px;
+    font-weight: 600;
+    display: block;
+    transition: 0.3s;
+    padding: 10px 0px;
+    &:hover {
+      color: #f1f1f1;
+    }
+    svg {
+      width: 18px;
+    }
+  }
+
+  .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+}
+
+@media screen and (min-width: 961px) {
+  #mobile-sidebar {
+    display: none;
+  }
+}

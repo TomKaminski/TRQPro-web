@@ -26,7 +26,13 @@ const renderMeta = data => {
           {data.metadata.meta.map((meta, i) => (
             <Col className={"meta-container"} key={i} xs={6} lg={3}>
               <div className={"meta-title"}>{meta.name}</div>
-              <div className={"meta-value"}>{meta.val}</div>
+              {meta.type == "Link" ? (
+                <a className={"meta-value"} href={meta.val} target="__blank">
+                  {meta.val}
+                </a>
+              ) : (
+                <div className={"meta-value"}>{meta.val}</div>
+              )}
             </Col>
           ))}
         </Row>

@@ -3,6 +3,7 @@ import { Index } from "elasticlunr"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import IndexMiniArticle from "./index/shared/indexMiniArticle"
 import { Link, navigate } from "gatsby"
+import { Navbar, Nav } from "react-bootstrap"
 
 import Modal from "./modal"
 
@@ -12,25 +13,29 @@ export default class Search extends Component {
     this.state = {
       query: ``,
       results: [],
+      searchActive: false,
     }
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({
+      searchActive: props.searchActive,
+    })
   }
 
   render() {
     return (
-      <div>
-        <div className="input-container">
-          <input
-            type="text"
-            placeholder="Wyszukaj.."
-            name="search"
-            className="mr-sm-2 input-field"
-            value={this.state.query}
-            onChange={this.search}
-          />
-          <FontAwesomeIcon icon="search" className={"icon"} />
-        </div>
+      <a
+        className={"nav-link icon nav-link-black"}
+        onClick={() => {
+          this.setState({
+            searchActive: true,
+          })
+        }}
+      >
+        <FontAwesomeIcon icon="search" />
         {this.renderResults()}
-      </div>
+      </a>
     )
   }
 
@@ -52,7 +57,7 @@ export default class Search extends Component {
   }
 
   renderResults() {
-    if (this.state.query === "") {
+    if (!this.state.searchActive) {
       return <div></div>
     }
     let categories = this.getCategories()
@@ -69,16 +74,21 @@ export default class Search extends Component {
                 name="search"
                 className="mr-sm-2 modal-input-field"
                 value={this.state.query}
-                onChange={this.search}
+                onChange={e => {
+                  e.stopPropagation()
+                  this.search(e)
+                }}
               />
               <FontAwesomeIcon
                 icon="times"
                 className={"icon"}
-                onClick={() =>
+                onClick={e => {
+                  e.stopPropagation()
                   this.setState({
                     query: "",
+                    searchActive: false,
                   })
-                }
+                }}
               />
             </div>
 
@@ -147,7 +157,11 @@ export default class Search extends Component {
                 })
               }}
             >
-              Znajdź wszystko dla: {this.state.query}
+              {this.state.query !== "" ? (
+                <div>Znajdź wszystko dla: {this.state.query}</div>
+              ) : (
+                <div></div>
+              )}
             </a>
           </div>
         </div>
