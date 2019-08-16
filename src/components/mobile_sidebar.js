@@ -8,9 +8,7 @@ import "../styles/mobile-sidebar.scss"
 export default class MobileSidebar extends React.Component {
   constructor(props) {
     super(props)
-    if (typeof document !== "undefined") {
-      this.el = document.createElement("div")
-    }
+    this.el = document.createElement("div")
   }
 
   componentDidMount() {

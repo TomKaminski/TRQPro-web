@@ -125,7 +125,9 @@ export default class Header extends React.Component {
             />
           </Nav>
         </Navbar.Collapse>
-        <MobileSidebar expanded={this.state.sidebarExpanded} />
+        {typeof document !== "undefined" && (
+          <MobileSidebar expanded={this.state.sidebarExpanded} />
+        )}
       </Navbar>
     )
   }
