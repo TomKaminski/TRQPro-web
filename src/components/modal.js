@@ -2,8 +2,11 @@ import React from "react"
 import ReactDOM from "react-dom"
 
 export default class Modal extends React.Component {
-  componentWillMount() {
-    this.el = document.createElement("div")
+  constructor(props) {
+    super(props)
+    if (document) {
+      this.el = document.createElement("div")
+    }
   }
 
   componentDidMount() {

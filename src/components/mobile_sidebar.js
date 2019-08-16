@@ -6,8 +6,11 @@ import ReactDOM from "react-dom"
 import "../styles/mobile-sidebar.scss"
 
 export default class MobileSidebar extends React.Component {
-  componentWillMount() {
-    this.el = document.createElement("div")
+  constructor(props) {
+    super(props)
+    if (document) {
+      this.el = document.createElement("div")
+    }
   }
 
   componentDidMount() {
@@ -15,7 +18,7 @@ export default class MobileSidebar extends React.Component {
   }
 
   componentWillUnmount() {
-    document.getElementById("sidebar-root").removeChild(this.el)
+    document.getElementById("sidebar-root").remove(this.el)
   }
 
   render() {
