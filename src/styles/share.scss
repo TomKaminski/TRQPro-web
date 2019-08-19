@@ -1,0 +1,11 @@
+.post-social {
+  display: inline-flex;
+  .button {
+    outline: none;
+    border-radius: 10px;
+    padding: 3px 6px;
+    margin-right: 2px;
+    color: black;
+    cursor: pointer;
+  }
+}

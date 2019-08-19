@@ -2,7 +2,9 @@ module.exports = {
   siteMetadata: {
     title: `TRQ Pro`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    author: `@tomaszkaminski`,
+    twitterHandle: `@TRQPro`,
+    url: `https://www.facebook.com/TRQPro/`,
   },
   plugins: [
     `gatsby-plugin-sass`,

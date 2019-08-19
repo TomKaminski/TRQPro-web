@@ -25,3 +25,9 @@
   height: 60px;
   width: auto;
 }
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 0 !important;
+  }
+}

@@ -1,4 +1,17 @@
 const path = require(`path`)
+const { createFilePath } = require("gatsby-source-filesystem")
+
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions
+
+  if (node.internal.type === `StrapiArticle`) {
+    createNodeField({
+      node,
+      name: `slug`,
+      value: `article/${node.id}`,
+    })
+  }
+}
 
 const makeRequest = (graphql, request) =>
   new Promise((resolve, reject) => {

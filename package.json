@@ -32,6 +32,7 @@
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-id-swiper": "^2.3.1",
+    "react-share": "^3.0.0",
     "swiper": "^4.5.0",
     "tocbot": "^4.7.1",
     "typeface-montserrat": "0.0.54",

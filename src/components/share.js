@@ -1,0 +1,66 @@
+import React from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { FacebookShareButton, TwitterShareButton } from "react-share"
+
+import "../styles/share.scss"
+
+class Share extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      expanded: false,
+    }
+  }
+
+  render() {
+    return (
+      <p
+        className={`article-meta share ${
+          this.state.expanded ? " share-expanded" : ""
+        }`}
+      >
+        <a
+          href="javascript:void(0)"
+          onClick={e => {
+            e.preventDefault()
+            e.stopPropagation()
+            this.setState({
+              expanded: !this.state.expanded,
+            })
+          }}
+        >
+          <FontAwesomeIcon icon="share-alt" />{" "}
+          {this.state.expanded ? "" : "udostępnij"}
+        </a>
+        {this.state.expanded ? (
+          <div className="post-social">
+            <FacebookShareButton
+              url={this.props.socialConfig.config.url}
+              className="button is-outlined is-rounded facebook"
+            >
+              <span className="icon">
+                <FontAwesomeIcon icon={["fab", "facebook-f"]} />
+              </span>
+              <span className="text">Facebook</span>
+            </FacebookShareButton>
+            <TwitterShareButton
+              url={this.props.socialConfig.config.url}
+              className="button is-outlined is-rounded twitter"
+              title={this.props.socialConfig.config.title}
+              via={this.props.socialConfig.twitterHandle.split("@").join("")}
+            >
+              <span className="icon">
+                <FontAwesomeIcon icon={["fab", "twitter"]} />
+              </span>
+              <span className="text">Twitter</span>
+            </TwitterShareButton>
+          </div>
+        ) : (
+          <div></div>
+        )}
+      </p>
+    )
+  }
+}
+
+export default Share

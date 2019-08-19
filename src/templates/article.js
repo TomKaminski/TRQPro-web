@@ -9,6 +9,7 @@ import SEO from "../components/seo"
 import { Row, Col } from "react-bootstrap"
 import marked from "marked"
 import tocbot from "tocbot"
+import Share from "../components/share"
 
 const disqusConfig = (slug, title) => {
   return {
@@ -60,6 +61,7 @@ class ArticleTemplate extends React.Component {
   }
 
   render() {
+    console.log(this.props.data)
     return (
       <Layout>
         <SEO title={this.props.data.strapiArticle.title} />
@@ -108,15 +110,21 @@ class ArticleTemplate extends React.Component {
                       key={tag.key}
                       state={{ tagName: tag.name }}
                     >
-                      {tag.name}
+                      {tag.name + " "}
                     </Link>
                   ))}
                 </p>
 
-                <p className={"article-meta"}>
-                  <FontAwesomeIcon icon="share-alt" />{" "}
-                  <a href="/">udostępnij</a>
-                </p>
+                <Share
+                  socialConfig={{
+                    twitterHandle: this.props.data.site.siteMetadata
+                      .twitterHandle,
+                    config: {
+                      url: `${this.props.data.site.siteMetadata.url}${this.props.data.strapiArticle.fields.slug}`,
+                      title: this.props.data.strapiArticle.title,
+                    },
+                  }}
+                />
               </div>
               {renderMeta(this.props.data.strapiArticle)}
               <div
@@ -148,6 +156,12 @@ export default ArticleTemplate
 
 export const query = graphql`
   query ArticleTemplate($id: String!) {
+    site {
+      siteMetadata {
+        url
+        twitterHandle
+      }
+    }
     strapiArticle(id: { eq: $id }) {
       id
       title
@@ -178,6 +192,9 @@ export const query = graphql`
       tags {
         key
         name
+      }
+      fields {
+        slug
       }
     }
   }
