@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+}
+img.logo {
+  height: 90px;
+  margin: auto;
+}
+.container-inner {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  > * {
+    padding-top: 10px;
+  }
+
+  h4 {
+    font-weight: bold;
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  img.error {
+    height: 100px;
+    margin-bottom: 50px;
+  }
+
+  a {
+    color: #3e3a71;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-top: 20px;
+  }
+}
