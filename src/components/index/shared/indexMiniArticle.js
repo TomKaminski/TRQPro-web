@@ -6,7 +6,11 @@ import { Link } from "gatsby"
 export default class IndexMiniArticle extends React.Component {
   render() {
     return (
-      <div className={"index-left-article article-padding"}>
+      <div
+        className={`index-left-article article-padding  ${
+          this.props.isLast ? "no-border" : ""
+        }`}
+      >
         <Row className={"upper-text-container"}>
           <Col className={this.props.dateAlignRight ? "align-text-right" : ""}>
             <TimeAndAuthor

@@ -10,8 +10,12 @@ class AuthorTemplate extends React.Component {
     return (
       <Layout>
         <SEO title="Author" />
-        {this.props.data.allStrapiArticle.edges.map(article => (
-          <IndexRightArticle article={article.node} key={article.node.id} />
+        {this.props.data.allStrapiArticle.edges.map((article, i) => (
+          <IndexRightArticle
+            article={article.node}
+            key={article.node.id}
+            isLast={this.props.data.allStrapiArticle.edges.length === i + 1}
+          />
         ))}
         <IndexPager
           activePageIndex={this.props.pageContext.currentPage - 1}

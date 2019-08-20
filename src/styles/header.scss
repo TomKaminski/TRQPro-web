@@ -31,3 +31,10 @@
     padding: 0 !important;
   }
 }
+
+@media (min-width: 1200px) {
+  .navbar {
+    padding-left: 100px !important;
+    padding-right: 100px !important;
+  }
+}

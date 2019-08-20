@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import "url-search-params-polyfill"
 import { Index } from "elasticlunr"
-import { Link, navigate } from "gatsby"
+import { Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import IndexMiniArticle from "../components/index/shared/indexMiniArticle"
 import "../styles/wyszukaj/wyszukaj.scss"
@@ -22,7 +22,6 @@ export default class SearchPage extends React.Component {
 
   prepareDocs = () => {
     this.index = this.getOrCreateIndex()
-    console.log(this.index)
     this.results = this.index
       .search(this.searchPhrase, { expand: true })
       .map(({ ref }) => this.index.documentStore.getDoc(ref))

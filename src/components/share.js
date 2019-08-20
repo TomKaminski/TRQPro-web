@@ -2,8 +2,6 @@ import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { FacebookShareButton, TwitterShareButton } from "react-share"
 
-import "../styles/share.scss"
-
 class Share extends React.Component {
   constructor(props) {
     super(props)
@@ -14,13 +12,12 @@ class Share extends React.Component {
 
   render() {
     return (
-      <p
+      <div
         className={`article-meta share ${
           this.state.expanded ? " share-expanded" : ""
         }`}
       >
-        <a
-          href="javascript:void(0)"
+        <button
           onClick={e => {
             e.preventDefault()
             e.stopPropagation()
@@ -31,7 +28,7 @@ class Share extends React.Component {
         >
           <FontAwesomeIcon icon="share-alt" />{" "}
           {this.state.expanded ? "" : "udostępnij"}
-        </a>
+        </button>
         {this.state.expanded ? (
           <div className="post-social">
             <FacebookShareButton
@@ -58,7 +55,7 @@ class Share extends React.Component {
         ) : (
           <div></div>
         )}
-      </p>
+      </div>
     )
   }
 }

@@ -27,7 +27,7 @@ const renderMeta = data => {
           {data.metadata.meta.map((meta, i) => (
             <Col className={"meta-container"} key={i} xs={6} lg={3}>
               <div className={"meta-title"}>{meta.name}</div>
-              {meta.type == "Link" ? (
+              {meta.type === "Link" ? (
                 <a className={"meta-value"} href={meta.val} target="__blank">
                   {meta.val}
                 </a>
@@ -49,13 +49,9 @@ const renderArticleNavigation = () => {
 class ArticleTemplate extends React.Component {
   componentDidMount() {
     tocbot.init({
-      // Where to render the table of contents.
       tocSelector: ".article-toc",
-      // Where to grab the headings to build the table of contents.
       contentSelector: ".js-toc-content",
-      // Which headings to grab inside of the contentSelector element.
       headingSelector: "h1",
-      // For headings inside relative or absolute positioned containers within content.
       hasInnerContainers: true,
     })
   }
@@ -81,39 +77,46 @@ class ArticleTemplate extends React.Component {
             <div id="article-content">
               <h1 id="article-title">{this.props.data.strapiArticle.title}</h1>
               <div className="article-meta-container">
-                <Link
-                  to={`/category/${this.props.data.strapiArticle.category.key}`}
-                  className={"article-meta"}
-                  state={{
-                    categoryName: this.props.data.strapiArticle.category.name,
-                  }}
-                >
-                  {this.props.data.strapiArticle.category.name.toUpperCase()}
-                </Link>
-                <p className={"article-meta"}>
+                <div className={"article-meta"}>
+                  <Link
+                    to={`/category/${this.props.data.strapiArticle.category.key}`}
+                    state={{
+                      categoryName: this.props.data.strapiArticle.category.name,
+                    }}
+                  >
+                    {this.props.data.strapiArticle.category.name.toUpperCase()}
+                  </Link>
+                </div>
+
+                <div className={"article-meta"}>
                   <FontAwesomeIcon icon="calendar" />{" "}
                   {new Date(
                     this.props.data.strapiArticle.created_at
                   ).toLocaleString()}
-                </p>
-                <Link
-                  to={`/author/${this.props.data.strapiArticle.author.id}`}
-                  className={"article-meta"}
-                >
-                  {this.props.data.strapiArticle.author.username}
-                </Link>
-                <p className={"article-meta"}>
-                  <FontAwesomeIcon icon="hashtag" />{" "}
-                  {this.props.data.strapiArticle.tags.map(tag => (
-                    <Link
-                      to={`/tag/${tag.key}`}
-                      key={tag.key}
-                      state={{ tagName: tag.name }}
-                    >
-                      {tag.name + " "}
-                    </Link>
-                  ))}
-                </p>
+                </div>
+
+                <div className={"article-meta"}>
+                  <Link
+                    to={`/author/${this.props.data.strapiArticle.author.id}`}
+                  >
+                    {this.props.data.strapiArticle.author.username}
+                  </Link>
+                </div>
+
+                {this.props.data.strapiArticle.tags.length > 0 ? (
+                  <div className={"article-meta"}>
+                    <FontAwesomeIcon icon="hashtag" />{" "}
+                    {this.props.data.strapiArticle.tags.map(tag => (
+                      <Link
+                        to={`/tag/${tag.key}`}
+                        key={tag.key}
+                        state={{ tagName: tag.name }}
+                      >
+                        {tag.name + " "}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
 
                 <Share
                   socialConfig={{

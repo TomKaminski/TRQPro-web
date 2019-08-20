@@ -27,6 +27,7 @@ class CategoryTemplate extends React.Component {
   }
 
   render() {
+    let restArticles = this.getRestArticles()
     return (
       <Layout>
         <SEO title={`Kategoria - ${this.getCategoryName()}`} />
@@ -47,14 +48,19 @@ class CategoryTemplate extends React.Component {
                 <IndexArticleWithCategory
                   article={element.node}
                   darkMode={i === 0}
+                  isLast={true}
                 />
               </Col>
             )
           })}
         </Row>
         <div className="divider" />
-        {this.getRestArticles().map(article => (
-          <IndexRightArticle article={article.node} key={article.node.id} />
+        {restArticles.map((article, i) => (
+          <IndexRightArticle
+            article={article.node}
+            key={article.node.id}
+            isLast={restArticles.length === i + 1}
+          />
         ))}
         {this.props.data.allStrapiArticle.pageInfo.pageCount > 1 ? (
           <IndexPager

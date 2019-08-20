@@ -6,7 +6,7 @@ import { Link } from "gatsby"
 export default class IndexMarketAnalysisBigArticle extends React.Component {
   render() {
     return (
-      <div className={"index-left-article article-padding"}>
+      <div className={"index-left-article article-padding no-border"}>
         <Img fluid={this.props.article.image.childImageSharp.fluid} />
         <div className={"upper-text-container"}>
           <TimeAndAuthor

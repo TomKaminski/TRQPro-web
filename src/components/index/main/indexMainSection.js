@@ -7,12 +7,24 @@ import IndexArticle from "../shared/indexArticle"
 
 export default class IndexMainSection extends React.Component {
   renderLeftColumn(leftSideArticles) {
+    let articlesCount = leftSideArticles.length
     return leftSideArticles.map((element, i) => {
       if (i === 0) {
-        return <IndexArticleWithCategory article={element} key={i} />
+        return (
+          <IndexArticleWithCategory
+            article={element}
+            key={i}
+            isLast={articlesCount === i + 1}
+          />
+        )
       } else {
         return (
-          <IndexMiniArticle dateAlignRight={true} article={element} key={i} />
+          <IndexMiniArticle
+            dateAlignRight={true}
+            article={element}
+            key={i}
+            isLast={articlesCount === i + 1}
+          />
         )
       }
     })
@@ -20,7 +32,11 @@ export default class IndexMainSection extends React.Component {
 
   renderRightColumn(rightSideArticles) {
     return rightSideArticles.map((element, i) => (
-      <IndexRightArticle article={element} key={i} />
+      <IndexRightArticle
+        article={element}
+        key={i}
+        isLast={rightSideArticles.length === i + 1}
+      />
     ))
   }
 

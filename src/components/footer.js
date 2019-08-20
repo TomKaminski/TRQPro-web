@@ -7,7 +7,7 @@ import "../styles/footer.scss"
 const Footer = () => {
   return (
     <footer>
-      <Container>
+      <Container fluid={true} className={"page-padding"}>
         <Row>
           <Col md={3} sm={6} xs={12}>
             <p>O nas</p>

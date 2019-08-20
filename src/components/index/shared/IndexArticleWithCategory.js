@@ -8,7 +8,11 @@ export default class IndexArticleWithCategory extends React.Component {
   render() {
     let textClass = this.props.darkMode === true ? " white-text" : ""
     return (
-      <div className={"index-left-article article-padding"}>
+      <div
+        className={`index-left-article article-padding ${
+          this.props.isLast ? "no-border" : ""
+        }`}
+      >
         <Img fluid={this.props.article.image.childImageSharp.fluid} />
         <Row className={"upper-text-container" + textClass}>
           <Col className={"upper-text-note"}>

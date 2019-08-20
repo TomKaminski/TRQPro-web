@@ -31,15 +31,23 @@ const IndexICOSection = props => {
         </Row>
         <Row>
           <Col xs={12} sm={12} lg={6} md={8}>
-            {leftSideArticles.map((el, _) => (
-              <IndexMiniArticle article={el} key={el.id} />
+            {leftSideArticles.map((el, i) => (
+              <IndexMiniArticle
+                article={el}
+                key={el.id}
+                isLast={leftSideArticles.length === i + 1}
+              />
             ))}
           </Col>
           <Col xs={12} sm={12} lg={6} md={4}>
             <Row>
-              {rightSideArticles.map((el, _) => (
+              {rightSideArticles.map((el, i) => (
                 <Col>
-                  <IndexArticleWithCategory article={el} key={el.id} />
+                  <IndexArticleWithCategory
+                    article={el}
+                    key={el.id}
+                    isLast={rightSideArticles.length === i + 1}
+                  />
                 </Col>
               ))}
             </Row>

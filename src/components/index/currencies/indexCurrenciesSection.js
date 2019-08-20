@@ -32,7 +32,11 @@ const IndexSection = props => {
               className={i === 0 ? "black-bg" : ""}
               key={i}
             >
-              <IndexArticleWithCategory article={element} darkMode={i === 0} />
+              <IndexArticleWithCategory
+                article={element}
+                darkMode={i === 0}
+                isLast={true}
+              />
             </Col>
           )
         })}
