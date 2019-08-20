@@ -16,6 +16,23 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-plugin-webfonts`,
+      options: {
+        fonts: {
+          google: [
+            {
+              family: "Montserrat",
+              variants: ["400", "600"],
+              //subsets: ['latin']
+            },
+          ],
+        },
+        //useMinify: true,
+        //usePreload: true,
+        //usePreconnect: false,
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

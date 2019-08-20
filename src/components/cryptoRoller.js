@@ -62,7 +62,9 @@ export default class CryptoRoller extends React.Component {
     return (
       <div className={"element"} key={item.name}>
         <span className={"title"}>{item.name}</span>
-        <span className={"value"}>{item.current_price} PLN</span>
+        <span className={"value"}>
+          {Math.round(item.current_price * 100) / 100} PLN
+        </span>
         {item.price_change_percentage_24h < 0 ? (
           <FontAwesomeIcon icon="sort-down" className={"arrow-down"} />
         ) : (
@@ -70,11 +72,11 @@ export default class CryptoRoller extends React.Component {
         )}
         {item.price_change_percentage_24h < 0 ? (
           <span className={"percentage red"}>
-            {item.price_change_percentage_24h}%
+            {Math.round(item.price_change_percentage_24h * 100) / 100}%
           </span>
         ) : (
           <span className={"percentage green"}>
-            {item.price_change_percentage_24h}%
+            {Math.round(item.price_change_percentage_24h * 100) / 100}%
           </span>
         )}
       </div>

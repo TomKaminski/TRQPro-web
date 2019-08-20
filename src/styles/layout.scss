@@ -1,7 +1,7 @@
 @import "./shared.scss";
 
 body {
-  font-family: "Montserrat";
+  font-family: "Montserrat", sans-serif;
 }
 
 .page-padding {
@@ -13,5 +13,6 @@ body {
   .page-padding {
     padding-left: 100px;
     padding-right: 100px;
+    max-width: 1920px;
   }
 }

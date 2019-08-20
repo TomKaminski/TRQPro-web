@@ -4,10 +4,11 @@
   -webkit-box-shadow: 0px 4px 9px -6px #999;
   -moz-box-shadow: 0px 4px 9px -6px #999;
   box-shadow: 0px 4px 9px -6px #999;
+  padding: 0 !important;
 }
 
 .navbar-nav {
-  padding: 15px 0px;
+  padding: 0px;
   &.always-row-directed {
     flex-direction: row !important;
   }
@@ -24,17 +25,4 @@
 #brand-logo {
   height: 60px;
   width: auto;
-}
-
-@media screen and (max-width: 768px) {
-  .navbar {
-    padding: 0 !important;
-  }
-}
-
-@media (min-width: 1200px) {
-  .navbar {
-    padding-left: 100px !important;
-    padding-right: 100px !important;
-  }
 }
