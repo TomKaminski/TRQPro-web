@@ -56,10 +56,20 @@ const Footer = () => {
                 skontaktowac, nie wahaj się i wyślij wiadomosc.
               </li>
               <li>
-                <a href="#fb" className={"social-icon"}>
+                <a
+                  href="https://www.facebook.com/TRQPro/"
+                  className={"social-icon"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FontAwesomeIcon icon={["fab", "facebook-f"]} />
                 </a>
-                <a href="#fb" className={"social-icon"}>
+                <a
+                  href="https://www.twitter.com/TRQPro/"
+                  className={"social-icon"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FontAwesomeIcon icon={["fab", "twitter"]} />
                 </a>
                 <a

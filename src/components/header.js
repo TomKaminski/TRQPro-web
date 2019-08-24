@@ -100,13 +100,24 @@ export default class Header extends React.Component {
                 href="https://www.facebook.com/TRQPro/"
                 className={"nav-link-black"}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <FontAwesomeIcon icon={["fab", "facebook-f"]} />
               </Nav.Link>
-              <Nav.Link href="#fb" className={"nav-link-black"}>
+              <Nav.Link
+                href="https://www.twitter.com/TRQPro/"
+                className={"nav-link-black"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={["fab", "twitter"]} />
               </Nav.Link>
-              <Nav.Link href="#fb" className={"nav-link-black"}>
+              <Nav.Link
+                href="https://www.twitter.com/TRQPro/"
+                className={"nav-link-black"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={["fab", "youtube"]} />
               </Nav.Link>
               <StaticQuery

@@ -1,7 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: `TRQ Pro`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `TRQPro jest społecznością stworzoną przez Traderów dla Traderów. Znajdziesz tu kompendium wiedzy na każdy możliwy temat dotyczący spekulacji wyłożone w prosty sposób. Dzielimy się swoimi taktykami rozgrywania pozycji, strategiami, analizami technicznymi i informacjami dotyczącymi walorów, które znamy i na których gramy. Pomagamy w zapoznaniu się z platformami, na których gramy, aby w głupi sposób nie tracić pieniędzy. Tropimy nieuczciwe grupy sygnałowe i ujawniając oszustwa przestrzegamy innych uczestników. Wszystko po to, aby wspólnie zarabiać na giełdzie.  
+    Co ważne – robimy to wszystko za darmo, dlatego, że zarabiamy na rynkach, nie szkoleniach. W zamian za pomoc, oczekujemy jedynie zaangażowania w grupę i pomocy innym.`,
     author: `@tomaszkaminski`,
     twitterHandle: `@TRQPro`,
     url: `https://www.facebook.com/TRQPro/`,
@@ -24,13 +25,9 @@ module.exports = {
             {
               family: "Montserrat",
               variants: ["400", "600"],
-              //subsets: ['latin']
             },
           ],
         },
-        //useMinify: true,
-        //usePreload: true,
-        //usePreconnect: false,
       },
     },
     `gatsby-transformer-sharp`,
@@ -41,13 +38,7 @@ module.exports = {
         apiURL: process.env.DEPLOY_URL
           ? "https://trq-cms.herokuapp.com"
           : "http://localhost:1337",
-        contentTypes: [
-          // List of the Content Types you want to be able to request from Gatsby.
-          "article",
-          "user",
-          "tag",
-          "category",
-        ],
+        contentTypes: ["article", "user", "tag", "category"],
         queryLimit: 1000,
       },
     },
