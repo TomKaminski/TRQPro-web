@@ -1,5 +1,4 @@
 const path = require(`path`)
-const { createFilePath } = require("gatsby-source-filesystem")
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
@@ -89,7 +88,7 @@ exports.createPages = ({ actions, graphql }) => {
                 : `/author/${articleGroup.fieldValue}/page/${i + 1}`,
             component: path.resolve(`src/templates/author.js`),
             context: {
-              key: parseInt(articleGroup.fieldValue),
+              key: articleGroup.fieldValue,
               limit: postsPerPage,
               skip: i * postsPerPage,
               pageCount: articleGroup.pageInfo.pageCount,

@@ -24,15 +24,24 @@ export default class IndexPage extends React.Component {
   }
 
   getArticlesForCategory(categoryTag) {
-    return this.props.data.allStrapiArticle.group
-      .find(group => {
-        return group.fieldValue === categoryTag
-      })
-      .edges.map((element, _) => element.node)
+    let articles = this.props.data.allStrapiArticle.group.find(group => {
+      return group.fieldValue === categoryTag
+    })
+
+    if (articles) {
+      return articles.edges.map((element, _) => element.node)
+    } else {
+      return []
+    }
   }
 
   getArticlesForCryptocurrenciesSection() {
-    return this.getArticlesForCategory("cat-cryptocurrency").slice(0, 4)
+    var articles = this.getArticlesForCategory("cat-cryptocurrency")
+    if (articles) {
+      return articles.slice(0, 4)
+    } else {
+      return []
+    }
   }
 
   getArticlesForMarketAnalysisSection() {
