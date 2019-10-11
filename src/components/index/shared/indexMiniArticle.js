@@ -2,6 +2,7 @@ import React from "react"
 import { Row, Col } from "react-bootstrap"
 import TimeAndAuthor from "../shared/timeAndAuthor"
 import { Link } from "gatsby"
+import removeMd from "remove-markdown"
 
 export default class IndexMiniArticle extends React.Component {
   render() {
@@ -23,7 +24,7 @@ export default class IndexMiniArticle extends React.Component {
           {this.props.article.title}
         </Link>
         <p className={"description"}>
-          {this.props.article.content.substring(0, 350).concat("...")}
+          {removeMd(this.props.article.content.substring(0, 350).concat("..."))}
         </p>
         <Link
           className={"underlined-black-text"}

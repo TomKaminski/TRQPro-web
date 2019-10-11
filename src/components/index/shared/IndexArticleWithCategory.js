@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap"
 import TimeAndAuthor from "../shared/timeAndAuthor"
 import Img from "gatsby-image"
 import { Link } from "gatsby"
+import removeMd from "remove-markdown"
 
 export default class IndexArticleWithCategory extends React.Component {
   render() {
@@ -34,7 +35,7 @@ export default class IndexArticleWithCategory extends React.Component {
           {this.props.article.title}
         </Link>
         <p className={"description" + textClass}>
-          {this.props.article.content.substring(0, 350).concat("...")}
+          {removeMd(this.props.article.content.substring(0, 350).concat("..."))}
         </p>
         <Link
           className={"underlined-black-text" + textClass}

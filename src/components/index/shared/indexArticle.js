@@ -23,7 +23,7 @@ export default class IndexArticle extends React.Component {
           className={"index-article-content description"}
           dangerouslySetInnerHTML={{
             __html: marked(
-              this.props.article.content.substring(0, 700).concat("...")
+              this.props.article.content.substring(0, 500).concat("...")
             ),
           }}
         ></div>

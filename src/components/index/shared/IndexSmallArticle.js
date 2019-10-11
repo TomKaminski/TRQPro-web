@@ -1,6 +1,7 @@
 import React from "react"
 import TimeAndAuthor from "./timeAndAuthor"
 import { Link } from "gatsby"
+import removeMd from "remove-markdown"
 
 export default class IndexRightArticle extends React.Component {
   render() {
@@ -16,7 +17,7 @@ export default class IndexRightArticle extends React.Component {
           date={this.props.article.created_at}
         />
         <p className={"description margin-top-base"}>
-          {this.props.article.content.substring(0, 300).concat("...")}
+          {removeMd(this.props.article.content.substring(0, 300).concat("..."))}
         </p>
         <Link
           className={"underlined-black-text"}
