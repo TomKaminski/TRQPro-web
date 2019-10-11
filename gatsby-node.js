@@ -88,7 +88,7 @@ exports.createPages = ({ actions, graphql }) => {
                 : `/author/${articleGroup.fieldValue}/page/${i + 1}`,
             component: path.resolve(`src/templates/author.js`),
             context: {
-              key: articleGroup.fieldValue,
+              key: parseInt(articleGroup.fieldValue),
               limit: postsPerPage,
               skip: i * postsPerPage,
               pageCount: articleGroup.pageInfo.pageCount,

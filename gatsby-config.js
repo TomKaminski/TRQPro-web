@@ -36,7 +36,7 @@ module.exports = {
       resolve: "gatsby-source-strapi",
       options: {
         apiURL: process.env.DEPLOY_URL
-          ? "https://trq-cms.herokuapp.com"
+          ? "http://cms.trqpro.pl"
           : "http://localhost:1337",
         contentTypes: ["article", "user", "tag", "category"],
         queryLimit: 1000,
