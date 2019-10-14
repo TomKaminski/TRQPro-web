@@ -107,6 +107,9 @@ export const query = graphql`
               }
             }
           }
+          fields {
+            slug
+          }
           category {
             key
             name

@@ -54,6 +54,9 @@ export const query = graphql`
             key
             name
           }
+          fields {
+            slug
+          }
           author {
             id
             username
