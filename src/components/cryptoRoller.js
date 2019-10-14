@@ -38,7 +38,7 @@ export default class CryptoRoller extends React.Component {
   getData() {
     axios
       .get(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=PLN&ids=bitcoin%2Cethereum%2Cbitcoin-cash%2Clitecoin%2Cwaves%2Clink%2Cfantom%2Cneo%2Cbinance-coin%2Ceos&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=PLN&ids=bitcoin%2Cethereum%2Cripple%2Ctether%2Cbitcoin-cash%2Clitecoin%2Ceos%2Cbinancecoin%2Cbitcoin-cash-sv%2Cstellar&order=market_cap_desc&per_page=100&page=1&sparkline=false"
       )
       .then(response => {
         this.setState({

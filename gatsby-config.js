@@ -17,19 +17,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    {
-      resolve: `gatsby-plugin-webfonts`,
-      options: {
-        fonts: {
-          google: [
-            {
-              family: "Montserrat",
-              variants: ["400", "600"],
-            },
-          ],
-        },
-      },
-    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -38,7 +25,7 @@ module.exports = {
         apiURL: process.env.DEPLOY_URL
           ? "http://cms.trqpro.pl"
           : "http://localhost:1337",
-        contentTypes: ["article", "user", "tag", "category"],
+        contentTypes: ["article", "user", "tag", "category", "static"],
         queryLimit: 1000,
       },
     },

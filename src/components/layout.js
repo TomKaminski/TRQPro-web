@@ -23,7 +23,6 @@ import "../styles/layout.scss"
 import { Container } from "react-bootstrap"
 import CryptoRoller from "./cryptoRoller"
 import Footer from "./footer"
-import MobileSidebar from "./mobile_sidebar"
 
 library.add(
   faTimes,
