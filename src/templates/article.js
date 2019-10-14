@@ -79,7 +79,7 @@ class ArticleTemplate extends React.Component {
               <div className="article-meta-container">
                 <div className={"article-meta"}>
                   <Link
-                    to={`/category/${this.props.data.strapiArticle.category.key}`}
+                    to={`/kategoria/${this.props.data.strapiArticle.category.key}`}
                     state={{
                       categoryName: this.props.data.strapiArticle.category.name,
                     }}
@@ -97,7 +97,7 @@ class ArticleTemplate extends React.Component {
 
                 <div className={"article-meta"}>
                   <Link
-                    to={`/author/${this.props.data.strapiArticle.author.id}`}
+                    to={`/autor/${this.props.data.strapiArticle.author.id}`}
                   >
                     {this.props.data.strapiArticle.author.username}
                   </Link>

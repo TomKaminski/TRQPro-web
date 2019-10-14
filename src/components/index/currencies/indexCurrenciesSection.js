@@ -12,7 +12,7 @@ const IndexSection = props => {
             <div className={"section-title-container"}>
               <h3 className={"section-title"}>{props.sectionName}</h3>
               <Link
-                to={`/category/cat-cryptocurrency`}
+                to={`/kategoria/cat-cryptocurrency`}
                 className={"section-show-all"}
                 state={{ categoryName: props.sectionName }}
               >

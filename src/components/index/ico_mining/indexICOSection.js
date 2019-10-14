@@ -19,7 +19,7 @@ const IndexICOSection = props => {
               <div className={"section-title-container"}>
                 <h3 className={"section-title"}>{props.sectionName}</h3>
                 <Link
-                  to={`/category/cat-ico`}
+                  to={`/kategoria/cat-ico`}
                   className={"section-show-all"}
                   state={{ categoryName: props.sectionName }}
                 >

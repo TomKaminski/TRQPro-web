@@ -70,7 +70,9 @@ class TagTemplate extends React.Component {
               if (page === 0) {
                 navigate(`/tag/${this.props.pageContext.key}`)
               } else {
-                navigate(`/tag/${this.props.pageContext.key}/page/${page + 1}`)
+                navigate(
+                  `/tag/${this.props.pageContext.key}/strona/${page + 1}`
+                )
               }
             }}
           />

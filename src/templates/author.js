@@ -22,9 +22,11 @@ class AuthorTemplate extends React.Component {
           pageCount={this.props.data.allStrapiArticle.pageInfo.pageCount}
           onPageChangeCallback={page => {
             if (page === 0) {
-              navigate(`/author/${this.props.pageContext.key}`)
+              navigate(`/autor/${this.props.pageContext.key}`)
             } else {
-              navigate(`/author/${this.props.pageContext.key}/page/${page + 1}`)
+              navigate(
+                `/autor/${this.props.pageContext.key}/strona/${page + 1}`
+              )
             }
           }}
         />

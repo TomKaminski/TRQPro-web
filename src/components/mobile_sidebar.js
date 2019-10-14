@@ -39,7 +39,7 @@ export default class MobileSidebar extends React.Component {
             <li className={"sidebar-title"}>Informacje</li>
             <li>
               <Link
-                to={`/category/cat-cryptocurrency`}
+                to={`/kategoria/cat-cryptocurrency`}
                 state={{ categoryName: "Kryptowaluty" }}
               >
                 Kryptowaluty
@@ -47,20 +47,20 @@ export default class MobileSidebar extends React.Component {
             </li>
             <li>
               <Link
-                to={`/category/cat-forex`}
+                to={`/kategoria/cat-forex`}
                 state={{ categoryName: "Forex" }}
               >
                 Forex
               </Link>
             </li>
             <li>
-              <Link to={`/category/cat-ico`} state={{ categoryName: "ICO" }}>
+              <Link to={`/kategoria/cat-ico`} state={{ categoryName: "ICO" }}>
                 ICO
               </Link>
             </li>
             <li>
               <Link
-                to={`/category/cat-mining`}
+                to={`/kategoria/cat-mining`}
                 state={{ categoryName: "Mining" }}
               >
                 Mining
@@ -68,7 +68,7 @@ export default class MobileSidebar extends React.Component {
             </li>
             <li>
               <Link
-                to={`/category/cat-academy`}
+                to={`/kategoria/cat-academy`}
                 state={{ categoryName: "Szkolenia" }}
               >
                 Szkolenia

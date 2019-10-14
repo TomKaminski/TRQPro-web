@@ -60,7 +60,7 @@ export default class SearchPage extends React.Component {
                 <div className={"category-tag"} key={category.key}>
                   <FontAwesomeIcon icon="folder" className={"icon"} />
                   <Link
-                    to={`/category/${category.key}`}
+                    to={`/kategoria/${category.key}`}
                     className={"underlined-black-text"}
                     key={category.key}
                     state={{ categoryName: category.name }}

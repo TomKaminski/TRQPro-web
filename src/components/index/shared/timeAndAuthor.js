@@ -12,7 +12,7 @@ const TimeAndAuthor = props => {
       <span className={props.textClass}>{formatDate(props.date)}</span>
       <span> &bull; </span>
       <Link
-        to={`/author/${props.author.id}`}
+        to={`/autor/${props.author.id}`}
         className={"underlined-black-text " + props.textClass}
       >
         {props.author.username}

@@ -59,35 +59,35 @@ export default class Header extends React.Component {
                 Home
               </Link>
               <Link
-                to={`/category/cat-cryptocurrency`}
+                to={`/kategoria/cat-cryptocurrency`}
                 className={"nav-link-black nav-link"}
                 state={{ categoryName: "Kryptowaluty" }}
               >
                 Kryptowaluty
               </Link>
               <Link
-                to={`/category/cat-forex`}
+                to={`/kategoria/cat-forex`}
                 className={"nav-link-black nav-link"}
                 state={{ categoryName: "Forex" }}
               >
                 Forex
               </Link>
               <Link
-                to={`/category/cat-ico`}
+                to={`/kategoria/cat-ico`}
                 className={"nav-link-black nav-link"}
                 state={{ categoryName: "ICO" }}
               >
                 ICO
               </Link>
               <Link
-                to={`/category/cat-mining`}
+                to={`/kategoria/cat-mining`}
                 className={"nav-link-black nav-link"}
                 state={{ categoryName: "Mining" }}
               >
                 Mining
               </Link>
               <Link
-                to={`/category/cat-academy`}
+                to={`/kategoria/cat-academy`}
                 className={"nav-link-black nav-link"}
                 state={{ categoryName: "Szkolenia" }}
               >

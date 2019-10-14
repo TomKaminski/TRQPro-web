@@ -68,10 +68,10 @@ class CategoryTemplate extends React.Component {
             pageCount={this.props.data.allStrapiArticle.pageInfo.pageCount}
             onPageChangeCallback={page => {
               if (page === 0) {
-                navigate(`/category/${this.props.pageContext.key}`)
+                navigate(`/kategoria/${this.props.pageContext.key}`)
               } else {
                 navigate(
-                  `/category/${this.props.pageContext.key}/page/${page + 1}`
+                  `/kategoria/${this.props.pageContext.key}/strona/${page + 1}`
                 )
               }
             }}
