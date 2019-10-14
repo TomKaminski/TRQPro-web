@@ -1,13 +1,34 @@
 const path = require(`path`)
 
+function string_to_slug(str) {
+  str = str.replace(/^\s+|\s+$/g, "") // trim
+  str = str.toLowerCase()
+
+  // remove accents, swap ñ for n, etc
+  var from = "ąàáãäâęèéëêìíïîòóöôùúüûñçć·/_,:;źżóśń"
+  var to = "aaaaaaeeeeeiiiioooouuuuncć------zzosn"
+
+  for (var i = 0, l = from.length; i < l; i++) {
+    str = str.replace(new RegExp(from.charAt(i), "g"), to.charAt(i))
+  }
+
+  str = str
+    .replace(/[^a-z0-9 -]/g, "") // remove invalid chars
+    .replace(/\s+/g, "-") // collapse whitespace and replace by -
+    .replace(/-+/g, "-") // collapse dashes
+
+  return str
+}
+
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `StrapiArticle`) {
+    console.log(node)
     createNodeField({
       node,
       name: `slug`,
-      value: `article/${node.id}`,
+      value: `wpisy/${node.strapiId}/${string_to_slug(node.title)}`,
     })
   }
 }
@@ -39,6 +60,9 @@ exports.createPages = ({ actions, graphql }) => {
         edges {
           node {
             id
+            fields {
+              slug
+            }
           }
         }
       }
@@ -47,8 +71,9 @@ exports.createPages = ({ actions, graphql }) => {
   ).then(result => {
     // Create pages for each article.
     result.data.allStrapiArticle.edges.forEach(({ node }) => {
+      console.log(node)
       createPage({
-        path: `/article/${node.id}`,
+        path: `/${node.fields.slug}`,
         component: path.resolve(`src/templates/article.js`),
         context: {
           id: node.id,
@@ -84,8 +109,8 @@ exports.createPages = ({ actions, graphql }) => {
           createPage({
             path:
               i === 0
-                ? `/author/${articleGroup.fieldValue}`
-                : `/author/${articleGroup.fieldValue}/page/${i + 1}`,
+                ? `/autor/${articleGroup.fieldValue}`
+                : `/autor/${articleGroup.fieldValue}/strona/${i + 1}`,
             component: path.resolve(`src/templates/author.js`),
             context: {
               key: parseInt(articleGroup.fieldValue),
@@ -127,8 +152,8 @@ exports.createPages = ({ actions, graphql }) => {
           createPage({
             path:
               i === 0
-                ? `/category/${articleGroup.fieldValue}`
-                : `/category/${articleGroup.fieldValue}/page/${i + 1}`,
+                ? `/kategoria/${articleGroup.fieldValue}`
+                : `/kategoria/${articleGroup.fieldValue}/strona/${i + 1}`,
             component: path.resolve(`src/templates/category.js`),
             context: {
               key: articleGroup.fieldValue,
@@ -171,7 +196,7 @@ exports.createPages = ({ actions, graphql }) => {
             path:
               i === 0
                 ? `/tag/${articleGroup.fieldValue}`
-                : `/tag/${articleGroup.fieldValue}/page/${i + 1}`,
+                : `/tag/${articleGroup.fieldValue}/strona/${i + 1}`,
             component: path.resolve(`src/templates/tag.js`),
             context: {
               key: articleGroup.fieldValue,

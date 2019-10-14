@@ -30,7 +30,7 @@ export default class IndexArticleWithCategory extends React.Component {
 
         <Link
           className={"link-title" + textClass}
-          to={`/article/${this.props.article.id}`}
+          to={`/${this.props.article.fields.slug}`}
         >
           {this.props.article.title}
         </Link>
@@ -39,7 +39,7 @@ export default class IndexArticleWithCategory extends React.Component {
         </p>
         <Link
           className={"underlined-black-text" + textClass}
-          to={`/article/${this.props.article.id}`}
+          to={`/${this.props.article.fields.slug}`}
         >
           Czytaj dalej
         </Link>

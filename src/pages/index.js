@@ -116,6 +116,9 @@ export const pageQuery = graphql`
               key
               name
             }
+            fields {
+              slug
+            }
             author {
               id
               username

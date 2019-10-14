@@ -21,7 +21,7 @@ export default class IndexRightArticle extends React.Component {
         </p>
         <Link
           className={"underlined-black-text"}
-          to={`/article/${this.props.article.id}`}
+          to={`/${this.props.article.fields.slug}`}
         >
           Czytaj dalej
         </Link>

@@ -6,6 +6,7 @@ import marked from "marked"
 
 export default class IndexArticle extends React.Component {
   render() {
+    console.log(this.props.article)
     return (
       <div
         key={this.props.article.id}
@@ -16,7 +17,7 @@ export default class IndexArticle extends React.Component {
           author={this.props.article.author}
           date={this.props.article.created_at}
         />
-        <Link className="title" to={`/article/${this.props.article.id}`}>
+        <Link className="title" to={`/${this.props.article.fields.slug}`}>
           {this.props.article.title}
         </Link>
         <div
@@ -28,7 +29,7 @@ export default class IndexArticle extends React.Component {
           }}
         ></div>
         <Link
-          to={`/article/${this.props.article.id}`}
+          to={`/${this.props.article.fields.slug}`}
           className="underlined-black-text"
         >
           Czytaj dalej

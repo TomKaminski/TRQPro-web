@@ -20,7 +20,10 @@ export default class IndexMiniArticle extends React.Component {
             />
           </Col>
         </Row>
-        <Link className={"link-title"} to={`/article/${this.props.article.id}`}>
+        <Link
+          className={"link-title"}
+          to={`/${this.props.article.fields.slug}`}
+        >
           {this.props.article.title}
         </Link>
         <p className={"description"}>
@@ -28,7 +31,7 @@ export default class IndexMiniArticle extends React.Component {
         </p>
         <Link
           className={"underlined-black-text"}
-          to={`/article/${this.props.article.id}`}
+          to={`/${this.props.article.fields.slug}`}
         >
           Czytaj dalej
         </Link>
