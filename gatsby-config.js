@@ -24,7 +24,7 @@ module.exports = {
       options: {
         apiURL: process.env.DEPLOY_URL
           ? "http://cms.trqpro.pl"
-          : "http://localhost:1337",
+          : "http://cms.trqpro.pl",
         contentTypes: ["article", "user", "tag", "category", "static"],
         queryLimit: 1000,
       },
@@ -53,6 +53,7 @@ module.exports = {
             content: node => node.content.substring(0, 350).concat("..."),
             author: node => node.author,
             created_at: node => node.created_at,
+            fields: node => node.fields,
           },
           StrapiCategory: {
             name: node => node.name,
