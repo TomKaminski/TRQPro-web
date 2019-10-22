@@ -24,7 +24,6 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `StrapiArticle`) {
-    console.log(node)
     createNodeField({
       node,
       name: `slug`,
@@ -71,7 +70,6 @@ exports.createPages = ({ actions, graphql }) => {
   ).then(result => {
     // Create pages for each article.
     result.data.allStrapiArticle.edges.forEach(({ node }) => {
-      console.log(node)
       createPage({
         path: `/${node.fields.slug}`,
         component: path.resolve(`src/templates/article.js`),
