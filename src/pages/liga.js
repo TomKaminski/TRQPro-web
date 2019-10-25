@@ -71,11 +71,11 @@ class LeaguePage extends React.Component {
   getRoeColored(roe) {
     if (roe !== null) {
       if (roe > 0) {
-        return <div className={"color-green"}>{roe}%</div>
+        return <div className={"color-green"}>{roe.toFixed(2)}%</div>
       } else if (roe < 0) {
-        return <div className={"color-red"}>{roe}%</div>
+        return <div className={"color-red"}>{roe.toFixed(2)}%</div>
       } else {
-        return <div>{roe}%</div>
+        return <div>{roe.toFixed(2)}%</div>
       }
     } else {
       return <div>-</div>
