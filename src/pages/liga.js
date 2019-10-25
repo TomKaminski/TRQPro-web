@@ -97,21 +97,21 @@ class LeaguePage extends React.Component {
         <Container fluid={true} className={"margin-top-40 margin-bottom-40"}>
           <Row>
             <Col>
-              <h5 className={"align-text-center"}>
+              <p className={"align-text-center league-stat"}>
                 Data rozpoczęcia:{" "}
                 {new Date(this.state.data.startDate).toLocaleString()}
-              </h5>
+              </p>
             </Col>
             <Col>
-              <h5 className={"align-text-center"}>
+              <p className={"align-text-center league-stat"}>
                 Data zakończenia:{" "}
                 {new Date(this.state.data.endDate).toLocaleString()}
-              </h5>
+              </p>
             </Col>
             <Col>
-              <h5 className={"align-text-center"}>
+              <p className={"align-text-center league-stat"}>
                 Ilość uczestników: {this.state.data.participants.length}
-              </h5>
+              </p>
             </Col>
           </Row>
         </Container>
