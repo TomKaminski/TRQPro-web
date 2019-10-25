@@ -115,8 +115,10 @@ class LeaguePage extends React.Component {
             </Col>
           </Row>
         </Container>
-
-        <table className={"table table-hover margin-bottom-40"} id="liga-table">
+        <table
+          className={"table table-hover margin-bottom-40 table-responsive-md"}
+          id="liga-table"
+        >
           <thead>
             <tr>
               <th scope="col">#</th>
