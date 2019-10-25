@@ -5,13 +5,13 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import marked from "marked"
 
-class SendATipPage extends React.Component {
+class LeagueRulesPage extends React.Component {
   guardData() {
     if (this.props.data.allStrapiStatic.nodes.length > 0) {
       return this.props.data.allStrapiStatic.nodes[0]
     } else {
       return {
-        title: "Wyślij nam tips",
+        title: "Liga - Regulamin",
         content: "Ładowanie...",
       }
     }
@@ -21,8 +21,7 @@ class SendATipPage extends React.Component {
     let data = this.guardData()
     return (
       <Layout>
-        <SEO title="Wyślij nam tips" />
-        <h2>{data.title}</h2>
+        <SEO title="Liga - Regulamin" />
         <p
           dangerouslySetInnerHTML={{
             __html: marked(data.content),
@@ -33,11 +32,11 @@ class SendATipPage extends React.Component {
   }
 }
 
-export default SendATipPage
+export default LeagueRulesPage
 
 export const pageQuery = graphql`
-  query SendATipQuery {
-    allStrapiStatic(filter: { key: { eq: "wyslijnamtips" } }, limit: 1) {
+  query LeagueRulesQuery {
+    allStrapiStatic(filter: { key: { eq: "leaguerules" } }, limit: 1) {
       nodes {
         title
         content

@@ -32,6 +32,9 @@ const Footer = () => {
               <li>
                 <Link to={"/wyslij-nam-tips"}>Wyślij nam tips</Link>
               </li>
+              <li>
+                <Link to={"/liga-regulamin"}>Liga - zasady</Link>
+              </li>
             </ul>
           </Col>
           <Col md={3} sm={6} xs={12}>

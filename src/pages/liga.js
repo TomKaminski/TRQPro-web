@@ -1,7 +1,11 @@
 import React from "react"
+import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import { Container, Row, Col } from "react-bootstrap"
+
+import "../styles/liga.scss"
 
 const axios = require("axios")
 
@@ -54,63 +58,110 @@ class LeaguePage extends React.Component {
     return (
       <Layout>
         <SEO title="Liga" />
+        <h2>
+          Chcesz dolaczyc do ligi? zapisz się i zapoznaj się z{" "}
+          <Link to={"/liga-regulamin"}>regulaminem</Link>
+        </h2>
+
         {this.state.loading ? <div>Loading...</div> : this.renderLeague()}
       </Layout>
     )
   }
 
+  getRoeColored(roe) {
+    if (roe !== null) {
+      if (roe > 0) {
+        return <div className={"color-green"}>{roe}%</div>
+      } else if (roe < 0) {
+        return <div className={"color-red"}>{roe}%</div>
+      } else {
+        return <div>{roe}%</div>
+      }
+    } else {
+      return <div>-</div>
+    }
+  }
+
   renderLeague() {
     if (this.state.data === null) {
       return (
-        <div>Brak aktywnej ligi lub brak pierwszego odczytu (12:05 UTC).</div>
+        <Container>
+          <h4 className={"margin-top-40 margin-bottom-40 center-margin"}>
+            Brak aktywnej ligi lub brak pierwszego odczytu (12:05 UTC).
+          </h4>
+        </Container>
       )
     }
     return (
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nick</th>
-            <th scope="col">Kapitał startowy</th>
-            <th scope="col">Kapitał obecny</th>
-            <th scope="col">Obecne roe</th>
-            <th scope="col">1d</th>
-            <th scope="col">3d</th>
-            <th scope="col">7d</th>
-            <th scope="col">14d</th>
-            <th scope="col">end</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.keys(this.state.data.participants).map((key, index) => {
-            const {
-              username,
-              roeCurrent,
-              roe1d,
-              roe3d,
-              roe7d,
-              roe14d,
-              roeEnd,
-              balance,
-              startingBalance,
-            } = this.state.data.participants[key]
-            return (
-              <tr>
-                <th scope="row">{index + 1}</th>
-                <td>{username}</td>
-                <td>{startingBalance}</td>
-                <td>{balance}</td>
-                <td>{roeCurrent}%</td>
-                <td>{roe1d !== null ? roe1d + "%" : "-"}</td>
-                <td>{roe3d !== null ? roe3d + "%" : "-"}</td>
-                <td>{roe7d !== null ? roe7d + "%" : "-"}</td>
-                <td>{roe14d !== null ? roe14d + "%" : "-"}</td>
-                <td>{roeEnd !== null ? roeEnd + "%" : "-"}</td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+      <div>
+        <Container fluid={true} className={"margin-top-40 margin-bottom-40"}>
+          <Row>
+            <Col>
+              <h5 className={"align-text-center"}>
+                Data rozpoczęcia:{" "}
+                {new Date(this.state.data.startDate).toLocaleString()}
+              </h5>
+            </Col>
+            <Col>
+              <h5 className={"align-text-center"}>
+                Data zakończenia:{" "}
+                {new Date(this.state.data.endDate).toLocaleString()}
+              </h5>
+            </Col>
+            <Col>
+              <h5 className={"align-text-center"}>
+                Ilość uczestników: {this.state.data.participants.length}
+              </h5>
+            </Col>
+          </Row>
+        </Container>
+
+        <table className={"table table-hover margin-bottom-40"} id="liga-table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nick</th>
+              <th scope="col">Kapitał startowy</th>
+              <th scope="col">Kapitał obecny</th>
+              <th scope="col">Obecne roe</th>
+              <th scope="col">1d</th>
+              <th scope="col">3d</th>
+              <th scope="col">7d</th>
+              <th scope="col">14d</th>
+              <th scope="col">end</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.keys(this.state.data.participants).map((key, index) => {
+              const {
+                username,
+                roeCurrent,
+                roe1d,
+                roe3d,
+                roe7d,
+                roe14d,
+                roeEnd,
+                balance,
+                startingBalance,
+              } = this.state.data.participants[key]
+              return (
+                <tr className={"margin-top-base margin-bottom-base"}>
+                  <th scope="row">{index + 1}</th>
+                  <td>{username}</td>
+                  <td>{startingBalance}</td>
+                  <td>{balance}</td>
+                  <td>{this.getRoeColored(roeCurrent)}</td>
+                  <td>{this.getRoeColored(roe1d)}</td>
+                  <td>{this.getRoeColored(roe3d)}</td>
+                  <td>{this.getRoeColored(roe7d)}</td>
+                  <td>{this.getRoeColored(roe14d)}</td>
+                  <td>{this.getRoeColored(roeEnd)}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
     )
   }
 }
