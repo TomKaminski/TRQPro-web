@@ -5,6 +5,9 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { Container, Row, Col } from "react-bootstrap"
 
+import redCard from "../images/red-card.svg"
+import rekt from "../images/dead.svg"
+
 import "../styles/liga.scss"
 
 const axios = require("axios")
@@ -58,23 +61,31 @@ class LeaguePage extends React.Component {
     return (
       <Layout>
         <SEO title="Liga" />
-        <h2>
-          Chcesz dolaczyc do ligi? zapisz się i zapoznaj się z{" "}
-          <Link to={"/liga-regulamin"}>regulaminem</Link>
-        </h2>
+        <h3>Chcesz dolaczyc do ligi? zapisz się i zapoznaj z regulaminem</h3>
+        <p>
+          <Link to={"/liga-regulamin"}>przejdź do regulaminu</Link>
+        </p>
 
-        {this.state.loading ? <div>Loading...</div> : this.renderLeague()}
+        {this.state.loading ? (
+          <Container>
+            <h4 className={"margin-top-40 margin-bottom-40 center-margin"}>
+              Ładowanie danych...
+            </h4>
+          </Container>
+        ) : (
+          this.renderLeague()
+        )}
       </Layout>
     )
   }
 
   getRoeColored(roe, isRekt, isRetarded) {
     if (isRetarded) {
-      return <div className={"color-red"}>DSQ</div>
+      return <div>-</div>
     }
 
     if (isRekt) {
-      return <div className={"color-red"}>REKT</div>
+      return <div>-</div>
     }
 
     if (roe !== null) {
@@ -83,7 +94,59 @@ class LeaguePage extends React.Component {
       } else if (roe < 0) {
         return <div className={"color-red"}>{roe.toFixed(2)}%</div>
       } else {
-        return <div>{roe.toFixed(2)}%</div>
+        return <div>0%</div>
+      }
+    } else {
+      return <div>-</div>
+    }
+  }
+
+  getRoeCurrent(roe, isRekt, isRetarded) {
+    if (isRetarded) {
+      return (
+        <div>
+          <img src={redCard} />
+        </div>
+      )
+    }
+
+    if (isRekt) {
+      return (
+        <div>
+          <img src={rekt} />
+        </div>
+      )
+    }
+
+    if (roe !== null) {
+      if (roe > 0) {
+        return <div className={"color-green"}>{roe.toFixed(2)}%</div>
+      } else if (roe < 0) {
+        return <div className={"color-red"}>{roe.toFixed(2)}%</div>
+      } else {
+        return <div>0%</div>
+      }
+    } else {
+      return <div>-</div>
+    }
+  }
+
+  getRoe1d(roe, isRekt, isRetarded) {
+    if (isRetarded) {
+      return <div>DIS</div>
+    }
+
+    if (isRekt) {
+      return <div>REKT</div>
+    }
+
+    if (roe !== null) {
+      if (roe > 0) {
+        return <div className={"color-green"}>{roe.toFixed(2)}%</div>
+      } else if (roe < 0) {
+        return <div className={"color-red"}>{roe.toFixed(2)}%</div>
+      } else {
+        return <div>0%</div>
       }
     } else {
       return <div>-</div>
@@ -102,31 +165,30 @@ class LeaguePage extends React.Component {
     }
     return (
       <div>
-        <Container fluid={true} className={"margin-top-40 margin-bottom-40"}>
+        <Container fluid={true} className={"league-stat-container"}>
           <Row>
-            <Col>
-              <p className={"align-text-center league-stat"}>
-                Data rozpoczęcia:{" "}
+            <Col xs={6} md={3}>
+              <p className={"league-stat-header"}>Data rozpoczęcia:</p>
+              <p className={"league-stat"}>
                 {new Date(this.state.data.startDate).toLocaleString()}
               </p>
             </Col>
-            <Col>
-              <p className={"align-text-center league-stat"}>
-                Data zakończenia:{" "}
+            <Col xs={6} md={3}>
+              <p className={"league-stat-header"}>Data zakończenia:</p>
+              <p className={"league-stat"}>
                 {new Date(this.state.data.endDate).toLocaleString()}
               </p>
             </Col>
-          </Row>
-          <Row>
-            <Col>
-              <p className={"align-text-center league-stat"}>
-                Następny odczyt:{" "}
+            <Col xs={6} md={3}>
+              <p className={"league-stat-header"}>Następny odczyt:</p>
+              <p className={"league-stat"}>
                 {new Date(this.state.data.nextReadingDate).toLocaleString()}
               </p>
             </Col>
-            <Col>
-              <p className={"align-text-center league-stat"}>
-                Ilość uczestników: {this.state.data.participants.length}
+            <Col xs={6} md={3}>
+              <p className={"league-stat-header"}>Ilość uczestników:</p>
+              <p className={"league-stat"}>
+                {this.state.data.participants.length}
               </p>
             </Col>
           </Row>
@@ -147,6 +209,7 @@ class LeaguePage extends React.Component {
               <th scope="col">7d</th>
               <th scope="col">14d</th>
               <th scope="col">end</th>
+              <th scope="col">graph</th>
             </tr>
           </thead>
           <tbody>
@@ -170,12 +233,13 @@ class LeaguePage extends React.Component {
                   <td>{username}</td>
                   <td>{startingBalance}</td>
                   <td>{balance}</td>
-                  <td>{this.getRoeColored(roeCurrent, isRekt, isRetarded)}</td>
-                  <td>{this.getRoeColored(roe1d, isRekt, isRetarded)}</td>
+                  <td>{this.getRoeCurrent(roeCurrent, isRekt, isRetarded)}</td>
+                  <td>{this.getRoe1d(roe1d, isRekt, isRetarded)}</td>
                   <td>{this.getRoeColored(roe3d, isRekt, isRetarded)}</td>
                   <td>{this.getRoeColored(roe7d, isRekt, isRetarded)}</td>
                   <td>{this.getRoeColored(roe14d, isRekt, isRetarded)}</td>
                   <td>{this.getRoeColored(roeEnd, isRekt, isRetarded)}</td>
+                  <td></td>
                 </tr>
               )
             })}
