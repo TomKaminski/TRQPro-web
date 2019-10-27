@@ -68,7 +68,15 @@ class LeaguePage extends React.Component {
     )
   }
 
-  getRoeColored(roe) {
+  getRoeColored(roe, isRekt, isRetarded) {
+    if (isRetarded) {
+      return <div className={"color-red"}>DSQ</div>
+    }
+
+    if (isRekt) {
+      return <div className={"color-red"}>REKT</div>
+    }
+
     if (roe !== null) {
       if (roe > 0) {
         return <div className={"color-green"}>{roe.toFixed(2)}%</div>
@@ -108,6 +116,14 @@ class LeaguePage extends React.Component {
                 {new Date(this.state.data.endDate).toLocaleString()}
               </p>
             </Col>
+          </Row>
+          <Row>
+            <Col>
+              <p className={"align-text-center league-stat"}>
+                Następny odczyt:{" "}
+                {new Date(this.state.data.nextReadingDate).toLocaleString()}
+              </p>
+            </Col>
             <Col>
               <p className={"align-text-center league-stat"}>
                 Ilość uczestników: {this.state.data.participants.length}
@@ -145,6 +161,8 @@ class LeaguePage extends React.Component {
                 roeEnd,
                 balance,
                 startingBalance,
+                isRekt,
+                isRetarded,
               } = this.state.data.participants[key]
               return (
                 <tr className={"margin-top-base margin-bottom-base"}>
@@ -152,12 +170,12 @@ class LeaguePage extends React.Component {
                   <td>{username}</td>
                   <td>{startingBalance}</td>
                   <td>{balance}</td>
-                  <td>{this.getRoeColored(roeCurrent)}</td>
-                  <td>{this.getRoeColored(roe1d)}</td>
-                  <td>{this.getRoeColored(roe3d)}</td>
-                  <td>{this.getRoeColored(roe7d)}</td>
-                  <td>{this.getRoeColored(roe14d)}</td>
-                  <td>{this.getRoeColored(roeEnd)}</td>
+                  <td>{this.getRoeColored(roeCurrent, isRekt, isRetarded)}</td>
+                  <td>{this.getRoeColored(roe1d, isRekt, isRetarded)}</td>
+                  <td>{this.getRoeColored(roe3d, isRekt, isRetarded)}</td>
+                  <td>{this.getRoeColored(roe7d, isRekt, isRetarded)}</td>
+                  <td>{this.getRoeColored(roe14d, isRekt, isRetarded)}</td>
+                  <td>{this.getRoeColored(roeEnd, isRekt, isRetarded)}</td>
                 </tr>
               )
             })}
