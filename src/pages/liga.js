@@ -60,7 +60,7 @@ class LeaguePage extends React.Component {
   getData() {
     let url = process.env.DEPLOY_URL
       ? "https://cms.trqpro.pl/"
-      : "http://localhost:1337/"
+      : "https://cms.trqpro.pl/"
     let endpoint = url + "league/lastReading"
     axios
       .get(endpoint)
