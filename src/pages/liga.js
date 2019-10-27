@@ -10,6 +10,8 @@ import rekt from "../images/dead.svg"
 
 import "../styles/liga.scss"
 
+import { Line } from "react-chartjs-2"
+
 const axios = require("axios")
 
 class LeaguePage extends React.Component {
@@ -26,10 +28,39 @@ class LeaguePage extends React.Component {
     this.getData()
   }
 
+  getChartData(roes) {
+    return {
+      labels: roes.map((item, index) => index.toString()),
+      datasets: [
+        {
+          label: null,
+          fill: true,
+          lineTension: 0.1,
+          backgroundColor: "rgba(21, 101, 216, 0.1)",
+          borderColor: "rgba(21, 101, 216, 0.8)",
+          borderCapStyle: "butt",
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: "miter",
+          pointBorderColor: "rgba(21, 101, 216, 1)",
+          pointBackgroundColor: "rgba(21, 101, 216, 1)",
+          pointBorderWidth: 3,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "rgba(21, 101, 216, 1)",
+          pointHoverBorderColor: "rgba(21, 101, 216, 1)",
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data: roes,
+        },
+      ],
+    }
+  }
+
   getData() {
     let url = process.env.DEPLOY_URL
       ? "https://cms.trqpro.pl/"
-      : "https://cms.trqpro.pl/"
+      : "http://localhost:1337/"
     let endpoint = url + "league/lastReading"
     axios
       .get(endpoint)
@@ -61,7 +92,7 @@ class LeaguePage extends React.Component {
     return (
       <Layout>
         <SEO title="Liga" />
-        <h3>Chcesz dolaczyc do ligi? zapisz się i zapoznaj z regulaminem</h3>
+        <h3>Chcesz dołączyć do ligi? zapisz się i zapoznaj z regulaminem</h3>
         <p>
           <Link to={"/liga-regulamin"}>przejdź do regulaminu</Link>
         </p>
@@ -226,6 +257,7 @@ class LeaguePage extends React.Component {
                 startingBalance,
                 isRekt,
                 isRetarded,
+                roes,
               } = this.state.data.participants[key]
               return (
                 <tr className={"margin-top-base margin-bottom-base"}>
@@ -239,7 +271,19 @@ class LeaguePage extends React.Component {
                   <td>{this.getRoeColored(roe7d, isRekt, isRetarded)}</td>
                   <td>{this.getRoeColored(roe14d, isRekt, isRetarded)}</td>
                   <td>{this.getRoeColored(roeEnd, isRekt, isRetarded)}</td>
-                  <td></td>
+                  <td className={"roe-chart"}>
+                    {isRekt || isRetarded ? (
+                      <div></div>
+                    ) : (
+                      <Line
+                        data={this.getChartData(roes)}
+                        width={120}
+                        height={40}
+                        options={options}
+                        legend={legend}
+                      />
+                    )}
+                  </td>
                 </tr>
               )
             })}
@@ -248,6 +292,50 @@ class LeaguePage extends React.Component {
       </div>
     )
   }
+}
+
+const options = {
+  layout: {
+    padding: 10,
+  },
+  maintainAspectRatio: false,
+  title: {
+    display: false,
+  },
+  scales: {
+    xAxes: [
+      {
+        display: false,
+      },
+    ],
+    yAxes: [
+      {
+        display: false,
+      },
+    ],
+  },
+  tooltips: {
+    callbacks: {
+      label: function(tooltipItem, data) {
+        return null
+      },
+      title: function(tooltipItems, data) {
+        return null
+      },
+      footer: function(tooltipItems, data) {
+        var sum = 0
+
+        tooltipItems.forEach(function(tooltipItem) {
+          sum += data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]
+        })
+        return sum + "%"
+      },
+    },
+  },
+}
+
+const legend = {
+  display: false,
 }
 
 export default LeaguePage

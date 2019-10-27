@@ -2,7 +2,7 @@
   tbody {
     th,
     td {
-      padding: 20px 0.75rem;
+      padding: 35px 0.75rem;
     }
   }
 }
@@ -22,4 +22,12 @@
 .league-stat {
   font-weight: bold;
   font-size: 19px;
+}
+
+.roe-chart {
+  padding: 0 !important;
+  vertical-align: middle;
+  canvas {
+    width: 300px !important;
+  }
 }
