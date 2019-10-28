@@ -6,7 +6,6 @@ import marked from "marked"
 
 export default class IndexArticle extends React.Component {
   render() {
-    console.log(this.props.article)
     return (
       <div
         key={this.props.article.id}

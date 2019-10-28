@@ -37,6 +37,7 @@ const IndexMarketAnalysisSection = props => {
             {miniArticles.map((element, i) => (
               <IndexMiniArticle
                 article={element}
+                key={i}
                 isLast={miniArticles.length === i + 1}
               />
             ))}

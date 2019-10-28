@@ -35,7 +35,7 @@ const IndexAcademySection = props => {
           </Col>
           <Col xs={12} sm={12} lg={3} md={4}>
             {miniArticles.map((element, i) => (
-              <IndexMiniArticle article={element} isLast={true} />
+              <IndexMiniArticle article={element} isLast={true} key={i} />
             ))}
           </Col>
         </Row>
