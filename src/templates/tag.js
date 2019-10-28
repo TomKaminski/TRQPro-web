@@ -14,7 +14,6 @@ class TagTemplate extends React.Component {
   }
 
   getRestArticles() {
-    console.log(this.props.data.allStrapiArticle)
     return this.props.data.allStrapiArticle.edges.slice(5, 7)
   }
 

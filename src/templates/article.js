@@ -57,7 +57,6 @@ class ArticleTemplate extends React.Component {
   }
 
   render() {
-    console.log(this.props.data)
     return (
       <Layout>
         <SEO title={this.props.data.strapiArticle.title} />
