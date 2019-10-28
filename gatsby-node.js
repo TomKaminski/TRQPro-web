@@ -5,8 +5,8 @@ function string_to_slug(str) {
   str = str.toLowerCase()
 
   // remove accents, swap ñ for n, etc
-  var from = "ąàáãäâęèéëêìíïîòóöôùúüûñçć·/_,:;źżóśń"
-  var to = "aaaaaaeeeeeiiiioooouuuuncć------zzosn"
+  var from = "łąàáãäâęèéëêìíïîòóöôùúüûñçć·/_,:;źżóśń"
+  var to = "laaaaaaeeeeeiiiioooouuuuncc------zzosn"
 
   for (var i = 0, l = from.length; i < l; i++) {
     str = str.replace(new RegExp(from.charAt(i), "g"), to.charAt(i))

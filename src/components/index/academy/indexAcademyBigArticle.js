@@ -15,7 +15,7 @@ export default class IndexAcademyBigArticle extends React.Component {
             date={this.props.article.created_at}
           />
         </div>
-        <Link to={`/wpisy/${this.props.article.slug}`}>
+        <Link to={`/${this.props.article.fields.slug}`}>
           <h5 className="link-title">{this.props.article.title}</h5>
         </Link>
         <p className={"description"}>
@@ -23,7 +23,7 @@ export default class IndexAcademyBigArticle extends React.Component {
         </p>
         <Link
           className={"underlined-black-text"}
-          to={`/wpisy/${this.props.article.slug}`}
+          to={`/${this.props.article.fields.slug}`}
         >
           Czytaj dalej
         </Link>
