@@ -333,7 +333,7 @@ const options = {
             (sum +=
               data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index])
         )
-        return sum + "%"
+        return sum + " %"
       },
     },
   },
