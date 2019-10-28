@@ -16,8 +16,8 @@ export default class IndexArticle extends React.Component {
           author={this.props.article.author}
           date={this.props.article.created_at}
         />
-        <Link className="title" to={`/${this.props.article.fields.slug}`}>
-          {this.props.article.title}
+        <Link to={`/${this.props.article.fields.slug}`}>
+          <h1 className={"title"}>{this.props.article.title}</h1>
         </Link>
         <div
           className={"index-article-content description"}

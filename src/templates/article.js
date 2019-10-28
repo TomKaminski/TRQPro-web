@@ -57,9 +57,13 @@ class ArticleTemplate extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <Layout>
-        <SEO title={this.props.data.strapiArticle.title} />
+        <SEO
+          title={this.props.data.strapiArticle.title}
+          pathname={this.props.path}
+        />
         <div>
           <Img
             fluid={{

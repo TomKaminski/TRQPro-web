@@ -1,34 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import marked from "marked"
+import StaticPageContent from "../components/staticPageContent"
 
 class SendATipPage extends React.Component {
-  guardData() {
-    if (this.props.data.allStrapiStatic.nodes.length > 0) {
-      return this.props.data.allStrapiStatic.nodes[0]
-    } else {
-      return {
-        title: "Wyślij nam tips",
-        content: "Ładowanie...",
-      }
-    }
-  }
-
   render() {
-    let data = this.guardData()
     return (
-      <Layout>
-        <SEO title="Wyślij nam tips" />
-        <h2>{data.title}</h2>
-        <p
-          dangerouslySetInnerHTML={{
-            __html: marked(data.content),
-          }}
-        ></p>
-      </Layout>
+      <StaticPageContent data={this.props.data} title={"Wyślij nam tips"} />
     )
   }
 }

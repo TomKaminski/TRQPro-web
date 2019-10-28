@@ -15,8 +15,8 @@ export default class IndexAcademyBigArticle extends React.Component {
             date={this.props.article.created_at}
           />
         </div>
-        <Link className="link-title" to={`/wpisy/${this.props.article.slug}`}>
-          {this.props.article.title}
+        <Link to={`/wpisy/${this.props.article.slug}`}>
+          <h5 className="link-title">{this.props.article.title}</h5>
         </Link>
         <p className={"description"}>
           {removeMd(this.props.article.content.substring(0, 700).concat("..."))}

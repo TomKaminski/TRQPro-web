@@ -17,7 +17,7 @@ const IndexMarketAnalysisSection = props => {
           <Col>
             <div className={"section"}>
               <div className={"section-title-container"}>
-                <h3 className={"section-title"}>{props.sectionName}</h3>
+                <h2 className={"section-title"}>{props.sectionName}</h2>
                 <Link
                   to={`/kategoria/cat-at`}
                   className={"section-show-all"}

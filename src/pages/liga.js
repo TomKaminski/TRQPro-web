@@ -92,7 +92,7 @@ class LeaguePage extends React.Component {
     return (
       <Layout>
         <SEO title="Liga" />
-        <h3>Chcesz dołączyć do ligi? zapisz się i zapoznaj z regulaminem</h3>
+        <h2>Chcesz dołączyć do ligi? zapisz się i zapoznaj z regulaminem</h2>
         <p>
           <Link to={"/liga-regulamin"}>przejdź do regulaminu</Link>
         </p>

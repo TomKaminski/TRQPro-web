@@ -84,18 +84,18 @@ img {
                                   supported by Chrome and Opera */
 }
 
-h1::before,
-h2::before,
-h3::before,
-h4::before,
-h5::before,
-h6::before {
-  display: block;
-  content: " ";
-  height: 80px;
-  margin-top: -80px;
-  visibility: hidden;
-}
+// h1::before,
+// h2::before,
+// h3::before,
+// h4::before,
+// h5::before,
+// h6::before {
+//   display: block;
+//   content: " ";
+//   height: 80px;
+//   margin-top: -80px;
+//   visibility: hidden;
+// }
 
 .no-border {
   border: none !important;

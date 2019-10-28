@@ -28,11 +28,10 @@ export default class IndexArticleWithCategory extends React.Component {
           </Col>
         </Row>
 
-        <Link
-          className={"link-title" + textClass}
-          to={`/${this.props.article.fields.slug}`}
-        >
-          {this.props.article.title}
+        <Link to={`/${this.props.article.fields.slug}`}>
+          <h5 className={"link-title" + textClass}>
+            {this.props.article.title}
+          </h5>
         </Link>
         <p className={"description" + textClass}>
           {removeMd(this.props.article.content.substring(0, 350).concat("..."))}
