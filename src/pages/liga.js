@@ -136,7 +136,7 @@ class LeaguePage extends React.Component {
     if (isRetarded) {
       return (
         <div>
-          <img src={redCard} />
+          <img src={redCard} alt="redCard" />
         </div>
       )
     }
@@ -144,7 +144,7 @@ class LeaguePage extends React.Component {
     if (isRekt) {
       return (
         <div>
-          <img src={rekt} />
+          <img src={rekt} alt="rekt" />
         </div>
       )
     }
@@ -315,19 +315,24 @@ const options = {
     ],
   },
   tooltips: {
+    footerFontSize: 14,
+    footerAlign: "center",
+    footerFontFamily: "'Montserrat', 'Arial', sans-serif",
     callbacks: {
-      label: function(tooltipItem, data) {
+      label: function() {
         return null
       },
-      title: function(tooltipItems, data) {
+      title: function() {
         return null
       },
       footer: function(tooltipItems, data) {
         var sum = 0
 
-        tooltipItems.forEach(function(tooltipItem) {
-          sum += data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]
-        })
+        tooltipItems.forEach(
+          tooltipItem =>
+            (sum +=
+              data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index])
+        )
         return sum + "%"
       },
     },
