@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: trqpro.pl
+Token: 850fcd2fac414e4ff8aa97ea61bd8c095b45697a696c5a0032b4abfe5cdb76e6
