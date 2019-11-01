@@ -22,9 +22,7 @@ module.exports = {
     {
       resolve: "gatsby-source-strapi",
       options: {
-        apiURL: process.env.DEPLOY_URL
-          ? "http://cms.trqpro.pl"
-          : "http://cms.trqpro.pl",
+        apiURL: "https://cms.trqpro.pl",
         contentTypes: ["article", "user", "tag", "category", "static"],
         queryLimit: 1000,
       },
@@ -71,6 +69,12 @@ module.exports = {
             name: node => node.name,
             key: node => node.key,
           },
+        },
+        filter: (node, getNode) => {
+          if (node.internal.type === "StrapiArticle") {
+            return node.isPublished === true
+          }
+          return true
         },
       },
     },

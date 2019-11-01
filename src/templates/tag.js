@@ -88,7 +88,10 @@ export default TagTemplate
 export const query = graphql`
   query TagTemplate($key: String!, $skip: Int!, $limit: Int!) {
     allStrapiArticle(
-      filter: { tags: { elemMatch: { key: { eq: $key } } } }
+      filter: {
+        isPublished: { eq: true }
+        tags: { elemMatch: { key: { eq: $key } } }
+      }
       limit: $limit
       sort: { order: DESC, fields: strapiId }
       skip: $skip

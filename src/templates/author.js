@@ -40,7 +40,7 @@ export default AuthorTemplate
 export const query = graphql`
   query AuthorTemplate($key: Int!, $skip: Int!, $limit: Int!) {
     allStrapiArticle(
-      filter: { author: { id: { eq: $key } } }
+      filter: { isPublished: { eq: true }, author: { id: { eq: $key } } }
       limit: $limit
       sort: { order: DESC, fields: strapiId }
       skip: $skip

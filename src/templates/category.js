@@ -88,7 +88,7 @@ export default CategoryTemplate
 export const query = graphql`
   query CategoryTemplate($key: String!, $skip: Int!, $limit: Int!) {
     allStrapiArticle(
-      filter: { category: { key: { eq: $key } } }
+      filter: { isPublished: { eq: true }, category: { key: { eq: $key } } }
       limit: $limit
       sort: { order: DESC, fields: strapiId }
       skip: $skip

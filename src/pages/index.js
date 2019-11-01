@@ -102,7 +102,10 @@ export default class IndexPage extends React.Component {
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allStrapiArticle(sort: { fields: id, order: DESC }) {
+    allStrapiArticle(
+      sort: { fields: id, order: DESC }
+      filter: { isPublished: { eq: true } }
+    ) {
       group(field: category___key, limit: 5) {
         totalCount
         fieldValue

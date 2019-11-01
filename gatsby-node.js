@@ -55,7 +55,7 @@ exports.createPages = ({ actions, graphql }) => {
     graphql,
     `
     {
-      allStrapiArticle {
+      allStrapiArticle(filter: {isPublished: {eq: true}}) {
         edges {
           node {
             id
@@ -84,7 +84,7 @@ exports.createPages = ({ actions, graphql }) => {
     graphql,
     `
     {
-      allStrapiArticle {
+      allStrapiArticle(filter: {isPublished: {eq: true}}) {
         group(field: author___id, limit: 1) {
           fieldValue
           pageInfo {
@@ -127,7 +127,7 @@ exports.createPages = ({ actions, graphql }) => {
     graphql,
     `
     {
-      allStrapiArticle {
+      allStrapiArticle(filter: {isPublished: {eq: true}}) {
         group(field: category___key, limit: 1) {
           fieldValue
           pageInfo {
@@ -170,7 +170,7 @@ exports.createPages = ({ actions, graphql }) => {
     graphql,
     `
     {
-      allStrapiArticle {
+      allStrapiArticle(filter: {isPublished: {eq: true}}) {
         group(field: tags___key, limit: 1) {
           fieldValue
           pageInfo {
