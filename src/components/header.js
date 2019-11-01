@@ -102,7 +102,10 @@ export default class Header extends React.Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={["fab", "facebook-f"]} />
+                <FontAwesomeIcon
+                  icon={["fab", "facebook-f"]}
+                  style={{ fontSize: "14px" }}
+                />
               </Nav.Link>
               <Nav.Link
                 href="https://www.twitter.com/TRQPro/"
@@ -110,7 +113,10 @@ export default class Header extends React.Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={["fab", "twitter"]} />
+                <FontAwesomeIcon
+                  icon={["fab", "twitter"]}
+                  style={{ fontSize: "14px" }}
+                />
               </Nav.Link>
               <Nav.Link
                 href="https://www.twitter.com/TRQPro/"
@@ -118,7 +124,10 @@ export default class Header extends React.Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={["fab", "youtube"]} />
+                <FontAwesomeIcon
+                  icon={["fab", "youtube"]}
+                  style={{ fontSize: "14px" }}
+                />
               </Nav.Link>
               <StaticQuery
                 query={graphql`

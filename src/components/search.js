@@ -32,7 +32,7 @@ export default class Search extends Component {
           })
         }}
       >
-        <FontAwesomeIcon icon="search" />
+        <FontAwesomeIcon icon="search" style={{ fontSize: "14px" }} />
         {this.renderResults()}
       </a>
     )

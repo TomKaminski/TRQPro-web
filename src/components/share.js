@@ -26,7 +26,7 @@ class Share extends React.Component {
             })
           }}
         >
-          <FontAwesomeIcon icon="share-alt" />{" "}
+          <FontAwesomeIcon icon="share-alt" style={{ fontSize: "13px" }} />{" "}
           {this.state.expanded ? "" : "udostępnij"}
         </button>
         {this.state.expanded ? (
@@ -36,7 +36,10 @@ class Share extends React.Component {
               className="button is-outlined is-rounded facebook"
             >
               <span className="icon">
-                <FontAwesomeIcon icon={["fab", "facebook-f"]} />
+                <FontAwesomeIcon
+                  icon={["fab", "facebook-f"]}
+                  style={{ fontSize: "13px" }}
+                />
               </span>
               <span className="text">Facebook</span>
             </FacebookShareButton>
@@ -47,7 +50,10 @@ class Share extends React.Component {
               via={this.props.socialConfig.twitterHandle.split("@").join("")}
             >
               <span className="icon">
-                <FontAwesomeIcon icon={["fab", "twitter"]} />
+                <FontAwesomeIcon
+                  icon={["fab", "twitter"]}
+                  style={{ fontSize: "13px" }}
+                />
               </span>
               <span className="text">Twitter</span>
             </TwitterShareButton>
