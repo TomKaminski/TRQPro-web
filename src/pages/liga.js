@@ -11,6 +11,7 @@ import rekt from "../images/dead.svg"
 import "../styles/liga.scss"
 
 import { Line } from "react-chartjs-2"
+import LeagueModal from "../components/league/league_modal"
 
 const axios = require("axios")
 
@@ -21,6 +22,7 @@ class LeaguePage extends React.Component {
       loading: true,
       data: null,
       error: null,
+      showModal: false,
     }
   }
 
@@ -58,9 +60,9 @@ class LeaguePage extends React.Component {
   }
 
   getData() {
-    let url = process.env.DEPLOY_URL
-      ? "https://cms.trqpro.pl/"
-      : "https://cms.trqpro.pl/"
+    let url = "https://cms.trqpro.pl/"
+    //let url = "http://localhost:1337/"
+
     let endpoint = url + "league/lastReading"
     axios
       .get(endpoint)
@@ -92,7 +94,18 @@ class LeaguePage extends React.Component {
     return (
       <Layout>
         <SEO title="Liga" />
-        <h2>Chcesz dołączyć do ligi? zapisz się i zapoznaj z regulaminem</h2>
+        <div className={"join-league-container"}>
+          <h2>Chcesz dołączyć do ligi? zapisz się i zapoznaj z regulaminem</h2>
+          <button
+            className={"form-submit-button"}
+            onClick={e => {
+              this.setState({ showModal: true })
+            }}
+          >
+            Dołącz do ligi!
+          </button>
+        </div>
+
         <p>
           <Link to={"/liga-regulamin"}>przejdź do regulaminu</Link>
         </p>
@@ -188,6 +201,7 @@ class LeaguePage extends React.Component {
     if (this.state.data === null) {
       return (
         <Container>
+          <LeagueModal isActive={this.state.showModal} />
           <h4 className={"margin-top-40 margin-bottom-40 center-margin"}>
             Brak aktywnej ligi lub brak pierwszego odczytu (12:05 UTC).
           </h4>
@@ -196,6 +210,7 @@ class LeaguePage extends React.Component {
     }
     return (
       <div>
+        <LeagueModal isActive={this.state.showModal} />
         <Container fluid={true} className={"league-stat-container"}>
           <Row>
             <Col xs={6} md={3}>
@@ -260,7 +275,10 @@ class LeaguePage extends React.Component {
                 roes,
               } = this.state.data.participants[key]
               return (
-                <tr className={"margin-top-base margin-bottom-base"}>
+                <tr
+                  className={"margin-top-base margin-bottom-base"}
+                  key={index}
+                >
                   <th scope="row">{index + 1}</th>
                   <td>{username}</td>
                   <td>{startingBalance}</td>
