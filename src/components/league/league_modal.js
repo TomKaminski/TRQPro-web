@@ -117,6 +117,14 @@ export default class LeagueModal extends Component {
               apiSecret: "",
               league: null,
             },
+            validation: {
+              nickValid: false,
+              emailValid: false,
+              apiKeyValid: false,
+              apiSecretValid: false,
+              leagueValid: false,
+              formValid: false,
+            },
           })
         } else {
           this.setState({
