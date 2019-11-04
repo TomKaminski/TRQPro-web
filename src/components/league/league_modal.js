@@ -10,6 +10,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import { FormErrors } from "./formErrors"
 import Loader from "react-loader-spinner"
 import { ApiResponse } from "./apiResponse"
+import { apiUrl } from "../../statics"
 
 const axios = require("axios")
 
@@ -52,14 +53,12 @@ export default class LeagueModal extends Component {
   }
 
   getData() {
-    //let url = "https://cms.trqpro.pl/"
-    let url = "http://localhost:1337/"
-
-    let endpoint = url + "league/comingLeagues"
+    let endpoint = apiUrl + "league/comingLeagues"
     axios
       .get(endpoint)
       .then(response => {
         this.setState({
+          rawLeaguesData: response.data,
           nearestLeague: response.data[0],
           leagueOptions: this.processLeagueOptions(response.data),
         })
@@ -92,12 +91,9 @@ export default class LeagueModal extends Component {
     this.setState({ isLoading: true })
     event.preventDefault()
 
-    //let url = "https://cms.trqpro.pl"
-    let url = "http://localhost:1337"
-
     let { nickname, email, apiKey, apiSecret } = this.state.formData
     axios
-      .post(url + "/League/joinLeague", {
+      .post(apiUrl + "League/joinLeague", {
         nickname,
         email,
         apiKey,
@@ -105,9 +101,14 @@ export default class LeagueModal extends Component {
         league: this.state.formData.league.value,
       })
       .then(response => {
+        let joinedLeague = this.state.rawLeaguesData.find(item => {
+          return item.id === this.state.formData.league.value
+        })
+
         if (response.data.isValid) {
           this.setState({
             isLoading: false,
+            joinedLeague: joinedLeague,
             lastApiResponse: response.data,
             formData: {
               nickname: "",
@@ -123,8 +124,6 @@ export default class LeagueModal extends Component {
             lastApiResponse: response.data,
           })
         }
-
-        console.log(response)
       })
       .catch(error => {
         this.setState({
@@ -173,12 +172,17 @@ export default class LeagueModal extends Component {
               <h3>Chcesz dołączyć do ligi? Zapisz się juz teraz!</h3>
               <br />
               <p>
-                Najblizsza liga rozpoczyna się{" "}
+                Najbliższa liga rozpoczyna się{" "}
                 <b>
                   <u>{date.toLocaleDateString()}</u>
                 </b>
                 , wystarczy podać swoje api do odczytu stanu konta ligowego (jak
-                to zrobić?*)
+                to zrobić?*). <br />
+                Ostateczny termin zapisów:{" "}
+                {new Date(
+                  this.state.nearestLeague.signingLimitDate
+                ).toLocaleString()}
+                .
               </p>
 
               {this.state.isLoading ? (
@@ -191,7 +195,10 @@ export default class LeagueModal extends Component {
                 />
               ) : (
                 <div>
-                  <ApiResponse response={this.state.lastApiResponse} />
+                  <ApiResponse
+                    response={this.state.lastApiResponse}
+                    leagueData={this.state.joinedLeague}
+                  />
                   <FormErrors formErrors={this.state.formErrors} />
                   <form
                     className={"margin-bottom-40"}

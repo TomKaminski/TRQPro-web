@@ -105,3 +105,15 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.api-message-success {
+  padding: 8px;
+  background-color: #daf4e6;
+  text-decoration: underline;
+}
+
+.api-message-error {
+  padding: 8px;
+  background-color: #fde3e1;
+  text-decoration: underline;
+}

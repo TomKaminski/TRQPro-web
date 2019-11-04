@@ -1,11 +1,13 @@
 import React from "react"
 
-function render(response) {
+function render(response, leagueData) {
   if (response != null) {
     if (response.isValid) {
       return (
-        <p style={{ color: "green", textDecoration: "underline" }}>
-          Dziękujemy za zapisanie się do ligi.
+        <p className={"api-message-success"}>
+          Dziękujemy za zapisanie się do ligi. Najblizsza liga jest rozgrywana w
+          dniach od {new Date(leagueData.startDate).toLocaleString()} do{" "}
+          {new Date(leagueData.endDate).toLocaleString()}. <b>Powodzenia!</b>
         </p>
       )
     } else {
@@ -20,4 +22,5 @@ function render(response) {
   }
 }
 
-export const ApiResponse = ({ response }) => render(response)
+export const ApiResponse = ({ response, leagueData }) =>
+  render(response, leagueData)

@@ -13,6 +13,8 @@ import "../styles/liga.scss"
 import { Line } from "react-chartjs-2"
 import LeagueModal from "../components/league/league_modal"
 
+import { apiUrl } from "../statics"
+
 const axios = require("axios")
 
 class LeaguePage extends React.Component {
@@ -60,10 +62,7 @@ class LeaguePage extends React.Component {
   }
 
   getData() {
-    let url = "https://cms.trqpro.pl/"
-    //let url = "http://localhost:1337/"
-
-    let endpoint = url + "league/lastReading"
+    let endpoint = apiUrl + "league/lastReading"
     axios
       .get(endpoint)
       .then(response => {
@@ -270,7 +269,6 @@ class LeaguePage extends React.Component {
                 roe3d,
                 roe7d,
                 roe14d,
-                roeEnd,
                 balance,
                 startingBalance,
                 isRekt,
