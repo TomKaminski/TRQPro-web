@@ -258,7 +258,6 @@ class LeaguePage extends React.Component {
               <th scope="col">3d</th>
               <th scope="col">7d</th>
               <th scope="col">14d</th>
-              <th scope="col">end</th>
               <th scope="col">graph</th>
             </tr>
           </thead>
@@ -292,7 +291,6 @@ class LeaguePage extends React.Component {
                   <td>{this.getRoeColored(roe3d, isRekt, isRetarded)}</td>
                   <td>{this.getRoeColored(roe7d, isRekt, isRetarded)}</td>
                   <td>{this.getRoeColored(roe14d, isRekt, isRetarded)}</td>
-                  <td>{this.getRoeColored(roeEnd, isRekt, isRetarded)}</td>
                   <td className={"roe-chart"}>
                     {isRekt || isRetarded ? (
                       <div></div>
