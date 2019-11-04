@@ -228,7 +228,11 @@ class LeaguePage extends React.Component {
             <Col xs={6} md={3}>
               <p className={"league-stat-header"}>Następny odczyt:</p>
               <p className={"league-stat"}>
-                {new Date(this.state.data.nextReadingDate).toLocaleString()}
+                {this.state.data.hasEnded ? (
+                  <span style={{ color: "green" }}>Liga zakończona</span>
+                ) : (
+                  new Date(this.state.data.nextReadingDate).toLocaleString()
+                )}
               </p>
             </Col>
             <Col xs={6} md={3}>
