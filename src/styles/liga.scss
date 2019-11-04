@@ -31,3 +31,89 @@
     width: 300px !important;
   }
 }
+
+.modal-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.466);
+  z-index: 998;
+}
+
+.modal-content {
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  background-color: white;
+  overflow: scroll;
+  width: 90%;
+  max-width: 1200px;
+  max-height: 700px;
+  padding: 30px;
+}
+
+.input-with-title {
+  margin-bottom: 12px;
+  p {
+    color: gray;
+    margin-bottom: 2px;
+  }
+
+  .Dropdown-root {
+    width: 80%;
+  }
+
+  input {
+    width: 80%;
+    color: #333;
+    padding: 8px 52px 8px 10px;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.form-submit-button {
+  padding: 8px 40px;
+  color: white;
+  font-weight: bold;
+  background: rebeccapurple;
+  font-size: 16px;
+  border-radius: 28px;
+  &:focus {
+    outline: none;
+  }
+  &:disabled {
+    background: gray;
+  }
+}
+
+.formErrors {
+  li {
+    color: red;
+  }
+}
+
+.join-league-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.api-message-success {
+  padding: 8px;
+  background-color: #daf4e6;
+  text-decoration: underline;
+}
+
+.api-message-error {
+  padding: 8px;
+  background-color: #fde3e1;
+  text-decoration: underline;
+}

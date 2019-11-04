@@ -22,6 +22,7 @@ module.exports = {
     {
       resolve: "gatsby-source-strapi",
       options: {
+        //apiURL: "http://localhost:1337",
         apiURL: "https://cms.trqpro.pl",
         contentTypes: ["article", "user", "tag", "category", "static"],
         queryLimit: 1000,
