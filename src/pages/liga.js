@@ -28,6 +28,18 @@ class LeaguePage extends React.Component {
     }
   }
 
+  onParticipantAdded(participant) {
+    if (this.state.data.isComingLeague) {
+      let participants = this.state.data.participants
+      participants.push(participant)
+      let data = this.state.data
+      data.participants = participants
+      this.setState({
+        data,
+      })
+    }
+  }
+
   componentDidMount() {
     this.getData()
   }
@@ -207,6 +219,74 @@ class LeaguePage extends React.Component {
         </Container>
       )
     }
+
+    if (this.state.data.isComingLeague) {
+      return (
+        <div>
+          <LeagueModal
+            isActive={this.state.showModal}
+            onParticipantAdded={participant =>
+              this.onParticipantAdded(participant)
+            }
+          />
+          <Container fluid={true} className={"league-stat-container"}>
+            <Row>
+              <Col xs={6} md={3}>
+                <p className={"league-stat-header"}>Data rozpoczęcia:</p>
+                <p className={"league-stat"}>
+                  {new Date(this.state.data.startDate).toLocaleString()}
+                </p>
+              </Col>
+              <Col xs={6} md={3}>
+                <p className={"league-stat-header"}>Data zakończenia:</p>
+                <p className={"league-stat"}>
+                  {new Date(this.state.data.endDate).toLocaleString()}
+                </p>
+              </Col>
+              <Col xs={6} md={3}>
+                <p className={"league-stat-header"}>Zapisy do:</p>
+                <p className={"league-stat"}>
+                  {new Date(this.state.data.signingLimitDate).toLocaleString()}
+                </p>
+              </Col>
+              <Col xs={6} md={3}>
+                <p className={"league-stat-header"}>Ilość uczestników:</p>
+                <p className={"league-stat"}>
+                  {this.state.data.participants.length}
+                </p>
+              </Col>
+            </Row>
+          </Container>
+          <h5>Zapisani uczestnicy</h5>
+          <table
+            className={"table table-hover margin-bottom-40 table-responsive-md"}
+            id="liga-table"
+          >
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nick</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(this.state.data.participants).map((key, index) => {
+                const { username } = this.state.data.participants[key]
+                return (
+                  <tr
+                    className={"margin-top-base margin-bottom-base"}
+                    key={index}
+                  >
+                    <th scope="row">{index + 1}</th>
+                    <td>{username}</td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+      )
+    }
+
     return (
       <div>
         <LeagueModal isActive={this.state.showModal} />

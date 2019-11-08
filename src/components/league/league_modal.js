@@ -105,6 +105,11 @@ export default class LeagueModal extends Component {
           return item.id === this.state.formData.league.value
         })
 
+        if (this.props.onParticipantAdded) {
+          let username = this.state.formData.nickname
+          this.props.onParticipantAdded({ username })
+        }
+
         if (response.data.isValid) {
           this.setState({
             isLoading: false,
@@ -165,7 +170,27 @@ export default class LeagueModal extends Component {
           className={"modal-overlay"}
           onClick={e => {
             if (e.target.className === "modal-overlay") {
-              this.setState({ isActive: false })
+              this.setState({
+                isActive: false,
+                isLoading: false,
+                joinedLeague: null,
+                lastApiResponse: null,
+                formData: {
+                  nickname: "",
+                  email: "",
+                  apiKey: "",
+                  apiSecret: "",
+                  league: null,
+                },
+                validation: {
+                  nickValid: false,
+                  emailValid: false,
+                  apiKeyValid: false,
+                  apiSecretValid: false,
+                  leagueValid: false,
+                  formValid: false,
+                },
+              })
             }
           }}
         >
@@ -208,136 +233,141 @@ export default class LeagueModal extends Component {
                     leagueData={this.state.joinedLeague}
                   />
                   <FormErrors formErrors={this.state.formErrors} />
-                  <form
-                    className={"margin-bottom-40"}
-                    onSubmit={this.handleSubmit}
-                  >
-                    <Row>
-                      <Col xs={12} md={6}>
-                        <InputWithTitle
-                          title={"Nick z telegrama"}
-                          name={"nickname"}
-                          value={this.state.formData.nickname}
-                          onChange={e => {
-                            let name = e.target.name
-                            let value = e.target.value
-                            this.setState(
-                              {
-                                formData: {
-                                  ...this.state.formData,
-                                  nickname: value,
-                                },
-                              },
-                              () => {
-                                this.validateField(name, value)
-                              }
-                            )
-                          }}
-                        />
-                      </Col>
-                      <Col xs={12} md={6}>
-                        <InputWithTitle
-                          title={"adres email"}
-                          name="email"
-                          value={this.state.formData.email}
-                          onChange={e => {
-                            let name = e.target.name
-                            let value = e.target.value
-                            this.setState(
-                              {
-                                formData: {
-                                  ...this.state.formData,
-                                  email: value,
-                                },
-                              },
-                              () => {
-                                this.validateField(name, value)
-                              }
-                            )
-                          }}
-                        />
-                      </Col>
-                      <Col xs={12} md={6}>
-                        <InputWithTitle
-                          title={"API key"}
-                          name="apiKey"
-                          value={this.state.formData.apiKey}
-                          onChange={e => {
-                            let name = e.target.name
-                            let value = e.target.value
-                            this.setState(
-                              {
-                                formData: {
-                                  ...this.state.formData,
-                                  apiKey: value,
-                                },
-                              },
-                              () => {
-                                this.validateField(name, value)
-                              }
-                            )
-                          }}
-                        />
-                      </Col>
-                      <Col xs={12} md={6}>
-                        <InputWithTitle
-                          title={"API secret"}
-                          name="apiSecret"
-                          value={this.state.formData.apiSecret}
-                          onChange={e => {
-                            let name = e.target.name
-                            let value = e.target.value
-                            this.setState(
-                              {
-                                formData: {
-                                  ...this.state.formData,
-                                  apiSecret: value,
-                                },
-                              },
-                              () => {
-                                this.validateField(name, value)
-                              }
-                            )
-                          }}
-                        />
-                      </Col>
-                      <Col
-                        xs={{ order: 12 }}
-                        md={{ order: 1 }}
-                        style={{ display: "flex", alignItems: "center" }}
-                      >
-                        <input
-                          type="submit"
-                          disabled={!this.state.validation.formValid}
-                          className={"form-submit-button"}
-                          value="Dołącz do ligi"
-                        />
-                      </Col>
-                      <Col xs={12} md={{ order: 12 }}>
-                        <div className={"input-with-title"}>
-                          <p>Liga</p>
-                          <Dropdown
-                            options={this.state.leagueOptions}
-                            onChange={opt => {
+                  {this.state.lastApiResponse != null &&
+                  this.state.lastApiResponse.isValid ? (
+                    <div></div>
+                  ) : (
+                    <form
+                      className={"margin-bottom-40"}
+                      onSubmit={this.handleSubmit}
+                    >
+                      <Row>
+                        <Col xs={12} md={6}>
+                          <InputWithTitle
+                            title={"Nick z telegrama"}
+                            name={"nickname"}
+                            value={this.state.formData.nickname}
+                            onChange={e => {
+                              let name = e.target.name
+                              let value = e.target.value
                               this.setState(
                                 {
                                   formData: {
                                     ...this.state.formData,
-                                    league: opt,
+                                    nickname: value,
                                   },
                                 },
                                 () => {
-                                  this.validateField("league", opt)
+                                  this.validateField(name, value)
                                 }
                               )
                             }}
-                            value={this.state.formData.league}
-                            placeholder="Wybierz ligę"
                           />
-                        </div>
-                      </Col>
-                    </Row>
-                  </form>
+                        </Col>
+                        <Col xs={12} md={6}>
+                          <InputWithTitle
+                            title={"adres email"}
+                            name="email"
+                            value={this.state.formData.email}
+                            onChange={e => {
+                              let name = e.target.name
+                              let value = e.target.value
+                              this.setState(
+                                {
+                                  formData: {
+                                    ...this.state.formData,
+                                    email: value,
+                                  },
+                                },
+                                () => {
+                                  this.validateField(name, value)
+                                }
+                              )
+                            }}
+                          />
+                        </Col>
+                        <Col xs={12} md={6}>
+                          <InputWithTitle
+                            title={"API key"}
+                            name="apiKey"
+                            value={this.state.formData.apiKey}
+                            onChange={e => {
+                              let name = e.target.name
+                              let value = e.target.value
+                              this.setState(
+                                {
+                                  formData: {
+                                    ...this.state.formData,
+                                    apiKey: value,
+                                  },
+                                },
+                                () => {
+                                  this.validateField(name, value)
+                                }
+                              )
+                            }}
+                          />
+                        </Col>
+                        <Col xs={12} md={6}>
+                          <InputWithTitle
+                            title={"API secret"}
+                            name="apiSecret"
+                            value={this.state.formData.apiSecret}
+                            onChange={e => {
+                              let name = e.target.name
+                              let value = e.target.value
+                              this.setState(
+                                {
+                                  formData: {
+                                    ...this.state.formData,
+                                    apiSecret: value,
+                                  },
+                                },
+                                () => {
+                                  this.validateField(name, value)
+                                }
+                              )
+                            }}
+                          />
+                        </Col>
+                        <Col
+                          xs={{ order: 12 }}
+                          md={{ order: 1 }}
+                          style={{ display: "flex", alignItems: "center" }}
+                        >
+                          <input
+                            type="submit"
+                            disabled={!this.state.validation.formValid}
+                            className={"form-submit-button"}
+                            value="Dołącz do ligi"
+                          />
+                        </Col>
+                        <Col xs={12} md={{ order: 12 }}>
+                          <div className={"input-with-title"}>
+                            <p>Liga</p>
+                            <Dropdown
+                              options={this.state.leagueOptions}
+                              onChange={opt => {
+                                this.setState(
+                                  {
+                                    formData: {
+                                      ...this.state.formData,
+                                      league: opt,
+                                    },
+                                  },
+                                  () => {
+                                    this.validateField("league", opt)
+                                  }
+                                )
+                              }}
+                              value={this.state.formData.league}
+                              placeholder="Wybierz ligę"
+                            />
+                          </div>
+                        </Col>
+                      </Row>
+                    </form>
+                  )}
                 </div>
               )}
 
