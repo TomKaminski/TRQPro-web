@@ -29,9 +29,9 @@ const Footer = () => {
               <li>
                 <Link to={"/pracuj-z-nami"}>Pracuj z nami</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to={"/wyslij-nam-tips"}>Wyślij nam tips</Link>
-              </li>
+              </li> */}
               <li>
                 <Link to={"/liga-regulamin"}>Liga - zasady</Link>
               </li>

@@ -7,6 +7,8 @@ import { Container, Row, Col } from "react-bootstrap"
 
 import redCard from "../images/red-card.svg"
 import rekt from "../images/dead.svg"
+import next from "../images/next.svg"
+import winner from "../images/winner.svg"
 
 import "../styles/liga.scss"
 
@@ -113,7 +115,7 @@ class LeaguePage extends React.Component {
               this.setState({ showModal: true })
             }}
           >
-            Dołącz do ligi!
+            <img src={next} style={{ paddingRight: "8px" }} /> Dołącz do ligi!
           </button>
         </div>
 
@@ -134,12 +136,8 @@ class LeaguePage extends React.Component {
     )
   }
 
-  getRoeColored(roe, isRekt, isRetarded) {
-    if (isRetarded) {
-      return <div>-</div>
-    }
-
-    if (isRekt) {
+  getRoeColored(roe, isRekt, isRetarded, tooLowBalance) {
+    if (isRetarded || isRekt || tooLowBalance) {
       return <div>-</div>
     }
 
@@ -156,7 +154,7 @@ class LeaguePage extends React.Component {
     }
   }
 
-  getRoeCurrent(roe, isRekt, isRetarded) {
+  getRoeCurrent(roe, isRekt, isRetarded, tooLowBalance) {
     if (isRetarded) {
       return (
         <div>
@@ -173,6 +171,14 @@ class LeaguePage extends React.Component {
       )
     }
 
+    if (tooLowBalance) {
+      return (
+        <div>
+          <img src={redCard} alt="redCard" />
+        </div>
+      )
+    }
+
     if (roe !== null) {
       if (roe > 0) {
         return <div className={"color-green"}>{roe.toFixed(2)}%</div>
@@ -186,13 +192,17 @@ class LeaguePage extends React.Component {
     }
   }
 
-  getRoe1d(roe, isRekt, isRetarded) {
+  getRoe1d(roe, isRekt, isRetarded, tooLowBalance) {
     if (isRetarded) {
-      return <div>DIS</div>
+      return <div>DSQ</div>
     }
 
     if (isRekt) {
-      return <div>REKT</div>
+      return <div>DNF</div>
+    }
+
+    if (tooLowBalance) {
+      return <div>DNS</div>
     }
 
     if (roe !== null) {
@@ -299,12 +309,6 @@ class LeaguePage extends React.Component {
               </p>
             </Col>
             <Col xs={6} md={3}>
-              <p className={"league-stat-header"}>Data zakończenia:</p>
-              <p className={"league-stat"}>
-                {new Date(this.state.data.endDate).toLocaleString()}
-              </p>
-            </Col>
-            <Col xs={6} md={3}>
               <p className={"league-stat-header"}>Następny odczyt:</p>
               <p className={"league-stat"}>
                 {this.state.data.hasEnded ? (
@@ -314,6 +318,16 @@ class LeaguePage extends React.Component {
                 )}
               </p>
             </Col>
+            <Col xs={6} md={3} style={{ display: "flex", alignItems: "end" }}>
+              <div>
+                <p className={"league-stat-header"}>Data zakończenia:</p>
+                <p className={"league-stat"}>
+                  {new Date(this.state.data.endDate).toLocaleString()}
+                </p>
+              </div>
+              <img src={winner} />
+            </Col>
+
             <Col xs={6} md={3}>
               <p className={"league-stat-header"}>Ilość uczestników:</p>
               <p className={"league-stat"}>
@@ -353,6 +367,7 @@ class LeaguePage extends React.Component {
                 startingBalance,
                 isRekt,
                 isRetarded,
+                tooLowBalance,
                 roes,
               } = this.state.data.participants[key]
               return (
@@ -364,13 +379,43 @@ class LeaguePage extends React.Component {
                   <td>{username}</td>
                   <td>{startingBalance}</td>
                   <td>{balance}</td>
-                  <td>{this.getRoeCurrent(roeCurrent, isRekt, isRetarded)}</td>
-                  <td>{this.getRoe1d(roe1d, isRekt, isRetarded)}</td>
-                  <td>{this.getRoeColored(roe3d, isRekt, isRetarded)}</td>
-                  <td>{this.getRoeColored(roe7d, isRekt, isRetarded)}</td>
-                  <td>{this.getRoeColored(roe14d, isRekt, isRetarded)}</td>
+                  <td>
+                    {this.getRoeCurrent(
+                      roeCurrent,
+                      isRekt,
+                      isRetarded,
+                      tooLowBalance
+                    )}
+                  </td>
+                  <td>
+                    {this.getRoe1d(roe1d, isRekt, isRetarded, tooLowBalance)}
+                  </td>
+                  <td>
+                    {this.getRoeColored(
+                      roe3d,
+                      isRekt,
+                      isRetarded,
+                      tooLowBalance
+                    )}
+                  </td>
+                  <td>
+                    {this.getRoeColored(
+                      roe7d,
+                      isRekt,
+                      isRetarded,
+                      tooLowBalance
+                    )}
+                  </td>
+                  <td>
+                    {this.getRoeColored(
+                      roe14d,
+                      isRekt,
+                      isRetarded,
+                      tooLowBalance
+                    )}
+                  </td>
                   <td className={"roe-chart"}>
-                    {isRekt || isRetarded ? (
+                    {isRekt || isRetarded || tooLowBalance ? (
                       <div></div>
                     ) : (
                       <Line
