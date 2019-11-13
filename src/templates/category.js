@@ -14,7 +14,7 @@ class CategoryTemplate extends React.Component {
   }
 
   getRestArticles() {
-    return this.props.data.allStrapiArticle.edges.slice(5, 7)
+    return this.props.data.allStrapiArticle.edges.slice(4, 7)
   }
 
   getCategoryName() {
