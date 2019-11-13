@@ -66,32 +66,18 @@ export default class Header extends React.Component {
                 Kryptowaluty
               </Link>
               <Link
-                to={`/kategoria/cat-forex`}
+                to={`/kategoria/cat-at`}
                 className={"nav-link-black nav-link"}
-                state={{ categoryName: "Forex" }}
+                state={{ categoryName: "Analiza techniczna" }}
               >
-                Forex
-              </Link>
-              <Link
-                to={`/kategoria/cat-ico`}
-                className={"nav-link-black nav-link"}
-                state={{ categoryName: "ICO" }}
-              >
-                ICO
-              </Link>
-              <Link
-                to={`/kategoria/cat-mining`}
-                className={"nav-link-black nav-link"}
-                state={{ categoryName: "Mining" }}
-              >
-                Mining
+                Analiza techniczna
               </Link>
               <Link
                 to={`/kategoria/cat-academy`}
                 className={"nav-link-black nav-link"}
-                state={{ categoryName: "Szkolenia" }}
+                state={{ categoryName: "Akademia" }}
               >
-                Szkolenia
+                Akademia
               </Link>
               <Link to={`/liga`} className={"nav-link-black nav-link"}>
                 Liga
@@ -115,17 +101,6 @@ export default class Header extends React.Component {
               >
                 <FontAwesomeIcon
                   icon={["fab", "twitter"]}
-                  style={{ fontSize: "14px" }}
-                />
-              </Nav.Link>
-              <Nav.Link
-                href="https://www.twitter.com/TRQPro/"
-                className={"nav-link-black"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon
-                  icon={["fab", "youtube"]}
                   style={{ fontSize: "14px" }}
                 />
               </Nav.Link>

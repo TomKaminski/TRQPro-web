@@ -47,31 +47,18 @@ export default class MobileSidebar extends React.Component {
             </li>
             <li>
               <Link
-                to={`/kategoria/cat-forex`}
-                state={{ categoryName: "Forex" }}
+                to={`/kategoria/cat-at`}
+                state={{ categoryName: "Analiza techniczna" }}
               >
-                Forex
-              </Link>
-            </li>
-            <li>
-              <Link to={`/kategoria/cat-ico`} state={{ categoryName: "ICO" }}>
-                ICO
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={`/kategoria/cat-mining`}
-                state={{ categoryName: "Mining" }}
-              >
-                Mining
+                Analiza techniczna
               </Link>
             </li>
             <li>
               <Link
                 to={`/kategoria/cat-academy`}
-                state={{ categoryName: "Szkolenia" }}
+                state={{ categoryName: "Akademia" }}
               >
-                Szkolenia
+                Akademia
               </Link>
             </li>
           </ul>
@@ -87,11 +74,11 @@ export default class MobileSidebar extends React.Component {
                 <FontAwesomeIcon icon={["fab", "twitter"]} /> Twitter
               </a>
             </li>
-            <li>
+            {/* <li>
               <a href="https://www.facebook.com/TRQPro/">
                 <FontAwesomeIcon icon={["fab", "youtube"]} /> Youtube
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>,

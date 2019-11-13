@@ -38,7 +38,7 @@ const Footer = () => {
             </ul>
           </Col>
           <Col md={3} sm={6} xs={12}>
-            <p>Partnerzy</p>
+            {/* <p>Partnerzy</p>
             <ul className="nav-list">
               <li>
                 <a
@@ -49,7 +49,7 @@ const Footer = () => {
                   SkyRocket
                 </a>
               </li>
-            </ul>
+            </ul> */}
           </Col>
           <Col md={3} sm={6} xs={12}>
             <p>Wsparcie</p>
