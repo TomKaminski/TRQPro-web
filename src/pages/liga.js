@@ -335,7 +335,8 @@ class LeaguePage extends React.Component {
             <Col xs={6} md={3}>
               <p className={"league-stat-header"}>Ilość uczestników:</p>
               <p className={"league-stat"}>
-                {this.state.data.participants.length}
+                {this.state.data.participants.length +
+                  this.state.data.totallyEmptyAccounts.length}
               </p>
             </Col>
           </Row>
