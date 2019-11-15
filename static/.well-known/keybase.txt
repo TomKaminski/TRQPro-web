@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/bukkaka
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://trqpro.pl
+  * I am bukkaka (https://keybase.io/bukkaka) on keybase.
+  * I have a public key ASCY5SjxL1vAWABSlMQzQI65bLYVHDgrI1MsimxczE68rQo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "012098e528f12f5bc058005294c433408eb96cb6151c382b23532c8a6c5ccc4ebcad0a",
+      "host": "keybase.io",
+      "kid": "012098e528f12f5bc058005294c433408eb96cb6151c382b23532c8a6c5ccc4ebcad0a",
+      "uid": "5f0935136fd4a7431f9390e7357d7719",
+      "username": "bukkaka"
+    },
+    "merkle_root": {
+      "ctime": 1573844423,
+      "hash": "be6c22990712488712a139865ace4872da67e01d2e3103e48943248e9887ea6a21d41fabb1653a47666216686234d4f8dd33986ceca7f15399b61f3ec53b0fb1",
+      "hash_meta": "1ab6a76172737ce5e80f8e74d088390453820928b8fae454f585057f63233a1b",
+      "seqno": 9679161
+    },
+    "service": {
+      "entropy": "Yrx7MCQDOJ6/HMzspudJ+VaZ",
+      "hostname": "trqpro.pl",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.0.0"
+  },
+  "ctime": 1573844432,
+  "expire_in": 504576000,
+  "prev": "96c36e64848b15f6ac820b8f76b7cad1d53253c8034c565837f091d75ff46781",
+  "seqno": 6,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgmOUo8S9bwFgAUpTEM0COuWy2FRw4KyNTLIpsXMxOvK0Kp3BheWxvYWTESpcCBsQglsNuZISLFfasgguPdrfK0dUyU8gDTFZYN/CR11/0Z4HEIGWluR25QSr/b1/qE8lZqBCFdWBM337+5Em//q0C+9TdAgHCo3NpZ8RAgmbdVLF6IJs24Tepg4CYGv4IzwXKNWJFKx52x7gXSFzzvtyR6Z+hVKahusElKzvXYWI6frERBPdbTnxXtSI9DahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIDu1eKM8ARleNXGOKVWpqnNFmiL3KVxwoxLnCTWtgvdWo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/bukkaka
+
+==================================================================
