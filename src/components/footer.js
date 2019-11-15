@@ -81,17 +81,6 @@ const Footer = () => {
                     style={{ fontSize: "18px" }}
                   />
                 </a>
-                <a
-                  href="https://www.facebook.com/TRQPro/"
-                  className={"social-icon"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FontAwesomeIcon
-                    icon={["fab", "youtube"]}
-                    style={{ fontSize: "18px" }}
-                  />
-                </a>
               </li>
             </ul>
           </Col>

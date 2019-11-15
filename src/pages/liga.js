@@ -218,6 +218,10 @@ class LeaguePage extends React.Component {
     }
   }
 
+  convertSatoshiToBTC(satoshi) {
+    return satoshi / 100000000.0
+  }
+
   renderLeague() {
     if (this.state.data === null) {
       return (
@@ -377,8 +381,8 @@ class LeaguePage extends React.Component {
                 >
                   <th scope="row">{index + 1}</th>
                   <td>{username}</td>
-                  <td>{startingBalance}</td>
-                  <td>{balance}</td>
+                  <td>{this.convertSatoshiToBTC(startingBalance)} BTC</td>
+                  <td>{this.convertSatoshiToBTC(balance)} BTC</td>
                   <td>
                     {this.getRoeCurrent(
                       roeCurrent,
@@ -426,6 +430,43 @@ class LeaguePage extends React.Component {
                         legend={legend}
                       />
                     )}
+                  </td>
+                </tr>
+              )
+            })}
+
+            {this.state.data.totallyEmptyAccounts.map((item, index) => {
+              const { username } = item
+              return (
+                <tr
+                  className={"margin-top-base margin-bottom-base"}
+                  key={index + this.state.data.participants.length}
+                >
+                  <th scope="row">
+                    {index + 1 + this.state.data.participants.length}
+                  </th>
+                  <td>{username}</td>
+                  <td>0 BTC</td>
+                  <td>0 BTC</td>
+                  <td>
+                    <div>
+                      <img src={redCard} alt="redCard" />
+                    </div>
+                  </td>
+                  <td>
+                    <div>DNS</div>
+                  </td>
+                  <td>
+                    <div>-</div>
+                  </td>
+                  <td>
+                    <div>-</div>
+                  </td>
+                  <td>
+                    <div>-</div>
+                  </td>
+                  <td className={"roe-chart"}>
+                    <div></div>
                   </td>
                 </tr>
               )
