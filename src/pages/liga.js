@@ -198,7 +198,7 @@ class LeaguePage extends React.Component {
     }
 
     if (isRekt) {
-      return <div>DNF</div>
+      return <div>LIQ</div>
     }
 
     if (tooLowBalance) {
@@ -383,7 +383,12 @@ class LeaguePage extends React.Component {
                   <th scope="row">{index + 1}</th>
                   <td>{username}</td>
                   <td>{this.convertSatoshiToBTC(startingBalance)} BTC</td>
-                  <td>{this.convertSatoshiToBTC(balance)} BTC</td>
+                  <td>
+                    {isRekt || isRetarded || tooLowBalance
+                      ? 0
+                      : this.convertSatoshiToBTC(balance)}{" "}
+                    BTC
+                  </td>
                   <td>
                     {this.getRoeCurrent(
                       roeCurrent,
