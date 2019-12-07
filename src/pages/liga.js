@@ -425,7 +425,7 @@ class LeaguePage extends React.Component {
                     )}
                   </td>
                   <td className={"roe-chart"}>
-                    {isRekt || isRetarded || tooLowBalance ? (
+                    {isRetarded || tooLowBalance ? (
                       <div></div>
                     ) : (
                       <Line
