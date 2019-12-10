@@ -24,11 +24,11 @@ export default class StaticPageContent extends React.Component {
         <SEO title={this.props.title} />
         <h1>{this.props.title}</h1>
 
-        <p
+        <div
           dangerouslySetInnerHTML={{
             __html: marked(data.content),
           }}
-        ></p>
+        ></div>
       </Layout>
     )
   }
