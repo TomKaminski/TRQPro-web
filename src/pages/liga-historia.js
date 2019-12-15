@@ -13,7 +13,7 @@ import winner from "../images/winner.svg"
 import "../styles/liga.scss"
 
 import { Line } from "react-chartjs-2"
-import LeagueModal from "../components/league/league_modal"
+import Dropdown from "react-dropdown"
 
 import { apiUrl } from "../statics"
 
@@ -26,24 +26,38 @@ class LeaguePage extends React.Component {
       loading: true,
       data: null,
       error: null,
-      showModal: false,
-    }
-  }
-
-  onParticipantAdded(participant) {
-    if (this.state.data.isComingLeague) {
-      let participants = this.state.data.participants
-      participants.push(participant)
-      let data = this.state.data
-      data.participants = participants
-      this.setState({
-        data,
-      })
+      leagueOptions: [],
+      selectedLeague: null,
     }
   }
 
   componentDidMount() {
-    this.getData()
+    let endpoint = apiUrl + "leaguehistory/selectorData"
+    axios
+      .get(endpoint)
+      .then(response => {
+        this.setState(
+          {
+            leagueOptions: this.processLeagueOptions(response.data),
+            selectedLeague: response.data[response.data.length - 1],
+          },
+          () => {
+            this.getData()
+          }
+        )
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
+  processLeagueOptions(data) {
+    return data.map(val => {
+      return {
+        label: val.substring(0, val.length - 5),
+        value: val,
+      }
+    })
   }
 
   getChartData(roes) {
@@ -76,7 +90,8 @@ class LeaguePage extends React.Component {
   }
 
   getData() {
-    let endpoint = apiUrl + "league/lastReading"
+    let endpoint =
+      apiUrl + "leaguehistory/leagueData?id=" + this.state.selectedLeague
     axios
       .get(endpoint)
       .then(response => {
@@ -108,15 +123,7 @@ class LeaguePage extends React.Component {
       <Layout>
         <SEO title="Liga" />
         <div className={"join-league-container"}>
-          <h2>Chcesz dołączyć do ligi? zapisz się i zapoznaj z regulaminem</h2>
-          <button
-            className={"form-submit-button"}
-            onClick={e => {
-              this.setState({ showModal: true })
-            }}
-          >
-            <img src={next} style={{ paddingRight: "8px" }} /> Dołącz do ligi!
-          </button>
+          <h2>Historia rozgrywek</h2>
         </div>
 
         <p>
@@ -124,18 +131,29 @@ class LeaguePage extends React.Component {
         </p>
 
         <p>
-          <Link to={"/liga-historia"}>przejdź do archiwum rozgrywek</Link>
+          <Link to={"/liga"}>przejdź do aktualnej ligi</Link>
         </p>
 
-        {this.state.loading ? (
-          <Container>
-            <h4 className={"margin-top-40 margin-bottom-40 center-margin"}>
-              Ładowanie danych...
-            </h4>
-          </Container>
-        ) : (
-          this.renderLeague()
-        )}
+        <Col xs={12} md={6} style={{ paddingLeft: 0, marginBottom: "20px" }}>
+          <p style={{ marginBottom: "2px" }}>Wybierz ligę</p>
+          <Dropdown
+            options={this.state.leagueOptions}
+            onChange={opt => {
+              this.setState(
+                {
+                  selectedLeague: opt.value,
+                },
+                () => {
+                  this.getData()
+                }
+              )
+            }}
+            value={this.state.selectedLeague}
+            placeholder="-"
+          />
+        </Col>
+
+        {!this.state.loading ? this.renderLeague() : null}
       </Layout>
     )
   }
@@ -230,84 +248,14 @@ class LeaguePage extends React.Component {
     if (this.state.data === null) {
       return (
         <Container>
-          <LeagueModal isActive={this.state.showModal} />
           <h4 className={"margin-top-40 margin-bottom-40 center-margin"}>
-            Brak aktywnej ligi lub brak pierwszego odczytu (12:05 UTC).
+            Błąd wyświetlania historycznych danych.
           </h4>
         </Container>
       )
     }
-
-    if (this.state.data.isComingLeague) {
-      return (
-        <div>
-          <LeagueModal
-            isActive={this.state.showModal}
-            onParticipantAdded={participant =>
-              this.onParticipantAdded(participant)
-            }
-          />
-          <Container fluid={true} className={"league-stat-container"}>
-            <Row>
-              <Col xs={6} md={3}>
-                <p className={"league-stat-header"}>Data rozpoczęcia:</p>
-                <p className={"league-stat"}>
-                  {new Date(this.state.data.startDate).toLocaleString()}
-                </p>
-              </Col>
-              <Col xs={6} md={3}>
-                <p className={"league-stat-header"}>Data zakończenia:</p>
-                <p className={"league-stat"}>
-                  {new Date(this.state.data.endDate).toLocaleString()}
-                </p>
-              </Col>
-              <Col xs={6} md={3}>
-                <p className={"league-stat-header"}>Zapisy do:</p>
-                <p className={"league-stat"}>
-                  {new Date(this.state.data.signingLimitDate).toLocaleString()}
-                </p>
-              </Col>
-              <Col xs={6} md={3}>
-                <p className={"league-stat-header"}>Ilość uczestników:</p>
-                <p className={"league-stat"}>
-                  {this.state.data.participants.length}
-                </p>
-              </Col>
-            </Row>
-          </Container>
-          <h5>Zapisani uczestnicy</h5>
-          <table
-            className={"table table-hover margin-bottom-40 table-responsive-md"}
-            id="liga-table"
-          >
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nick</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.keys(this.state.data.participants).map((key, index) => {
-                const { username } = this.state.data.participants[key]
-                return (
-                  <tr
-                    className={"margin-top-base margin-bottom-base"}
-                    key={index}
-                  >
-                    <th scope="row">{index + 1}</th>
-                    <td>{username}</td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-        </div>
-      )
-    }
-
     return (
       <div>
-        <LeagueModal isActive={this.state.showModal} />
         <Container fluid={true} className={"league-stat-container"}>
           <Row>
             <Col xs={6} md={3}>
@@ -317,31 +265,30 @@ class LeaguePage extends React.Component {
               </p>
             </Col>
             <Col xs={6} md={3}>
-              <p className={"league-stat-header"}>Następny odczyt:</p>
-              <p className={"league-stat"}>
-                {this.state.data.hasEnded ? (
-                  <span style={{ color: "green" }}>Liga zakończona</span>
-                ) : (
-                  new Date(this.state.data.nextReadingDate).toLocaleString()
-                )}
-              </p>
-            </Col>
-            <Col xs={6} md={3} style={{ display: "flex", alignItems: "end" }}>
               <div>
                 <p className={"league-stat-header"}>Data zakończenia:</p>
                 <p className={"league-stat"}>
                   {new Date(this.state.data.endDate).toLocaleString()}
                 </p>
               </div>
-              <img src={winner} />
             </Col>
-
             <Col xs={6} md={3}>
               <p className={"league-stat-header"}>Ilość uczestników:</p>
               <p className={"league-stat"}>
                 {this.state.data.participants.length +
                   this.state.data.totallyEmptyAccounts.length}
               </p>
+            </Col>
+            <Col xs={6} md={3} style={{ display: "flex", alignItems: "end" }}>
+              <div>
+                <p className={"league-stat-header"}>Zwycięzca:</p>
+                <p className={"league-stat"}>
+                  <span style={{ color: "green" }}>
+                    {this.state.data.participants[0].username}
+                  </span>
+                </p>
+              </div>
+              <img src={winner} />
             </Col>
           </Row>
         </Container>
