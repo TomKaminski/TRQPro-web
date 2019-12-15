@@ -301,8 +301,8 @@ class LeaguePage extends React.Component {
               <th scope="col">#</th>
               <th scope="col">Nick</th>
               <th scope="col">Kapitał startowy</th>
-              <th scope="col">Kapitał obecny</th>
-              <th scope="col">Obecne roe</th>
+              <th scope="col">Kapitał końcowy</th>
+              <th scope="col">ROE końcowe</th>
               <th scope="col">1d</th>
               <th scope="col">3d</th>
               <th scope="col">7d</th>
