@@ -66,12 +66,14 @@ export default class MobileSidebar extends React.Component {
             <li className={"sidebar-title"}>Social</li>
             <li>
               <a href="https://www.facebook.com/TRQPro/">
-                <FontAwesomeIcon icon={["fab", "facebook-f"]} /> Facebook
+                <FontAwesomeIcon icon={["fab", "facebook-f"]} size={"lg"} />{" "}
+                Facebook
               </a>
             </li>
             <li>
               <a href="https://www.facebook.com/TRQPro/">
-                <FontAwesomeIcon icon={["fab", "twitter"]} /> Twitter
+                <FontAwesomeIcon icon={["fab", "twitter"]} size={"lg"} />{" "}
+                Twitter
               </a>
             </li>
             {/* <li>

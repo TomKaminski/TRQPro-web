@@ -88,10 +88,7 @@ export default class Header extends React.Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon
-                  icon={["fab", "facebook-f"]}
-                  style={{ fontSize: "14px" }}
-                />
+                <FontAwesomeIcon icon={["fab", "facebook-f"]} size={"lg"} />
               </Nav.Link>
               <Nav.Link
                 href="https://www.twitter.com/TRQPro/"
@@ -99,10 +96,7 @@ export default class Header extends React.Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon
-                  icon={["fab", "twitter"]}
-                  style={{ fontSize: "14px" }}
-                />
+                <FontAwesomeIcon icon={["fab", "twitter"]} size={"lg"} />
               </Nav.Link>
               <StaticQuery
                 query={graphql`
