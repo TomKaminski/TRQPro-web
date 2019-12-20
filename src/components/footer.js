@@ -65,10 +65,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <FontAwesomeIcon
-                    icon={["fab", "facebook-f"]}
-                    style={{ fontSize: "18px" }}
-                  />
+                  <FontAwesomeIcon size={"1x"} icon={["fab", "facebook-f"]} />
                 </a>
                 <a
                   href="https://www.twitter.com/TRQPro/"
@@ -76,10 +73,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <FontAwesomeIcon
-                    icon={["fab", "twitter"]}
-                    style={{ fontSize: "18px" }}
-                  />
+                  <FontAwesomeIcon size={"1x"} icon={["fab", "twitter"]} />
                 </a>
               </li>
             </ul>

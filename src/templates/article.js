@@ -92,10 +92,7 @@ class ArticleTemplate extends React.Component {
                 </div>
 
                 <div className={"article-meta"}>
-                  <FontAwesomeIcon
-                    icon="calendar"
-                    style={{ fontSize: "13px" }}
-                  />{" "}
+                  <FontAwesomeIcon icon="calendar" size={"1x"} />{" "}
                   {new Date(
                     this.props.data.strapiArticle.created_at
                   ).toLocaleString()}
@@ -111,10 +108,7 @@ class ArticleTemplate extends React.Component {
 
                 {this.props.data.strapiArticle.tags.length > 0 ? (
                   <div className={"article-meta"}>
-                    <FontAwesomeIcon
-                      icon="hashtag"
-                      style={{ fontSize: "13px" }}
-                    />{" "}
+                    <FontAwesomeIcon icon="hashtag" size={"1x"} />{" "}
                     {this.props.data.strapiArticle.tags.map(tag => (
                       <Link
                         to={`/tag/${tag.key}`}
