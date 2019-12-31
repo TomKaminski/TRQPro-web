@@ -16,7 +16,7 @@ export default class Header extends React.Component {
 
   render() {
     return (
-      <Navbar expand="lg" bg="white" sticky="top">
+      <Navbar expand="lg" sticky="top">
         <Container fluid={true} className={"page-padding"}>
           <Link to={`/`}>
             <Navbar.Brand>

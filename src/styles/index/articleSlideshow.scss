@@ -1,0 +1,17 @@
+#article-slideshow {
+  height: 350px;
+  color: white;
+  position: relative;
+  .bg {
+    &:before {
+      content: "\A";
+      position: absolute;
+      background: black;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 280px;
+      z-index: -999;
+    }
+  }
+}

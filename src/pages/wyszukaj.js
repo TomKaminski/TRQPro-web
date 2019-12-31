@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import Layout from "../components/layout"
+import Layout from "../components/layouts/layout"
 import SEO from "../components/seo"
 import "url-search-params-polyfill"
 import { Index } from "elasticlunr"

@@ -17,12 +17,12 @@ import {
   faFolderOpen,
 } from "@fortawesome/free-solid-svg-icons"
 
-import Header from "./header"
-import "../../node_modules/bootstrap/dist/css/bootstrap.min.css"
-import "../styles/layout.scss"
+import Header from "../header"
+import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import "../../styles/layout.scss"
 import { Container } from "react-bootstrap"
-import CryptoRoller from "./cryptoRoller"
-import Footer from "./footer"
+import CryptoRoller from "../cryptoRoller"
+import Footer from "../footer"
 
 library.add(
   faTimes,
@@ -39,17 +39,6 @@ library.add(
   faFolderOpen
 )
 
-const modalStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-}
-
 const Layout = ({ children }) => {
   return (
     <div>
@@ -57,7 +46,11 @@ const Layout = ({ children }) => {
       <div id="sidebar-root"></div>
       <Header />
       <CryptoRoller />
-      <Container fluid={true} id="main-container" className={"page-padding"}>
+      <Container
+        fluid={true}
+        id="main-container"
+        className={"page-padding margin-top-20"}
+      >
         <main className={"page-content"}>{children}</main>
       </Container>
 

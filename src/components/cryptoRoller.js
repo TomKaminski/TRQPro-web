@@ -31,10 +31,6 @@ export default class CryptoRoller extends React.Component {
     this.getData()
   }
 
-  componentWillUnmount() {
-    //clearTimeout(this.timeoutId)
-  }
-
   getData() {
     axios
       .get(

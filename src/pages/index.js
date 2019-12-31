@@ -1,17 +1,18 @@
 import React from "react"
-import Layout from "../components/layout"
 import { graphql } from "gatsby"
+import { Container } from "react-bootstrap"
 
 import "../styles/index/index.scss"
-import IndexMainSection from "../components/index/main/indexMainSection"
 import IndexSection from "../components/index/currencies/indexCurrenciesSection"
 import IndexAcademySection from "../components/index/academy/indexAcademySection"
 import IndexICOMiningSection from "../components/index/ico_mining/indexICOSection"
 import IndexMarketAnalysisSection from "../components/index/market_analysis/indexMarketAnalysisSection"
 import SEO from "../components/seo"
+import ArticleSlideshow from "../components/index/article_slideshow/article_slideshow"
+import LayoutIndex from "../components/layouts/layout_index"
 
 export default class IndexPage extends React.Component {
-  getArticlesForMainSection() {
+  getArticlesForSlideshow() {
     var computingArray = []
     this.props.data.allStrapiArticle.group.forEach(groupOfArticles => {
       groupOfArticles.edges.forEach(article => {
@@ -21,7 +22,7 @@ export default class IndexPage extends React.Component {
 
     computingArray.sort((a, b) => b.strapiId - a.strapiId)
 
-    return computingArray.slice(0, 7)
+    return computingArray.slice(0, 5)
   }
 
   getArticlesForCategory(categoryTag) {
@@ -68,34 +69,37 @@ export default class IndexPage extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <LayoutIndex>
         <SEO title="Home" />
-        <IndexMainSection articles={this.getArticlesForMainSection()} />
+        <ArticleSlideshow articles={this.getArticlesForSlideshow()} />
+        <Container fluid={true} id="main-container" className={"page-padding"}>
+          {/* <IndexMainSection articles={this.getArticlesForMainSection()} /> */}
 
-        {/* Index cryptocurrencies component */}
-        <IndexSection
-          sectionName="Kryptowaluty"
-          articles={this.getArticlesForCryptocurrenciesSection()}
-        />
+          {/* Index cryptocurrencies component */}
+          <IndexSection
+            sectionName="Kryptowaluty"
+            articles={this.getArticlesForCryptocurrenciesSection()}
+          />
 
-        {/* Index academy component */}
-        <IndexAcademySection
-          sectionName="Akademia"
-          articles={this.getArticlesForAcademySection()}
-        />
+          {/* Index academy component */}
+          <IndexAcademySection
+            sectionName="Akademia"
+            articles={this.getArticlesForAcademySection()}
+          />
 
-        {/* Index ICO/Mining component */}
-        <IndexICOMiningSection
-          sectionName="ICO / Mining"
-          articles={this.getArticlesForICOMiningSection()}
-        />
+          {/* Index ICO/Mining component */}
+          <IndexICOMiningSection
+            sectionName="ICO / Mining"
+            articles={this.getArticlesForICOMiningSection()}
+          />
 
-        {/* Index AT component */}
-        <IndexMarketAnalysisSection
-          sectionName="Analiza rynków"
-          articles={this.getArticlesForMarketAnalysisSection()}
-        />
-      </Layout>
+          {/* Index AT component */}
+          <IndexMarketAnalysisSection
+            sectionName="Analiza rynków"
+            articles={this.getArticlesForMarketAnalysisSection()}
+          />
+        </Container>
+      </LayoutIndex>
     )
   }
 }

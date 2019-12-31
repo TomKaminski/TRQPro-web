@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, navigate } from "gatsby"
-import Layout from "../components/layout"
+import Layout from "../components/layouts/layout"
 import IndexRightArticle from "../components/index/shared/IndexSmallArticle"
 import IndexPager from "../components/index/shared/indexPager"
 import SEO from "../components/seo"

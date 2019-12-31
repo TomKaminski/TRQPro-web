@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
-import Layout from "../components/layout"
+import Layout from "../components/layouts/layout"
 import "../styles/article/article.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { DiscussionEmbed } from "disqus-react"
@@ -57,7 +57,6 @@ class ArticleTemplate extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <Layout>
         <SEO
