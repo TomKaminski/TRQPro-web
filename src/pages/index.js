@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Container } from "react-bootstrap"
+import { Container, Row, Col } from "react-bootstrap"
 
 import "../styles/index/index.scss"
 import IndexSection from "../components/index/currencies/indexCurrenciesSection"
@@ -10,6 +10,7 @@ import IndexMarketAnalysisSection from "../components/index/market_analysis/inde
 import SEO from "../components/seo"
 import ArticleSlideshow from "../components/index/article_slideshow/article_slideshow"
 import LayoutIndex from "../components/layouts/layout_index"
+import { TwitterTimelineEmbed } from "react-twitter-embed"
 
 export default class IndexPage extends React.Component {
   getArticlesForSlideshow() {
@@ -73,31 +74,41 @@ export default class IndexPage extends React.Component {
         <SEO title="Home" />
         <ArticleSlideshow articles={this.getArticlesForSlideshow()} />
         <Container fluid={true} id="main-container" className={"page-padding"}>
-          {/* <IndexMainSection articles={this.getArticlesForMainSection()} /> */}
+          <Row>
+            <Col xs={12} md={10}>
+              {/* <IndexMainSection articles={this.getArticlesForMainSection()} /> */}
+              {/* Index cryptocurrencies component */}
+              <IndexSection
+                sectionName="Kryptowaluty"
+                articles={this.getArticlesForCryptocurrenciesSection()}
+              />
 
-          {/* Index cryptocurrencies component */}
-          <IndexSection
-            sectionName="Kryptowaluty"
-            articles={this.getArticlesForCryptocurrenciesSection()}
-          />
+              {/* Index academy component */}
+              <IndexAcademySection
+                sectionName="Akademia"
+                articles={this.getArticlesForAcademySection()}
+              />
 
-          {/* Index academy component */}
-          <IndexAcademySection
-            sectionName="Akademia"
-            articles={this.getArticlesForAcademySection()}
-          />
+              {/* Index ICO/Mining component */}
+              <IndexICOMiningSection
+                sectionName="ICO / Mining"
+                articles={this.getArticlesForICOMiningSection()}
+              />
 
-          {/* Index ICO/Mining component */}
-          <IndexICOMiningSection
-            sectionName="ICO / Mining"
-            articles={this.getArticlesForICOMiningSection()}
-          />
-
-          {/* Index AT component */}
-          <IndexMarketAnalysisSection
-            sectionName="Analiza rynków"
-            articles={this.getArticlesForMarketAnalysisSection()}
-          />
+              {/* Index AT component */}
+              <IndexMarketAnalysisSection
+                sectionName="Analiza rynków"
+                articles={this.getArticlesForMarketAnalysisSection()}
+              />
+            </Col>
+            <Col xs={12} md={2}>
+              <TwitterTimelineEmbed
+                sourceType="profile"
+                screenName="trqpro"
+                options={{ height: 1000 }}
+              />
+            </Col>
+          </Row>
         </Container>
       </LayoutIndex>
     )
