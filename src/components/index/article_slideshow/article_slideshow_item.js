@@ -12,9 +12,7 @@ export default class ArticleSlideshowItem extends React.Component {
     super(props)
   }
 
-  componentDidMount() {
-    console.log(this.props.article)
-  }
+  componentDidMount() {}
 
   render() {
     let textClass = " white-text"

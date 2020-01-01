@@ -18,7 +18,6 @@ export default class StaticPageContent extends React.Component {
 
   render() {
     let data = this.guardData()
-    console.log(data.content)
     return (
       <Layout>
         <SEO title={this.props.title} />
