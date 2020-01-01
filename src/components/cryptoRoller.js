@@ -2,7 +2,7 @@ import React from "react"
 import Swiper from "react-id-swiper"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-import "../../node_modules/react-id-swiper/lib/styles/css/swiper.css"
+import "../../node_modules/swiper/src/swiper.scss"
 import "../styles/crypto-roller.scss"
 
 const axios = require("axios")
