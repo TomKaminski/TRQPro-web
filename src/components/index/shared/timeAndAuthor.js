@@ -9,14 +9,14 @@ const formatDate = dateString => {
 const TimeAndAuthor = props => {
   return (
     <div className={"time-and-author"}>
-      <span className={props.textClass}>{formatDate(props.date)}</span>
-      <span> &bull; </span>
       <Link
         to={`/autor/${props.author.id}`}
         className={"underlined-black-text " + props.textClass}
       >
         {props.author.username}
       </Link>
+      <span> &bull; </span>
+      <span className={props.textClass}>{formatDate(props.date)}</span>
     </div>
   )
 }

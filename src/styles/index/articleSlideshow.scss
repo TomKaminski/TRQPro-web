@@ -2,6 +2,12 @@
   height: 350px;
   color: white;
   position: relative;
+  > .container-fluid {
+    height: 100%;
+    > .row {
+      height: 100%;
+    }
+  }
   .bg {
     &:before {
       content: "\A";
@@ -12,6 +18,44 @@
       left: 0;
       height: 280px;
       z-index: -999;
+    }
+  }
+
+  .slide-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 5%;
+    .link-title {
+      font-size: 26px;
+    }
+    .description {
+      font-size: 13px;
+      color: #efefef;
+      display: block;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      overflow: hidden;
+      max-height: 2.6em;
+      line-height: 1.3em;
+    }
+    .time-and-author,
+    .time-and-author-link {
+      color: #858d9d;
+    }
+    .slide-category {
+      font-size: 13px;
+      padding: 5px 10px;
+      align-self: flex-start;
+      background-color: #ee4439;
+    }
+  }
+
+  .slide-image-container {
+    height: 100%;
+    .slide-image {
+      height: 85%;
+      margin-top: 5%;
     }
   }
 }
