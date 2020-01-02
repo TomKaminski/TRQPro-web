@@ -3,25 +3,32 @@
   color: white;
   position: relative;
 
-  > div {
-    height: 100%;
-    > .carousel {
-      height: 100%;
-      .slider-wrapper {
-        height: 100%;
-        .container-fluid,
-        .row,
-        .slide-content-container,
-        .slider {
-          height: 100%;
-        }
-      }
-      .slide {
-        height: 100%;
+  .slick-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 20%;
+    display: block;
+    width: auto;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+  }
 
-        background-color: transparent;
-        text-align: unset;
-      }
+  .slick-slider,
+  .slick-slide,
+  .slick-list,
+  .slick-track {
+    height: 100%;
+  }
+
+  .slick-slide {
+    > div,
+    .container-fluid,
+    .row,
+    .slide-content-container,
+    .slider {
+      height: 100%;
     }
   }
 
