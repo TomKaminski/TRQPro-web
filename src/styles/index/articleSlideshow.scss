@@ -2,12 +2,29 @@
   height: 350px;
   color: white;
   position: relative;
-  > .container-fluid {
+
+  > div {
     height: 100%;
-    > .row {
+    > .carousel {
       height: 100%;
+      .slider-wrapper {
+        height: 100%;
+        .container-fluid,
+        .row,
+        .slide-content-container,
+        .slider {
+          height: 100%;
+        }
+      }
+      .slide {
+        height: 100%;
+
+        background-color: transparent;
+        text-align: unset;
+      }
     }
   }
+
   .bg {
     &:before {
       content: "\A";
