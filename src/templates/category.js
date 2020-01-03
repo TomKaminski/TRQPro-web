@@ -1,8 +1,7 @@
 import React from "react"
 import { graphql, navigate } from "gatsby"
 import Layout from "../components/layouts/layout"
-import IndexRightArticle from "../components/index/shared/IndexSmallArticle"
-import IndexArticleWithCategory from "../components/index/shared/IndexArticleWithCategory"
+import IndexMiniArticle from "../components/index/shared/indexMiniArticle"
 import IndexPager from "../components/index/shared/indexPager"
 import SEO from "../components/seo"
 import "../styles/tagCategoryResults.scss"
@@ -44,7 +43,7 @@ class CategoryTemplate extends React.Component {
                 className={i === 0 ? "black-bg" : ""}
                 key={i}
               >
-                <IndexArticleWithCategory
+                <IndexMiniArticle
                   article={element.node}
                   darkMode={i === 0}
                   isLast={true}
@@ -55,7 +54,7 @@ class CategoryTemplate extends React.Component {
         </Row>
         <div className="divider" />
         {restArticles.map((article, i) => (
-          <IndexRightArticle
+          <IndexMiniArticle
             article={article.node}
             key={article.node.id}
             isLast={restArticles.length === i + 1}

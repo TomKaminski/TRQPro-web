@@ -30,8 +30,12 @@ export default class ArticleSlideshow extends React.Component {
     }
 
     return (
-      <div id="article-slideshow" className={"page-padding"}>
-        <Slider {...settings}>
+      <div id="article-slideshow">
+        <Slider
+          {...settings}
+          className={"page-padding"}
+          style={{ margin: "auto" }}
+        >
           <ArticleSlideshowItem article={this.props.articles[0]} />
           <ArticleSlideshowItem article={this.props.articles[1]} />
           <ArticleSlideshowItem article={this.props.articles[2]} />

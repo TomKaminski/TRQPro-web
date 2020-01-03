@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, navigate } from "gatsby"
 import Layout from "../components/layouts/layout"
-import IndexRightArticle from "../components/index/shared/IndexSmallArticle"
+import IndexMiniArticle from "../components/index/shared/indexMiniArticle"
 import IndexPager from "../components/index/shared/indexPager"
 import SEO from "../components/seo"
 
@@ -11,7 +11,7 @@ class AuthorTemplate extends React.Component {
       <Layout>
         <SEO title="Author" />
         {this.props.data.allStrapiArticle.edges.map((article, i) => (
-          <IndexRightArticle
+          <IndexMiniArticle
             article={article.node}
             key={article.node.id}
             isLast={this.props.data.allStrapiArticle.edges.length === i + 1}

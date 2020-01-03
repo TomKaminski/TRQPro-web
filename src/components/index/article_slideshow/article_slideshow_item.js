@@ -20,7 +20,7 @@ export default class ArticleSlideshowItem extends React.Component {
     return (
       <Container fluid={true}>
         <Row>
-          <Col xs={12} md={6} className="slide-content-container">
+          <Col xs={12} md={7} className="slide-content-container">
             <p className={"slide-category"}>
               {this.props.article.category.name}
             </p>
@@ -40,7 +40,12 @@ export default class ArticleSlideshowItem extends React.Component {
               textClass={"time-and-author-link"}
             />
           </Col>
-          <Col xs={12} md={6} className="slide-image-container">
+          <Col
+            xs={12}
+            md={5}
+            lg={{ span: 4, offset: 1 }}
+            className="slide-image-container"
+          >
             <Img
               fluid={this.props.article.image.childImageSharp.fluid}
               className="slide-image"

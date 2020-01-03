@@ -1,14 +1,21 @@
 import React from "react"
-import TimeAndAuthor from "../shared/timeAndAuthor"
+import TimeAndAuthor from "./timeAndAuthor"
 import Img from "gatsby-image"
 import { Link } from "gatsby"
 import removeMd from "remove-markdown"
 
-export default class IndexAcademyBigArticle extends React.Component {
+export default class IndexBigArticle extends React.Component {
   render() {
     return (
       <div className={"index-left-article article-padding no-border"}>
-        <Img fluid={this.props.article.image.childImageSharp.fluid} />
+        <Img
+          fluid={this.props.article.image.childImageSharp.fluid}
+          imgStyle={{
+            objectFit: "cover",
+            objectPosition: "50% 50%",
+          }}
+          className={"index-article-image"}
+        />
         <div className={"upper-text-container"}>
           <TimeAndAuthor
             author={this.props.article.author}
@@ -19,14 +26,8 @@ export default class IndexAcademyBigArticle extends React.Component {
           <h5 className="link-title">{this.props.article.title}</h5>
         </Link>
         <p className={"description"}>
-          {removeMd(this.props.article.content.substring(0, 700).concat("..."))}
+          {removeMd(this.props.article.content.substring(0, 400).concat("..."))}
         </p>
-        <Link
-          className={"underlined-black-text"}
-          to={`/${this.props.article.fields.slug}`}
-        >
-          Czytaj dalej
-        </Link>
       </div>
     )
   }

@@ -1,7 +1,7 @@
 .index-left-article {
   border-bottom: 1px solid #70707025;
   .link-title {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
     color: black;
   }
@@ -16,4 +16,8 @@
       font-size: 13px;
     }
   }
+}
+
+.index-article-image {
+  height: 250px;
 }

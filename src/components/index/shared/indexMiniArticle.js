@@ -8,9 +8,7 @@ export default class IndexMiniArticle extends React.Component {
   render() {
     return (
       <div
-        className={`index-left-article article-padding  ${
-          this.props.isLast ? "no-border" : ""
-        }`}
+        className={`border-grey-bottom-dotted index-left-article article-padding`}
       >
         <Row className={"upper-text-container"}>
           <Col className={this.props.dateAlignRight ? "align-text-right" : ""}>
@@ -20,18 +18,20 @@ export default class IndexMiniArticle extends React.Component {
             />
           </Col>
         </Row>
-        <Link to={`/${this.props.article.fields.slug}`}>
-          <h5 className={"link-title"}>{this.props.article.title}</h5>
-        </Link>
-        <p className={"description"}>
-          {removeMd(this.props.article.content.substring(0, 350).concat("..."))}
-        </p>
-        <Link
-          className={"underlined-black-text"}
-          to={`/${this.props.article.fields.slug}`}
-        >
-          Czytaj dalej
-        </Link>
+        <Row>
+          <Col xs={12} md={6} lg={4}>
+            <Link to={`/${this.props.article.fields.slug}`}>
+              <h5 className={"link-title"}>{this.props.article.title}</h5>
+            </Link>
+          </Col>
+          <Col xs={12} md={6} lg={8}>
+            <p className={"description"}>
+              {removeMd(
+                this.props.article.content.substring(0, 250).concat("...")
+              )}
+            </p>
+          </Col>
+        </Row>
       </div>
     )
   }

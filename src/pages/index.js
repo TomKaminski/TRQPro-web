@@ -3,14 +3,16 @@ import { graphql } from "gatsby"
 import { Container, Row, Col } from "react-bootstrap"
 
 import "../styles/index/index.scss"
-import IndexSection from "../components/index/currencies/indexCurrenciesSection"
-import IndexAcademySection from "../components/index/academy/indexAcademySection"
-import IndexICOMiningSection from "../components/index/ico_mining/indexICOSection"
-import IndexMarketAnalysisSection from "../components/index/market_analysis/indexMarketAnalysisSection"
+import IndexCurrenciesSection from "../components/index/sections/indexCurrenciesSection"
+import IndexRestSection from "../components/index/sections/indexRestSection"
+import IndexAcademySection from "../components/index/sections/indexAcademySection"
+import IndexMarketAnalysisSection from "../components/index/sections/indexMarketAnalysisSection"
 import SEO from "../components/seo"
 import ArticleSlideshow from "../components/index/article_slideshow/article_slideshow"
 import LayoutIndex from "../components/layouts/layout_index"
 import { TwitterTimelineEmbed } from "react-twitter-embed"
+
+import telegramImg from "../images/telegram_feed.png"
 
 export default class IndexPage extends React.Component {
   getArticlesForSlideshow() {
@@ -26,12 +28,15 @@ export default class IndexPage extends React.Component {
     return computingArray.slice(0, 5)
   }
 
-  getArticlesForCategory(categoryTag) {
+  getArticlesForCategory(categoryTag, take) {
     let articles = this.props.data.allStrapiArticle.group.find(group => {
       return group.fieldValue === categoryTag
     })
 
     if (articles) {
+      if (take) {
+        return articles.edges.map((element, _) => element.node).slice(0, take)
+      }
       return articles.edges.map((element, _) => element.node)
     } else {
       return []
@@ -41,67 +46,69 @@ export default class IndexPage extends React.Component {
   getArticlesForCryptocurrenciesSection() {
     var articles = this.getArticlesForCategory("cat-cryptocurrency")
     if (articles) {
-      return articles.slice(0, 4)
+      return articles.slice(0, 5)
     } else {
       return []
     }
   }
 
   getArticlesForMarketAnalysisSection() {
-    return this.getArticlesForCategory("cat-at")
+    return this.getArticlesForCategory("cat-at", 2)
   }
 
-  getArticlesForICOMiningSection() {
+  getArticlesForAcademySection() {
+    return this.getArticlesForCategory("cat-academy", 3)
+  }
+
+  getArticlesForRestSection() {
     let icoArticles = this.getArticlesForCategory("cat-ico")
     let miningArticles = this.getArticlesForCategory("cat-mining")
+    let forexArticles = this.getArticlesForCategory("cat-forex")
 
     var computingArray = []
     computingArray.push(...icoArticles)
     computingArray.push(...miningArticles)
+    computingArray.push(...forexArticles)
 
     computingArray.sort((a, b) => b.strapiId - a.strapiId)
 
     return computingArray.slice(0, 5)
   }
 
-  getArticlesForAcademySection() {
-    return this.getArticlesForCategory("cat-academy")
-  }
-
   render() {
+    let restArticles = this.getArticlesForRestSection()
     return (
       <LayoutIndex>
         <SEO title="Home" />
         <ArticleSlideshow articles={this.getArticlesForSlideshow()} />
         <Container fluid={true} id="main-container" className={"page-padding"}>
           <Row>
-            <Col xs={12} md={10}>
-              {/* <IndexMainSection articles={this.getArticlesForMainSection()} /> */}
-              {/* Index cryptocurrencies component */}
-              <IndexSection
+            <Col xs={12} md={8} lg={9}>
+              <img src={telegramImg} className={"margin-bottom-base"} />
+
+              <IndexCurrenciesSection
                 sectionName="Kryptowaluty"
                 articles={this.getArticlesForCryptocurrenciesSection()}
               />
 
-              {/* Index academy component */}
               <IndexAcademySection
                 sectionName="Akademia"
                 articles={this.getArticlesForAcademySection()}
               />
 
-              {/* Index ICO/Mining component */}
-              <IndexICOMiningSection
-                sectionName="ICO / Mining"
-                articles={this.getArticlesForICOMiningSection()}
-              />
-
-              {/* Index AT component */}
               <IndexMarketAnalysisSection
-                sectionName="Analiza rynków"
+                sectionName="Analizy"
                 articles={this.getArticlesForMarketAnalysisSection()}
               />
+
+              {restArticles.length > 0 && (
+                <IndexRestSection
+                  sectionName="Pozostałe"
+                  articles={restArticles}
+                />
+              )}
             </Col>
-            <Col xs={12} md={2}>
+            <Col xs={12} md={4} lg={3}>
               <TwitterTimelineEmbed
                 sourceType="profile"
                 screenName="trqpro"
@@ -145,7 +152,7 @@ export const pageQuery = graphql`
             image {
               publicURL
               childImageSharp {
-                fluid(maxWidth: 960) {
+                fluid(maxWidth: 1920) {
                   ...GatsbyImageSharpFluid
                 }
               }

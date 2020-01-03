@@ -1,16 +1,11 @@
 .section {
   .section-title-container {
-    margin-bottom: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    margin-top: 24px;
     .section-title {
-      font-size: 36px;
-      font-weight: bold;
-    }
-    .section-show-all {
-      font-size: 16px;
+      font-size: 24px;
       color: black;
+      text-transform: uppercase;
+      font-weight: bold;
     }
   }
 }
