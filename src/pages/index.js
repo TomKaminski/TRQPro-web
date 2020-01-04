@@ -121,7 +121,7 @@ export default class IndexPage extends React.Component {
                   className={"margin-bottom-base flex-telegram-container"}
                 >
                   <a
-                    href="https://t.me/TRQProAlty"
+                    href="https://t.me/TRQProForex"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
