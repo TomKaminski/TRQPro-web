@@ -8,7 +8,7 @@ import { DiscussionEmbed } from "disqus-react"
 import SEO from "../components/seo"
 import { Row, Col } from "react-bootstrap"
 import marked from "marked"
-import tocbot from "tocbot"
+// import tocbot from "tocbot"
 import Share from "../components/share"
 
 const disqusConfig = (slug, title) => {
@@ -42,18 +42,18 @@ const renderMeta = data => {
   }
 }
 
-const renderArticleNavigation = () => {
-  return <div className={"article-toc"}></div>
-}
+// const renderArticleNavigation = () => {
+//   return <div className={"article-toc"}></div>
+// }
 
 class ArticleTemplate extends React.Component {
   componentDidMount() {
-    tocbot.init({
-      tocSelector: ".article-toc",
-      contentSelector: ".js-toc-content",
-      headingSelector: "h1",
-      hasInnerContainers: true,
-    })
+    // tocbot.init({
+    //   tocSelector: ".article-toc",
+    //   contentSelector: ".js-toc-content",
+    //   headingSelector: "h1",
+    //   hasInnerContainers: true,
+    // })
   }
 
   render() {
@@ -79,7 +79,7 @@ class ArticleTemplate extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col lg={2}>{renderArticleNavigation()}</Col>
+          <Col lg={2}></Col>
           <Col lg={10} xl={8}>
             <div id="article-content">
               <h1 id="article-title">{this.props.data.strapiArticle.title}</h1>
@@ -138,7 +138,7 @@ class ArticleTemplate extends React.Component {
               </div>
               {renderMeta(this.props.data.strapiArticle)}
               <div
-                className={"js-toc-content"}
+                //className={"js-toc-content"}
                 dangerouslySetInnerHTML={{
                   __html: marked(this.props.data.strapiArticle.content),
                 }}
