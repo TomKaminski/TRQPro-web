@@ -27,7 +27,9 @@ export default class IndexMiniArticle extends React.Component {
           <Col xs={12} md={6} lg={8}>
             <p className={"description"}>
               {removeMd(
-                this.props.article.content.substring(0, 250).concat("...")
+                this.props.article.content
+                  .substring(0, this.props.articleLength || 250)
+                  .concat("...")
               )}
             </p>
           </Col>

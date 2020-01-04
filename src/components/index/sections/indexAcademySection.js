@@ -38,7 +38,7 @@ const IndexAcademySection = props => {
         {props.articles.length > 2 && (
           <Row>
             <Col xs={12}>
-              <IndexMiniArticle article={props.articles[2]} isLast={true} />
+              <IndexMiniArticle article={props.articles[2]} />
             </Col>
           </Row>
         )}

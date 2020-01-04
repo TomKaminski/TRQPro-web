@@ -4,32 +4,41 @@ import Layout from "../components/layouts/layout"
 import IndexMiniArticle from "../components/index/shared/indexMiniArticle"
 import IndexPager from "../components/index/shared/indexPager"
 import SEO from "../components/seo"
+import { Row, Col } from "react-bootstrap"
 
 class AuthorTemplate extends React.Component {
   render() {
     return (
       <Layout>
         <SEO title="Author" />
-        {this.props.data.allStrapiArticle.edges.map((article, i) => (
-          <IndexMiniArticle
-            article={article.node}
-            key={article.node.id}
-            isLast={this.props.data.allStrapiArticle.edges.length === i + 1}
+
+        <Row>
+          {this.props.data.allStrapiArticle.edges.map((element, i) => {
+            return (
+              <Col xs={12} key={i}>
+                <IndexMiniArticle article={element.node} articleLength={400} />
+              </Col>
+            )
+          })}
+        </Row>
+
+        {this.props.data.allStrapiArticle.pageInfo.pageCount > 1 ? (
+          <IndexPager
+            activePageIndex={this.props.pageContext.currentPage - 1}
+            pageCount={this.props.data.allStrapiArticle.pageInfo.pageCount}
+            onPageChangeCallback={page => {
+              if (page === 0) {
+                navigate(`/autor/${this.props.pageContext.key}`)
+              } else {
+                navigate(
+                  `/autor/${this.props.pageContext.key}/strona/${page + 1}`
+                )
+              }
+            }}
           />
-        ))}
-        <IndexPager
-          activePageIndex={this.props.pageContext.currentPage - 1}
-          pageCount={this.props.data.allStrapiArticle.pageInfo.pageCount}
-          onPageChangeCallback={page => {
-            if (page === 0) {
-              navigate(`/autor/${this.props.pageContext.key}`)
-            } else {
-              navigate(
-                `/autor/${this.props.pageContext.key}/strona/${page + 1}`
-              )
-            }
-          }}
-        />
+        ) : (
+          <div className={"margin-bottom-40"} />
+        )}
       </Layout>
     )
   }

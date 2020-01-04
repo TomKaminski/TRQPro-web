@@ -63,16 +63,21 @@ class ArticleTemplate extends React.Component {
           title={this.props.data.strapiArticle.title}
           pathname={this.props.path}
         />
-        <div>
-          <Img
-            fluid={{
-              ...this.props.data.strapiArticle.image.childImageSharp.fluid,
-              aspectRatio: 2.7,
-            }}
-            fit="cover"
-          />
-        </div>
 
+        <Row>
+          <Col lg={{ span: 10, offset: 1 }} xl={{ span: 8, offset: 2 }}>
+            <Img
+              fluid={{
+                ...this.props.data.strapiArticle.image.childImageSharp.fluid,
+              }}
+              imgStyle={{
+                objectFit: "cover",
+                objectPosition: "50% 50%",
+              }}
+              className={"index-article-image-big"}
+            />
+          </Col>
+        </Row>
         <Row>
           <Col lg={2}>{renderArticleNavigation()}</Col>
           <Col lg={10} xl={8}>
@@ -181,7 +186,7 @@ export const query = graphql`
       }
       image {
         childImageSharp {
-          fluid(maxHeight: 400) {
+          fluid(maxWidth: 1920) {
             ...GatsbyImageSharpFluid
           }
         }

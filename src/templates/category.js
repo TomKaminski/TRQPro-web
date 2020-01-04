@@ -8,14 +8,6 @@ import "../styles/tagCategoryResults.scss"
 import { Row, Col } from "react-bootstrap"
 
 class CategoryTemplate extends React.Component {
-  getUpperArticles() {
-    return this.props.data.allStrapiArticle.edges.slice(0, 4)
-  }
-
-  getRestArticles() {
-    return this.props.data.allStrapiArticle.edges.slice(4, 7)
-  }
-
   getCategoryName() {
     if (this.props.location.state) {
       return this.props.location.state.categoryName
@@ -25,41 +17,23 @@ class CategoryTemplate extends React.Component {
   }
 
   render() {
-    let restArticles = this.getRestArticles()
     return (
       <Layout>
         <SEO title={`Kategoria - ${this.getCategoryName()}`} />
         <p className="categoryTagResults">
           Wyniki wpisów pod kategorią:{" "}
-          <span className={"name"}>{this.getCategoryName()}</span>{" "}
+          <span className={"name"}>{this.getCategoryName()}</span>
         </p>
         <Row>
-          {this.getUpperArticles().map((element, i) => {
+          {this.props.data.allStrapiArticle.edges.map((element, i) => {
             return (
-              <Col
-                xs={12}
-                sm={6}
-                lg={3}
-                className={i === 0 ? "black-bg" : ""}
-                key={i}
-              >
-                <IndexMiniArticle
-                  article={element.node}
-                  darkMode={i === 0}
-                  isLast={true}
-                />
+              <Col xs={12} key={i}>
+                <IndexMiniArticle article={element.node} articleLength={400} />
               </Col>
             )
           })}
         </Row>
-        <div className="divider" />
-        {restArticles.map((article, i) => (
-          <IndexMiniArticle
-            article={article.node}
-            key={article.node.id}
-            isLast={restArticles.length === i + 1}
-          />
-        ))}
+
         {this.props.data.allStrapiArticle.pageInfo.pageCount > 1 ? (
           <IndexPager
             activePageIndex={this.props.pageContext.currentPage - 1}

@@ -13,6 +13,7 @@ import LayoutIndex from "../components/layouts/layout_index"
 import { TwitterTimelineEmbed } from "react-twitter-embed"
 
 import telegramImg from "../images/telegram_feed.png"
+import IndexSmallLeague from "../components/index/sections/indexSmallLeague"
 
 export default class IndexPage extends React.Component {
   getArticlesForSlideshow() {
@@ -83,19 +84,54 @@ export default class IndexPage extends React.Component {
         <ArticleSlideshow articles={this.getArticlesForSlideshow()} />
         <Container fluid={true} id="main-container" className={"page-padding"}>
           <Row>
-            <Col xs={12} md={8} lg={9}>
-              <img src={telegramImg} className={"margin-bottom-base"} />
-
+            <Col xs={12} md={4} className={"margin-bottom-base"}>
+              <a href="https://t.me/TRQProAnalizy" target="_blank">
+                <img src={telegramImg} />
+              </a>
+            </Col>
+            <Col xs={12} md={4} className={"margin-bottom-base"}>
+              <a href="https://t.me/TRQProBTC" target="_blank">
+                <img src={telegramImg} />
+              </a>
+            </Col>
+            <Col xs={12} md={4} className={"margin-bottom-base"}>
+              <a href="https://t.me/TRQProAlty" target="_blank">
+                <img src={telegramImg} />
+              </a>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12} lg={9}>
               <IndexCurrenciesSection
                 sectionName="Kryptowaluty"
                 articles={this.getArticlesForCryptocurrenciesSection()}
               />
+            </Col>
+            <Col xs={12} lg={3} className="d-none d-lg-block">
+              <TwitterTimelineEmbed
+                sourceType="profile"
+                screenName="trqpro"
+                placeholder={<p>Ładuję tweety...</p>}
+                lang="pl"
+                noFooter
+                options={{ height: 700 }}
+              />
+            </Col>
+          </Row>
 
+          <Row>
+            <Col xs={12} lg={9}>
               <IndexAcademySection
                 sectionName="Akademia"
                 articles={this.getArticlesForAcademySection()}
               />
-
+            </Col>
+            <Col xs={12} lg={3} className="d-none d-lg-block">
+              <IndexSmallLeague />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
               <IndexMarketAnalysisSection
                 sectionName="Analizy"
                 articles={this.getArticlesForMarketAnalysisSection()}
@@ -108,12 +144,21 @@ export default class IndexPage extends React.Component {
                 />
               )}
             </Col>
-            <Col xs={12} md={4} lg={3}>
+          </Row>
+
+          <Row>
+            <Col xs={6} className="d-block d-lg-none">
               <TwitterTimelineEmbed
                 sourceType="profile"
                 screenName="trqpro"
-                options={{ height: 1000 }}
+                lang="pl"
+                noFooter
+                placeholder={<p>Ładuję tweety...</p>}
+                options={{ height: 700 }}
               />
+            </Col>
+            <Col xs={6} className="d-block d-lg-none">
+              <IndexSmallLeague />
             </Col>
           </Row>
         </Container>

@@ -23,8 +23,8 @@ const IndexSectionVertical = props => {
       <Row>
         {props.articles.map((element, i) => {
           return (
-            <Col xs={12} key={i}>
-              <IndexMiniArticle article={element} isLast={true} />
+            <Col xs={12} key={i} style={{ minHeight: "150px" }}>
+              <IndexMiniArticle article={element} />
             </Col>
           )
         })}
