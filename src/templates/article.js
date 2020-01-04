@@ -20,6 +20,14 @@ renderer.image = function(href, title, text) {
   return `<img src="${href}" alt="${text}" data-zoomable>`
 }
 
+renderer.link = function(href, title, text) {
+  if (href.includes("trqpro.pl")) {
+    return `<a href="${href}">${text}</a>`
+  } else {
+    return `<a href="${href}" target="_blank">${text}</a>`
+  }
+}
+
 const disqusConfig = (slug, title) => {
   return {
     shortname: process.env.GATSBY_DISQUS_NAME,
