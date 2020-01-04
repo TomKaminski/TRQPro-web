@@ -64,12 +64,13 @@ class ArticleTemplate extends React.Component {
     //   hasInnerContainers: true,
     // })
 
-    // const images = [
-    //   //document.querySelector(".index-article-image-big picture img"),
-    //   ...document.querySelectorAll("[data-zoomable]"),
-    // ]
+    var images = [...document.querySelectorAll("[data-zoomable]")]
 
-    mediumZoom(document.querySelectorAll("[data-zoomable]"), { margin: 50 })
+    images.push(
+      ...document.querySelectorAll(".index-article-image-big > picture > img")
+    )
+
+    mediumZoom(images, { margin: 50 })
   }
 
   render() {
@@ -79,7 +80,7 @@ class ArticleTemplate extends React.Component {
           title={this.props.data.strapiArticle.title}
           pathname={this.props.path}
         />
-        <Row>
+        <Row id="image-big-article">
           <Col lg={{ span: 10, offset: 1 }} xl={{ span: 8, offset: 2 }}>
             <Img
               fluid={{
