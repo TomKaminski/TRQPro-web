@@ -64,11 +64,12 @@ class ArticleTemplate extends React.Component {
     //   hasInnerContainers: true,
     // })
 
-    const images = [
-      document.querySelector(".index-article-image-big picture img"),
-    ]
+    // const images = [
+    //   //document.querySelector(".index-article-image-big picture img"),
+    //   ...document.querySelectorAll("[data-zoomable]"),
+    // ]
 
-    mediumZoom(images, { margin: 50 })
+    mediumZoom(document.querySelectorAll("[data-zoomable]"), { margin: 50 })
   }
 
   render() {
