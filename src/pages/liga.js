@@ -115,7 +115,8 @@ class LeaguePage extends React.Component {
               this.setState({ showModal: true })
             }}
           >
-            <img src={next} style={{ paddingRight: "8px" }} /> Dołącz do ligi!
+            <img src={next} style={{ paddingRight: "8px" }} alt="" /> Dołącz do
+            ligi!
           </button>
         </div>
 
@@ -333,7 +334,7 @@ class LeaguePage extends React.Component {
                   {new Date(this.state.data.endDate).toLocaleString()}
                 </p>
               </div>
-              <img src={winner} />
+              <img src={winner} alt="" />
             </Col>
 
             <Col xs={6} md={3}>

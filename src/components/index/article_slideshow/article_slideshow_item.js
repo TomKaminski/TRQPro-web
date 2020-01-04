@@ -6,12 +6,6 @@ import TimeAndAuthor from "../shared/timeAndAuthor"
 import removeMd from "remove-markdown"
 
 export default class ArticleSlideshowItem extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  componentDidMount() {}
-
   render() {
     return (
       <Container fluid={true}>

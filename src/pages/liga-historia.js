@@ -7,7 +7,6 @@ import { Container, Row, Col } from "react-bootstrap"
 
 import redCard from "../images/red-card.svg"
 import rekt from "../images/dead.svg"
-import next from "../images/next.svg"
 import winner from "../images/winner.svg"
 
 import "../styles/liga.scss"
@@ -288,7 +287,7 @@ class LeaguePage extends React.Component {
                   </span>
                 </p>
               </div>
-              <img src={winner} />
+              <img src={winner} alt="" />
             </Col>
           </Row>
         </Container>

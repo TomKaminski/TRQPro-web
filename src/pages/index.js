@@ -85,18 +85,30 @@ export default class IndexPage extends React.Component {
         <Container fluid={true} id="main-container" className={"page-padding"}>
           <Row>
             <Col xs={12} md={4} className={"margin-bottom-base"}>
-              <a href="https://t.me/TRQProAnalizy" target="_blank">
-                <img src={telegramImg} />
+              <a
+                href="https://t.me/TRQProAnalizy"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={telegramImg} alt="Analizy telegram TRQPro" />
               </a>
             </Col>
             <Col xs={12} md={4} className={"margin-bottom-base"}>
-              <a href="https://t.me/TRQProBTC" target="_blank">
-                <img src={telegramImg} />
+              <a
+                href="https://t.me/TRQProBTC"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={telegramImg} alt="BTC telegram TRQPro" />
               </a>
             </Col>
             <Col xs={12} md={4} className={"margin-bottom-base"}>
-              <a href="https://t.me/TRQProAlty" target="_blank">
-                <img src={telegramImg} />
+              <a
+                href="https://t.me/TRQProAlty"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={telegramImg} alt="Alty telegram TRQPro" />
               </a>
             </Col>
           </Row>

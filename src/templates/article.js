@@ -10,6 +10,15 @@ import { Row, Col } from "react-bootstrap"
 import marked from "marked"
 // import tocbot from "tocbot"
 import Share from "../components/share"
+import mediumZoom from "medium-zoom"
+
+// Get reference
+const renderer = new marked.Renderer()
+
+// Override function
+renderer.image = function(href, title, text) {
+  return `<img src="${href}" alt="${text}" data-zoomable>`
+}
 
 const disqusConfig = (slug, title) => {
   return {
@@ -54,6 +63,7 @@ class ArticleTemplate extends React.Component {
     //   headingSelector: "h1",
     //   hasInnerContainers: true,
     // })
+    mediumZoom("[data-zoomable]")
   }
 
   render() {
@@ -63,7 +73,6 @@ class ArticleTemplate extends React.Component {
           title={this.props.data.strapiArticle.title}
           pathname={this.props.path}
         />
-
         <Row>
           <Col lg={{ span: 10, offset: 1 }} xl={{ span: 8, offset: 2 }}>
             <Img
@@ -140,7 +149,9 @@ class ArticleTemplate extends React.Component {
               <div
                 //className={"js-toc-content"}
                 dangerouslySetInnerHTML={{
-                  __html: marked(this.props.data.strapiArticle.content),
+                  __html: marked(this.props.data.strapiArticle.content, {
+                    renderer: renderer,
+                  }),
                 }}
               ></div>
             </div>

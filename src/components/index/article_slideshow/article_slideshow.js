@@ -9,14 +9,6 @@ import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
 
 export default class ArticleSlideshow extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  componentDidMount() {
-    console.log(this.props.articles)
-  }
-
   render() {
     var settings = {
       dots: true,

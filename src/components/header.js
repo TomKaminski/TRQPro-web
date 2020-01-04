@@ -25,7 +25,7 @@ export default class Header extends React.Component {
           </Link>
           <Nav className={"always-row-directed"}>
             <Nav.Link
-              href="javascript:void(0)"
+              href="#"
               className={"nav-link-black d-block d-lg-none"}
               onClick={() => {
                 this.setState({
@@ -37,7 +37,7 @@ export default class Header extends React.Component {
               <FontAwesomeIcon icon="search" className={"icon"} />
             </Nav.Link>
             <Nav.Link
-              href="javascript:void(0)"
+              href="#"
               className={"nav-link-black d-block d-lg-none"}
               onClick={() =>
                 this.setState({

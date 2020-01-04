@@ -373,7 +373,11 @@ export default class LeagueModal extends Component {
 
               <p>
                 * Idź do{" "}
-                <a href="https://www.bitmex.com/app/apiKeys" target="_blank">
+                <a
+                  href="https://www.bitmex.com/app/apiKeys"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   https://www.bitmex.com/app/apiKeys
                 </a>{" "}
                 i postępuj zgodnie z instrukcją:
