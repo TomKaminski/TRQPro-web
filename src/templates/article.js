@@ -63,7 +63,13 @@ class ArticleTemplate extends React.Component {
     //   headingSelector: "h1",
     //   hasInnerContainers: true,
     // })
-    mediumZoom("[data-zoomable]")
+
+    const images = [
+      document.querySelector(".index-article-image-big picture img"),
+      ...document.querySelectorAll("[data-zoomable]"),
+    ]
+
+    mediumZoom(images, { margin: 50 })
   }
 
   render() {
@@ -80,8 +86,7 @@ class ArticleTemplate extends React.Component {
                 ...this.props.data.strapiArticle.image.childImageSharp.fluid,
               }}
               imgStyle={{
-                objectFit: "cover",
-                objectPosition: "50% 50%",
+                objectFit: "contain",
               }}
               className={"index-article-image-big"}
             />

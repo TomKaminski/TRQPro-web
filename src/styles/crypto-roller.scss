@@ -1,6 +1,7 @@
 .crypto-roller-container {
   border-bottom: 0.5px solid rgba(128, 128, 128, 0.5);
-
+  background-color: white;
+  z-index: -1;
   .element {
     width: auto;
     padding: 20px 10px;
