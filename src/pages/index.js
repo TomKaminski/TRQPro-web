@@ -87,48 +87,48 @@ export default class IndexPage extends React.Component {
         <ArticleSlideshow articles={this.getArticlesForSlideshow()} />
         <Container fluid={true} id="main-container" className={"page-padding"}>
           <Row>
-            <Col
-              xs={12}
-              md={4}
-              className={"margin-bottom-base flex-telegram-container"}
-            >
-              <a
-                href="https://t.me/TRQProBTC"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={telegramBtc} alt="BTC telegram TRQPro" />
-              </a>
-            </Col>
-            <Col
-              xs={12}
-              md={4}
-              className={"margin-bottom-base flex-telegram-container"}
-            >
-              <a
-                href="https://t.me/TRQProAnalizy"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={telegramAT} alt="Analizy telegram TRQPro" />
-              </a>
-            </Col>
-            <Col
-              xs={12}
-              md={4}
-              className={"margin-bottom-base flex-telegram-container"}
-            >
-              <a
-                href="https://t.me/TRQProAlty"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={telegramForex} alt="Forex telegram TRQPro" />
-              </a>
-            </Col>
-          </Row>
-          <Row>
             <Col xs={12} lg={9}>
+              <Row>
+                <Col
+                  xs={12}
+                  md={4}
+                  className={"margin-bottom-base flex-telegram-container"}
+                >
+                  <a
+                    href="https://t.me/TRQProBTC"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={telegramBtc} alt="BTC telegram TRQPro" />
+                  </a>
+                </Col>
+                <Col
+                  xs={12}
+                  md={4}
+                  className={"margin-bottom-base flex-telegram-container"}
+                >
+                  <a
+                    href="https://t.me/TRQProAnalizy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={telegramAT} alt="Analizy telegram TRQPro" />
+                  </a>
+                </Col>
+                <Col
+                  xs={12}
+                  md={4}
+                  className={"margin-bottom-base flex-telegram-container"}
+                >
+                  <a
+                    href="https://t.me/TRQProAlty"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={telegramForex} alt="Forex telegram TRQPro" />
+                  </a>
+                </Col>
+              </Row>
               <IndexCurrenciesSection
                 sectionName="Kryptowaluty"
                 articles={this.getArticlesForCryptocurrenciesSection()}
