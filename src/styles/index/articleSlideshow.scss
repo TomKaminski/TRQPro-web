@@ -2,10 +2,15 @@
   height: 520px;
   color: white;
   position: relative;
-
+  overflow: hidden;
   @media (min-width: 768px) {
     height: 350px;
 
+    .slide-content-container {
+      .link-title {
+        font-size: 26px !important;
+      }
+    }
     .bg {
       &:before {
         height: 280px !important;
@@ -22,14 +27,8 @@
     }
 
     .slick-dots {
-      position: absolute;
       bottom: 30px;
-      display: block;
       width: auto;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      text-align: center;
     }
 
     .slick-slider,
@@ -58,7 +57,7 @@
       top: 0;
       right: 0;
       left: 0;
-      height: 450px;
+      height: 85%;
       z-index: -999;
     }
   }
@@ -69,7 +68,7 @@
     justify-content: center;
     padding-bottom: 5%;
     .link-title {
-      font-size: 26px;
+      font-size: 20px;
     }
     .description {
       font-size: 13px;
