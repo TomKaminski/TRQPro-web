@@ -12,9 +12,9 @@ import ArticleSlideshow from "../components/index/article_slideshow/article_slid
 import LayoutIndex from "../components/layouts/layout_index"
 import { TwitterTimelineEmbed } from "react-twitter-embed"
 
-import telegramBtc from "../images/btc_telegram.png"
-import telegramAT from "../images/at_telegram.png"
-import telegramForex from "../images/forex_telegram.png"
+import telegramBtc from "../images/btc.png"
+import telegramAT from "../images/analizy.png"
+import telegramForex from "../images/forex.png"
 
 import IndexSmallLeague from "../components/index/sections/indexSmallLeague"
 
@@ -89,10 +89,13 @@ export default class IndexPage extends React.Component {
           <Row>
             <Col xs={12} lg={9}>
               <Row>
+                <Col xs={6} md={12} className={"flex-telegram-title-container"}>
+                  <h5>Dołącz do nas!</h5>
+                </Col>
                 <Col
-                  xs={12}
+                  xs={6}
                   md={4}
-                  className={"margin-bottom-base flex-telegram-container"}
+                  className={"flex-telegram-container aligned-left"}
                 >
                   <a
                     href="https://t.me/TRQProBTC"
@@ -103,9 +106,9 @@ export default class IndexPage extends React.Component {
                   </a>
                 </Col>
                 <Col
-                  xs={12}
+                  xs={6}
                   md={4}
-                  className={"margin-bottom-base flex-telegram-container"}
+                  className={"flex-telegram-container aligned-right"}
                 >
                   <a
                     href="https://t.me/TRQProAnalizy"
@@ -116,9 +119,9 @@ export default class IndexPage extends React.Component {
                   </a>
                 </Col>
                 <Col
-                  xs={12}
+                  xs={6}
                   md={4}
-                  className={"margin-bottom-base flex-telegram-container"}
+                  className={"flex-telegram-container aligned-left"}
                 >
                   <a
                     href="https://t.me/TRQProForex"

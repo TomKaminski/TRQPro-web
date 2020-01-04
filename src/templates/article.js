@@ -66,7 +66,6 @@ class ArticleTemplate extends React.Component {
 
     const images = [
       document.querySelector(".index-article-image-big picture img"),
-      ...document.querySelectorAll("[data-zoomable]"),
     ]
 
     mediumZoom(images, { margin: 50 })
