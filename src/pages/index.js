@@ -12,7 +12,10 @@ import ArticleSlideshow from "../components/index/article_slideshow/article_slid
 import LayoutIndex from "../components/layouts/layout_index"
 import { TwitterTimelineEmbed } from "react-twitter-embed"
 
-import telegramImg from "../images/telegram_feed.png"
+import telegramBtc from "../images/btc_telegram.png"
+import telegramAT from "../images/at_telegram.png"
+import telegramForex from "../images/forex_telegram.png"
+
 import IndexSmallLeague from "../components/index/sections/indexSmallLeague"
 
 export default class IndexPage extends React.Component {
@@ -84,31 +87,43 @@ export default class IndexPage extends React.Component {
         <ArticleSlideshow articles={this.getArticlesForSlideshow()} />
         <Container fluid={true} id="main-container" className={"page-padding"}>
           <Row>
-            <Col xs={12} md={4} className={"margin-bottom-base"}>
-              <a
-                href="https://t.me/TRQProAnalizy"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={telegramImg} alt="Analizy telegram TRQPro" />
-              </a>
-            </Col>
-            <Col xs={12} md={4} className={"margin-bottom-base"}>
+            <Col
+              xs={12}
+              md={4}
+              className={"margin-bottom-base flex-telegram-container"}
+            >
               <a
                 href="https://t.me/TRQProBTC"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={telegramImg} alt="BTC telegram TRQPro" />
+                <img src={telegramBtc} alt="BTC telegram TRQPro" />
               </a>
             </Col>
-            <Col xs={12} md={4} className={"margin-bottom-base"}>
+            <Col
+              xs={12}
+              md={4}
+              className={"margin-bottom-base flex-telegram-container"}
+            >
+              <a
+                href="https://t.me/TRQProAnalizy"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={telegramAT} alt="Analizy telegram TRQPro" />
+              </a>
+            </Col>
+            <Col
+              xs={12}
+              md={4}
+              className={"margin-bottom-base flex-telegram-container"}
+            >
               <a
                 href="https://t.me/TRQProAlty"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={telegramImg} alt="Alty telegram TRQPro" />
+                <img src={telegramForex} alt="Forex telegram TRQPro" />
               </a>
             </Col>
           </Row>

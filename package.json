@@ -48,7 +48,6 @@
     "remove-markdown": "^0.3.0",
     "slick-carousel": "^1.8.1",
     "swiper": "^4.5.1",
-    "tocbot": "^4.10.0",
     "url-search-params-polyfill": "^7.0.1"
   },
   "devDependencies": {
