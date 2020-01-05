@@ -68,9 +68,9 @@ export default class Header extends React.Component {
               <Link
                 to={`/kategoria/cat-at`}
                 className={"nav-link-black nav-link"}
-                state={{ categoryName: "Analiza techniczna" }}
+                state={{ categoryName: "Analizy" }}
               >
-                Analiza techniczna
+                Analizy
               </Link>
               <Link
                 to={`/kategoria/cat-academy`}

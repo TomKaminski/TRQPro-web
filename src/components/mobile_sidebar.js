@@ -48,9 +48,9 @@ export default class MobileSidebar extends React.Component {
             <li>
               <Link
                 to={`/kategoria/cat-at`}
-                state={{ categoryName: "Analiza techniczna" }}
+                state={{ categoryName: "Analizy" }}
               >
-                Analiza techniczna
+                Analizy
               </Link>
             </li>
             <li>
