@@ -6,10 +6,11 @@ import removeMd from "remove-markdown"
 
 export default class IndexMiniArticle extends React.Component {
   render() {
+    let containerClass = this.props.removeBorder
+      ? ""
+      : "index-left-article article-padding"
     return (
-      <div
-        className={`border-grey-bottom-dotted index-left-article article-padding`}
-      >
+      <div className={containerClass}>
         <Row className={"upper-text-container"}>
           <Col className={this.props.dateAlignRight ? "align-text-right" : ""}>
             <TimeAndAuthor

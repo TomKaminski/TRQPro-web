@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, navigate } from "gatsby"
 import Layout from "../components/layouts/layout"
-import IndexMiniArticle from "../components/index/shared/indexMiniArticle"
+import MiniArticleImageWrapper from "../components/index/shared/miniArticleImageWrapper"
 import IndexPager from "../components/index/shared/indexPager"
 import SEO from "../components/seo"
 import { Row, Col } from "react-bootstrap"
@@ -16,7 +16,7 @@ class AuthorTemplate extends React.Component {
           {this.props.data.allStrapiArticle.edges.map((element, i) => {
             return (
               <Col xs={12} key={i}>
-                <IndexMiniArticle article={element.node} articleLength={400} />
+                <MiniArticleImageWrapper article={element.node} />
               </Col>
             )
           })}
@@ -61,6 +61,14 @@ export const query = graphql`
           created_at
           strapiId
           content
+          image {
+            publicURL
+            childImageSharp {
+              fluid(maxWidth: 960) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
           category {
             key
             name

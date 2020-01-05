@@ -5,7 +5,8 @@ import IndexPager from "../components/index/shared/indexPager"
 import SEO from "../components/seo"
 import "../styles/tagCategoryResults.scss"
 import { Row, Col } from "react-bootstrap"
-import IndexMiniArticle from "../components/index/shared/indexMiniArticle"
+import MiniArticleImageWrapper from "../components/index/shared/miniArticleImageWrapper"
+
 class TagTemplate extends React.Component {
   getTagName() {
     if (this.props.location.state) {
@@ -27,7 +28,7 @@ class TagTemplate extends React.Component {
           {this.props.data.allStrapiArticle.edges.map((element, i) => {
             return (
               <Col xs={12} key={i}>
-                <IndexMiniArticle article={element.node} articleLength={400} />
+                <MiniArticleImageWrapper article={element.node} />
               </Col>
             )
           })}
