@@ -92,6 +92,10 @@
     }
   }
 
+  .slick-slide.slick-active.slick-current {
+    z-index: 1000;
+  }
+
   .slide-image {
     height: 250px;
     margin-top: 12px;
