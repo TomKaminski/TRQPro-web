@@ -4,15 +4,14 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-.page-padding {
-  padding-left: 12px;
-  padding-right: 12px;
-}
-
 @media (min-width: 1200px) {
   .page-padding {
     padding-left: 150px;
     padding-right: 150px;
     max-width: 1920px;
   }
+}
+
+.page-content {
+  overflow-wrap: break-word;
 }
