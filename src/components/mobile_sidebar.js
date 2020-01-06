@@ -29,7 +29,7 @@ export default class MobileSidebar extends React.Component {
           <ul>
             <li className={"sidebar-title"}>Ogólne</li>
             <li>
-              <Link to={`/`}>Home</Link>
+              <Link to={`/`}>Strona główna</Link>
             </li>
             <li>
               <Link to={`/liga`}>Liga</Link>

@@ -56,7 +56,7 @@ export default class Header extends React.Component {
           <Navbar.Collapse className={"justify-content-end"}>
             <Nav>
               <Link to={`/`} className={"nav-link-black nav-link"}>
-                Home
+                Strona główna
               </Link>
               <Link
                 to={`/kategoria/cat-cryptocurrency`}

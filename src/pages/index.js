@@ -83,7 +83,7 @@ export default class IndexPage extends React.Component {
     let restArticles = this.getArticlesForRestSection()
     return (
       <LayoutIndex>
-        <SEO title="Home" />
+        <SEO title="Strona główna" />
         <ArticleSlideshow articles={this.getArticlesForSlideshow()} />
         <Container fluid={true} id="main-container" className={"page-padding"}>
           <Row>
