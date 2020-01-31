@@ -11,6 +11,7 @@ import { FormErrors } from "./formErrors"
 import Loader from "react-loader-spinner"
 import { ApiResponse } from "./apiResponse"
 import { apiUrl } from "../../statics"
+import CheckboxWithTitle from "./checkboxWithTitle"
 
 const axios = require("axios")
 
@@ -30,6 +31,7 @@ export default class LeagueModal extends Component {
         email: "",
         apiKey: "",
         apiSecret: "",
+        saveForAllLeaguesAtCurrentQuarter: false,
         league: null,
       },
       validation: {
@@ -91,13 +93,20 @@ export default class LeagueModal extends Component {
     this.setState({ isLoading: true })
     event.preventDefault()
 
-    let { nickname, email, apiKey, apiSecret } = this.state.formData
+    let {
+      nickname,
+      email,
+      apiKey,
+      apiSecret,
+      saveForAllLeaguesAtCurrentQuarter,
+    } = this.state.formData
     axios
       .post(apiUrl + "League/joinLeague", {
         nickname,
         email,
         apiKey,
         apiSecret,
+        saveForAllLeaguesAtCurrentQuarter,
         league: this.state.formData.league.value,
       })
       .then(response => {
@@ -120,6 +129,7 @@ export default class LeagueModal extends Component {
               email: "",
               apiKey: "",
               apiSecret: "",
+              saveForAllLeaguesAtCurrentQuarter: false,
               league: null,
             },
             validation: {
@@ -180,6 +190,7 @@ export default class LeagueModal extends Component {
                   email: "",
                   apiKey: "",
                   apiSecret: "",
+                  saveForAllLeaguesAtCurrentQuarter: false,
                   league: null,
                 },
                 validation: {
@@ -308,6 +319,7 @@ export default class LeagueModal extends Component {
                             }}
                           />
                         </Col>
+
                         <Col xs={12} md={6}>
                           <InputWithTitle
                             title={"API secret"}
@@ -331,9 +343,9 @@ export default class LeagueModal extends Component {
                           />
                         </Col>
                         <Col
+                          style={{ display: "flex", alignItems: "center" }}
                           xs={{ order: 12 }}
                           md={{ order: 1 }}
-                          style={{ display: "flex", alignItems: "center" }}
                         >
                           <input
                             type="submit"
@@ -364,6 +376,25 @@ export default class LeagueModal extends Component {
                               placeholder="Wybierz ligę"
                             />
                           </div>
+                          <CheckboxWithTitle
+                            title={
+                              "Zapisz mnie na wszystkie pozostałe ligi w tym kwartale"
+                            }
+                            name="saveForAllLeaguesAtCurrentQuarter"
+                            checked={
+                              this.state.formData
+                                .saveForAllLeaguesAtCurrentQuarter
+                            }
+                            onChange={e => {
+                              let value = e.target.checked
+                              this.setState({
+                                formData: {
+                                  ...this.state.formData,
+                                  saveForAllLeaguesAtCurrentQuarter: value,
+                                },
+                              })
+                            }}
+                          />
                         </Col>
                       </Row>
                     </form>

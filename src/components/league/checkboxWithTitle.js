@@ -1,6 +1,6 @@
 import React from "react"
 
-export default class InputWithTitle extends React.Component {
+export default class CheckboxWithTitle extends React.Component {
   constructor(props) {
     super(props)
 
@@ -16,15 +16,17 @@ export default class InputWithTitle extends React.Component {
   render() {
     return (
       <div className={"input-with-title"}>
-        <p>{this.props.title}</p>
         <input
-          className="textbox"
-          autoComplete="off"
-          value={this.state.value}
+          class="form-check-input"
+          type="checkbox"
+          checked={this.state.value}
           onChange={this.props.onChange}
-          type="text"
           name={this.props.name}
+          id={this.props.name}
         />
+        <label class="form-check-label" for={this.props.name}>
+          {this.props.title}
+        </label>
       </div>
     )
   }

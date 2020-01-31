@@ -60,7 +60,8 @@
 
 .input-with-title {
   margin-bottom: 12px;
-  p {
+  p,
+  label {
     color: gray;
     margin-bottom: 2px;
   }
@@ -69,10 +70,20 @@
     width: 80%;
   }
 
+  .form-check-input {
+    position: relative;
+    margin-left: 0;
+    margin-right: 5px;
+  }
+
   input {
-    width: 80%;
     color: #333;
     padding: 8px 52px 8px 10px;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    &.textbox {
+      width: 80%;
+    }
     &:focus {
       outline: none;
     }
