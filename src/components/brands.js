@@ -10,6 +10,7 @@ import icmarkets from "../images/brands/icmarkets.png"
 import kucoin from "../images/brands/kucoin.png"
 import ledger from "../images/brands/ledger.png"
 import maklerska from "../images/brands/maklerska.png"
+import bitbay from "../images/brands/bitbay.png"
 
 const Brands = () => {
   return (
@@ -30,6 +31,13 @@ const Brands = () => {
               rel="noopener noreferrer"
             >
               <img src={bitmex} alt="logo" />
+            </a>
+            <a
+              href="https://auth.bitbay.net/ref/ZXC3YqpQXZ2C"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={bitbay} alt="logo" />
             </a>
             <a
               href="https://brave.com/trq647"
