@@ -125,14 +125,6 @@ class LeaguePage extends React.Component {
           <h2>Historia rozgrywek</h2>
         </div>
 
-        <p>
-          <Link to={"/liga-regulamin"}>przejdź do regulaminu</Link>
-        </p>
-
-        <p>
-          <Link to={"/liga"}>przejdź do aktualnej ligi</Link>
-        </p>
-
         <Col xs={12} md={6} style={{ paddingLeft: 0, marginBottom: "20px" }}>
           <p style={{ marginBottom: "2px" }}>Wybierz ligę</p>
           <Dropdown
@@ -151,6 +143,20 @@ class LeaguePage extends React.Component {
             placeholder="-"
           />
         </Col>
+
+        <Row className="league-link-container">
+          <Col xs={6} md={3} className="margin-top-base">
+            <Link to={"/liga-regulamin"}>przejdź do regulaminu</Link>
+          </Col>
+          <Col xs={6} md={3} className="margin-top-base">
+            <Link to={"/liga"}>przejdź do aktualnej ligi</Link>
+          </Col>
+          {/* <Col xs={6} md={3} className="margin-top-base">
+            <Link to={"/liga-historia"}>przejdź do rankingu</Link>
+          </Col> */}
+          <Col xs={6} md={3}></Col>
+          <Col xs={6} md={3}></Col>
+        </Row>
 
         {!this.state.loading ? this.renderLeague() : null}
       </Layout>

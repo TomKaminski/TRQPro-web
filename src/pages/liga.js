@@ -120,13 +120,19 @@ class LeaguePage extends React.Component {
           </button>
         </div>
 
-        <p>
-          <Link to={"/liga-regulamin"}>przejdź do regulaminu</Link>
-        </p>
-
-        <p>
-          <Link to={"/liga-historia"}>przejdź do archiwum rozgrywek</Link>
-        </p>
+        <Row className="league-link-container">
+          <Col xs={6} md={3} className="margin-top-base">
+            <Link to={"/liga-regulamin"}>przejdź do regulaminu</Link>
+          </Col>
+          <Col xs={6} md={3} className="margin-top-base">
+            <Link to={"/liga-historia"}>przejdź do archiwum rozgrywek</Link>
+          </Col>
+          {/* <Col xs={6} md={3} className="margin-top-base">
+            <Link to={"/liga-hist oria"}>przejdź do rankingu</Link>
+          </Col> */}
+          <Col xs={6} md={3}></Col>
+          <Col xs={6} md={3}></Col>
+        </Row>
 
         {this.state.loading ? (
           <Container>
@@ -276,32 +282,20 @@ class LeaguePage extends React.Component {
               </Col>
             </Row>
           </Container>
-          <h5>Zapisani uczestnicy</h5>
-          <table
-            className={"table table-hover margin-bottom-40 table-responsive-md"}
-            id="liga-table"
-          >
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nick</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.keys(this.state.data.participants).map((key, index) => {
-                const { username } = this.state.data.participants[key]
-                return (
-                  <tr
-                    className={"margin-top-base margin-bottom-base"}
-                    key={index}
-                  >
-                    <th scope="row">{index + 1}</th>
-                    <td>{username}</td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
+          <p className="categoryTagResults">Zapisani uczestnicy</p>
+
+          <Row>
+            {Object.keys(this.state.data.participants).map((key, index) => {
+              const { username } = this.state.data.participants[key]
+              return (
+                <Col xs={12} md={6} lg={4} key={"user_" + index}>
+                  <p>
+                    {index + 1}. {username}
+                  </p>
+                </Col>
+              )
+            })}
+          </Row>
         </div>
       )
     }
