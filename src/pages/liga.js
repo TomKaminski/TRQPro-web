@@ -246,6 +246,7 @@ class LeaguePage extends React.Component {
     }
 
     if (this.state.data.isComingLeague) {
+      let colLength = Math.ceil(this.state.data.participants.length / 3)
       return (
         <div>
           <LeagueModal
@@ -285,16 +286,39 @@ class LeaguePage extends React.Component {
           <p className="categoryTagResults">Zapisani uczestnicy</p>
 
           <Row>
-            {Object.keys(this.state.data.participants).map((key, index) => {
-              const { username } = this.state.data.participants[key]
-              return (
-                <Col xs={12} md={6} lg={4} key={"user_" + index}>
-                  <p>
-                    {index + 1}. {username}
-                  </p>
-                </Col>
-              )
-            })}
+            <Col xs={12} md={6} lg={4}>
+              {this.state.data.participants
+                .slice(0, colLength)
+                .map((element, i) => {
+                  return (
+                    <p key={"user_" + i}>
+                      {i + 1}. {element.username}
+                    </p>
+                  )
+                })}
+            </Col>
+            <Col xs={12} md={{ span: 6, order: 12 }} lg={{ span: 4, order: 1 }}>
+              {this.state.data.participants
+                .slice(colLength, colLength * 2)
+                .map((element, i) => {
+                  return (
+                    <p key={"user_" + i}>
+                      {i + 1 + colLength}. {element.username}
+                    </p>
+                  )
+                })}
+            </Col>
+            <Col xs={12} md={{ span: 6, order: 1 }} lg={{ span: 4, order: 12 }}>
+              {this.state.data.participants
+                .slice(colLength * 2, colLength * 3)
+                .map((element, i) => {
+                  return (
+                    <p key={"user_" + i}>
+                      {i + 1 + colLength * 2}. {element.username}
+                    </p>
+                  )
+                })}
+            </Col>
           </Row>
         </div>
       )
