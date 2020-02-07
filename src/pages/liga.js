@@ -127,10 +127,9 @@ class LeaguePage extends React.Component {
           <Col xs={6} md={3} className="margin-top-base">
             <Link to={"/liga-historia"}>przejdź do archiwum rozgrywek</Link>
           </Col>
-          {/* <Col xs={6} md={3} className="margin-top-base">
-            <Link to={"/liga-hist oria"}>przejdź do rankingu</Link>
-          </Col> */}
-          <Col xs={6} md={3}></Col>
+          <Col xs={6} md={3} className="margin-top-base">
+            <Link to={"/liga-historia"}>przejdź do rankingu</Link>
+          </Col>
           <Col xs={6} md={3}></Col>
         </Row>
 
