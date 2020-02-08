@@ -6,6 +6,7 @@ import SEO from "../components/seo"
 import { Container, Row, Col } from "react-bootstrap"
 
 import "../styles/liga.scss"
+import "../styles/liga-ranking.scss"
 
 import { apiUrl } from "../statics"
 
@@ -85,8 +86,12 @@ class LeaguePage extends React.Component {
     return (
       <Layout>
         <SEO title="Liga" />
-        <div className={"join-league-container"}>
+        <div>
           <h2>Ranking</h2>
+          <p>
+            W tym miejscu mozesz śledzić poczynania uczestników Ligi w ujęciu
+            kwartalno-rocznym. Najlepsi zawodnicy zostaną nagrodzeni :).
+          </p>
         </div>
         {/* 
         <Col xs={12} md={6} style={{ paddingLeft: 0, marginBottom: "20px" }}>
@@ -110,13 +115,13 @@ class LeaguePage extends React.Component {
 
         <Row className="league-link-container">
           <Col xs={6} md={3} className="margin-top-base">
-            <Link to={"/liga-regulamin"}>przejdź do regulaminu</Link>
+            <Link to={"/liga-regulamin"}>przejdź do regulaminu ligi</Link>
           </Col>
           <Col xs={6} md={3} className="margin-top-base">
             <Link to={"/liga"}>przejdź do aktualnej ligi</Link>
           </Col>
           <Col xs={6} md={3} className="margin-top-base">
-            <Link to={"/liga-historia"}>przejdź do historii</Link>
+            <Link to={"/liga-historia"}>przejdź do historii rozgrywek</Link>
           </Col>
           <Col xs={6} md={3}></Col>
         </Row>
@@ -124,6 +129,34 @@ class LeaguePage extends React.Component {
         {!this.state.loading ? this.renderLadder() : null}
       </Layout>
     )
+  }
+
+  getRoeOverall(roe) {
+    if (roe !== null) {
+      if (roe > 0) {
+        return <div className={"color-green"}>{roe.toFixed(2)}%</div>
+      } else if (roe < 0) {
+        return <div className={"color-red"}>{roe.toFixed(2)}%</div>
+      } else {
+        return <div>0%</div>
+      }
+    } else {
+      return <div>-</div>
+    }
+  }
+
+  getMedalByIndex(index) {
+    if (index === 0) {
+      return "🥇"
+    }
+
+    if (index === 1) {
+      return "🥈"
+    }
+
+    if (index === 2) {
+      return "🥉"
+    }
   }
 
   renderLadder() {
@@ -138,22 +171,75 @@ class LeaguePage extends React.Component {
     }
     return (
       <div>
-        {this.state.data.forEach(ladder => {
-          return <p className="categoryTagResults">Zapisani uczestnicy</p>
+        {this.state.data.map(ladder => {
+          let colLength = Math.ceil((ladder.participants.length - 3) / 3)
+          return (
+            <div>
+              <p className="categoryTagResults">{ladder.ladder_public_name}</p>
+              <Row>
+                {ladder.participants.slice(0, 3).map((element, i) => {
+                  return (
+                    <Col xs={12}>
+                      <p key={"user_" + i} className={"ladder-user-" + i}>
+                        {this.getMedalByIndex(i)} {element.username} (
+                        {element.points} pkt., ROE{" "}
+                        {element.overallRoe.toFixed(2)}%)
+                      </p>
+                    </Col>
+                  )
+                })}
+              </Row>
+              <Row>
+                <Col xs={12} md={6} lg={4}>
+                  {ladder.participants
+                    .slice(3, colLength + 3)
+                    .map((element, i) => {
+                      return (
+                        <p key={"user_" + i}>
+                          {i + 4}. {element.username} ({element.points} pkt.,
+                          ROE {element.overallRoe.toFixed(2)}%)
+                        </p>
+                      )
+                    })}
+                </Col>
+                <Col
+                  xs={12}
+                  md={{ span: 6, order: 12 }}
+                  lg={{ span: 4, order: 1 }}
+                >
+                  {ladder.participants
+                    .slice(colLength + 3, colLength * 2 + 3)
+                    .map((element, i) => {
+                      return (
+                        <p key={"user_" + i}>
+                          {i + 4 + colLength}. {element.username} (
+                          {element.points} pkt., ROE{" "}
+                          {element.overallRoe.toFixed(2)}%)
+                        </p>
+                      )
+                    })}
+                </Col>
+                <Col
+                  xs={12}
+                  md={{ span: 6, order: 1 }}
+                  lg={{ span: 4, order: 12 }}
+                >
+                  {ladder.participants
+                    .slice(colLength * 2 + 3, colLength * 3 + 3)
+                    .map((element, i) => {
+                      return (
+                        <p key={"user_" + i}>
+                          {i + 4 + colLength * 2}. {element.username} (
+                          {element.points} pkt., ROE{" "}
+                          {element.overallRoe.toFixed(2)}%)
+                        </p>
+                      )
+                    })}
+                </Col>
+              </Row>
+            </div>
+          )
         })}
-
-        <Row>
-          {Object.keys(this.state.data.participants).map((key, index) => {
-            const { username } = this.state.data.participants[key]
-            return (
-              <Col xs={12} md={6} lg={4} key={"user_" + index}>
-                <p>
-                  {index + 1}. {username}
-                </p>
-              </Col>
-            )
-          })}
-        </Row>
       </div>
     )
   }

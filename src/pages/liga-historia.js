@@ -152,7 +152,7 @@ class LeaguePage extends React.Component {
             <Link to={"/liga"}>przejdź do aktualnej ligi</Link>
           </Col>
           <Col xs={6} md={3} className="margin-top-base">
-            <Link to={"/liga-historia"}>przejdź do rankingu</Link>
+            <Link to={"/liga-ranking"}>przejdź do rankingu</Link>
           </Col>
           <Col xs={6} md={3}></Col>
         </Row>
