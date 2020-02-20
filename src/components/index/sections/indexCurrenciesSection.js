@@ -2,24 +2,15 @@ import React from "react"
 import { Row, Col } from "react-bootstrap"
 import IndexMiniArticle from "../shared/indexMiniArticle"
 import { Link } from "gatsby"
+import IndexSectionHeader from "./indexSectionHeader"
 
 const IndexSectionVertical = props => {
   return (
     <section className={"section-margin-and-padding"}>
-      <Row>
-        <Col>
-          <div className={"section"}>
-            <div className={"section-title-container"}>
-              <Link
-                to={`/kategoria/cat-cryptocurrency`}
-                state={{ categoryName: props.sectionName }}
-              >
-                <h2 className={"section-title"}>{props.sectionName}</h2>
-              </Link>
-            </div>
-          </div>
-        </Col>
-      </Row>
+      <IndexSectionHeader
+        url={`/kategoria/cat-cryptocurrency`}
+        sectionName={props.sectionName}
+      />
       <Row>
         {props.articles.map((element, i) => {
           return (

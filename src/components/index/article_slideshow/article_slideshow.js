@@ -8,34 +8,32 @@ import "slick-carousel/slick/slick-theme.css"
 
 import Slider from "react-slick"
 
-export default class ArticleSlideshow extends React.Component {
-  render() {
-    var settings = {
-      dots: true,
-      fade: true,
-      autoplay: true,
-      arrows: false,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    }
-
-    return (
-      <div id="article-slideshow">
-        <Slider
-          {...settings}
-          className={"page-padding"}
-          style={{ margin: "auto" }}
-        >
-          <ArticleSlideshowItem article={this.props.articles[0]} />
-          <ArticleSlideshowItem article={this.props.articles[1]} />
-          <ArticleSlideshowItem article={this.props.articles[2]} />
-          <ArticleSlideshowItem article={this.props.articles[3]} />
-          <ArticleSlideshowItem article={this.props.articles[4]} />
-        </Slider>
-        <div className={"bg"}></div>
-      </div>
-    )
-  }
+const settings = {
+  dots: true,
+  fade: true,
+  autoplay: true,
+  arrows: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
 }
+
+const ArticleSlideshow = props => {
+  return (
+    <div id="article-slideshow">
+      <Slider
+        {...settings}
+        className={"page-padding"}
+        style={{ margin: "auto" }}
+      >
+        {props.articles.map((art, i) => (
+          <ArticleSlideshowItem article={art} id={i} />
+        ))}
+      </Slider>
+      <div className={"bg"}></div>
+    </div>
+  )
+}
+
+export default ArticleSlideshow

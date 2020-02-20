@@ -2,26 +2,16 @@ import React from "react"
 import { Row, Col } from "react-bootstrap"
 import IndexBigArticle from "../shared/indexBigArticle"
 import IndexMiniArticle from "../shared/indexMiniArticle"
-import { Link } from "gatsby"
+import IndexSectionHeader from "./indexSectionHeader"
 
 const IndexAcademySection = props => {
   if (props.articles) {
     return (
       <section className={"section-margin-and-padding"}>
-        <Row>
-          <Col>
-            <div className={"section"}>
-              <div className={"section-title-container"}>
-                <Link
-                  to={`/kategoria/cat-academy`}
-                  state={{ categoryName: props.sectionName }}
-                >
-                  <h2 className={"section-title"}>{props.sectionName}</h2>
-                </Link>
-              </div>
-            </div>
-          </Col>
-        </Row>
+        <IndexSectionHeader
+          url={`/kategoria/cat-academy`}
+          sectionName={props.sectionName}
+        />
         <Row>
           {props.articles.length > 0 && (
             <Col xs={12} md={6}>
@@ -44,9 +34,8 @@ const IndexAcademySection = props => {
         )}
       </section>
     )
-  } else {
-    return <div></div>
   }
+  return <div></div>
 }
 
 export default IndexAcademySection

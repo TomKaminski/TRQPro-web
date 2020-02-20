@@ -31,7 +31,7 @@ export default class IndexSmallLeague extends React.Component {
           error: null,
         })
       })
-      .catch(error => {
+      .catch(() => {
         this.setState({
           data: null,
           loading: false,
