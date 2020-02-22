@@ -1,4 +1,5 @@
 const path = require(`path`)
+const moment = require("moment")
 
 function string_to_slug(str) {
   str = str.replace(/^\s+|\s+$/g, "") // trim
@@ -51,11 +52,21 @@ const makeRequest = (graphql, request) =>
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
+  let momentNowString = moment(new Date()).format("YYYY-MM-DDThh:mm:ss.SSSZ")
+
+  createPage({
+    path: `/`,
+    component: path.resolve(`src/templates/index.js`),
+    context: {
+      date: momentNowString,
+    },
+  })
+
   const getArticles = makeRequest(
     graphql,
     `
     {
-      allStrapiArticle(filter: {isPublished: {eq: true}}) {
+      allStrapiArticle(filter: {publishedAt: {lte: "${momentNowString}"}}) {
         edges {
           node {
             id
@@ -84,7 +95,7 @@ exports.createPages = ({ actions, graphql }) => {
     graphql,
     `
     {
-      allStrapiArticle(filter: {isPublished: {eq: true}}) {
+      allStrapiArticle(filter: {publishedAt: {lte: "${momentNowString}"}}) {
         group(field: author___id, limit: 1) {
           fieldValue
           pageInfo {
@@ -116,6 +127,7 @@ exports.createPages = ({ actions, graphql }) => {
               skip: i * postsPerPage,
               pageCount: articleGroup.pageInfo.pageCount,
               currentPage: i + 1,
+              date: momentNowString,
             },
           })
         }
@@ -127,7 +139,7 @@ exports.createPages = ({ actions, graphql }) => {
     graphql,
     `
     {
-      allStrapiArticle(filter: {isPublished: {eq: true}}) {
+      allStrapiArticle(filter: {publishedAt: {lte: "${momentNowString}"}}) {
         group(field: category___key, limit: 1) {
           fieldValue
           pageInfo {
@@ -159,6 +171,7 @@ exports.createPages = ({ actions, graphql }) => {
               skip: i * postsPerPage,
               pageCount: articleGroup.pageInfo.pageCount,
               currentPage: i + 1,
+              date: momentNowString,
             },
           })
         }
@@ -170,7 +183,7 @@ exports.createPages = ({ actions, graphql }) => {
     graphql,
     `
     {
-      allStrapiArticle(filter: {isPublished: {eq: true}}) {
+      allStrapiArticle(filter: {publishedAt: {lte: "${momentNowString}"}}) {
         group(field: tags___key, limit: 1) {
           fieldValue
           pageInfo {
@@ -202,6 +215,7 @@ exports.createPages = ({ actions, graphql }) => {
               skip: i * postsPerPage,
               pageCount: articleGroup.pageInfo.pageCount,
               currentPage: i + 1,
+              date: momentNowString,
             },
           })
         }

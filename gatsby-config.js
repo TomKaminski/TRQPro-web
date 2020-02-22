@@ -1,3 +1,5 @@
+const moment = require("moment")
+
 module.exports = {
   siteMetadata: {
     title: `TRQ Pro`,
@@ -22,7 +24,7 @@ module.exports = {
     {
       resolve: "gatsby-source-strapi",
       options: {
-        apiURL: "https://cms.trqpro.pl",
+        apiURL: "http://localhost:1337",
         contentTypes: ["article", "user", "tag", "category", "static"],
         queryLimit: 1000,
       },
@@ -58,7 +60,7 @@ module.exports = {
             path: node => node.id,
             content: node => node.content.substring(0, 350).concat("..."),
             author: node => node.author,
-            created_at: node => node.created_at,
+            publishedAt: node => node.publishedAt,
             fields: node => node.fields,
           },
           StrapiCategory: {
@@ -71,8 +73,11 @@ module.exports = {
           },
         },
         filter: (node, getNode) => {
+          let momentNowString = moment(new Date()).format(
+            "YYYY-MM-DDThh:mm:ss.SSSZ"
+          )
           if (node.internal.type === "StrapiArticle") {
-            return node.isPublished === true
+            return node.publishedAt <= momentNowString
           }
           return true
         },

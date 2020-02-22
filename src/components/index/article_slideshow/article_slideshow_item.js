@@ -30,7 +30,7 @@ export default class ArticleSlideshowItem extends React.Component {
             </p>
             <TimeAndAuthor
               author={this.props.article.author}
-              date={this.props.article.created_at}
+              date={this.props.article.publishedAt}
               textClass={"time-and-author-link"}
             />
           </Col>

@@ -27,7 +27,7 @@ export default class IndexPage extends React.Component {
       })
     })
 
-    computingArray.sort((a, b) => b.strapiId - a.strapiId)
+    computingArray.sort((a, b) => (b.publishedAt > a.publishedAt ? 1 : -1))
 
     return computingArray.slice(0, 5)
   }
@@ -198,10 +198,10 @@ export default class IndexPage extends React.Component {
 }
 
 export const pageQuery = graphql`
-  query IndexQuery {
+  query IndexQuery1($date: Date) {
     allStrapiArticle(
-      sort: { fields: strapiId, order: DESC }
-      filter: { isPublished: { eq: true } }
+      sort: { fields: publishedAt, order: DESC }
+      filter: { publishedAt: { lte: $date } }
     ) {
       group(field: category___key, limit: 5) {
         totalCount
@@ -210,7 +210,7 @@ export const pageQuery = graphql`
           node {
             id
             title
-            created_at
+            publishedAt
             strapiId
             content
             category {

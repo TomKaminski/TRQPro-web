@@ -59,21 +59,21 @@ class TagTemplate extends React.Component {
 export default TagTemplate
 
 export const query = graphql`
-  query TagTemplate($key: String!, $skip: Int!, $limit: Int!) {
+  query TagTemplate($key: String!, $skip: Int!, $limit: Int!, $date: Date) {
     allStrapiArticle(
       filter: {
-        isPublished: { eq: true }
+        publishedAt: { lte: $date }
         tags: { elemMatch: { key: { eq: $key } } }
       }
       limit: $limit
-      sort: { order: DESC, fields: strapiId }
+      sort: { order: DESC, fields: publishedAt }
       skip: $skip
     ) {
       edges {
         node {
           id
           title
-          created_at
+          publishedAt
           strapiId
           content
           image {

@@ -19,7 +19,7 @@ export default class IndexBigArticle extends React.Component {
         <div className={"upper-text-container"}>
           <TimeAndAuthor
             author={this.props.article.author}
-            date={this.props.article.created_at}
+            date={this.props.article.publishedAt}
           />
         </div>
         <Link to={`/${this.props.article.fields.slug}`}>

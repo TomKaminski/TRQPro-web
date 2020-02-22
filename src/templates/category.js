@@ -59,18 +59,23 @@ class CategoryTemplate extends React.Component {
 export default CategoryTemplate
 
 export const query = graphql`
-  query CategoryTemplate($key: String!, $skip: Int!, $limit: Int!) {
+  query CategoryTemplate(
+    $key: String!
+    $skip: Int!
+    $limit: Int!
+    $date: Date
+  ) {
     allStrapiArticle(
-      filter: { isPublished: { eq: true }, category: { key: { eq: $key } } }
+      filter: { publishedAt: { lte: $date }, category: { key: { eq: $key } } }
       limit: $limit
-      sort: { order: DESC, fields: strapiId }
+      sort: { order: DESC, fields: publishedAt }
       skip: $skip
     ) {
       edges {
         node {
           id
           title
-          created_at
+          publishedAt
           strapiId
           content
           image {

@@ -121,7 +121,7 @@ class ArticleTemplate extends React.Component {
                 <div className={"article-meta"}>
                   <FontAwesomeIcon icon="calendar" size={"1x"} />{" "}
                   {new Date(
-                    this.props.data.strapiArticle.created_at
+                    this.props.data.strapiArticle.publishedAt
                   ).toLocaleString()}
                 </div>
 
@@ -201,7 +201,7 @@ export const query = graphql`
       id
       title
       content
-      created_at
+      publishedAt
       metadata {
         meta {
           name
