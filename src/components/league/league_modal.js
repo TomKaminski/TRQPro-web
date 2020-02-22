@@ -214,7 +214,16 @@ export default class LeagueModal extends Component {
           ) : (
             <div className={"modal-content"}>
               <h3>Chcesz dołączyć do ligi? Zapisz się juz teraz!</h3>
-              <br />
+              <p>
+                Warunkiem uczestnictwa w Lidze jest założenie konta z tego{" "}
+                <a
+                  href="https://www.bitmex.com/register/kiQKAa"
+                  target="_blank"
+                >
+                  linka
+                </a>
+                .
+              </p>
               <p>
                 Najbliższa liga rozpoczyna się{" "}
                 <b>
