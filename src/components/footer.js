@@ -84,7 +84,7 @@ const Footer = () => {
             </Col>
           </Row>
           <Row id="copyright">
-            <div>© 2019 TRQPro. All rights reserved.</div>
+            <div>© {new Date().getFullYear()} TRQPro. All rights reserved.</div>
           </Row>
         </Container>
       </footer>
