@@ -115,7 +115,7 @@ export default class SearchPage extends React.Component {
   }
 }
 
-export const pageQuery = graphql`
+export const searchQuery = graphql`
   query WyszukajIndexQuery {
     siteSearchIndex {
       index

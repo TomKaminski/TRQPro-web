@@ -11,7 +11,7 @@ class ContactPage extends React.Component {
 
 export default ContactPage
 
-export const pageQuery = graphql`
+export const contatPageQuery = graphql`
   query ContactQuery {
     allStrapiStatic(filter: { key: { eq: "kontakt" } }, limit: 1) {
       nodes {

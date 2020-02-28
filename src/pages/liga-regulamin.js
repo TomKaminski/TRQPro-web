@@ -13,7 +13,7 @@ class LeagueRulesPage extends React.Component {
 
 export default LeagueRulesPage
 
-export const pageQuery = graphql`
+export const leagueRulesPageQuery = graphql`
   query LeagueRulesQuery {
     allStrapiStatic(filter: { key: { eq: "leaguerules" } }, limit: 1) {
       nodes {

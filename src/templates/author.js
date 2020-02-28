@@ -46,7 +46,7 @@ class AuthorTemplate extends React.Component {
 
 export default AuthorTemplate
 
-export const query = graphql`
+export const authorQuery = graphql`
   query AuthorTemplate($key: Int!, $skip: Int!, $limit: Int!, $date: Date) {
     allStrapiArticle(
       filter: { publishedAt: { lte: $date }, author: { id: { eq: $key } } }

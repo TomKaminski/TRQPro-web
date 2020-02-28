@@ -58,7 +58,7 @@ class CategoryTemplate extends React.Component {
 
 export default CategoryTemplate
 
-export const query = graphql`
+export const categoryQuery = graphql`
   query CategoryTemplate(
     $key: String!
     $skip: Int!

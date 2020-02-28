@@ -11,7 +11,7 @@ class WorkWithUsPage extends React.Component {
 
 export default WorkWithUsPage
 
-export const pageQuery = graphql`
+export const workWithUsPageQuery = graphql`
   query WorkWithUsQuery {
     allStrapiStatic(filter: { key: { eq: "pracujznami" } }, limit: 1) {
       nodes {

@@ -16,7 +16,7 @@ class PrivacyPolicyPage extends React.Component {
 
 export default PrivacyPolicyPage
 
-export const pageQuery = graphql`
+export const privacyPolicyPageQuery = graphql`
   query PrivacyPolicyQuery {
     allStrapiStatic(filter: { key: { eq: "polityka" } }, limit: 1) {
       nodes {

@@ -189,7 +189,7 @@ class ArticleTemplate extends React.Component {
 
 export default ArticleTemplate
 
-export const query = graphql`
+export const articleQuery = graphql`
   query ArticleTemplate($id: String!) {
     site {
       siteMetadata {

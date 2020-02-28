@@ -58,7 +58,7 @@ class TagTemplate extends React.Component {
 
 export default TagTemplate
 
-export const query = graphql`
+export const tagQuery = graphql`
   query TagTemplate($key: String!, $skip: Int!, $limit: Int!, $date: Date) {
     allStrapiArticle(
       filter: {

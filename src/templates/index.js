@@ -197,7 +197,7 @@ export default class IndexPage extends React.Component {
   }
 }
 
-export const pageQuery = graphql`
+export const indexQuery = graphql`
   query IndexQuery1($date: Date) {
     allStrapiArticle(
       sort: { fields: publishedAt, order: DESC }

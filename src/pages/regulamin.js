@@ -11,7 +11,7 @@ class RulesPage extends React.Component {
 
 export default RulesPage
 
-export const pageQuery = graphql`
+export const rulesPageQuery = graphql`
   query RulesQuery {
     allStrapiStatic(filter: { key: { eq: "regulamin" } }, limit: 1) {
       nodes {
