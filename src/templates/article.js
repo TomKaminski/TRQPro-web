@@ -11,6 +11,7 @@ import marked from "marked"
 // import tocbot from "tocbot"
 import Share from "../components/share"
 import mediumZoom from "medium-zoom"
+import OurChannels from "../components/article/our_channels"
 
 // Get reference
 const renderer = new marked.Renderer()
@@ -169,6 +170,12 @@ class ArticleTemplate extends React.Component {
                 }}
               ></div>
             </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col lg={2} xl={0}></Col>
+          <Col lg={10} xl={8}>
+            <OurChannels />
           </Col>
         </Row>
         <Row>
