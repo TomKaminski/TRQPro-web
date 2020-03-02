@@ -103,7 +103,7 @@ class ArticleTemplate extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col lg={1}></Col>
+          <Col lg={1} xl={2}></Col>
           <Col lg={10} xl={8}>
             <div id="article-content">
               <h1 id="article-title">{this.props.data.strapiArticle.title}</h1>
