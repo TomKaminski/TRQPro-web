@@ -11,6 +11,7 @@ import marked from "marked"
 // import tocbot from "tocbot"
 import Share from "../components/share"
 import mediumZoom from "medium-zoom"
+import OurChannels from "../components/article/our_channels"
 
 // Get reference
 const renderer = new marked.Renderer()
@@ -169,7 +170,7 @@ class ArticleTemplate extends React.Component {
                 }}
               ></div>
             </div>
-
+            <OurChannels />
             <DiscussionEmbed
               {...disqusConfig(
                 this.props.data.strapiArticle.id,
