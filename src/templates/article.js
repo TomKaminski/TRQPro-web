@@ -103,7 +103,7 @@ class ArticleTemplate extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col lg={2}></Col>
+          <Col lg={1}></Col>
           <Col lg={10} xl={8}>
             <div id="article-content">
               <h1 id="article-title">{this.props.data.strapiArticle.title}</h1>
@@ -170,17 +170,7 @@ class ArticleTemplate extends React.Component {
                 }}
               ></div>
             </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col lg={2} xl={0}></Col>
-          <Col lg={10} xl={8}>
             <OurChannels />
-          </Col>
-        </Row>
-        <Row>
-          <Col lg={2} xl={0}></Col>
-          <Col lg={10} xl={8}>
             <DiscussionEmbed
               {...disqusConfig(
                 this.props.data.strapiArticle.id,
