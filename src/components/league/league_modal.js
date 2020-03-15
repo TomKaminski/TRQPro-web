@@ -99,6 +99,8 @@ export default class LeagueModal extends Component {
       apiKey,
       apiSecret,
       saveForAllLeaguesAtCurrentQuarter,
+      exchange,
+      league,
     } = this.state.formData
     axios
       .post(apiUrl + "League/joinLeague", {
@@ -106,8 +108,10 @@ export default class LeagueModal extends Component {
         email,
         apiKey,
         apiSecret,
+        exchange,
         saveForAllLeaguesAtCurrentQuarter,
-        league: this.state.formData.league.value,
+        league: league.value,
+        exchange: exchange.value,
       })
       .then(response => {
         let joinedLeague = this.state.rawLeaguesData.find(item => {
@@ -351,19 +355,39 @@ export default class LeagueModal extends Component {
                             }}
                           />
                         </Col>
-                        <Col
-                          style={{ display: "flex", alignItems: "center" }}
-                          xs={{ order: 12 }}
-                          md={{ order: 1 }}
-                        >
-                          <input
-                            type="submit"
-                            disabled={!this.state.validation.formValid}
-                            className={"form-submit-button"}
-                            value="Dołącz do ligi"
-                          />
+                        <Col xs={12} md={6}>
+                          <div className={"input-with-title"}>
+                            <p>Giełda</p>
+                            <Dropdown
+                              options={[
+                                {
+                                  label: "Bitmex",
+                                  value: "bitmex",
+                                },
+                                {
+                                  label: "Bybit",
+                                  value: "bybit",
+                                },
+                              ]}
+                              onChange={opt => {
+                                this.setState(
+                                  {
+                                    formData: {
+                                      ...this.state.formData,
+                                      exchange: opt,
+                                    },
+                                  },
+                                  () => {
+                                    this.validateField("exchange", opt)
+                                  }
+                                )
+                              }}
+                              value={this.state.formData.exchange}
+                              placeholder="Wybierz giełdę"
+                            />
+                          </div>
                         </Col>
-                        <Col xs={12} md={{ order: 12 }}>
+                        <Col xs={12} md={6}>
                           <div className={"input-with-title"}>
                             <p>Liga</p>
                             <Dropdown
@@ -403,6 +427,18 @@ export default class LeagueModal extends Component {
                                 },
                               })
                             }}
+                          />
+                        </Col>
+                        <Col
+                          style={{ display: "flex", alignItems: "center" }}
+                          xs={{ order: 12 }}
+                          md={{ order: 1 }}
+                        >
+                          <input
+                            type="submit"
+                            disabled={!this.state.validation.formValid}
+                            className={"form-submit-button"}
+                            value="Dołącz do ligi"
                           />
                         </Col>
                       </Row>
@@ -483,6 +519,12 @@ export default class LeagueModal extends Component {
         fieldValidationErrors.league = validation.leagueValid
           ? ""
           : "Liga jest wymagana"
+        break
+      case "exchange":
+        validation.exchangeValid = value != null
+        fieldValidationErrors.exchange = validation.exchangeValid
+          ? ""
+          : "Giełda jest wymagana"
         break
       default:
         break

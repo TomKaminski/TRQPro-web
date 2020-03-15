@@ -9,6 +9,8 @@ import redCard from "../images/red-card.svg"
 import rekt from "../images/dead.svg"
 import next from "../images/next.svg"
 import winner from "../images/winner.svg"
+import bitmex_logo from "../images/bitmex_logo.png"
+import bybit_logo from "../images/bybit_logo.png"
 
 import "../styles/liga.scss"
 
@@ -144,6 +146,14 @@ class LeaguePage extends React.Component {
         )}
       </Layout>
     )
+  }
+
+  getExchangeImage(exchange) {
+    if (exchange === "bybit") {
+      return <img src={bybit_logo} style={{ height: "20px" }} />
+    } else {
+      return <img src={bitmex_logo} style={{ height: "18px" }} />
+    }
   }
 
   getRoeColored(roe, isRekt, isRetarded, tooLowBalance) {
@@ -291,7 +301,8 @@ class LeaguePage extends React.Component {
                 .map((element, i) => {
                   return (
                     <p key={"user_" + i}>
-                      {i + 1}. {element.username}
+                      {i + 1}. {this.getExchangeImage(element.exchange)}{" "}
+                      {element.username}
                     </p>
                   )
                 })}
@@ -302,7 +313,9 @@ class LeaguePage extends React.Component {
                 .map((element, i) => {
                   return (
                     <p key={"user_" + i}>
-                      {i + 1 + colLength}. {element.username}
+                      {i + 1 + colLength}.{" "}
+                      {this.getExchangeImage(element.exchange)}{" "}
+                      {element.username}
                     </p>
                   )
                 })}
@@ -313,7 +326,9 @@ class LeaguePage extends React.Component {
                 .map((element, i) => {
                   return (
                     <p key={"user_" + i}>
-                      {i + 1 + colLength * 2}. {element.username}
+                      {i + 1 + colLength * 2}.{" "}
+                      {this.getExchangeImage(element.exchange)}{" "}
+                      {element.username}
                     </p>
                   )
                 })}
