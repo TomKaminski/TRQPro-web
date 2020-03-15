@@ -11,6 +11,7 @@ import kucoin from "../images/brands/kucoin.png"
 import ledger from "../images/brands/ledger.png"
 import maklerska from "../images/brands/maklerska.png"
 import bitbay from "../images/brands/bitbay.png"
+import bybit from "../images/brands/bybit.png"
 
 const Brands = () => {
   return (
@@ -31,6 +32,13 @@ const Brands = () => {
               rel="noopener noreferrer"
             >
               <img src={bitmex} alt="logo" />
+            </a>
+            <a
+              href="https://www.bybit.com/en?affiliate_id=5089&group_id=0&group_type=1"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={bybit} alt="logo" />
             </a>
             <a
               href="https://auth.bitbay.net/ref/ZXC3YqpQXZ2C"
