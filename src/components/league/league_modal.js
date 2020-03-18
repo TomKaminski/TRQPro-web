@@ -118,12 +118,12 @@ export default class LeagueModal extends Component {
           return item.id === this.state.formData.league.value
         })
 
-        if (this.props.onParticipantAdded) {
-          let username = this.state.formData.nickname
-          this.props.onParticipantAdded({ username })
-        }
-
         if (response.data.isValid) {
+          if (this.props.onParticipantAdded) {
+            let username = this.state.formData.nickname
+            this.props.onParticipantAdded({ username })
+          }
+
           this.setState({
             isLoading: false,
             joinedLeague: joinedLeague,
