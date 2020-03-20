@@ -17,6 +17,8 @@ import LeagueModal from "../components/league/league_modal"
 
 import { apiUrl } from "../statics"
 
+import LeagueTable from "../components/league/table"
+
 const axios = require("axios")
 
 class LeaguePage extends React.Component {
@@ -363,9 +365,10 @@ class LeaguePage extends React.Component {
             </Col>
           </Row>
         </Container>
+        <LeagueTable leagueData={this.state.data.participants} />
         <table
           className={"table table-hover margin-bottom-40 table-responsive-md"}
-          id="liga-table"
+          id="liga-tablee"
         >
           <thead>
             <tr>
@@ -505,6 +508,7 @@ class LeaguePage extends React.Component {
     )
   }
 }
+
 
 const options = {
   layout: {
