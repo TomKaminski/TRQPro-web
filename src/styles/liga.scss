@@ -5,8 +5,16 @@
       padding: 35px 0.75rem;
     }
     td:last-child {
-      padding:0;
-      max-height: 100px;
+      padding: 0;
+    }
+  }
+}
+
+#liga-small-table {
+  tbody {
+    th,
+    td {
+      padding: 35px 0.75rem;
     }
   }
 }

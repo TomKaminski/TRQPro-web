@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import redCard from "../../images/red-card.svg"
 import rekt from "../../images/dead.svg"
 
-
 function Table({ columns, data }) {
   const {
     getTableProps,
@@ -33,14 +32,11 @@ function Table({ columns, data }) {
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                // Add the sorting props to control sorting. For this example
-                // we can add them into the header props
                 <th
                   scope="col"
                   {...column.getHeaderProps(column.getSortByToggleProps())}
                 >
                   {column.render("Header")}
-                  {/* Add a sort direction indicator */}
                   {column.canSort ? (
                     <span>
                       {" "}
@@ -51,7 +47,11 @@ function Table({ columns, data }) {
                           <FontAwesomeIcon icon="sort-down" size={"1x"} />
                         )
                       ) : (
-                        <FontAwesomeIcon icon="sort" size={"1x"} />
+                        <FontAwesomeIcon
+                          icon="sort"
+                          size={"1x"}
+                          color="lightgrey"
+                        />
                       )}
                     </span>
                   ) : (
@@ -120,17 +120,7 @@ function getRoeColored(roe, isRekt, isRetarded, tooLowBalance) {
     return <div>-</div>
   }
 
-  if (roe !== null) {
-    if (roe > 0) {
-      return <div className={"color-green"}>{roe.toFixed(2)}%</div>
-    } else if (roe < 0) {
-      return <div className={"color-red"}>{roe.toFixed(2)}%</div>
-    } else {
-      return <div>0%</div>
-    }
-  } else {
-    return <div>-</div>
-  }
+  return displayRoeBase(roe)
 }
 
 function getRoeCurrent(roe, isRekt, isRetarded, tooLowBalance) {
@@ -158,17 +148,7 @@ function getRoeCurrent(roe, isRekt, isRetarded, tooLowBalance) {
     )
   }
 
-  if (roe !== null) {
-    if (roe > 0) {
-      return <div className={"color-green"}>{roe.toFixed(2)}%</div>
-    } else if (roe < 0) {
-      return <div className={"color-red"}>{roe.toFixed(2)}%</div>
-    } else {
-      return <div>0%</div>
-    }
-  } else {
-    return <div>-</div>
-  }
+  return displayRoeBase(roe)
 }
 
 function getRoe1d(roe, isRekt, isRetarded, tooLowBalance) {
@@ -184,6 +164,10 @@ function getRoe1d(roe, isRekt, isRetarded, tooLowBalance) {
     return <div>DNS</div>
   }
 
+  return displayRoeBase(roe)
+}
+
+function displayRoeBase(roe) {
   if (roe !== null) {
     if (roe > 0) {
       return <div className={"color-green"}>{roe.toFixed(2)}%</div>
@@ -327,7 +311,7 @@ function LeagueTable({ leagueData }) {
                 <Line
                   data={getChartData(row.original.roes)}
                   width={120}
-                  height={40}
+                  height={95}
                   options={options}
                   legend={legend}
                 />
