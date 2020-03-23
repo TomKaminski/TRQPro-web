@@ -7,6 +7,8 @@ import { Container, Row, Col } from "react-bootstrap"
 
 import next from "../images/next.svg"
 import winner from "../images/winner.svg"
+import bitmex_logo from "../images/bitmex_logo.png"
+import bybit_logo from "../images/bybit_logo.png"
 
 import "../styles/liga.scss"
 
@@ -116,6 +118,7 @@ class LeaguePage extends React.Component {
     )
   }
 
+<<<<<<< HEAD
   mergeData() {
     const merged = this.state.data.participants
     merged.push(
@@ -140,6 +143,100 @@ class LeaguePage extends React.Component {
       })
     )
     return merged
+=======
+  getExchangeImage(exchange) {
+    if (exchange === "bybit") {
+      return <img src={bybit_logo} style={{ height: "20px" }} />
+    } else {
+      return <img src={bitmex_logo} style={{ height: "18px" }} />
+    }
+  }
+
+  getRoeColored(roe, isRekt, isRetarded, tooLowBalance) {
+    if (isRetarded || isRekt || tooLowBalance) {
+      return <div>-</div>
+    }
+
+    if (roe !== null) {
+      if (roe > 0) {
+        return <div className={"color-green"}>{roe.toFixed(2)}%</div>
+      } else if (roe < 0) {
+        return <div className={"color-red"}>{roe.toFixed(2)}%</div>
+      } else {
+        return <div>0%</div>
+      }
+    } else {
+      return <div>-</div>
+    }
+  }
+
+  getRoeCurrent(roe, isRekt, isRetarded, tooLowBalance) {
+    if (isRetarded) {
+      return (
+        <div>
+          <img src={redCard} alt="redCard" />
+        </div>
+      )
+    }
+
+    if (isRekt) {
+      return (
+        <div>
+          <img src={rekt} alt="rekt" />
+        </div>
+      )
+    }
+
+    if (tooLowBalance) {
+      return (
+        <div>
+          <img src={redCard} alt="redCard" />
+        </div>
+      )
+    }
+
+    if (roe !== null) {
+      if (roe > 0) {
+        return <div className={"color-green"}>{roe.toFixed(2)}%</div>
+      } else if (roe < 0) {
+        return <div className={"color-red"}>{roe.toFixed(2)}%</div>
+      } else {
+        return <div>0%</div>
+      }
+    } else {
+      return <div>-</div>
+    }
+  }
+
+  getRoe1d(roe, isRekt, isRetarded, tooLowBalance) {
+    if (isRetarded) {
+      return <div>DSQ</div>
+    }
+
+    if (isRekt) {
+      return <div>LIQ</div>
+    }
+
+    if (tooLowBalance) {
+      return <div>DNS</div>
+    }
+
+    if (roe !== null) {
+      if (roe > 0) {
+        return <div className={"color-green"}>{roe.toFixed(2)}%</div>
+      } else if (roe < 0) {
+        return <div className={"color-red"}>{roe.toFixed(2)}%</div>
+      } else {
+        return <div>0%</div>
+      }
+    } else {
+      return <div>-</div>
+    }
+  }
+
+  convertSatoshiToBTC(satoshi) {
+    return satoshi / 100000000.0
+>>>>>>> 0a40ed8b1f915855d50b482db36fc5edca24f04e
   }
 
   renderLeague() {
@@ -202,7 +299,8 @@ class LeaguePage extends React.Component {
                 .map((element, i) => {
                   return (
                     <p key={"user_" + i}>
-                      {i + 1}. {element.username}
+                      {i + 1}. {this.getExchangeImage(element.exchange)}{" "}
+                      {element.username}
                     </p>
                   )
                 })}
@@ -213,7 +311,9 @@ class LeaguePage extends React.Component {
                 .map((element, i) => {
                   return (
                     <p key={"user_" + i}>
-                      {i + 1 + colLength}. {element.username}
+                      {i + 1 + colLength}.{" "}
+                      {this.getExchangeImage(element.exchange)}{" "}
+                      {element.username}
                     </p>
                   )
                 })}
@@ -224,7 +324,9 @@ class LeaguePage extends React.Component {
                 .map((element, i) => {
                   return (
                     <p key={"user_" + i}>
-                      {i + 1 + colLength * 2}. {element.username}
+                      {i + 1 + colLength * 2}.{" "}
+                      {this.getExchangeImage(element.exchange)}{" "}
+                      {element.username}
                     </p>
                   )
                 })}
