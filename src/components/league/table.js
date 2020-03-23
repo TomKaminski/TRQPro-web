@@ -1,11 +1,11 @@
 import React from "react"
 import { useTable, useSortBy } from "react-table"
 import { Line } from "react-chartjs-2"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 import redCard from "../../images/red-card.svg"
 import rekt from "../../images/dead.svg"
-import next from "../../images/next.svg"
-import winner from "../../images/winner.svg"
+
 
 function Table({ columns, data }) {
   const {
@@ -21,10 +21,6 @@ function Table({ columns, data }) {
     },
     useSortBy
   )
-
-  // We don't want to render all 2000 rows for this example, so cap
-  // it at 20 for this use case
-  const firstPageRows = rows.slice(0, 20)
 
   return (
     <>
@@ -45,20 +41,29 @@ function Table({ columns, data }) {
                 >
                   {column.render("Header")}
                   {/* Add a sort direction indicator */}
-                  <span>
-                    {column.isSorted
-                      ? column.isSortedDesc
-                        ? " 🔽"
-                        : " 🔼"
-                      : ""}
-                  </span>
+                  {column.canSort ? (
+                    <span>
+                      {" "}
+                      {column.isSorted ? (
+                        column.isSortedDesc ? (
+                          <FontAwesomeIcon icon="sort-up" size={"1x"} />
+                        ) : (
+                          <FontAwesomeIcon icon="sort-down" size={"1x"} />
+                        )
+                      ) : (
+                        <FontAwesomeIcon icon="sort" size={"1x"} />
+                      )}
+                    </span>
+                  ) : (
+                    ""
+                  )}
                 </th>
               ))}
             </tr>
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {firstPageRows.map((row, i) => {
+          {rows.map((row, i) => {
             prepareRow(row)
             return (
               <tr
@@ -73,8 +78,6 @@ function Table({ columns, data }) {
           })}
         </tbody>
       </table>
-      <br />
-      <div>Showing the first 20 results of {rows.length} rows</div>
     </>
   )
 }
@@ -194,43 +197,34 @@ function getRoe1d(roe, isRekt, isRetarded, tooLowBalance) {
   }
 }
 
-const sortHelper = ({
-	isAfter,
-	isBefore,
-	desc
-}) => {
-	let order
-
-	if (isAfter) {
-		order = 1
-	} else if (isBefore) {
-		order = -1
-	} else {
-		order = 0
-	}
-
-	if (desc) {
-		return -order
-	} else {
-		return order
-	}
-}
-
-const sortString = (rowA, rowB, columnId, desc) => {
-	const stringA = rowA.values[columnId].trim().toLowerCase()
-	const stringB = rowB.values[columnId].trim().toLowerCase()
-
-	const isAfter = stringA > stringB
-	const isBefore = stringA < stringB
-
-	return sortHelper({
-		isAfter,
-		isBefore,
-		desc
-	})
-}
-
 function LeagueTable({ leagueData }) {
+  const customSort = React.useCallback((rowA, rowB, columnId) => {
+    let a = rowA.values[columnId]
+    let b = rowB.values[columnId]
+
+    switch (true) {
+      case rowB.original.tooLowBalance && rowA.original.tooLowBalance:
+        return b - a
+      case rowB.original.isRetarded && rowA.original.isRetarded:
+        return b - a < 0 ? -1 : 1
+      case rowB.original.isRekt && rowA.original.isRekt:
+        return b - a < 0 ? -1 : 1
+      case rowA.original.isRetarded:
+        return 1
+      case rowB.original.isRetarded:
+        return -1
+      case rowA.original.tooLowBalance:
+        return 1
+      case rowB.original.tooLowBalance:
+        return -1
+      case rowA.original.isRekt:
+        return 1
+      case rowB.original.isRekt:
+        return -1
+      default:
+        return b - a
+    }
+  }, [])
   const columns = React.useMemo(
     () => [
       {
@@ -240,13 +234,13 @@ function LeagueTable({ leagueData }) {
       {
         Header: "Nick",
         accessor: "username",
-        sortType: 'basic'
       },
       {
         Header: "Kapitał startowy",
         Cell: ({ row }) => (
           <span>{convertSatoshiToBTC(row.original.startingBalance)} BTC</span>
         ),
+        accessor: "startingBalance",
       },
       {
         Header: "Kapitał obecny",
@@ -260,6 +254,7 @@ function LeagueTable({ leagueData }) {
             BTC
           </span>
         ),
+        accessor: "balance",
       },
       {
         Header: "Obecne roe",
@@ -270,6 +265,8 @@ function LeagueTable({ leagueData }) {
             row.original.isRetarded,
             row.original.tooLowBalance
           ),
+        accessor: "roeCurrent",
+        sortType: customSort,
       },
       {
         Header: "1d",
@@ -280,6 +277,8 @@ function LeagueTable({ leagueData }) {
             row.original.isRetarded,
             row.original.tooLowBalance
           ),
+        accessor: "roe1d",
+        sortType: customSort,
       },
       {
         Header: "3d",
@@ -290,6 +289,8 @@ function LeagueTable({ leagueData }) {
             row.original.isRetarded,
             row.original.tooLowBalance
           ),
+        accessor: "roe3d",
+        sortType: customSort,
       },
       {
         Header: "7d",
@@ -300,6 +301,8 @@ function LeagueTable({ leagueData }) {
             row.original.isRetarded,
             row.original.tooLowBalance
           ),
+        accessor: "roe7d",
+        sortType: customSort,
       },
       {
         Header: "14d",
@@ -310,31 +313,33 @@ function LeagueTable({ leagueData }) {
             row.original.isRetarded,
             row.original.tooLowBalance
           ),
+        accessor: "roe14d",
+        sortType: customSort,
       },
       {
         Header: "graph",
         Cell: ({ row }) => (
-            <>
+          <>
             {row.original.isRetarded || row.original.tooLowBalance ? (
               <div></div>
             ) : (
               <div className={"roe-chart"}>
-              <Line
-                data={getChartData(row.original.roes)}
-                width={120}
-                height={40}
-                options={options}
-                legend={legend}
-              />
+                <Line
+                  data={getChartData(row.original.roes)}
+                  width={120}
+                  height={40}
+                  options={options}
+                  legend={legend}
+                />
               </div>
             )}
-            </>
+          </>
         ),
       },
     ],
-    []
+    [customSort]
   )
-  const data = React.useMemo(() => leagueData)
+  const data = React.useMemo(() => leagueData, [])
 
   return <Table columns={columns} data={data} />
 }
