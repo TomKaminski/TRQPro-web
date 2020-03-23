@@ -118,7 +118,6 @@ class LeaguePage extends React.Component {
     )
   }
 
-<<<<<<< HEAD
   mergeData() {
     const merged = this.state.data.participants
     merged.push(
@@ -143,7 +142,8 @@ class LeaguePage extends React.Component {
       })
     )
     return merged
-=======
+  }
+
   getExchangeImage(exchange) {
     if (exchange === "bybit") {
       return <img src={bybit_logo} style={{ height: "20px" }} />
@@ -152,95 +152,7 @@ class LeaguePage extends React.Component {
     }
   }
 
-  getRoeColored(roe, isRekt, isRetarded, tooLowBalance) {
-    if (isRetarded || isRekt || tooLowBalance) {
-      return <div>-</div>
-    }
-
-    if (roe !== null) {
-      if (roe > 0) {
-        return <div className={"color-green"}>{roe.toFixed(2)}%</div>
-      } else if (roe < 0) {
-        return <div className={"color-red"}>{roe.toFixed(2)}%</div>
-      } else {
-        return <div>0%</div>
-      }
-    } else {
-      return <div>-</div>
-    }
-  }
-
-  getRoeCurrent(roe, isRekt, isRetarded, tooLowBalance) {
-    if (isRetarded) {
-      return (
-        <div>
-          <img src={redCard} alt="redCard" />
-        </div>
-      )
-    }
-
-    if (isRekt) {
-      return (
-        <div>
-          <img src={rekt} alt="rekt" />
-        </div>
-      )
-    }
-
-    if (tooLowBalance) {
-      return (
-        <div>
-          <img src={redCard} alt="redCard" />
-        </div>
-      )
-    }
-
-    if (roe !== null) {
-      if (roe > 0) {
-        return <div className={"color-green"}>{roe.toFixed(2)}%</div>
-      } else if (roe < 0) {
-        return <div className={"color-red"}>{roe.toFixed(2)}%</div>
-      } else {
-        return <div>0%</div>
-      }
-    } else {
-      return <div>-</div>
-    }
-  }
-
-  getRoe1d(roe, isRekt, isRetarded, tooLowBalance) {
-    if (isRetarded) {
-      return <div>DSQ</div>
-    }
-
-    if (isRekt) {
-      return <div>LIQ</div>
-    }
-
-    if (tooLowBalance) {
-      return <div>DNS</div>
-    }
-
-    if (roe !== null) {
-      if (roe > 0) {
-        return <div className={"color-green"}>{roe.toFixed(2)}%</div>
-      } else if (roe < 0) {
-        return <div className={"color-red"}>{roe.toFixed(2)}%</div>
-      } else {
-        return <div>0%</div>
-      }
-    } else {
-      return <div>-</div>
-    }
-  }
-
-  convertSatoshiToBTC(satoshi) {
-    return satoshi / 100000000.0
->>>>>>> 0a40ed8b1f915855d50b482db36fc5edca24f04e
-  }
-
   renderLeague() {
-    const mergedData = this.mergeData()
     if (this.state.data === null) {
       return (
         <Container>
@@ -335,6 +247,8 @@ class LeaguePage extends React.Component {
         </div>
       )
     }
+
+    const mergedData = this.mergeData()
 
     return (
       <div>
