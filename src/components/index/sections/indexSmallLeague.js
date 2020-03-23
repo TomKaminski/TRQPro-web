@@ -121,7 +121,7 @@ export default class IndexSmallLeague extends React.Component {
         </p>
         <table
           className={"table margin-bottom-40 table-responsive-md"}
-          id="liga-table"
+          id="liga-small-table"
         >
           <tbody>
             {Object.keys(this.state.data.participants).map((key, index) => {

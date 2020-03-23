@@ -15,8 +15,6 @@ import CheckboxWithTitle from "./checkboxWithTitle"
 
 const axios = require("axios")
 
-//TODO: Validate only on submit? :)
-
 export default class LeagueModal extends Component {
   constructor(props) {
     super(props)
