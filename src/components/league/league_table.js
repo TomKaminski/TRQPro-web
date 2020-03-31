@@ -222,14 +222,14 @@ function LeagueTable({ leagueData }) {
       {
         Header: "Kapitał startowy",
         Cell: ({ row }) => {
-          if (row.original.exchange === "bitmex") {
+          if (row.original.exchange === "bybit") {
+            return <span>{row.original.startingBalance.toFixed(2)} USDT</span>
+          } else {
             return (
               <span>
                 {convertSatoshiToBTC(row.original.startingBalance)} BTC
               </span>
             )
-          } else {
-            return <span>{row.original.startingBalance.toFixed(2)} USDT</span>
           }
         },
         accessor: "startingBalance",
@@ -237,18 +237,7 @@ function LeagueTable({ leagueData }) {
       {
         Header: "Kapitał obecny",
         Cell: ({ row }) => {
-          if (row.original.exchange === "bitmex") {
-            return (
-              <span>
-                {row.original.isRekt ||
-                row.original.isRetarded ||
-                row.original.tooLowBalance
-                  ? 0
-                  : convertSatoshiToBTC(row.original.balance)}{" "}
-                BTC
-              </span>
-            )
-          } else {
+          if (row.original.exchange === "bybit") {
             return (
               <span>
                 {row.original.isRekt ||
@@ -257,6 +246,17 @@ function LeagueTable({ leagueData }) {
                   ? 0
                   : row.original.startingBalance.toFixed(2)}{" "}
                 USDT
+              </span>
+            )
+          } else {
+            return (
+              <span>
+                {row.original.isRekt ||
+                row.original.isRetarded ||
+                row.original.tooLowBalance
+                  ? 0
+                  : convertSatoshiToBTC(row.original.balance)}{" "}
+                BTC
               </span>
             )
           }
