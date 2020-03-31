@@ -74,7 +74,7 @@ module.exports = {
         },
         filter: (node, getNode) => {
           let momentNowString = moment(new Date()).format(
-            "YYYY-MM-DDThh:mm:ss.SSSZ"
+            "YYYY-MM-DDTHH:mm:ss.SSS"
           )
           if (node.internal.type === "StrapiArticle") {
             return node.publishedAt <= momentNowString

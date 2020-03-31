@@ -52,7 +52,7 @@ const makeRequest = (graphql, request) =>
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
-  let momentNowString = moment(new Date()).format("YYYY-MM-DDThh:mm:ss.SSSZ")
+  let momentNowString = moment(new Date()).format("YYYY-MM-DDTHH:mm:ss.SSS")
 
   createPage({
     path: `/`,
