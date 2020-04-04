@@ -244,7 +244,7 @@ function LeagueTable({ leagueData }) {
                 row.original.isRetarded ||
                 row.original.tooLowBalance
                   ? 0
-                  : row.original.startingBalance.toFixed(2)}{" "}
+                  : row.original.balance.toFixed(2)}{" "}
                 USDT
               </span>
             )

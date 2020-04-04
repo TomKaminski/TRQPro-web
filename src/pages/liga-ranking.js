@@ -193,7 +193,7 @@ class LeaguePage extends React.Component {
                     <th scope="col">Punkty</th>
                     <th scope="col">Średnie roe</th>
                     <th scope="col">Najwyższe roe</th>
-                    <th scope="col">Ilość rozegranych lig</th>
+                    <th scope="col">Rozegrane ligi</th>
                     <th scope="col">Łączny kapitał startowy</th>
                     <th scope="col">Łączny kapitał końcowy</th>
                   </tr>
@@ -205,6 +205,8 @@ class LeaguePage extends React.Component {
                       points,
                       startingBalanceSum,
                       endingBalanceSum,
+                      startingBalanceSumUSD,
+                      endingBalanceSumUSD,
                       leagues,
                       overallRoe,
                       bestRoe,
@@ -218,10 +220,28 @@ class LeaguePage extends React.Component {
                         <td>{this.getRoeOverall(bestRoe)}</td>
                         <td>{leagues}</td>
                         <td>
-                          {this.convertSatoshiToBTC(startingBalanceSum)} BTC
+                          {startingBalanceSum !== 0 && (
+                            <span>
+                              {this.convertSatoshiToBTC(startingBalanceSum)} BTC
+                            </span>
+                          )}
+                          {startingBalanceSumUSD !== 0 &&
+                            startingBalanceSum !== 0 && <br />}
+                          {startingBalanceSumUSD !== 0 && (
+                            <span>{startingBalanceSumUSD.toFixed(2)} USD</span>
+                          )}
                         </td>
                         <td>
-                          {this.convertSatoshiToBTC(endingBalanceSum)} BTC
+                          {endingBalanceSum !== 0 && (
+                            <span>
+                              {this.convertSatoshiToBTC(endingBalanceSum)} BTC
+                            </span>
+                          )}
+                          {endingBalanceSumUSD !== 0 &&
+                            endingBalanceSum !== 0 && <br />}
+                          {endingBalanceSumUSD !== 0 && (
+                            <span>{endingBalanceSumUSD.toFixed(2)} USD</span>
+                          )}
                         </td>
                       </tr>
                     )

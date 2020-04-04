@@ -35,6 +35,7 @@ export default class LeagueModal extends Component {
       validation: {
         nickValid: false,
         emailValid: false,
+        exchangeValid: false,
         apiKeyValid: false,
         apiSecretValid: false,
         leagueValid: false,
@@ -119,7 +120,8 @@ export default class LeagueModal extends Component {
         if (response.data.isValid) {
           if (this.props.onParticipantAdded) {
             let username = this.state.formData.nickname
-            this.props.onParticipantAdded({ username })
+            let exchange = this.state.formData.exchange.value
+            this.props.onParticipantAdded({ username, exchange })
           }
 
           this.setState({
@@ -140,10 +142,12 @@ export default class LeagueModal extends Component {
               apiKeyValid: false,
               apiSecretValid: false,
               leagueValid: false,
+              exchangeValid: false,
               formValid: false,
             },
           })
         } else {
+          console.log(response)
           this.setState({
             isLoading: false,
             lastApiResponse: response.data,
@@ -199,6 +203,7 @@ export default class LeagueModal extends Component {
                   nickValid: false,
                   emailValid: false,
                   apiKeyValid: false,
+                  exchangeValid: false,
                   apiSecretValid: false,
                   leagueValid: false,
                   formValid: false,
@@ -217,14 +222,26 @@ export default class LeagueModal extends Component {
             <div className={"modal-content"}>
               <h3>Chcesz dołączyć do ligi? Zapisz się juz teraz!</h3>
               <p>
-                Warunkiem uczestnictwa w Lidze jest założenie konta z tego{" "}
-                <a
-                  href="https://www.bitmex.com/register/kiQKAa"
-                  target="_blank"
-                >
-                  linka
-                </a>
-                .
+                Warunkiem uczestnictwa w Lidze jest założenie konta z jednego z
+                ponizszych reflinków: <br />
+                <ul>
+                  <li>
+                    <a
+                      href="https://www.bitmex.com/register/kiQKAa"
+                      target="_blank"
+                    >
+                      Bitmex
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.bybit.com/app/register?affiliate_id=5089&language=en&group_id=0&group_type=1"
+                      target="_blank"
+                    >
+                      Bybit
+                    </a>
+                  </li>
+                </ul>
               </p>
               <p>
                 Najbliższa liga rozpoczyna się{" "}
@@ -445,8 +462,9 @@ export default class LeagueModal extends Component {
                 </div>
               )}
 
+              <h3>Bitmex - instrukcja generowania API Key</h3>
               <p>
-                * Idź do{" "}
+                Idź do{" "}
                 <a
                   href="https://www.bitmex.com/app/apiKeys"
                   target="_blank"
@@ -469,6 +487,34 @@ export default class LeagueModal extends Component {
                   (zapisz "Secret" w bezpiecznym miejscu, widzisz go tylko
                   podczas tworzenia klucza!).
                 </li>
+              </ol>
+
+              <h3>Bybit - instrukcja generowania API Key</h3>
+              <p>
+                Idź do{" "}
+                <a
+                  href="https://www.bybit.com/app/user/api-management"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  https://www.bybit.com/app/user/api-management
+                </a>{" "}
+                i postępuj zgodnie z instrukcją:
+              </p>
+              <ol>
+                <li>Kliknij na "Create New Key",</li>
+                <li>Wybierz typ klucza: "Api Transaction",</li>
+                <li>W polu "Name" wpisz Twój nick,</li>
+                <li>Pole "Connect with IP" pozostawiamy puste, bez zmian,</li>
+                <li>
+                  Pole "Key permissions" wybieramy{" "}
+                  <b>Active orders and positions,</b>
+                </li>
+                <li>
+                  <b>Zaznaczamy pole readonly,</b>
+                </li>
+                <li>Przepisujemy kod z naszego 2FA,</li>
+                <li>Zatwierdzamy przyciskiem Confirm.</li>
               </ol>
             </div>
           )}
@@ -545,6 +591,7 @@ export default class LeagueModal extends Component {
           this.state.validation.nickValid &&
           this.state.validation.apiKeyValid &&
           this.state.validation.leagueValid &&
+          this.state.validation.exchangeValid &&
           this.state.validation.apiSecretValid,
       },
     })
