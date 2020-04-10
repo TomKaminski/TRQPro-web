@@ -6,6 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import redCard from "../../images/red-card.svg"
 import rekt from "../../images/dead.svg"
 
+import bitmex_logo from "../../images/bitmex_logo.png"
+import bybit_logo from "../../images/bybit_logo.png"
+
 function Table({ columns, data }) {
   const {
     getTableProps,
@@ -80,6 +83,14 @@ function Table({ columns, data }) {
       </table>
     </>
   )
+}
+
+function getExchangeImage(exchange) {
+  if (exchange === "bybit") {
+    return <img src={bybit_logo} style={{ height: "20px" }} />
+  } else {
+    return <img src={bitmex_logo} style={{ height: "18px" }} />
+  }
 }
 
 function convertSatoshiToBTC(satoshi) {
@@ -218,6 +229,13 @@ function LeagueTable({ leagueData }) {
       {
         Header: "Nick",
         accessor: "username",
+        Cell: ({ row }) => {
+          return (
+            <span>
+              {getExchangeImage(row.original.exchange)} {row.original.username}
+            </span>
+          )
+        },
       },
       {
         Header: "Kapitał startowy",
