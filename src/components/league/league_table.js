@@ -8,6 +8,7 @@ import rekt from "../../images/dead.svg"
 
 import bitmex_logo from "../../images/bitmex_logo.png"
 import bybit_logo from "../../images/bybit_logo.png"
+import binance_logo from "../../images/binance_logo.png"
 
 function Table({ columns, data }) {
   const {
@@ -86,8 +87,11 @@ function Table({ columns, data }) {
 }
 
 function getExchangeImage(exchange) {
+  console.log(exchange)
   if (exchange === "bybit") {
     return <img src={bybit_logo} style={{ height: "20px" }} />
+  } else if (exchange === "binance") {
+    return <img src={binance_logo} style={{ height: "20px" }} />
   } else {
     return <img src={bitmex_logo} style={{ height: "18px" }} />
   }
@@ -240,7 +244,7 @@ function LeagueTable({ leagueData }) {
       {
         Header: "Kapitał startowy",
         Cell: ({ row }) => {
-          if (row.original.exchange === "bybit") {
+          if (row.original.exchange !== "bitmex") {
             return <span>{row.original.startingBalance.toFixed(2)} USDT</span>
           } else {
             return (
@@ -255,7 +259,7 @@ function LeagueTable({ leagueData }) {
       {
         Header: "Kapitał obecny",
         Cell: ({ row }) => {
-          if (row.original.exchange === "bybit") {
+          if (row.original.exchange !== "bitmex") {
             return (
               <span>
                 {row.original.isRekt ||

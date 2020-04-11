@@ -380,6 +380,10 @@ export default class LeagueModal extends Component {
                                   value: "bitmex",
                                 },
                                 {
+                                  label: "Binance",
+                                  value: "binance",
+                                },
+                                {
                                   label: "Bybit",
                                   value: "bybit",
                                 },
