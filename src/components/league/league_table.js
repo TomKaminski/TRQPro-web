@@ -87,7 +87,6 @@ function Table({ columns, data }) {
 }
 
 function getExchangeImage(exchange) {
-  console.log(exchange)
   if (exchange === "bybit") {
     return <img src={bybit_logo} style={{ height: "20px" }} />
   } else if (exchange === "binance") {
@@ -138,7 +137,7 @@ function getRoeColored(roe, isRekt, isRetarded, tooLowBalance) {
   return displayRoeBase(roe)
 }
 
-function getRoeCurrent(roe, isRekt, isRetarded, tooLowBalance) {
+function getRoeCurrent(roe, isRekt, isRetarded, tooLowBalance, isZombie) {
   if (isRetarded) {
     return (
       <div>
@@ -147,7 +146,7 @@ function getRoeCurrent(roe, isRekt, isRetarded, tooLowBalance) {
     )
   }
 
-  if (isRekt) {
+  if (isRekt || isZombie) {
     return (
       <div>
         <img src={rekt} alt="rekt" />
@@ -166,7 +165,7 @@ function getRoeCurrent(roe, isRekt, isRetarded, tooLowBalance) {
   return displayRoeBase(roe)
 }
 
-function getRoe1d(roe, isRekt, isRetarded, tooLowBalance) {
+function getRoe1d(roe, isRekt, isRetarded, tooLowBalance, isZombie) {
   if (isRetarded) {
     return <div>DSQ</div>
   }
@@ -177,6 +176,10 @@ function getRoe1d(roe, isRekt, isRetarded, tooLowBalance) {
 
   if (tooLowBalance) {
     return <div>DNS</div>
+  }
+
+  if (isZombie) {
+    return <div>ZOMBIE</div>
   }
 
   return displayRoeBase(roe)
@@ -292,7 +295,8 @@ function LeagueTable({ leagueData }) {
             row.original.roeCurrent,
             row.original.isRekt,
             row.original.isRetarded,
-            row.original.tooLowBalance
+            row.original.tooLowBalance,
+            row.original.isZombie
           ),
         accessor: "roeCurrent",
         sortType: customSort,
@@ -304,7 +308,8 @@ function LeagueTable({ leagueData }) {
             row.original.roe1d,
             row.original.isRekt,
             row.original.isRetarded,
-            row.original.tooLowBalance
+            row.original.tooLowBalance,
+            row.original.isZombie
           ),
         accessor: "roe1d",
         sortType: customSort,

@@ -147,7 +147,6 @@ export default class LeagueModal extends Component {
             },
           })
         } else {
-          console.log(response)
           this.setState({
             isLoading: false,
             lastApiResponse: response.data,

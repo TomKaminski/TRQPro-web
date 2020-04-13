@@ -115,6 +115,8 @@ class LeaguePage extends React.Component {
           account: 0,
           deposit: {},
           username: item.username,
+          exchange: item.exchange,
+          isZombie: false,
           startingBalance: 0,
           roeCurrent: null,
           roe1d: null,

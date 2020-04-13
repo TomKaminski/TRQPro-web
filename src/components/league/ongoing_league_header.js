@@ -9,7 +9,6 @@ const OngoingLeagueHeader = ({
   participantsLength,
   hasEnded,
 }) => {
-  console.log(startDate)
   return (
     <Container fluid={true} className={"league-stat-container"}>
       <Row>
