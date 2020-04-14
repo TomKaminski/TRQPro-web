@@ -40,6 +40,11 @@ function SEO({ description, lang, meta, title, pathname }) {
           content: metaDescription,
         },
         {
+          name: "keywords",
+          content:
+            "trq, trqpro, liga trq, bitcoin trq, altcoin trq, liga bitmex, liga binance, liga bybit, trading trq, trq telegram, trq pro, społeczność trq",
+        },
+        {
           property: `og:title`,
           content: title,
         },
