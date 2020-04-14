@@ -8,8 +8,10 @@ module.exports = {
     author: `@tomaszkaminski`,
     twitterHandle: `@TRQPro`,
     url: `https://www.facebook.com/TRQPro/`,
+    siteUrl: `https://www.trqpro.pl`,
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     {
