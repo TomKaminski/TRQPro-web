@@ -77,7 +77,7 @@ class LeaguePage extends React.Component {
   render() {
     return (
       <Layout>
-        <SEO title="Liga" />
+        <SEO title="Liga" pathname={`/liga`} />
         <div className={"join-league-container"}>
           <h2>Chcesz dołączyć do ligi? zapisz się i zapoznaj z regulaminem</h2>
           <button

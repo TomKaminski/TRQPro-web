@@ -6,7 +6,11 @@ import StaticPageContent from "../components/staticPageContent"
 class LeagueRulesPage extends React.Component {
   render() {
     return (
-      <StaticPageContent data={this.props.data} title={"Liga - regulamin"} />
+      <StaticPageContent
+        data={this.props.data}
+        title={"Liga - regulamin"}
+        pathname={`/liga-regulamin`}
+      />
     )
   }
 }

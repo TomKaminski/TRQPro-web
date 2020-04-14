@@ -5,7 +5,13 @@ import StaticPageContent from "../components/staticPageContent"
 
 class ContactPage extends React.Component {
   render() {
-    return <StaticPageContent data={this.props.data} title={"Kontakt"} />
+    return (
+      <StaticPageContent
+        data={this.props.data}
+        title={"Kontakt"}
+        titlepath={"kontakt"}
+      />
+    )
   }
 }
 

@@ -20,7 +20,7 @@ export default class StaticPageContent extends React.Component {
     let data = this.guardData()
     return (
       <Layout>
-        <SEO title={this.props.title} />
+        <SEO title={this.props.title} pathname={`/${this.props.titlepath}`} />
         <h1>{this.props.title}</h1>
 
         <div

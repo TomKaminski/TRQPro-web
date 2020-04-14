@@ -5,7 +5,13 @@ import StaticPageContent from "../components/staticPageContent"
 
 class WorkWithUsPage extends React.Component {
   render() {
-    return <StaticPageContent data={this.props.data} title={"Pracuj z nami"} />
+    return (
+      <StaticPageContent
+        data={this.props.data}
+        title={"Pracuj z nami"}
+        titlepath={"pracuj-z-nami"}
+      />
+    )
   }
 }
 

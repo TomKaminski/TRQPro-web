@@ -5,7 +5,13 @@ import StaticPageContent from "../components/staticPageContent"
 
 class RulesPage extends React.Component {
   render() {
-    return <StaticPageContent data={this.props.data} title={"Regulamin"} />
+    return (
+      <StaticPageContent
+        data={this.props.data}
+        title={"Regulamin"}
+        titlepath={"regulamin"}
+      />
+    )
   }
 }
 

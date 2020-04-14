@@ -85,7 +85,7 @@ class LeaguePage extends React.Component {
   render() {
     return (
       <Layout>
-        <SEO title="Liga" />
+        <SEO title="Liga - ranking" pathname={`/liga-ranking`} />
         <div>
           <h2>Ranking</h2>
           <p>

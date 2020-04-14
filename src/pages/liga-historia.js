@@ -120,7 +120,7 @@ class LeaguePage extends React.Component {
   render() {
     return (
       <Layout>
-        <SEO title="Liga" />
+        <SEO title="Liga - historia rozgrywek" pathname={`/liga-historia`} />
         <div className={"join-league-container"}>
           <h2>Historia rozgrywek</h2>
         </div>

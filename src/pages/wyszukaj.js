@@ -46,7 +46,10 @@ export default class SearchPage extends React.Component {
     let tags = this.getTags()
     return (
       <Layout>
-        <SEO title={`Wyszukaj - ${this.searchPhrase}`} />
+        <SEO
+          title={`Wyszukaj - ${this.searchPhrase}`}
+          pathname={`/wyszukaj?fraza=${this.searchPhrase}`}
+        />
         <h2 className={"margin-top-base margin-bottom-40 search-heading"}>
           Wyniki wyszukiwania dla "{this.searchPhrase}"
         </h2>

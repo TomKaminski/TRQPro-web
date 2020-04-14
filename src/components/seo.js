@@ -26,6 +26,7 @@ function SEO({ description, lang, meta, title, pathname }) {
     `
   )
 
+  const canonical = pathname ? `https://www.trqpro.pl${pathname}` : null
   const metaDescription = description || site.siteMetadata.description
   return (
     <Helmet
@@ -34,6 +35,16 @@ function SEO({ description, lang, meta, title, pathname }) {
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
+      link={
+        canonical
+          ? [
+              {
+                rel: "canonical",
+                href: canonical,
+              },
+            ]
+          : []
+      }
       meta={[
         {
           name: `description`,
