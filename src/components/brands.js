@@ -12,6 +12,7 @@ import ledger from "../images/brands/ledger.png"
 import maklerska from "../images/brands/maklerska.png"
 import bitbay from "../images/brands/bitbay.png"
 import bybit from "../images/brands/bybit.png"
+import binanceFutures from "../images/brands/binance_futures_logo.svg"
 
 const Brands = () => {
   return (
@@ -25,6 +26,16 @@ const Brands = () => {
               rel="noopener noreferrer"
             >
               <img src={binance} alt="trq binance refferal link" />
+            </a>
+            <a
+              href="https://www.binance.com/en/futures/ref/trqpro"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={binanceFutures}
+                alt="trq binance futures refferal link"
+              />
             </a>
             <a
               href="https://www.bitmex.com/register/kiQKAa"

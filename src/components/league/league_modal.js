@@ -243,11 +243,11 @@ export default class LeagueModal extends Component {
                   </li>
                   <li>
                     <a
-                      href="https://www.binance.com/en/register?ref=37243377"
+                      href="https://www.binance.com/en/futures/ref/trqpro"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Binance
+                      Binance Futures
                     </a>
                   </li>
                 </ul>

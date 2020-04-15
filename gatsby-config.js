@@ -3,7 +3,7 @@ const moment = require("moment")
 module.exports = {
   siteMetadata: {
     title: `TRQ Pro`,
-    description: `TRQPro to polska społeczność traderow. Chat telegram, edukacja, analizy - forex, bitcoin i inne kryptowaluty. Cykliczne ligi TRQPro na giełdach krypto.`,
+    description: `TRQPro to polska społeczność traderów. Chat telegram, edukacja, analizy - forex, bitcoin i inne kryptowaluty. Cykliczne ligi TRQPro na giełdach krypto.`,
     author: `TRQ Pro`,
     twitterHandle: `@TRQPro`,
     url: `https://www.facebook.com/TRQPro/`,
