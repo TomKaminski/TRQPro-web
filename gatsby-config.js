@@ -3,9 +3,8 @@ const moment = require("moment")
 module.exports = {
   siteMetadata: {
     title: `TRQ Pro`,
-    description: `TRQPro jest społecznością stworzoną przez Traderów dla Traderów. Znajdziesz tu kompendium wiedzy na każdy możliwy temat dotyczący spekulacji wyłożone w prosty sposób. Dzielimy się swoimi taktykami rozgrywania pozycji, strategiami, analizami technicznymi i informacjami dotyczącymi walorów, które znamy i na których gramy. Pomagamy w zapoznaniu się z platformami, na których gramy, aby w głupi sposób nie tracić pieniędzy. Tropimy nieuczciwe grupy sygnałowe i ujawniając oszustwa przestrzegamy innych uczestników. Wszystko po to, aby wspólnie zarabiać na giełdzie.  
-    Co ważne – robimy to wszystko za darmo, dlatego, że zarabiamy na rynkach, nie szkoleniach. W zamian za pomoc, oczekujemy jedynie zaangażowania w grupę i pomocy innym.`,
-    author: `@tomaszkaminski`,
+    description: `TRQPro to polska społeczność traderow. Chat telegram, edukacja, analizy - forex, bitcoin i inne kryptowaluty. Cykliczne ligi TRQPro na giełdach krypto.`,
+    author: `TRQ Pro`,
     twitterHandle: `@TRQPro`,
     url: `https://www.facebook.com/TRQPro/`,
     siteUrl: `https://www.trqpro.pl`,
@@ -14,6 +13,13 @@ module.exports = {
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://www.trqpro.pl",
+        sitemap: "https://www.trqpro.pl/sitemap.xml",
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

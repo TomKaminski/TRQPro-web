@@ -107,7 +107,6 @@ export default class LeagueModal extends Component {
         email,
         apiKey,
         apiSecret,
-        exchange,
         saveForAllLeaguesAtCurrentQuarter,
         league: league.value,
         exchange: exchange.value,
@@ -228,6 +227,7 @@ export default class LeagueModal extends Component {
                     <a
                       href="https://www.bitmex.com/register/kiQKAa"
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       Bitmex
                     </a>
@@ -236,6 +236,7 @@ export default class LeagueModal extends Component {
                     <a
                       href="https://www.bybit.com/app/register?affiliate_id=5089&language=en&group_id=0&group_type=1"
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       Bybit
                     </a>

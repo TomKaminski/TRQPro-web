@@ -83,11 +83,20 @@ class ArticleTemplate extends React.Component {
   }
 
   render() {
+    const siteTitle = this.props.data.site.siteMetadata.title
+    const image = this.props.data.strapiArticle.image
+      ? this.props.data.strapiArticle.image.childImageSharp.fluid
+      : null
+    const metaDesc = this.props.data.strapiArticle.content
+      .substring(0, 160)
+      .concat("...")
     return (
-      <Layout>
+      <Layout title={siteTitle}>
         <SEO
           title={this.props.data.strapiArticle.title}
           pathname={this.props.path}
+          description={metaDesc}
+          image={image}
         />
         <Row id="image-big-article">
           <Col lg={{ span: 10, offset: 1 }} xl={{ span: 8, offset: 2 }}>
@@ -98,6 +107,7 @@ class ArticleTemplate extends React.Component {
               imgStyle={{
                 objectFit: "contain",
               }}
+              alt="main article image"
               className={"index-article-image-big"}
             />
           </Col>

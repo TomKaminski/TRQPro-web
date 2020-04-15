@@ -17,12 +17,8 @@ export default class IndexPager extends React.Component {
     var className = "page-item noselect"
     if (index === this.state.activePageIndex) className += " active"
     return (
-      <li
-        className={className}
-        onClick={() => this.onPageChange(index)}
-        key={index}
-      >
-        {index + 1}
+      <li className={className} key={index}>
+        <button onClick={() => this.onPageChange(index)}>{index + 1}</button>
       </li>
     )
   }
@@ -53,20 +49,16 @@ export default class IndexPager extends React.Component {
   render() {
     return (
       <ul className={"pager"}>
-        <li
-          className={"page-item"}
-          onClick={() => this.guardDecrementPage()}
-          key="decrement"
-        >
-          <FontAwesomeIcon icon={"chevron-left"} />
+        <li className={"page-item"} key="decrement">
+          <button onClick={() => this.guardDecrementPage()}>
+            <FontAwesomeIcon icon={"chevron-left"} />
+          </button>
         </li>
         {this.renderPages()}
-        <li
-          key="increment"
-          className={"page-item noselect"}
-          onClick={() => this.guardIncrementPage()}
-        >
-          <FontAwesomeIcon icon={"chevron-right"} />
+        <li key="increment" className={"page-item noselect"}>
+          <button onClick={() => this.guardIncrementPage()}>
+            <FontAwesomeIcon icon={"chevron-right"} />
+          </button>
         </li>
       </ul>
     )

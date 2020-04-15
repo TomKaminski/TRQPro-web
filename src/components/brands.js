@@ -24,70 +24,70 @@ const Brands = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={binance} alt="logo" />
+              <img src={binance} alt="trq binance refferal link" />
             </a>
             <a
               href="https://www.bitmex.com/register/kiQKAa"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={bitmex} alt="logo" />
+              <img src={bitmex} alt="trq bitmex refferal link" />
             </a>
             <a
               href="https://www.bybit.com/en?affiliate_id=5089&group_id=0&group_type=1"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={bybit} alt="logo" />
+              <img src={bybit} alt="trq bybit refferal link" />
             </a>
             <a
               href="https://auth.bitbay.net/ref/ZXC3YqpQXZ2C"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={bitbay} alt="logo" />
+              <img src={bitbay} alt="trq bitbay refferal link" />
             </a>
             <a
               href="https://brave.com/trq647"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={brave} alt="logo" />
+              <img src={brave} alt="trq brave refferal link" />
             </a>
             <a
               href="https://www.deribit.com/reg-7152.7312"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={deribit} alt="logo" />
+              <img src={deribit} alt="trq deribit refferal link" />
             </a>
             <a
               href="https://www.icmarkets.com/?camp=23195"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={icmarkets} alt="logo" />
+              <img src={icmarkets} alt="trq icmarkets refferal link" />
             </a>
             <a
               href="https://www.kucoin.com/?rcode=tJeRc4"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={kucoin} alt="logo" />
+              <img src={kucoin} alt="trq kucoin refferal link" />
             </a>
             <a
               href="https://shop.ledger.com/?r=fb95c418f05d"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={ledger} alt="logo" />
+              <img src={ledger} alt="trq ledger refferal link" />
             </a>
             <a
               href="https://maklerska.pl/ref/TRQPro/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={maklerska} alt="logo" />
+              <img src={maklerska} alt="trq maklerska refferal link" />
             </a>
           </div>
         </Col>

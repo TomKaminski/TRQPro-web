@@ -1,7 +1,6 @@
 import React from "react"
 import { Row, Col } from "react-bootstrap"
 import IndexMiniArticle from "../shared/indexMiniArticle"
-import { Link } from "gatsby"
 import IndexSectionHeader from "./indexSectionHeader"
 
 const IndexSectionVertical = props => {

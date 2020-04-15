@@ -79,17 +79,22 @@ class LeaguePage extends React.Component {
       <Layout>
         <SEO title="Liga" pathname={`/liga`} />
         <div className={"join-league-container"}>
-          <h2>Chcesz dołączyć do ligi? zapisz się i zapoznaj z regulaminem</h2>
+          <h1>Liga TRQPro - Bitmex, Binance, Bybit</h1>
           <button
             className={"form-submit-button"}
             onClick={e => {
               this.setState({ showModal: true })
             }}
           >
-            <img src={next} style={{ paddingRight: "8px" }} alt="" /> Dołącz do
-            ligi!
+            <img
+              src={next}
+              style={{ paddingRight: "8px" }}
+              alt="join league button"
+            />{" "}
+            Dołącz do ligi!
           </button>
         </div>
+        <h4>Chcesz dołączyć do ligi? zapisz się i zapoznaj z regulaminem</h4>
 
         <LeagueLinks />
 

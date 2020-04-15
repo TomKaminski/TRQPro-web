@@ -15,6 +15,7 @@ export default class MiniArticleImageWrapper extends React.Component {
                 objectFit: "cover",
                 objectPosition: "50% 50%",
               }}
+              alt="main article image"
               className={"index-article-image"}
             />
           </Col>

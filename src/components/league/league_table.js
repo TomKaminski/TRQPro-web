@@ -88,11 +88,29 @@ function Table({ columns, data }) {
 
 function getExchangeImage(exchange) {
   if (exchange === "bybit") {
-    return <img src={bybit_logo} style={{ height: "20px" }} />
+    return (
+      <img
+        src={bybit_logo}
+        style={{ height: "20px" }}
+        alt="league bybit logo"
+      />
+    )
   } else if (exchange === "binance") {
-    return <img src={binance_logo} style={{ height: "20px" }} />
+    return (
+      <img
+        src={binance_logo}
+        style={{ height: "20px" }}
+        alt="league binance logo"
+      />
+    )
   } else {
-    return <img src={bitmex_logo} style={{ height: "18px" }} />
+    return (
+      <img
+        src={bitmex_logo}
+        style={{ height: "18px" }}
+        alt="league bitmex logo"
+      />
+    )
   }
 }
 
@@ -373,7 +391,7 @@ function LeagueTable({ leagueData }) {
     ],
     [customSort]
   )
-  const data = React.useMemo(() => leagueData, [])
+  const data = React.useMemo(() => leagueData, [leagueData])
 
   return <Table columns={columns} data={data} />
 }

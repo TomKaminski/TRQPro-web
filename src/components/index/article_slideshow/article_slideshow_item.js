@@ -43,6 +43,7 @@ export default class ArticleSlideshowItem extends React.Component {
             <Img
               fluid={this.props.article.image.childImageSharp.fluid}
               className="slide-image"
+              alt="article image"
             />
           </Col>
         </Row>

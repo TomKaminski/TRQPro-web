@@ -19,7 +19,9 @@ class TagTemplate extends React.Component {
   render() {
     return (
       <Layout>
-        <SEO title={`Tag - ${this.getTagName()}`} />
+        <SEO title={`TRQPro - Tag - ${this.getTagName()}`} />
+        <h1>{`TRQPro - ${this.getTagName()}`}</h1>
+        <br></br>
         <p className="categoryTagResults">
           Wyniki wpisów pod tagiem:{" "}
           <span className={"name"}>{this.getTagName()}</span>{" "}

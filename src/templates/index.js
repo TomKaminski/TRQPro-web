@@ -86,6 +86,27 @@ export default class IndexPage extends React.Component {
         <SEO title="Strona główna" />
         <ArticleSlideshow articles={this.getArticlesForSlideshow()} />
         <Container fluid={true} id="main-container" className={"page-padding"}>
+          <Row style={{ visibility: "hidden", height: "1px" }}>
+            <Col>
+              <h1>Społeczność TRQPro - trading, analizy, liga</h1>
+              <p>
+                <i>
+                  została stworzona przez Traderów dla Traderów. Znajdziesz tu
+                  kompendium wiedzy na każdy możliwy temat dotyczący spekulacji
+                  wyłożone w prosty sposób. Dzielimy się swoimi taktykami
+                  rozgrywania pozycji, strategiami, analizami technicznymi i
+                  informacjami dotyczącymi walorów, które znamy i na których
+                  gramy. Pomagamy w zapoznaniu się z platformami, na których
+                  gramy, aby w głupi sposób nie tracić pieniędzy. Tropimy
+                  nieuczciwe grupy sygnałowe i ujawniając oszustwa przestrzegamy
+                  innych uczestników. Wszystko po to, aby wspólnie zarabiać na
+                  giełdzie. Co ważne – robimy to wszystko za darmo, dlatego, że
+                  zarabiamy na rynkach, nie szkoleniach. W zamian za pomoc,
+                  oczekujemy jedynie zaangażowania w grupę i pomocy innym.
+                </i>
+              </p>
+            </Col>
+          </Row>
           <Row>
             <Col xs={12} lg={9}>
               <Row>
@@ -189,6 +210,27 @@ export default class IndexPage extends React.Component {
             </Col>
             <Col xs={6} className="d-block d-lg-none">
               <IndexSmallLeague />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <h1>Społeczność TRQPro - trading, analizy, liga</h1>
+              <p>
+                <i>
+                  została stworzona przez Traderów dla Traderów. Znajdziesz tu
+                  kompendium wiedzy na każdy możliwy temat dotyczący spekulacji
+                  wyłożone w prosty sposób. Dzielimy się swoimi taktykami
+                  rozgrywania pozycji, strategiami, analizami technicznymi i
+                  informacjami dotyczącymi walorów, które znamy i na których
+                  gramy. Pomagamy w zapoznaniu się z platformami, na których
+                  gramy, aby w głupi sposób nie tracić pieniędzy. Tropimy
+                  nieuczciwe grupy sygnałowe i ujawniając oszustwa przestrzegamy
+                  innych uczestników. Wszystko po to, aby wspólnie zarabiać na
+                  giełdzie. Co ważne – robimy to wszystko za darmo, dlatego, że
+                  zarabiamy na rynkach, nie szkoleniach. W zamian za pomoc,
+                  oczekujemy jedynie zaangażowania w grupę i pomocy innym.
+                </i>
+              </p>
             </Col>
           </Row>
         </Container>

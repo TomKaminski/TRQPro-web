@@ -35,7 +35,7 @@ const OngoingLeagueHeader = ({
               {new Date(endDate).toLocaleString()}
             </p>
           </div>
-          <img src={winner} alt="" />
+          <img src={winner} alt="winner" />
         </Col>
 
         <Col xs={6} md={3}>

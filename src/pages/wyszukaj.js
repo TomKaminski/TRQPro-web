@@ -47,7 +47,7 @@ export default class SearchPage extends React.Component {
     return (
       <Layout>
         <SEO
-          title={`Wyszukaj - ${this.searchPhrase}`}
+          title={`TRQPro - Wyszukaj - ${this.searchPhrase}`}
           pathname={`/wyszukaj?fraza=${this.searchPhrase}`}
         />
         <h2 className={"margin-top-base margin-bottom-40 search-heading"}>

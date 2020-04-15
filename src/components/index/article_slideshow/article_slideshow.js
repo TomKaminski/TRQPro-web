@@ -28,7 +28,11 @@ const ArticleSlideshow = props => {
         style={{ margin: "auto" }}
       >
         {props.articles.map((art, i) => (
-          <ArticleSlideshowItem article={art} id={i} />
+          <ArticleSlideshowItem
+            article={art}
+            id={i}
+            key={`article_slide_${i}`}
+          />
         ))}
       </Slider>
       <div className={"bg"}></div>

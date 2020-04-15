@@ -8,7 +8,7 @@ class WorkWithUsPage extends React.Component {
     return (
       <StaticPageContent
         data={this.props.data}
-        title={"Pracuj z nami"}
+        title={"TRQPro - Pracuj z nami"}
         titlepath={"pracuj-z-nami"}
       />
     )

@@ -8,7 +8,7 @@ class ContactPage extends React.Component {
     return (
       <StaticPageContent
         data={this.props.data}
-        title={"Kontakt"}
+        title={"TRQPro - Kontakt"}
         titlepath={"kontakt"}
       />
     )

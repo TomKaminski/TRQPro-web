@@ -42,13 +42,32 @@ const LeagueSignList = ({ participants }) => {
     </Row>
   )
 }
+
 function getExchangeImage(exchange) {
   if (exchange === "bybit") {
-    return <img src={bybit_logo} style={{ height: "20px" }} />
+    return (
+      <img
+        src={bybit_logo}
+        style={{ height: "20px" }}
+        alt="league bybit logo"
+      />
+    )
   } else if (exchange === "binance") {
-    return <img src={binance_logo} style={{ height: "20px" }} />
+    return (
+      <img
+        src={binance_logo}
+        style={{ height: "20px" }}
+        alt="league binance logo"
+      />
+    )
   } else {
-    return <img src={bitmex_logo} style={{ height: "18px" }} />
+    return (
+      <img
+        src={bitmex_logo}
+        style={{ height: "18px" }}
+        alt="league bitmex logo"
+      />
+    )
   }
 }
 

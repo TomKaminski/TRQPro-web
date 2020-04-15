@@ -11,7 +11,7 @@ class AuthorTemplate extends React.Component {
     return (
       <Layout>
         <SEO title="Author" />
-
+        <h1>{`TRQPro - wpisy autora - ${this.props.data.strapiUser.username}`}</h1>
         <Row>
           {this.props.data.allStrapiArticle.edges.map((element, i) => {
             return (
@@ -48,6 +48,9 @@ export default AuthorTemplate
 
 export const authorQuery = graphql`
   query AuthorTemplate($key: Int!, $skip: Int!, $limit: Int!, $date: Date) {
+    strapiUser(strapiId: { eq: $key }) {
+      username
+    }
     allStrapiArticle(
       filter: { publishedAt: { lte: $date }, author: { id: { eq: $key } } }
       limit: $limit

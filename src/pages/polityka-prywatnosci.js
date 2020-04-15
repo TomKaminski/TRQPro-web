@@ -8,7 +8,7 @@ class PrivacyPolicyPage extends React.Component {
     return (
       <StaticPageContent
         data={this.props.data}
-        title={"Polityka prywatności"}
+        title={"TRQPro - Polityka prywatności"}
         titlepath={"polityka-prywatnosci"}
       />
     )

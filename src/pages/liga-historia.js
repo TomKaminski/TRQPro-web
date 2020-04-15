@@ -122,9 +122,13 @@ class LeaguePage extends React.Component {
       <Layout>
         <SEO title="Liga - historia rozgrywek" pathname={`/liga-historia`} />
         <div className={"join-league-container"}>
-          <h2>Historia rozgrywek</h2>
+          <h1>Liga TRQPro - historia rozgrywek</h1>
         </div>
-
+        <h5>
+          W tym miejscu możesz prześledzić wszystkie minione rozgrywki na naszej
+          platformie.
+        </h5>
+        <br></br>
         <Col xs={12} md={6} style={{ paddingLeft: 0, marginBottom: "20px" }}>
           <p style={{ marginBottom: "2px" }}>Wybierz ligę</p>
           <Dropdown

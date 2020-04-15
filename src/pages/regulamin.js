@@ -8,7 +8,7 @@ class RulesPage extends React.Component {
     return (
       <StaticPageContent
         data={this.props.data}
-        title={"Regulamin"}
+        title={"TRQPro - Regulamin"}
         titlepath={"regulamin"}
       />
     )

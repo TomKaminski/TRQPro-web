@@ -8,7 +8,7 @@ class LeagueRulesPage extends React.Component {
     return (
       <StaticPageContent
         data={this.props.data}
-        title={"Liga - regulamin"}
+        title={"Liga TRQPro - regulamin rozgrywek"}
         pathname={`/liga-regulamin`}
       />
     )

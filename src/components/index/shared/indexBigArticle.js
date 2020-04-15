@@ -14,6 +14,7 @@ export default class IndexBigArticle extends React.Component {
             objectFit: "cover",
             objectPosition: "50% 50%",
           }}
+          alt="main article image"
           className={"index-article-image"}
         />
         <div className={"upper-text-container"}>

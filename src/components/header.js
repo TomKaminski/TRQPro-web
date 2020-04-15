@@ -20,7 +20,7 @@ export default class Header extends React.Component {
         <Container fluid={true} className={"page-padding"}>
           <Link to={`/`}>
             <Navbar.Brand>
-              <img src={logoImg} id="brand-logo" alt="logo" />
+              <img src={logoImg} id="brand-logo" alt="trq logo" />
             </Navbar.Brand>
           </Link>
           <Nav className={"always-row-directed"}>

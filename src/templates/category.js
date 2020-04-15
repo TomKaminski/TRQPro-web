@@ -19,7 +19,10 @@ class CategoryTemplate extends React.Component {
   render() {
     return (
       <Layout>
-        <SEO title={`Kategoria - ${this.getCategoryName()}`} />
+        <SEO title={`TRQPro - Kategoria - ${this.getCategoryName()}`} />
+
+        <h1>{`TRQPro - ${this.getCategoryName()}`}</h1>
+        <br></br>
         <p className="categoryTagResults">
           Wyniki wpisów pod kategorią:{" "}
           <span className={"name"}>{this.getCategoryName()}</span>

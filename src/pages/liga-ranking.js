@@ -87,10 +87,10 @@ class LeaguePage extends React.Component {
       <Layout>
         <SEO title="Liga - ranking" pathname={`/liga-ranking`} />
         <div>
-          <h2>Ranking</h2>
-          <p>
+          <h1>Liga TRQPro - ranking rozgrywek</h1>
+          <h5>
             W tym miejscu znajdziesz tabele z punktacją kwartalną oraz roczną.
-          </p>
+          </h5>
         </div>
         {/* 
         <Col xs={12} md={6} style={{ paddingLeft: 0, marginBottom: "20px" }}>
