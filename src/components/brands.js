@@ -20,7 +20,7 @@ const Brands = () => {
         <Col>
           <div id="brands">
             <a
-              href="https://www.binance.com/?ref=37243377"
+              href="https://www.binance.com/en/register?ref=37243377"
               target="_blank"
               rel="noopener noreferrer"
             >

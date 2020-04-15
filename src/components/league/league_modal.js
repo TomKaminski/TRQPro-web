@@ -241,6 +241,15 @@ export default class LeagueModal extends Component {
                       Bybit
                     </a>
                   </li>
+                  <li>
+                    <a
+                      href="https://www.binance.com/en/register?ref=37243377"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Binance
+                    </a>
+                  </li>
                 </ul>
               </p>
               <p>
@@ -519,6 +528,41 @@ export default class LeagueModal extends Component {
                 </li>
                 <li>Przepisujemy kod z naszego 2FA,</li>
                 <li>Zatwierdzamy przyciskiem Confirm.</li>
+              </ol>
+
+              <h3>Binance - instrukcja generowania API Key</h3>
+              <p>
+                Idź do{" "}
+                <a
+                  href="https://www.binance.com/en/usercenter/settings/api-management"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  https://www.binance.com/en/usercenter/settings/api-management
+                </a>{" "}
+                i postępuj zgodnie z instrukcją:
+              </p>
+              <ol>
+                <li>Wprowadź nazwę klucza API, następnie kliknij Create,</li>
+                <li>Wprowadź kod 2FA,</li>
+                <li>Potwierdź utworzenie klucza na swoim emailu,</li>
+                <li>
+                  Kliknij na przycisk "Edit restrictions", aby zmienić
+                  uprawnienia klucza,
+                </li>
+                <li>
+                  Upewnij się, że zaznaczone są tylko pola{" "}
+                  <b>Read Only oraz Enable Future</b>,
+                </li>
+                <li>
+                  Pod sekcją IP access restrictions zaznaczamy{" "}
+                  <b>Unrestricted</b>,
+                </li>
+                <li>Zmiany zapisujemy przyciskiem u góry "Save",</li>
+                <li>
+                  Przekopiuj API Key oraz Secret Key w odpowiednie pola w
+                  formularzu, gotowe.
+                </li>
               </ol>
             </div>
           )}
