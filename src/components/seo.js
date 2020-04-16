@@ -71,7 +71,7 @@ function SEO({ description, lang, meta, title, pathname, image: metaImage }) {
           content: `summary`,
         },
         {
-          name: `og:url`,
+          property: `og:url`,
           content: site.siteMetadata.siteUrl + pathname,
         },
         {
