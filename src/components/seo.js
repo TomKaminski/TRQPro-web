@@ -20,7 +20,7 @@ function SEO({ description, lang, meta, title, pathname, image: metaImage }) {
     `
   )
 
-  const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}` : null
+  const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}/` : null
   const metaDescription = description || site.siteMetadata.description
   const image =
     metaImage && metaImage.src
@@ -72,7 +72,7 @@ function SEO({ description, lang, meta, title, pathname, image: metaImage }) {
         },
         {
           property: `og:url`,
-          content: site.siteMetadata.siteUrl + pathname,
+          content: canonical,
         },
         {
           name: `twitter:creator`,
