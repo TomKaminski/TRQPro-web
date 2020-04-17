@@ -97,6 +97,7 @@ class ArticleTemplate extends React.Component {
           pathname={this.props.path}
           description={metaDesc}
           image={image}
+          isArticle={true}
         />
         <Row id="image-big-article">
           <Col lg={{ span: 10, offset: 1 }} xl={{ span: 8, offset: 2 }}>
