@@ -1,16 +1,8 @@
 import React from "react"
-import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
+import { Title, Link, Meta } from "react-head"
 import { useStaticQuery, graphql } from "gatsby"
 
-const SEO = ({
-  description,
-  lang,
-  title,
-  pathname,
-  image: metaImage,
-  isArticle,
-}) => {
+const SEO = ({ description, title, pathname, image: metaImage, isArticle }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -35,52 +27,37 @@ const SEO = ({
       : null
 
   return (
-    <Helmet
-      defer={false}
-      defaultTitle={title}
-      titleTemplate={`%s | ${site.siteMetadata.title} | Trading, Analizy, Liga`}
-    >
-      <html lang={lang} />
-      <link rel="canonical" href={canonical} />
-      <meta
+    <>
+      <Title>
+        {title} | {site.siteMetadata.title} | Trading, Analizy, Liga
+      </Title>
+      <Link rel="canonical" href={canonical} />
+      <Meta
         name="viewport"
         content="width=device-width,initial-scale=1,shrink-to-fit=no,viewport-fit=cover"
       />
-      <meta name="description" content={metaDescription} />
-      <meta
+      <Meta name="description" content={metaDescription} />
+      <Meta
         name="keywords"
         content="trq, trqpro, liga trq, bitcoin trq, altcoin trq, liga bitmex, liga binance, liga bybit, trading trq, trq telegram, trq pro, społeczność trq, analizy krypto, analizy forex, analizy trq, forex, kryptowaluty, altcoin"
       />
-
       {/* Facebook og tags */}
-      <meta property="og:url" content={canonical} />
-      {isArticle ? <meta property="og:type" content="article" /> : null}
-      {metaImage ? <meta property="og:image" content={image} /> : null}
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={metaDescription} />
-
+      <Meta property="og:url" content={canonical} />
+      {isArticle ? <Meta property="og:type" content="article" /> : null}
+      {metaImage ? <Meta property="og:image" content={image} /> : null}
+      <Meta property="og:title" content={title} />
+      <Meta property="og:description" content={metaDescription} />
       {/* Twitter Card tags */}
-      <meta
+      <Meta
         name="twitter:card"
         content={metaImage ? "summary_large_image" : "summary"}
       />
-      <meta name="twitter:creator" content="@TRQPro" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={metaDescription} />
-      {metaImage ? <meta name="twitter:image" content={image} /> : null}
-    </Helmet>
+      <Meta name="twitter:creator" content="@TRQPro" />
+      <Meta name="twitter:title" content={title} />
+      <Meta name="twitter:description" content={metaDescription} />
+      {metaImage ? <Meta name="twitter:image" content={image} /> : null}
+    </>
   )
-}
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
-  image: PropTypes.shape({
-    src: PropTypes.string.isRequired,
-  }),
-  pathname: PropTypes.string,
 }
 
 export default SEO
