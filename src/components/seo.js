@@ -43,10 +43,15 @@ const SEO = ({ description, title, pathname, image: metaImage, isArticle }) => {
       />
       {/* Facebook og tags */}
       <Meta property="og:url" content={canonical} />
-      {isArticle ? <Meta property="og:type" content="article" /> : null}
+      {isArticle ? (
+        <Meta property="og:type" content="article" />
+      ) : (
+        <Meta property="og:type" content="website" />
+      )}
       {metaImage ? <Meta property="og:image" content={image} /> : null}
       <Meta property="og:title" content={title} />
       <Meta property="og:description" content={metaDescription} />
+      <Meta property="fb:app_id" content="568172334057098" />
       {/* Twitter Card tags */}
       <Meta
         name="twitter:card"
