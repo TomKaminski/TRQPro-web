@@ -17,11 +17,11 @@ import OurChannels from "../components/article/our_channels"
 const renderer = new marked.Renderer()
 
 // Override function
-renderer.image = function(href, title, text) {
+renderer.image = function (href, title, text) {
   return `<img src="${href}" alt="${text}" data-zoomable>`
 }
 
-renderer.link = function(href, title, text) {
+renderer.link = function (href, title, text) {
   if (href.includes("trqpro.pl")) {
     return `<a href="${href}">${text}</a>`
   } else {
@@ -36,7 +36,7 @@ const disqusConfig = (slug, title) => {
   }
 }
 
-const renderMeta = data => {
+const renderMeta = (data) => {
   if (data.metadata) {
     return (
       <div className={"article-metadata"}>
@@ -148,7 +148,7 @@ class ArticleTemplate extends React.Component {
                 {this.props.data.strapiArticle.tags.length > 0 ? (
                   <div className={"article-meta"}>
                     <FontAwesomeIcon icon="hashtag" size={"1x"} />{" "}
-                    {this.props.data.strapiArticle.tags.map(tag => (
+                    {this.props.data.strapiArticle.tags.map((tag) => (
                       <Link
                         to={`/tag/${tag.key}`}
                         key={tag.key}

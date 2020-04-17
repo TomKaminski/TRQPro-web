@@ -1,16 +1,16 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Helmet from "react-helmet"
+import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({
+const SEO = ({
   description,
   lang,
   title,
   pathname,
   image: metaImage,
   isArticle,
-}) {
+}) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -36,73 +36,39 @@ function SEO({
 
   return (
     <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
+      defer={false}
+      defaultTitle={title}
       titleTemplate={`%s | ${site.siteMetadata.title} | Trading, Analizy, Liga`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          name: "keywords",
-          content:
-            "trq, trqpro, liga trq, bitcoin trq, altcoin trq, liga bitmex, liga binance, liga bybit, trading trq, trq telegram, trq pro, społeczność trq, analizy krypto, analizy forex, analizy trq, forex, kryptowaluty, altcoin",
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: isArticle ? `article` : `website`,
-        },
-        {
-          property: `og:url`,
-          content: canonical,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(
-        metaImage
-          ? [
-              {
-                property: `og:image`,
-                content: image,
-              },
-              {
-                name: "twitter:card",
-                content: "summary_large_image",
-              },
-            ]
-          : [
-              {
-                name: "twitter:card",
-                content: "summary",
-              },
-            ]
-      )}
-    />
+    >
+      <html lang={lang} />
+      <link rel="canonical" href={canonical} />
+      <meta
+        name="viewport"
+        content="width=device-width,initial-scale=1,shrink-to-fit=no,viewport-fit=cover"
+      />
+      <meta name="description" content={metaDescription} />
+      <meta
+        name="keywords"
+        content="trq, trqpro, liga trq, bitcoin trq, altcoin trq, liga bitmex, liga binance, liga bybit, trading trq, trq telegram, trq pro, społeczność trq, analizy krypto, analizy forex, analizy trq, forex, kryptowaluty, altcoin"
+      />
+
+      {/* Facebook og tags */}
+      <meta property="og:url" content={canonical} />
+      {isArticle ? <meta property="og:type" content="article" /> : null}
+      {metaImage ? <meta property="og:image" content={metaImage} /> : null}
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={metaDescription} />
+
+      {/* Twitter Card tags */}
+      <meta
+        name="twitter:card"
+        content={metaImage ? "summary_large_image" : "summary"}
+      />
+      <meta name="twitter:creator" content="@TRQPro" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={metaDescription} />
+      {metaImage ? <meta name="twitter:image" content={metaImage} /> : null}
+    </Helmet>
   )
 }
 
