@@ -10,7 +10,7 @@ module.exports = {
     siteUrl: `https://www.trqpro.pl`,
   },
   plugins: [
-    // `gatsby-plugin-sitemap`,
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     {

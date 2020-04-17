@@ -27,7 +27,7 @@ const SEO = ({
     `
   )
 
-  const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}` : null
+  const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}/` : null
   const metaDescription = description || site.siteMetadata.description
   const image =
     metaImage && metaImage.src
@@ -41,6 +41,7 @@ const SEO = ({
       titleTemplate={`%s | ${site.siteMetadata.title} | Trading, Analizy, Liga`}
     >
       <html lang={lang} />
+      <link rel="canonical" href={canonical} />
       <meta
         name="viewport"
         content="width=device-width,initial-scale=1,shrink-to-fit=no,viewport-fit=cover"
