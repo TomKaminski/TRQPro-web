@@ -55,7 +55,7 @@ const SEO = ({
       {/* Facebook og tags */}
       <meta property="og:url" content={canonical} />
       {isArticle ? <meta property="og:type" content="article" /> : null}
-      {metaImage ? <meta property="og:image" content={metaImage} /> : null}
+      {metaImage ? <meta property="og:image" content={image} /> : null}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={metaDescription} />
 
@@ -67,7 +67,7 @@ const SEO = ({
       <meta name="twitter:creator" content="@TRQPro" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={metaDescription} />
-      {metaImage ? <meta name="twitter:image" content={metaImage} /> : null}
+      {metaImage ? <meta name="twitter:image" content={image} /> : null}
     </Helmet>
   )
 }
