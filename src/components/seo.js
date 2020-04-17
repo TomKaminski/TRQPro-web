@@ -41,16 +41,6 @@ function SEO({
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title} | Trading, Analizy, Liga`}
-      link={
-        canonical
-          ? [
-              {
-                rel: "canonical",
-                href: canonical,
-              },
-            ]
-          : []
-      }
       meta={[
         {
           name: `description`,
