@@ -42,7 +42,7 @@ const SEO = ({ description, title, pathname, image: metaImage, isArticle }) => {
         content="trq, trqpro, liga trq, bitcoin trq, altcoin trq, liga bitmex, liga binance, liga bybit, trading trq, trq telegram, trq pro, społeczność trq, analizy krypto, analizy forex, analizy trq, forex, kryptowaluty, altcoin"
       />
       {/* Facebook og tags */}
-      <Meta property="og:url" content={canonical} />
+      {/* <Meta property="og:url" content={canonical} /> */}
       {isArticle ? (
         <Meta property="og:type" content="article" />
       ) : (
