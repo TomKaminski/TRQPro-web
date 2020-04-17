@@ -31,7 +31,7 @@ const SEO = ({ description, title, pathname, image: metaImage, isArticle }) => {
       <Title>
         {title} | {site.siteMetadata.title} | Trading, Analizy, Liga
       </Title>
-      <Link rel="canonical" href={canonical} />
+      {/* <Link rel="canonical" href={canonical} /> */}
       <Meta
         name="viewport"
         content="width=device-width,initial-scale=1,shrink-to-fit=no,viewport-fit=cover"
