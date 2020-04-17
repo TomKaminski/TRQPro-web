@@ -10,7 +10,7 @@ module.exports = {
     siteUrl: `https://www.trqpro.pl`,
   },
   plugins: [
-    `gatsby-plugin-sitemap`,
+    // `gatsby-plugin-sitemap`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     {
@@ -62,22 +62,22 @@ module.exports = {
         fields: [`title`, `tags`, `category`, `name`],
         resolvers: {
           StrapiArticle: {
-            title: node => node.title,
-            category: node => node.category.name,
-            tags: node => node.tags.map(tag => tag.name).join(", "),
-            path: node => node.id,
-            content: node => node.content.substring(0, 350).concat("..."),
-            author: node => node.author,
-            publishedAt: node => node.publishedAt,
-            fields: node => node.fields,
+            title: (node) => node.title,
+            category: (node) => node.category.name,
+            tags: (node) => node.tags.map((tag) => tag.name).join(", "),
+            path: (node) => node.id,
+            content: (node) => node.content.substring(0, 350).concat("..."),
+            author: (node) => node.author,
+            publishedAt: (node) => node.publishedAt,
+            fields: (node) => node.fields,
           },
           StrapiCategory: {
-            name: node => node.name,
-            key: node => node.key,
+            name: (node) => node.name,
+            key: (node) => node.key,
           },
           StrapiTag: {
-            name: node => node.name,
-            key: node => node.key,
+            name: (node) => node.name,
+            key: (node) => node.key,
           },
         },
         filter: (node, getNode) => {
