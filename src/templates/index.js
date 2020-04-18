@@ -17,12 +17,13 @@ import telegramAT from "../images/analizy.png"
 import telegramForex from "../images/forex.png"
 
 import IndexSmallLeague from "../components/index/sections/indexSmallLeague"
+import BinanceWidget from "../components/binance_widget"
 
 export default class IndexPage extends React.Component {
   getArticlesForSlideshow() {
     var computingArray = []
-    this.props.data.allStrapiArticle.group.forEach(groupOfArticles => {
-      groupOfArticles.edges.forEach(article => {
+    this.props.data.allStrapiArticle.group.forEach((groupOfArticles) => {
+      groupOfArticles.edges.forEach((article) => {
         computingArray.push(article.node)
       })
     })
@@ -33,7 +34,7 @@ export default class IndexPage extends React.Component {
   }
 
   getArticlesForCategory(categoryTag, take) {
-    let articles = this.props.data.allStrapiArticle.group.find(group => {
+    let articles = this.props.data.allStrapiArticle.group.find((group) => {
       return group.fieldValue === categoryTag
     })
 
@@ -159,6 +160,7 @@ export default class IndexPage extends React.Component {
               />
             </Col>
             <Col xs={12} lg={3} className="d-none d-lg-block">
+              <BinanceWidget />
               <TwitterTimelineEmbed
                 sourceType="profile"
                 screenName="trqpro"
@@ -196,7 +198,11 @@ export default class IndexPage extends React.Component {
               )}
             </Col>
           </Row>
-
+          <Row>
+            <Col className="d-block d-lg-none section-margin-and-padding">
+              <BinanceWidget />
+            </Col>
+          </Row>
           <Row>
             <Col xs={6} className="d-block d-lg-none">
               <TwitterTimelineEmbed
@@ -212,6 +218,7 @@ export default class IndexPage extends React.Component {
               <IndexSmallLeague />
             </Col>
           </Row>
+
           <Row>
             <Col>
               <h1>Społeczność TRQPro - trading, analizy, liga</h1>

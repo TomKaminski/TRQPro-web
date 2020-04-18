@@ -14,12 +14,13 @@ const settings = {
   autoplay: true,
   arrows: false,
   infinite: true,
-  speed: 500,
+  autoplaySpeed: 8000,
+  speed: 600,
   slidesToShow: 1,
   slidesToScroll: 1,
 }
 
-const ArticleSlideshow = props => {
+const ArticleSlideshow = (props) => {
   return (
     <div id="article-slideshow">
       <Slider
