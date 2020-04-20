@@ -8,7 +8,7 @@ const BinanceWidget = () => {
     theme: "dark",
     urlParmas: {
       ref: "37243377",
-      utm_source: "",
+      utm_source: "TRQPro",
     },
   }
 
