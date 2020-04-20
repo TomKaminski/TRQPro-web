@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react"
-import { Widget, unloadWidget } from "binance-fiat-widget"
 
 const BinanceWidget = () => {
   const r = useRef(null)
@@ -13,12 +12,15 @@ const BinanceWidget = () => {
   }
 
   useEffect(() => {
-    if (r?.current) {
-      Widget(r.current, options)
-    }
+    if (typeof window !== undefined) {
+      const { Widget, unloadWidget } = require("binance-fiat-widget")
+      if (r?.current) {
+        Widget(r.current, options)
+      }
 
-    return () => {
-      unloadWidget()
+      return () => {
+        unloadWidget()
+      }
     }
   }, [r])
 
