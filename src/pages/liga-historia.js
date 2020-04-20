@@ -16,6 +16,10 @@ import Dropdown from "react-dropdown"
 
 import { apiUrl } from "../statics"
 
+import bitmex_logo from "../images/bitmex_logo.png"
+import bybit_logo from "../images/bybit_logo.png"
+import binance_logo from "../images/binance_logo.png"
+
 const axios = require("axios")
 
 class LeaguePage extends React.Component {
@@ -34,7 +38,7 @@ class LeaguePage extends React.Component {
     let endpoint = apiUrl + "leaguehistory/selectorData"
     axios
       .get(endpoint)
-      .then(response => {
+      .then((response) => {
         this.setState(
           {
             leagueOptions: this.processLeagueOptions(response.data),
@@ -45,18 +49,46 @@ class LeaguePage extends React.Component {
           }
         )
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
   }
 
   processLeagueOptions(data) {
-    return data.map(val => {
+    return data.map((val) => {
       return {
         label: val.substring(0, val.length - 5),
         value: val,
       }
     })
+  }
+
+  getExchangeImage(exchange) {
+    if (exchange === "bybit") {
+      return (
+        <img
+          src={bybit_logo}
+          style={{ height: "20px" }}
+          alt="league bybit logo"
+        />
+      )
+    } else if (exchange === "binance") {
+      return (
+        <img
+          src={binance_logo}
+          style={{ height: "20px" }}
+          alt="league binance logo"
+        />
+      )
+    } else {
+      return (
+        <img
+          src={bitmex_logo}
+          style={{ height: "18px" }}
+          alt="league bitmex logo"
+        />
+      )
+    }
   }
 
   getChartData(roes) {
@@ -93,7 +125,7 @@ class LeaguePage extends React.Component {
       apiUrl + "leaguehistory/leagueData?id=" + this.state.selectedLeague
     axios
       .get(endpoint)
-      .then(response => {
+      .then((response) => {
         if (response.data.leagueUniqueIdentifier) {
           this.setState({
             data: response.data,
@@ -108,7 +140,7 @@ class LeaguePage extends React.Component {
           })
         }
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({
           data: null,
           loading: false,
@@ -133,7 +165,7 @@ class LeaguePage extends React.Component {
           <p style={{ marginBottom: "2px" }}>Wybierz ligę</p>
           <Dropdown
             options={this.state.leagueOptions}
-            onChange={opt => {
+            onChange={(opt) => {
               this.setState(
                 {
                   selectedLeague: opt.value,
@@ -171,20 +203,10 @@ class LeaguePage extends React.Component {
       return <div>-</div>
     }
 
-    if (roe !== null) {
-      if (roe > 0) {
-        return <div className={"color-green"}>{roe.toFixed(2)}%</div>
-      } else if (roe < 0) {
-        return <div className={"color-red"}>{roe.toFixed(2)}%</div>
-      } else {
-        return <div>0%</div>
-      }
-    } else {
-      return <div>-</div>
-    }
+    return this.displayRoeBase(roe)
   }
 
-  getRoeCurrent(roe, isRekt, isRetarded, tooLowBalance) {
+  getRoeCurrent(roe, isRekt, isRetarded, tooLowBalance, isZombie) {
     if (isRetarded) {
       return (
         <div>
@@ -193,7 +215,7 @@ class LeaguePage extends React.Component {
       )
     }
 
-    if (isRekt) {
+    if (isRekt || isZombie) {
       return (
         <div>
           <img src={rekt} alt="rekt" />
@@ -209,6 +231,10 @@ class LeaguePage extends React.Component {
       )
     }
 
+    return this.displayRoeBase(roe)
+  }
+
+  displayRoeBase(roe) {
     if (roe !== null) {
       if (roe > 0) {
         return <div className={"color-green"}>{roe.toFixed(2)}%</div>
@@ -222,7 +248,7 @@ class LeaguePage extends React.Component {
     }
   }
 
-  getRoe1d(roe, isRekt, isRetarded, tooLowBalance) {
+  getRoe1d(roe, isRekt, isRetarded, tooLowBalance, isZombie) {
     if (isRetarded) {
       return <div>DSQ</div>
     }
@@ -235,21 +261,34 @@ class LeaguePage extends React.Component {
       return <div>DNS</div>
     }
 
-    if (roe !== null) {
-      if (roe > 0) {
-        return <div className={"color-green"}>{roe.toFixed(2)}%</div>
-      } else if (roe < 0) {
-        return <div className={"color-red"}>{roe.toFixed(2)}%</div>
-      } else {
-        return <div>0%</div>
-      }
-    } else {
-      return <div>-</div>
+    if (isZombie) {
+      return <div>ZOMBIE</div>
     }
+
+    return this.displayRoeBase(roe)
   }
 
   convertSatoshiToBTC(satoshi) {
     return satoshi / 100000000.0
+  }
+
+  getBalanceContent(isRekt, isRetarded, tooLowBalance, exchange, balance) {
+    if (exchange !== "bitmex") {
+      return (
+        <span>
+          {isRekt || isRetarded || tooLowBalance ? 0 : balance.toFixed(2)} USDT
+        </span>
+      )
+    } else {
+      return (
+        <span>
+          {isRekt || isRetarded || tooLowBalance
+            ? 0
+            : this.convertSatoshiToBTC(balance)}{" "}
+          BTC
+        </span>
+      )
+    }
   }
 
   renderLeague() {
@@ -332,6 +371,8 @@ class LeaguePage extends React.Component {
                 isRekt,
                 isRetarded,
                 tooLowBalance,
+                exchange,
+                isZombie,
                 roes,
               } = this.state.data.participants[key]
               return (
@@ -340,20 +381,36 @@ class LeaguePage extends React.Component {
                   key={index}
                 >
                   <th scope="row">{index + 1}</th>
-                  <td>{username}</td>
-                  <td>{this.convertSatoshiToBTC(startingBalance)} BTC</td>
                   <td>
-                    {isRekt || isRetarded || tooLowBalance
-                      ? 0
-                      : this.convertSatoshiToBTC(balance)}{" "}
-                    BTC
+                    <span>
+                      {this.getExchangeImage(exchange)} {username}
+                    </span>
+                  </td>
+                  <td>
+                    {exchange === "bitmex" ? (
+                      <span>
+                        {this.convertSatoshiToBTC(startingBalance)} BTC
+                      </span>
+                    ) : (
+                      <span>{startingBalance.toFixed(2)} USDT</span>
+                    )}
+                  </td>
+                  <td>
+                    {this.getBalanceContent(
+                      isRekt,
+                      isRetarded,
+                      tooLowBalance,
+                      exchange,
+                      balance
+                    )}
                   </td>
                   <td>
                     {this.getRoeCurrent(
                       roeCurrent,
                       isRekt,
                       isRetarded,
-                      tooLowBalance
+                      tooLowBalance,
+                      isZombie
                     )}
                   </td>
                   <td>
@@ -364,7 +421,8 @@ class LeaguePage extends React.Component {
                       roe3d,
                       isRekt,
                       isRetarded,
-                      tooLowBalance
+                      tooLowBalance,
+                      isZombie
                     )}
                   </td>
                   <td>
@@ -468,17 +526,17 @@ const options = {
     footerAlign: "center",
     footerFontFamily: "'Montserrat', 'Arial', sans-serif",
     callbacks: {
-      label: function() {
+      label: function () {
         return null
       },
-      title: function() {
+      title: function () {
         return null
       },
-      footer: function(tooltipItems, data) {
+      footer: function (tooltipItems, data) {
         var sum = 0
 
         tooltipItems.forEach(
-          tooltipItem =>
+          (tooltipItem) =>
             (sum +=
               data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index])
         )
