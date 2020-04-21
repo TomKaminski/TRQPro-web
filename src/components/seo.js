@@ -1,5 +1,5 @@
 import React from "react"
-import { Title, Link, Meta } from "react-head"
+import { Title, Meta } from "react-head"
 import { useStaticQuery, graphql } from "gatsby"
 
 const SEO = ({ description, title, pathname, image: metaImage, isArticle }) => {
@@ -19,7 +19,7 @@ const SEO = ({ description, title, pathname, image: metaImage, isArticle }) => {
     `
   )
 
-  const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}/` : null
+  //const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}/` : null
   const metaDescription = description || site.siteMetadata.description
   const image =
     metaImage && metaImage.src

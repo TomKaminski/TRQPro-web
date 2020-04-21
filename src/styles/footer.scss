@@ -3,6 +3,11 @@ footer {
   color: white !important;
   padding: 30px 0;
 
+  .patron-img {
+    max-height: 60px;
+    max-width: 250px;
+  }
+
   #copyright {
     font-size: 13px;
     font-weight: 200;
@@ -20,9 +25,15 @@ footer {
   ul {
     list-style-type: none;
     padding: 0;
+    &.nav-list {
+      margin-bottom: 28px;
+    }
+    &.social-list {
+      float: right;
+    }
     > li,
     li > a {
-      margin-top: 16px;
+      margin-top: 12px;
       color: white;
       font-size: 13px;
       font-weight: 200;
