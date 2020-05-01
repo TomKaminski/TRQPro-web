@@ -28,6 +28,16 @@ const OurChannels = () => {
           </a>
         </li>
         <li>
+          TRQPro Liga:{" "}
+          <a
+            href="https://t.me/TRQProligalewar"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            https://t.me/TRQProligalewar
+          </a>
+        </li>
+        <li>
           TRQPro Mining:{" "}
           <a
             href="https://t.me/TRQProMining"
