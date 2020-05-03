@@ -50,7 +50,7 @@ class LeaguePage extends React.Component {
     let endpoint = apiUrl + "league/lastReading"
     axios
       .get(endpoint)
-      .then(response => {
+      .then((response) => {
         if (response.data.leagueUniqueIdentifier) {
           this.setState({
             data: response.data,
@@ -65,7 +65,7 @@ class LeaguePage extends React.Component {
           })
         }
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({
           data: null,
           loading: false,
@@ -82,7 +82,7 @@ class LeaguePage extends React.Component {
           <h1>Liga TRQPro - Bitmex, Binance, Bybit</h1>
           <button
             className={"form-submit-button"}
-            onClick={e => {
+            onClick={(e) => {
               this.setState({ showModal: true })
             }}
           >
@@ -114,7 +114,7 @@ class LeaguePage extends React.Component {
   mergeData() {
     const merged = this.state.data.participants
     merged.push(
-      ...this.state.data.totallyEmptyAccounts.map(item => {
+      ...this.state.data.totallyEmptyAccounts.map((item) => {
         return {
           balance: 0,
           account: 0,
@@ -156,7 +156,7 @@ class LeaguePage extends React.Component {
         <div>
           <LeagueModal
             isActive={this.state.showModal}
-            onParticipantAdded={participant =>
+            onParticipantAdded={(participant) =>
               this.onParticipantAdded(participant)
             }
           />

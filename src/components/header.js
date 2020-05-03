@@ -1,14 +1,16 @@
 import React from "react"
 import { Navbar, Nav, Container } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { StaticQuery, graphql, Link } from "gatsby"
+import { StaticQuery, graphql } from "gatsby"
 
 import "../styles/header.scss"
 import logoImg from "../images/brand_logo.png"
 import Search from "./search"
 import MobileSidebar from "./mobile_sidebar"
 
-export default class Header extends React.Component {
+import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
+
+class Header extends React.Component {
   constructor(props) {
     super(props)
     this.state = { sidebarExpanded: false, searchActive: false }
@@ -56,31 +58,51 @@ export default class Header extends React.Component {
           <Navbar.Collapse className={"justify-content-end"}>
             <Nav>
               <Link to={`/`} className={"nav-link-black nav-link"}>
-                Strona główna
+                <FormattedMessage
+                  id="header.home-title"
+                  defaultMessage="Strona główna"
+                  description="Header home title"
+                />
               </Link>
               <Link
                 to={`/kategoria/cat-cryptocurrency`}
                 className={"nav-link-black nav-link"}
                 state={{ categoryName: "Kryptowaluty" }}
               >
-                Kryptowaluty
+                <FormattedMessage
+                  id="header.cryptocurrency-title"
+                  defaultMessage="Kryptowaluty"
+                  description="Header cryptocurrency category title"
+                />
               </Link>
               <Link
                 to={`/kategoria/cat-at`}
                 className={"nav-link-black nav-link"}
                 state={{ categoryName: "Analizy" }}
               >
-                Analizy
+                <FormattedMessage
+                  id="header.at-title"
+                  defaultMessage="Analizy"
+                  description="Header technical analysis category title"
+                />
               </Link>
               <Link
                 to={`/kategoria/cat-academy`}
                 className={"nav-link-black nav-link"}
                 state={{ categoryName: "Akademia" }}
               >
-                Akademia
+                <FormattedMessage
+                  id="header.academy-title"
+                  defaultMessage="Akademia"
+                  description="Header academy category title"
+                />
               </Link>
               <Link to={`/liga`} className={"nav-link-black nav-link"}>
-                Liga
+                <FormattedMessage
+                  id="header.league-title"
+                  defaultMessage="Liga"
+                  description="Header league category title"
+                />
               </Link>
               <Nav.Link
                 href="https://www.facebook.com/TRQPro/"
@@ -106,7 +128,7 @@ export default class Header extends React.Component {
                     }
                   }
                 `}
-                render={data => (
+                render={(data) => (
                   <Search
                     searchIndex={data.siteSearchIndex.index}
                     searchActive={this.state.searchActive}
@@ -124,3 +146,5 @@ export default class Header extends React.Component {
     )
   }
 }
+
+export default injectIntl(Header)

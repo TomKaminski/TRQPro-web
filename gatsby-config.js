@@ -14,6 +14,15 @@ module.exports = {
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-head`,
     {
+      resolve: `gatsby-plugin-intl`,
+      options: {
+        path: `${__dirname}/src/intl`,
+        languages: [`en`, `pl`],
+        defaultLanguage: `pl`,
+        redirect: false,
+      },
+    },
+    {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         host: "https://www.trqpro.pl",
