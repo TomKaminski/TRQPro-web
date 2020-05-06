@@ -26,39 +26,13 @@ class LeaguePage extends React.Component {
 
   componentDidMount() {
     this.getData()
-    // let endpoint = apiUrl + "leaguehistory/selectorData"
-    // axios
-    //   .get(endpoint)
-    //   .then(response => {
-    //     this.setState(
-    //       {
-    //         leagueOptions: this.processLeagueOptions(response.data),
-    //         selectedLeague: response.data[response.data.length - 1],
-    //       },
-    //       () => {
-    //         this.getData()
-    //       }
-    //     )
-    //   })
-    //   .catch(error => {
-    //     console.log(error)
-    //   })
   }
-
-  // processLeagueOptions(data) {
-  //   return data.map(val => {
-  //     return {
-  //       label: val.substring(0, val.length - 5),
-  //       value: val,
-  //     }
-  //   })
-  // }
 
   getData() {
     let endpoint = apiUrl + "league/getLadderForYear?year=2020"
     axios
       .get(endpoint)
-      .then(response => {
+      .then((response) => {
         if (response.data) {
           this.setState({
             data: response.data,
@@ -73,7 +47,7 @@ class LeaguePage extends React.Component {
           })
         }
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({
           data: null,
           loading: false,
@@ -177,7 +151,7 @@ class LeaguePage extends React.Component {
 
     return (
       <div>
-        {this.state.data.map(ladder => {
+        {this.state.data.map((ladder) => {
           return (
             <div>
               <p className="categoryTagResults">{ladder.ladder_public_name}</p>

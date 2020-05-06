@@ -1,9 +1,35 @@
 {
   "header": {
-    "home-title": "Home",
-    "cryptocurrency-title": "Cryptocurrencies",
-    "at-title": "Analysis",
-    "academy-title": "Academy",
-    "league-title": "League"
-  }
+    "home-title": "Strona główna"
+  },
+  "common": {
+    "common-title": "Ogólne",
+    "informations-title": "Informacje",
+    "league": "Liga",
+    "cryptocurrency": "Kryptowaluty",
+    "at": "Analizy",
+    "academy": "Akademia"
+  },
+  "footer": {
+    "about-us": "O nas",
+    "privacy-policy": "Polityka prywatności",
+    "rules": "Regulamin",
+    "contact": "Kontakt",
+    "work-with-us": "Pracuj z nami",
+    "actual-league": "Aktualna liga",
+    "league-rank": "Aktualna liga",
+    "league-history": "Historia rozgrywek",
+    "media-patrons": "Patroni informacyjni"
+  },
+  "index": {},
+  "league": {
+    "common-error": "Nie udało się załadować danych ligi.",
+    "title": "Liga TRQPro - Bitmex, Binance, Bybit",
+    "join-league-shout": "Dołącz do ligi!",
+    "join-league-question": "Chcesz dołączyć do ligi? zapisz się i zapoznaj z regulaminem",
+    "loading-data": "Loading data...",
+    "no-league-data-info": "Brak aktywnej ligi lub brak pierwszego odczytu (12:30 UTC).",
+    "joined-attendants": "Attendants"
+  },
+  "league-dialog": {}
 }

@@ -13,9 +13,11 @@ import { ApiResponse } from "./apiResponse"
 import { apiUrl } from "../../statics"
 import CheckboxWithTitle from "./checkboxWithTitle"
 
+import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
+
 const axios = require("axios")
 
-export default class LeagueModal extends Component {
+class LeagueModal extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -57,20 +59,20 @@ export default class LeagueModal extends Component {
     let endpoint = apiUrl + "league/comingLeagues"
     axios
       .get(endpoint)
-      .then(response => {
+      .then((response) => {
         this.setState({
           rawLeaguesData: response.data,
           nearestLeague: response.data[0],
           leagueOptions: this.processLeagueOptions(response.data),
         })
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
   }
 
   processLeagueOptions(data) {
-    return data.map(val => {
+    return data.map((val) => {
       return {
         label: val.name,
         value: val.id,
@@ -111,8 +113,8 @@ export default class LeagueModal extends Component {
         league: league.value,
         exchange: exchange.value,
       })
-      .then(response => {
-        let joinedLeague = this.state.rawLeaguesData.find(item => {
+      .then((response) => {
+        let joinedLeague = this.state.rawLeaguesData.find((item) => {
           return item.id === this.state.formData.league.value
         })
 
@@ -152,7 +154,7 @@ export default class LeagueModal extends Component {
           })
         }
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({
           isLoading: false,
           lastApiResponse: {
@@ -182,7 +184,7 @@ export default class LeagueModal extends Component {
       <Modal>
         <div
           className={"modal-overlay"}
-          onClick={e => {
+          onClick={(e) => {
             if (e.target.className === "modal-overlay") {
               this.setState({
                 isActive: false,
@@ -213,15 +215,20 @@ export default class LeagueModal extends Component {
           {date === null ? (
             <div className={"modal-content"}>
               <h3>
-                Brak nadchodzących rozgrywek, sprawdź w późniejszym terminie.
+                <FormattedMessage
+                  id="league-dialog.no-upcoming-leagues"
+                  defaultMessage="Brak nadchodzących rozgrywek, sprawdź w późniejszym terminie."
+                />
               </h3>
             </div>
           ) : (
             <div className={"modal-content"}>
-              <h3>Chcesz dołączyć do ligi? Zapisz się juz teraz!</h3>
+              <h3>
+                <FormattedMessage id="league-dialog.title" />
+              </h3>
               <p>
-                Warunkiem uczestnictwa w Lidze jest założenie konta z jednego z
-                ponizszych reflinków: <br />
+                <FormattedMessage id="league-dialog.ref-requirements" />
+                <br />
                 <ul>
                   <li>
                     <a
@@ -253,13 +260,13 @@ export default class LeagueModal extends Component {
                 </ul>
               </p>
               <p>
-                Najbliższa liga rozpoczyna się{" "}
+                <FormattedMessage id="league-dialog.league-desc-1" />
                 <b>
                   <u>{date.toLocaleDateString()}</u>
                 </b>
-                , wystarczy podać swoje api do odczytu stanu konta ligowego (jak
-                to zrobić?*). <br />
-                Ostateczny termin zapisów:{" "}
+                <FormattedMessage id="league-dialog.league-desc-2" />
+                <br />
+                <FormattedMessage id="league-dialog.league-desc-3" />
                 {new Date(
                   this.state.nearestLeague.signingLimitDate
                 ).toLocaleString()}
@@ -292,10 +299,12 @@ export default class LeagueModal extends Component {
                       <Row>
                         <Col xs={12} md={6}>
                           <InputWithTitle
-                            title={"Nick z telegrama"}
+                            title={this.props.intl.formatMessage({
+                              id: "league-dialog.form-title-nick",
+                            })}
                             name={"nickname"}
                             value={this.state.formData.nickname}
-                            onChange={e => {
+                            onChange={(e) => {
                               let name = e.target.name
                               let value = e.target.value
                               this.setState(
@@ -314,10 +323,12 @@ export default class LeagueModal extends Component {
                         </Col>
                         <Col xs={12} md={6}>
                           <InputWithTitle
-                            title={"adres email"}
+                            title={this.props.intl.formatMessage({
+                              id: "league-dialog.form-title-email",
+                            })}
                             name="email"
                             value={this.state.formData.email}
-                            onChange={e => {
+                            onChange={(e) => {
                               let name = e.target.name
                               let value = e.target.value
                               this.setState(
@@ -336,10 +347,12 @@ export default class LeagueModal extends Component {
                         </Col>
                         <Col xs={12} md={6}>
                           <InputWithTitle
-                            title={"API key"}
+                            title={this.props.intl.formatMessage({
+                              id: "league-dialog.form-title-apikey",
+                            })}
                             name="apiKey"
                             value={this.state.formData.apiKey}
-                            onChange={e => {
+                            onChange={(e) => {
                               let name = e.target.name
                               let value = e.target.value
                               this.setState(
@@ -359,10 +372,12 @@ export default class LeagueModal extends Component {
 
                         <Col xs={12} md={6}>
                           <InputWithTitle
-                            title={"API secret"}
+                            title={this.props.intl.formatMessage({
+                              id: "league-dialog.form-title-apisecret",
+                            })}
                             name="apiSecret"
                             value={this.state.formData.apiSecret}
-                            onChange={e => {
+                            onChange={(e) => {
                               let name = e.target.name
                               let value = e.target.value
                               this.setState(
@@ -381,7 +396,9 @@ export default class LeagueModal extends Component {
                         </Col>
                         <Col xs={12} md={6}>
                           <div className={"input-with-title"}>
-                            <p>Giełda</p>
+                            <p>
+                              <FormattedMessage id="league-dialog.form-title-exchange" />
+                            </p>
                             <Dropdown
                               options={[
                                 {
@@ -397,7 +414,7 @@ export default class LeagueModal extends Component {
                                   value: "bybit",
                                 },
                               ]}
-                              onChange={opt => {
+                              onChange={(opt) => {
                                 this.setState(
                                   {
                                     formData: {
@@ -411,16 +428,21 @@ export default class LeagueModal extends Component {
                                 )
                               }}
                               value={this.state.formData.exchange}
-                              placeholder="Wybierz giełdę"
+                              placeholder={this.props.intl.formatMessage({
+                                id:
+                                  "league-dialog.form-title-exchange-placeholder",
+                              })}
                             />
                           </div>
                         </Col>
                         <Col xs={12} md={6}>
                           <div className={"input-with-title"}>
-                            <p>Liga</p>
+                            <p>
+                              <FormattedMessage id="common.league" />
+                            </p>
                             <Dropdown
                               options={this.state.leagueOptions}
-                              onChange={opt => {
+                              onChange={(opt) => {
                                 this.setState(
                                   {
                                     formData: {
@@ -434,19 +456,23 @@ export default class LeagueModal extends Component {
                                 )
                               }}
                               value={this.state.formData.league}
-                              placeholder="Wybierz ligę"
+                              placeholder={this.props.intl.formatMessage({
+                                id:
+                                  "league-dialog.form-title-league-placeholder",
+                              })}
                             />
                           </div>
                           <CheckboxWithTitle
-                            title={
-                              "Zapisz mnie na wszystkie pozostałe ligi w tym kwartale"
-                            }
+                            title={this.props.intl.formatMessage({
+                              id:
+                                "league-dialog.form-all-quarter-leagues-checkbox",
+                            })}
                             name="saveForAllLeaguesAtCurrentQuarter"
                             checked={
                               this.state.formData
                                 .saveForAllLeaguesAtCurrentQuarter
                             }
-                            onChange={e => {
+                            onChange={(e) => {
                               let value = e.target.checked
                               this.setState({
                                 formData: {
@@ -466,7 +492,9 @@ export default class LeagueModal extends Component {
                             type="submit"
                             disabled={!this.state.validation.formValid}
                             className={"form-submit-button"}
-                            value="Dołącz do ligi"
+                            value={this.props.intl.formatMessage({
+                              id: "league.join-league-shout",
+                            })}
                           />
                         </Col>
                       </Row>
@@ -645,3 +673,5 @@ export default class LeagueModal extends Component {
     })
   }
 }
+
+export default injectIntl(LeagueModal)

@@ -61,7 +61,6 @@ class Header extends React.Component {
                 <FormattedMessage
                   id="header.home-title"
                   defaultMessage="Strona główna"
-                  description="Header home title"
                 />
               </Link>
               <Link
@@ -70,9 +69,8 @@ class Header extends React.Component {
                 state={{ categoryName: "Kryptowaluty" }}
               >
                 <FormattedMessage
-                  id="header.cryptocurrency-title"
+                  id="common.cryptocurrency"
                   defaultMessage="Kryptowaluty"
-                  description="Header cryptocurrency category title"
                 />
               </Link>
               <Link
@@ -80,11 +78,7 @@ class Header extends React.Component {
                 className={"nav-link-black nav-link"}
                 state={{ categoryName: "Analizy" }}
               >
-                <FormattedMessage
-                  id="header.at-title"
-                  defaultMessage="Analizy"
-                  description="Header technical analysis category title"
-                />
+                <FormattedMessage id="common.at" defaultMessage="Analizy" />
               </Link>
               <Link
                 to={`/kategoria/cat-academy`}
@@ -92,17 +86,12 @@ class Header extends React.Component {
                 state={{ categoryName: "Akademia" }}
               >
                 <FormattedMessage
-                  id="header.academy-title"
+                  id="common.academy"
                   defaultMessage="Akademia"
-                  description="Header academy category title"
                 />
               </Link>
               <Link to={`/liga`} className={"nav-link-black nav-link"}>
-                <FormattedMessage
-                  id="header.league-title"
-                  defaultMessage="Liga"
-                  description="Header league category title"
-                />
+                <FormattedMessage id="common.league" defaultMessage="Liga" />
               </Link>
               <Nav.Link
                 href="https://www.facebook.com/TRQPro/"

@@ -17,6 +17,8 @@ import LeagueLinks from "../components/league/league_links"
 
 import { apiUrl } from "../statics"
 
+import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
+
 const axios = require("axios")
 
 class LeaguePage extends React.Component {
@@ -61,7 +63,7 @@ class LeaguePage extends React.Component {
           this.setState({
             data: null,
             loading: false,
-            error: "Nie udało się załadować danych ligi.",
+            error: this.props.intl.formatMessage({ id: "league.common-error" }),
           })
         }
       })
@@ -69,7 +71,7 @@ class LeaguePage extends React.Component {
         this.setState({
           data: null,
           loading: false,
-          error: "Nie udało się załadować danych ligi.",
+          error: this.props.intl.formatMessage({ id: "league.common-error" }),
         })
       })
   }
@@ -79,7 +81,12 @@ class LeaguePage extends React.Component {
       <Layout>
         <SEO title="Liga" pathname={`/liga`} />
         <div className={"join-league-container"}>
-          <h1>Liga TRQPro - Bitmex, Binance, Bybit</h1>
+          <h1>
+            <FormattedMessage
+              id="league.title"
+              defaultMessage="Liga TRQPro - Bitmex, Binance, Bybit"
+            />
+          </h1>
           <button
             className={"form-submit-button"}
             onClick={(e) => {
@@ -91,17 +98,28 @@ class LeaguePage extends React.Component {
               style={{ paddingRight: "8px" }}
               alt="join league button"
             />{" "}
-            Dołącz do ligi!
+            <FormattedMessage
+              id="league.join-league-shout"
+              defaultMessage="Dołącz do ligi!"
+            />
           </button>
         </div>
-        <h4>Chcesz dołączyć do ligi? zapisz się i zapoznaj z regulaminem</h4>
+        <h4>
+          <FormattedMessage
+            id="league.join-league-question"
+            defaultMessage="Chcesz dołączyć do ligi? zapisz się i zapoznaj z regulaminem"
+          />
+        </h4>
 
         <LeagueLinks />
 
         {this.state.loading ? (
           <Container>
             <h4 className={"margin-top-40 margin-bottom-40 center-margin"}>
-              Ładowanie danych...
+              <FormattedMessage
+                id="league.loading-data"
+                defaultMessage="Ładowanie danych..."
+              />
             </h4>
           </Container>
         ) : (
@@ -145,7 +163,10 @@ class LeaguePage extends React.Component {
         <Container>
           <LeagueModal isActive={this.state.showModal} />
           <h4 className={"margin-top-40 margin-bottom-40 center-margin"}>
-            Brak aktywnej ligi lub brak pierwszego odczytu (12:05 UTC).
+            <FormattedMessage
+              id="league.no-league-data-info"
+              defaultMessage="Brak aktywnej ligi lub brak pierwszego odczytu (12:30 UTC)."
+            />
           </h4>
         </Container>
       )
@@ -166,7 +187,12 @@ class LeaguePage extends React.Component {
             signingLimitDate={this.state.data.signingLimitDate}
             participantsLength={this.state.data.participants.length}
           />
-          <p className="categoryTagResults">Zapisani uczestnicy</p>
+          <p className="categoryTagResults">
+            <FormattedMessage
+              id="league.joined-attendants"
+              defaultMessage="Zapisani uczestnicy"
+            />
+          </p>
           <LeagueSignList participants={this.state.data.participants} />
         </div>
       )
@@ -190,4 +216,4 @@ class LeaguePage extends React.Component {
   }
 }
 
-export default LeaguePage
+export default injectIntl(LeaguePage)
