@@ -78,5 +78,16 @@
     "binance-tutorial-rule-6": "Pod sekcją IP access restrictions zaznaczamy Unrestricted,",
     "binance-tutorial-rule-7": "Zmiany zapisujemy przyciskiem u góry Save,",
     "binance-tutorial-rule-8": "Przekopiuj API Key oraz Secret Key w odpowiednie pola w formularzu, gotowe."
+  },
+  "league-table": {
+    "column-starting-balance": "Kapitał startowy",
+    "column-current-balance": "Kapitał obecny",
+    "column-current-roe": "Obecne roe"
+  },
+  "league-links": {
+    "rules": "przejdź do regulaminu",
+    "history": "przejdź do archiwum rozgrywek",
+    "ranking": "przejdź do rankingu",
+    "actual-league": "przejdź do aktualnej ligi"
   }
 }

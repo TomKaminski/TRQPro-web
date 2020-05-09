@@ -3,6 +3,8 @@ import { useTable, useSortBy } from "react-table"
 import { Line } from "react-chartjs-2"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
+import { injectIntl } from "gatsby-plugin-intl"
+
 import redCard from "../../images/red-card.svg"
 import rekt from "../../images/dead.svg"
 
@@ -10,7 +12,7 @@ import bitmex_logo from "../../images/bitmex_logo.png"
 import bybit_logo from "../../images/bybit_logo.png"
 import binance_logo from "../../images/binance_logo.png"
 
-function Table({ columns, data }) {
+function Table({ columns, data, intl }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -33,9 +35,9 @@ function Table({ columns, data }) {
         {...getTableProps()}
       >
         <thead>
-          {headerGroups.map(headerGroup => (
+          {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
+              {headerGroup.headers.map((column) => (
                 <th
                   scope="col"
                   {...column.getHeaderProps(column.getSortByToggleProps())}
@@ -74,7 +76,7 @@ function Table({ columns, data }) {
                 className={"margin-top-base margin-bottom-base"}
                 {...row.getRowProps()}
               >
-                {row.cells.map(cell => {
+                {row.cells.map((cell) => {
                   return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                 })}
               </tr>
@@ -263,7 +265,9 @@ function LeagueTable({ leagueData }) {
         },
       },
       {
-        Header: "Kapitał startowy",
+        Header: intl.formatMessage({
+          id: "league-table.column-starting-balance",
+        }),
         Cell: ({ row }) => {
           if (row.original.exchange !== "bitmex") {
             return <span>{row.original.startingBalance.toFixed(2)} USDT</span>
@@ -278,7 +282,9 @@ function LeagueTable({ leagueData }) {
         accessor: "startingBalance",
       },
       {
-        Header: "Kapitał obecny",
+        Header: intl.formatMessage({
+          id: "league-table.column-current-balance",
+        }),
         Cell: ({ row }) => {
           if (row.original.exchange !== "bitmex") {
             return (
@@ -307,7 +313,9 @@ function LeagueTable({ leagueData }) {
         accessor: "balance",
       },
       {
-        Header: "Obecne roe",
+        Header: intl.formatMessage({
+          id: "league-table.column-current-roe",
+        }),
         Cell: ({ row }) =>
           getRoeCurrent(
             row.original.roeCurrent,
@@ -421,17 +429,17 @@ const options = {
     footerAlign: "center",
     footerFontFamily: "'Montserrat', 'Arial', sans-serif",
     callbacks: {
-      label: function() {
+      label: function () {
         return null
       },
-      title: function() {
+      title: function () {
         return null
       },
-      footer: function(tooltipItems, data) {
+      footer: function (tooltipItems, data) {
         var sum = 0
 
         tooltipItems.forEach(
-          tooltipItem =>
+          (tooltipItem) =>
             (sum +=
               data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index])
         )
@@ -445,4 +453,4 @@ const legend = {
   display: false,
 }
 
-export default LeagueTable
+export default injectIntl(LeagueTable)

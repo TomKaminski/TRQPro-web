@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
 
 import Layout from "../components/layouts/layout"
 import SEO from "../components/seo"
@@ -182,13 +182,19 @@ class LeaguePage extends React.Component {
 
         <Row className="league-link-container">
           <Col xs={6} md={3} className="margin-top-base">
-            <Link to={"/liga-regulamin"}>przejdź do regulaminu</Link>
+            <Link to={"/liga-regulamin"}>
+              <FormattedMessage id="league-links.rules" />
+            </Link>
           </Col>
           <Col xs={6} md={3} className="margin-top-base">
-            <Link to={"/liga"}>przejdź do aktualnej ligi</Link>
+            <Link to={"/liga"}>
+              <FormattedMessage id="league-links.actual-league" />
+            </Link>
           </Col>
           <Col xs={6} md={3} className="margin-top-base">
-            <Link to={"/liga-ranking"}>przejdź do rankingu</Link>
+            <Link to={"/liga-ranking"}>
+              <FormattedMessage id="league-links.ranking" />
+            </Link>
           </Col>
           <Col xs={6} md={3}></Col>
         </Row>
@@ -550,4 +556,4 @@ const legend = {
   display: false,
 }
 
-export default LeaguePage
+export default injectIntl(LeaguePage)
