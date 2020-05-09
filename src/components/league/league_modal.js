@@ -503,9 +503,11 @@ class LeagueModal extends Component {
                 </div>
               )}
 
-              <h3>Bitmex - instrukcja generowania API Key</h3>
+              <h3>
+                <FormattedMessage id="league-dialog.bitmex-tutorial-header" />
+              </h3>
               <p>
-                Idź do{" "}
+                <FormattedMessage id="league-dialog.tutorial-exchanges-go-to" />{" "}
                 <a
                   href="https://www.bitmex.com/app/apiKeys"
                   target="_blank"
@@ -513,26 +515,31 @@ class LeagueModal extends Component {
                 >
                   https://www.bitmex.com/app/apiKeys
                 </a>{" "}
-                i postępuj zgodnie z instrukcją:
+                <FormattedMessage id="league-dialog.tutorial-exchanges-go-to-suffix" />
               </p>
               <ol>
-                <li>W polu Name wpisz "nick-z-telegrama" np. "Janusz",</li>
-                <li>CID - to pole pozostawiamy puste,</li>
                 <li>
-                  Key Permissions - tutaj wybieramy (-), nie jest wymagane ani
-                  "Order", ani "Order cancel",
+                  <FormattedMessage id="league-dialog.bitmex-tutorial-rule-1" />
                 </li>
-                <li>Pole "Withdraw" pozostawiamy puste, bez zmian,</li>
                 <li>
-                  Utwórz klucz i przepisz dla nas klucz "ID" oraz "Secret"
-                  (zapisz "Secret" w bezpiecznym miejscu, widzisz go tylko
-                  podczas tworzenia klucza!).
+                  <FormattedMessage id="league-dialog.bitmex-tutorial-rule-2" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.bitmex-tutorial-rule-3" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.bitmex-tutorial-rule-4" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.bitmex-tutorial-rule-5" />
                 </li>
               </ol>
 
-              <h3>Bybit - instrukcja generowania API Key</h3>
+              <h3>
+                <FormattedMessage id="league-dialog.bybit-tutorial-header" />
+              </h3>
               <p>
-                Idź do{" "}
+                <FormattedMessage id="league-dialog.tutorial-exchanges-go-to" />{" "}
                 <a
                   href="https://www.bybit.com/app/user/api-management"
                   target="_blank"
@@ -540,27 +547,42 @@ class LeagueModal extends Component {
                 >
                   https://www.bybit.com/app/user/api-management
                 </a>{" "}
-                i postępuj zgodnie z instrukcją:
+                <FormattedMessage id="league-dialog.tutorial-exchanges-go-to-suffix" />
               </p>
               <ol>
-                <li>Kliknij na "Create New Key",</li>
-                <li>Wybierz typ klucza: "Api Transaction",</li>
-                <li>W polu "Name" wpisz Twój nick,</li>
-                <li>Pole "Connect with IP" pozostawiamy puste, bez zmian,</li>
                 <li>
-                  Pole "Key permissions" wybieramy{" "}
-                  <b>Active orders and positions,</b>
+                  <FormattedMessage id="league-dialog.bybit-tutorial-rule-1" />
                 </li>
                 <li>
-                  <b>Zaznaczamy pole readonly,</b>
+                  <FormattedMessage id="league-dialog.bybit-tutorial-rule-2" />
                 </li>
-                <li>Przepisujemy kod z naszego 2FA,</li>
-                <li>Zatwierdzamy przyciskiem Confirm.</li>
+                <li>
+                  <FormattedMessage id="league-dialog.bybit-tutorial-rule-3" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.bybit-tutorial-rule-4" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.bybit-tutorial-rule-5" />
+                </li>
+                <li>
+                  <b>
+                    <FormattedMessage id="league-dialog.bybit-tutorial-rule-6" />
+                  </b>
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.bybit-tutorial-rule-7" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.bybit-tutorial-rule-8" />
+                </li>
               </ol>
 
-              <h3>Binance - instrukcja generowania API Key</h3>
+              <h3>
+                <FormattedMessage id="league-dialog.binance-tutorial-header" />
+              </h3>
               <p>
-                Idź do{" "}
+                <FormattedMessage id="league-dialog.tutorial-exchanges-go-to" />{" "}
                 <a
                   href="https://www.binance.com/en/usercenter/settings/api-management"
                   target="_blank"
@@ -568,28 +590,32 @@ class LeagueModal extends Component {
                 >
                   https://www.binance.com/en/usercenter/settings/api-management
                 </a>{" "}
-                i postępuj zgodnie z instrukcją:
+                <FormattedMessage id="league-dialog.tutorial-exchanges-go-to-suffix" />
               </p>
               <ol>
-                <li>Wprowadź nazwę klucza API, następnie kliknij Create,</li>
-                <li>Wprowadź kod 2FA,</li>
-                <li>Potwierdź utworzenie klucza na swoim emailu,</li>
                 <li>
-                  Kliknij na przycisk "Edit restrictions", aby zmienić
-                  uprawnienia klucza,
+                  <FormattedMessage id="league-dialog.binance-tutorial-rule-1" />
                 </li>
                 <li>
-                  Upewnij się, że zaznaczone są tylko pola{" "}
-                  <b>Read Only oraz Enable Future</b>,
+                  <FormattedMessage id="league-dialog.binance-tutorial-rule-2" />
                 </li>
                 <li>
-                  Pod sekcją IP access restrictions zaznaczamy{" "}
-                  <b>Unrestricted</b>,
+                  <FormattedMessage id="league-dialog.binance-tutorial-rule-3" />
                 </li>
-                <li>Zmiany zapisujemy przyciskiem u góry "Save",</li>
                 <li>
-                  Przekopiuj API Key oraz Secret Key w odpowiednie pola w
-                  formularzu, gotowe.
+                  <FormattedMessage id="league-dialog.binance-tutorial-rule-4" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.binance-tutorial-rule-5" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.binance-tutorial-rule-6" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.binance-tutorial-rule-7" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.binance-tutorial-rule-8" />
                 </li>
               </ol>
             </div>
@@ -614,37 +640,49 @@ class LeagueModal extends Component {
         )
         fieldValidationErrors.email = validation.emailValid
           ? ""
-          : "Adres email jest niepoprawny"
+          : this.props.intl.formatMessage({
+              id: "league-dialog.form-title-email-error",
+            })
         break
       case "nickname":
         validation.nickValid = value.length > 0
         fieldValidationErrors.nickname = validation.nickValid
           ? ""
-          : "Nick jest wymagany"
+          : this.props.intl.formatMessage({
+              id: "league-dialog.form-title-nick-error",
+            })
         break
       case "apiKey":
         validation.apiKeyValid = value.length > 0
         fieldValidationErrors.apiKey = validation.apiKeyValid
           ? ""
-          : "Klucz API jest wymagany"
+          : this.props.intl.formatMessage({
+              id: "league-dialog.form-title-apikey-error",
+            })
         break
       case "apiSecret":
         validation.apiSecretValid = value.length > 0
         fieldValidationErrors.apiSecret = validation.apiSecretValid
           ? ""
-          : "API Secret jest wymagany"
+          : this.props.intl.formatMessage({
+              id: "league-dialog.form-title-apisecret-error",
+            })
         break
       case "league":
         validation.leagueValid = value != null
         fieldValidationErrors.league = validation.leagueValid
           ? ""
-          : "Liga jest wymagana"
+          : this.props.intl.formatMessage({
+              id: "league-dialog.form-title-league-error",
+            })
         break
       case "exchange":
         validation.exchangeValid = value != null
         fieldValidationErrors.exchange = validation.exchangeValid
           ? ""
-          : "Giełda jest wymagana"
+          : this.props.intl.formatMessage({
+              id: "league-dialog.form-title-exchange-error",
+            })
         break
       default:
         break
