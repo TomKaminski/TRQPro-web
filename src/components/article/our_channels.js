@@ -1,14 +1,17 @@
 import React from "react"
+import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
 
-const OurChannels = () => {
+const OurChannels = ({ intl }) => {
   return (
     <div className="margin-bottom-30 margin-top-20">
       <h4 className="title">
-        <b>Aktualna lista naszych kanałów</b>
+        <b>
+          <FormattedMessage id="our-channels.header" />
+        </b>
       </h4>
       <ul className="unstyled-list">
         <li>
-          TRQPro Analizy BTC, Alty, Ico:{" "}
+          <FormattedMessage id="our-channels.crypto" />{" "}
           <a
             href="https://t.me/TRQProAnalizy"
             target="_blank"
@@ -18,7 +21,7 @@ const OurChannels = () => {
           </a>
         </li>
         <li>
-          TRQPro Dzwignia, BTC chat:{" "}
+          <FormattedMessage id="our-channels.btc" />{" "}
           <a
             href="https://t.me/TRQProBTC"
             target="_blank"
@@ -28,7 +31,7 @@ const OurChannels = () => {
           </a>
         </li>
         <li>
-          TRQPro Liga:{" "}
+          <FormattedMessage id="our-channels.league" />{" "}
           <a
             href="https://t.me/TRQProligalewar"
             target="_blank"
@@ -38,7 +41,7 @@ const OurChannels = () => {
           </a>
         </li>
         <li>
-          TRQPro Mining:{" "}
+          <FormattedMessage id="our-channels.mining" />{" "}
           <a
             href="https://t.me/TRQProMining"
             target="_blank"
@@ -48,7 +51,7 @@ const OurChannels = () => {
           </a>
         </li>
         <li>
-          TRQPro ICO/IEO/Airdrop:{" "}
+          <FormattedMessage id="our-channels.airdrop" />{" "}
           <a
             href="https://t.me/TRQProICO"
             target="_blank"
@@ -58,7 +61,7 @@ const OurChannels = () => {
           </a>
         </li>
         <li>
-          TRQPro News:{" "}
+          <FormattedMessage id="our-channels.news" />{" "}
           <a
             href="https://t.me/TRQProNews"
             target="_blank"
@@ -68,7 +71,7 @@ const OurChannels = () => {
           </a>
         </li>
         <li>
-          TRQPro Alty chat:{" "}
+          <FormattedMessage id="our-channels.alts" />{" "}
           <a
             href="https://t.me/TRQProAlty"
             target="_blank"
@@ -78,7 +81,7 @@ const OurChannels = () => {
           </a>
         </li>
         <li>
-          TRQPro Forex:{" "}
+          <FormattedMessage id="our-channels.forex" />{" "}
           <a
             href="https://t.me/TRQProForex"
             target="_blank"
@@ -88,7 +91,7 @@ const OurChannels = () => {
           </a>
         </li>
         <li>
-          TRQPro Social:{" "}
+          <FormattedMessage id="our-channels.social" />{" "}
           <a
             href="https://t.me/TRQProSocial"
             target="_blank"
@@ -98,7 +101,7 @@ const OurChannels = () => {
           </a>
         </li>
         <li>
-          TRQPro AT:{" "}
+          <FormattedMessage id="our-channels.at" />{" "}
           <a
             href="https://t.me/TRQProAT"
             target="_blank"
@@ -142,11 +145,11 @@ const OurChannels = () => {
       </ul>
       <p className="call-to-join-channels">
         <b>
-          Jeżeli chcesz dołączyć i działać razem z nami – witamy na pokładzie!
+          <FormattedMessage id="our-channels.footer" />
         </b>
       </p>
     </div>
   )
 }
 
-export default OurChannels
+export default injectIntl(OurChannels)

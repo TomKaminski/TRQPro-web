@@ -29,7 +29,11 @@
     "join-league-question": "Chcesz dołączyć do ligi? zapisz się i zapoznaj z regulaminem",
     "loading-data": "Ładowanie danych...",
     "no-league-data-info": "Brak aktywnej ligi lub brak pierwszego odczytu (12:30 UTC).",
-    "joined-attendants": "Zapisani uczestnicy"
+    "joined-attendants": "Zapisani uczestnicy",
+    "start-date": "Data rozpoczęcia",
+    "end-date": "Data zakończenia",
+    "participants": "Ilość uczestników",
+    "winner": "Zwycięzca"
   },
   "league-dialog": {
     "no-upcoming-leagues": "Brak nadchodzących rozgrywek, sprawdź w późniejszym terminie.",
@@ -89,5 +93,49 @@
     "history": "przejdź do archiwum rozgrywek",
     "ranking": "przejdź do rankingu",
     "actual-league": "przejdź do aktualnej ligi"
+  },
+  "not-found": {
+    "title": "Dziwne.. Wygląda na to, ze strona którą próbujesz otworzyć nie istnieje.",
+    "take-me-away": "zabierz mnie stąd"
+  },
+  "league-ranking": {
+    "loading-error": "Nie udało się załadować rankingu",
+    "header": "Liga TRQPro - ranking rozgrywek",
+    "description": "W tym miejscu znajdziesz tabele z punktacją kwartalną oraz roczną.",
+    "no-data-for-year": "Nie znaleziono danych wybranego roku.",
+    "column-points": "Punkty",
+    "column-average-roe": "Średnie roe",
+    "column-highest-roe": "Najwyższe roe",
+    "column-leagues-count": "Rozegrane ligi",
+    "column-overall-starting-balance": "Łączny kapitał startowy",
+    "column-overall-ending-balance": "Łączny kapitał końcowy"
+  },
+  "league-history": {
+    "header": "Liga TRQPro - historia rozgrywek",
+    "description": "W tym miejscu możesz prześledzić wszystkie minione rozgrywki na naszej platformie.",
+    "error": "Błąd wyświetlania historycznych danych.",
+    "column-ending-balance": "Kapitał końcowy",
+    "column-ending-roe": "ROE końcowe"
+  },
+  "search": {
+    "search-results-for": "Wyniki wyszukiwania dla",
+    "found-categories": "Znalezione kategorie",
+    "found-tags": "Znalezione tagi",
+    "all-articles": "Wszystkie artykułu"
+  },
+  "seo-suffix": "Trading, Analizy, Liga",
+  "our-channels": {
+    "header": "Aktualna lista naszych kanałów",
+    "crypto": "TRQPro Analizy BTC, Alty, Ico:",
+    "btc": "TRQPro Dzwignia, BTC chat:",
+    "league": "TRQPro Liga:",
+    "mining": "TRQPro Mining:",
+    "airdrop": "TRQPro ICO/IEO/Airdrop:",
+    "news": "TRQPro News:",
+    "alts": "TRQPro Alty chat:",
+    "forex": "TRQPro Forex:",
+    "social": "TRQPro Social:",
+    "at": "TRQPro AT:",
+    "footer": "Jeżeli chcesz dołączyć i działać razem z nami – witamy na pokładzie!"
   }
 }

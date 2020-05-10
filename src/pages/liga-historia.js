@@ -136,7 +136,7 @@ class LeaguePage extends React.Component {
           this.setState({
             data: null,
             loading: false,
-            error: "Nie udało się załadować danych ligi.",
+            error: this.props.intl.formatMessage({ id: "league.common-error" }),
           })
         }
       })
@@ -144,7 +144,7 @@ class LeaguePage extends React.Component {
         this.setState({
           data: null,
           loading: false,
-          error: "Nie udało się załadować danych ligi.",
+          error: this.props.intl.formatMessage({ id: "league.common-error" }),
         })
       })
   }
@@ -154,15 +154,18 @@ class LeaguePage extends React.Component {
       <Layout>
         <SEO title="Liga - historia rozgrywek" pathname={`/liga-historia`} />
         <div className={"join-league-container"}>
-          <h1>Liga TRQPro - historia rozgrywek</h1>
+          <h1>
+            <FormattedMessage id="league-history.header" />
+          </h1>
         </div>
         <h5>
-          W tym miejscu możesz prześledzić wszystkie minione rozgrywki na naszej
-          platformie.
+          <FormattedMessage id="league-history.description" />
         </h5>
         <br></br>
         <Col xs={12} md={6} style={{ paddingLeft: 0, marginBottom: "20px" }}>
-          <p style={{ marginBottom: "2px" }}>Wybierz ligę</p>
+          <p style={{ marginBottom: "2px" }}>
+            <FormattedMessage id="league-dialog.form-title-exchange-placeholder" />
+          </p>
           <Dropdown
             options={this.state.leagueOptions}
             onChange={(opt) => {
@@ -302,7 +305,7 @@ class LeaguePage extends React.Component {
       return (
         <Container>
           <h4 className={"margin-top-40 margin-bottom-40 center-margin"}>
-            Błąd wyświetlania historycznych danych.
+            <FormattedMessage id="league-history.error" />
           </h4>
         </Container>
       )
@@ -312,21 +315,27 @@ class LeaguePage extends React.Component {
         <Container fluid={true} className={"league-stat-container"}>
           <Row>
             <Col xs={6} md={3}>
-              <p className={"league-stat-header"}>Data rozpoczęcia:</p>
+              <p className={"league-stat-header"}>
+                <FormattedMessage id="league.start-date" />
+              </p>
               <p className={"league-stat"}>
                 {new Date(this.state.data.startDate).toLocaleString()}
               </p>
             </Col>
             <Col xs={6} md={3}>
               <div>
-                <p className={"league-stat-header"}>Data zakończenia:</p>
+                <p className={"league-stat-header"}>
+                  <FormattedMessage id="league.end-date" />
+                </p>
                 <p className={"league-stat"}>
                   {new Date(this.state.data.endDate).toLocaleString()}
                 </p>
               </div>
             </Col>
             <Col xs={6} md={3}>
-              <p className={"league-stat-header"}>Ilość uczestników:</p>
+              <p className={"league-stat-header"}>
+                <FormattedMessage id="league.participants" />
+              </p>
               <p className={"league-stat"}>
                 {this.state.data.participants.length +
                   this.state.data.totallyEmptyAccounts.length}
@@ -334,7 +343,9 @@ class LeaguePage extends React.Component {
             </Col>
             <Col xs={6} md={3} style={{ display: "flex", alignItems: "end" }}>
               <div>
-                <p className={"league-stat-header"}>Zwycięzca:</p>
+                <p className={"league-stat-header"}>
+                  <FormattedMessage id="league.winner" />
+                </p>
                 <p className={"league-stat"}>
                   <span style={{ color: "green" }}>
                     {this.state.data.participants[0].username}
@@ -353,9 +364,15 @@ class LeaguePage extends React.Component {
             <tr>
               <th scope="col">#</th>
               <th scope="col">Nick</th>
-              <th scope="col">Kapitał startowy</th>
-              <th scope="col">Kapitał końcowy</th>
-              <th scope="col">ROE końcowe</th>
+              <th scope="col">
+                <FormattedMessage id="league-table.column-starting-balance" />
+              </th>
+              <th scope="col">
+                <FormattedMessage id="league-table.column-ending-balance" />
+              </th>
+              <th scope="col">
+                <FormattedMessage id="league-table.column-ending-roe" />
+              </th>
               <th scope="col">1d</th>
               <th scope="col">3d</th>
               <th scope="col">7d</th>
