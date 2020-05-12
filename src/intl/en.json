@@ -33,7 +33,10 @@
     "start-date": "Start date",
     "end-date": "End date",
     "participants": "Participants",
-    "winner": "Winner"
+    "winner": "Winner",
+    "sign-until": "Sign until",
+    "next-reading": "Next reading",
+    "finished": "League finished"
   },
   "league-dialog": {
     "no-upcoming-leagues": "No upcoming tournaments, check back later.",
@@ -93,5 +96,74 @@
     "history": "przejdź do archiwum rozgrywek",
     "ranking": "przejdź do rankingu",
     "actual-league": "przejdź do aktualnej ligi"
+  },
+  "not-found": {
+    "title": "Dziwne.. Wygląda na to, ze strona którą próbujesz otworzyć nie istnieje.",
+    "take-me-away": "zabierz mnie stąd"
+  },
+  "league-ranking": {
+    "loading-error": "Nie udało się załadować rankingu",
+    "header": "Liga TRQPro - ranking rozgrywek",
+    "description": "W tym miejscu znajdziesz tabele z punktacją kwartalną oraz roczną.",
+    "no-data-for-year": "Nie znaleziono danych wybranego roku.",
+    "column-points": "Punkty",
+    "column-average-roe": "Średnie roe",
+    "column-highest-roe": "Najwyższe roe",
+    "column-leagues-count": "Rozegrane ligi",
+    "column-overall-starting-balance": "Łączny kapitał startowy",
+    "column-overall-ending-balance": "Łączny kapitał końcowy"
+  },
+  "league-history": {
+    "header": "Liga TRQPro - historia rozgrywek",
+    "description": "W tym miejscu możesz prześledzić wszystkie minione rozgrywki na naszej platformie.",
+    "error": "Błąd wyświetlania historycznych danych.",
+    "column-ending-balance": "Kapitał końcowy",
+    "column-ending-roe": "ROE końcowe"
+  },
+  "search": {
+    "search-results-for": "Wyniki wyszukiwania dla",
+    "found-categories": "Znalezione kategorie",
+    "found-tags": "Znalezione tagi",
+    "all-articles": "Wszystkie artykułu"
+  },
+  "seo-suffix": "Trading, Analizy, Liga",
+  "our-channels": {
+    "header": "Aktualna lista naszych kanałów",
+    "crypto": "TRQPro Analizy BTC, Alty, Ico:",
+    "btc": "TRQPro Dzwignia, BTC chat:",
+    "league": "TRQPro Liga:",
+    "mining": "TRQPro Mining:",
+    "airdrop": "TRQPro ICO/IEO/Airdrop:",
+    "news": "TRQPro News:",
+    "alts": "TRQPro Alty chat:",
+    "forex": "TRQPro Forex:",
+    "social": "TRQPro Social:",
+    "at": "TRQPro AT:",
+    "footer": "Jeżeli chcesz dołączyć i działać razem z nami – witamy na pokładzie!"
+  },
+  "small-league-widget": {
+    "header": "Zapraszamy do zapisów na kolejną ligę.",
+    "participants": "Aktualnie zapisanych uczestników:",
+    "link": "Przejdź do zapisów",
+    "last-league": "Wyniki ostatniej ligi",
+    "actual-league": "Aktualne rozgrywki ligowe"
+  },
+  "league-api-response": {
+    "success-part-1": "Dziękujemy za zapisanie się do ligi. Wybrana liga jest rozgrywana w dniach od",
+    "success-part-2": "do",
+    "success-part-3": "Powodzenia!",
+    "success-alternate": "Dziękujemy za zapisanie się do ligi. Powodzenia!"
+  },
+  "article": {
+    "basic-info": "Podstawowe informacje",
+    "category-results": "Wyniki wpisów pod kategorią",
+    "tag-results": "Wyniki wpisów pod tagiem",
+    "trq-header": "Społeczność TRQPro - trading, analizy, liga",
+    "trq-description": "została stworzona przez Traderów dla Traderów. Znajdziesz tu kompendium wiedzy na każdy możliwy temat dotyczący spekulacji wyłożone w prosty sposób.",
+    "trq-description-1": "Dzielimy się swoimi taktykami rozgrywania pozycji, strategiami, analizami technicznymi i informacjami dotyczącymi walorów, które znamy i na których gramy.",
+    "trq-description-2": "Pomagamy w zapoznaniu się z platformami, na których gramy, aby w głupi sposób nie tracić pieniędzy. Tropimy nieuczciwe grupy sygnałowe i ujawniając oszustwa przestrzegamy innych uczestników.",
+    "trq-description-3": "Wszystko po to, aby wspólnie zarabiać na giełdzie. Co ważne – robimy to wszystko za darmo, dlatego, że zarabiamy na rynkach, nie szkoleniach. W zamian za pomoc, oczekujemy jedynie zaangażowania w grupę i pomocy innym.",
+    "tweet-loading": "Ładuję tweety",
+    "join-us": "Dołącz do nas"
   }
 }

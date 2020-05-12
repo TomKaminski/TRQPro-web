@@ -1,10 +1,10 @@
 import React from "react"
 import TimeAndAuthor from "./timeAndAuthor"
 import Img from "gatsby-image"
-import { Link } from "gatsby"
+import { injectIntl, Link } from "gatsby-plugin-intl"
 import removeMd from "remove-markdown"
 
-export default class IndexBigArticle extends React.Component {
+class IndexBigArticle extends React.Component {
   render() {
     return (
       <div className={"index-left-article article-padding no-border"}>
@@ -33,3 +33,5 @@ export default class IndexBigArticle extends React.Component {
     )
   }
 }
+
+export default injectIntl(IndexBigArticle)

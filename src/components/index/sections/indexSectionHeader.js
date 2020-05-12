@@ -1,8 +1,8 @@
 import React from "react"
 import { Row, Col } from "react-bootstrap"
-import { Link } from "gatsby"
+import { injectIntl, Link } from "gatsby-plugin-intl"
 
-const IndexSectionHeader = props => {
+const IndexSectionHeader = (props) => {
   return (
     <Row>
       <Col>
@@ -18,4 +18,4 @@ const IndexSectionHeader = props => {
   )
 }
 
-export default IndexSectionHeader
+export default injectIntl(IndexSectionHeader)

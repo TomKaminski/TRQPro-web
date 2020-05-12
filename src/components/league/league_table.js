@@ -12,7 +12,7 @@ import bitmex_logo from "../../images/bitmex_logo.png"
 import bybit_logo from "../../images/bybit_logo.png"
 import binance_logo from "../../images/binance_logo.png"
 
-function Table({ columns, data, intl }) {
+function Table({ columns, data }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -219,7 +219,7 @@ function displayRoeBase(roe) {
   }
 }
 
-function LeagueTable({ leagueData }) {
+function LeagueTable({ leagueData, intl }) {
   const customSort = React.useCallback((rowA, rowB, columnId) => {
     let a = rowA.values[columnId]
     let b = rowB.values[columnId]

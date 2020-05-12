@@ -3,8 +3,9 @@ import React from "react"
 import Layout from "../components/layouts/layout"
 import SEO from "../components/seo"
 import marked from "marked"
+import { injectIntl } from "gatsby-plugin-intl"
 
-export default class StaticPageContent extends React.Component {
+class StaticPageContent extends React.Component {
   guardData() {
     if (this.props.data.allStrapiStatic.nodes.length > 0) {
       return this.props.data.allStrapiStatic.nodes[0]
@@ -12,6 +13,7 @@ export default class StaticPageContent extends React.Component {
       return {
         title: this.props.title,
         content: "Ładowanie...",
+        content_en: "Loading...",
       }
     }
   }
@@ -25,10 +27,14 @@ export default class StaticPageContent extends React.Component {
 
         <div
           dangerouslySetInnerHTML={{
-            __html: marked(data.content),
+            __html: marked(
+              this.props.intl.locale == "en" ? data.content_en : data.content
+            ),
           }}
         ></div>
       </Layout>
     )
   }
 }
+
+export default injectIntl(StaticPageContent)

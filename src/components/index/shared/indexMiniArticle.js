@@ -1,10 +1,10 @@
 import React from "react"
 import { Row, Col } from "react-bootstrap"
 import TimeAndAuthor from "../shared/timeAndAuthor"
-import { Link } from "gatsby"
+import { injectIntl, Link } from "gatsby-plugin-intl"
 import removeMd from "remove-markdown"
 
-export default class IndexMiniArticle extends React.Component {
+class IndexMiniArticle extends React.Component {
   render() {
     let containerClass = this.props.removeBorder
       ? ""
@@ -39,3 +39,5 @@ export default class IndexMiniArticle extends React.Component {
     )
   }
 }
+
+export default injectIntl(IndexMiniArticle)

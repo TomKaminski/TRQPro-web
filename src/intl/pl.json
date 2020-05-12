@@ -33,7 +33,10 @@
     "start-date": "Data rozpoczęcia",
     "end-date": "Data zakończenia",
     "participants": "Ilość uczestników",
-    "winner": "Zwycięzca"
+    "winner": "Zwycięzca",
+    "sign-until": "Zapisy do",
+    "next-reading": "Następny odczyt",
+    "finished": "Liga zakończona"
   },
   "league-dialog": {
     "no-upcoming-leagues": "Brak nadchodzących rozgrywek, sprawdź w późniejszym terminie.",
@@ -137,5 +140,30 @@
     "social": "TRQPro Social:",
     "at": "TRQPro AT:",
     "footer": "Jeżeli chcesz dołączyć i działać razem z nami – witamy na pokładzie!"
+  },
+  "small-league-widget": {
+    "header": "Zapraszamy do zapisów na kolejną ligę.",
+    "participants": "Aktualnie zapisanych uczestników:",
+    "link": "Przejdź do zapisów",
+    "last-league": "Wyniki ostatniej ligi",
+    "actual-league": "Aktualne rozgrywki ligowe"
+  },
+  "league-api-response": {
+    "success-part-1": "Dziękujemy za zapisanie się do ligi. Wybrana liga jest rozgrywana w dniach od",
+    "success-part-2": "do",
+    "success-part-3": "Powodzenia!",
+    "success-alternate": "Dziękujemy za zapisanie się do ligi. Powodzenia!"
+  },
+  "article": {
+    "basic-info": "Podstawowe informacje",
+    "category-results": "Wyniki wpisów pod kategorią",
+    "tag-results": "Wyniki wpisów pod tagiem",
+    "trq-header": "Społeczność TRQPro - trading, analizy, liga",
+    "trq-description": "została stworzona przez Traderów dla Traderów. Znajdziesz tu kompendium wiedzy na każdy możliwy temat dotyczący spekulacji wyłożone w prosty sposób.",
+    "trq-description-1": "Dzielimy się swoimi taktykami rozgrywania pozycji, strategiami, analizami technicznymi i informacjami dotyczącymi walorów, które znamy i na których gramy.",
+    "trq-description-2": "Pomagamy w zapoznaniu się z platformami, na których gramy, aby w głupi sposób nie tracić pieniędzy. Tropimy nieuczciwe grupy sygnałowe i ujawniając oszustwa przestrzegamy innych uczestników.",
+    "trq-description-3": "Wszystko po to, aby wspólnie zarabiać na giełdzie. Co ważne – robimy to wszystko za darmo, dlatego, że zarabiamy na rynkach, nie szkoleniach. W zamian za pomoc, oczekujemy jedynie zaangażowania w grupę i pomocy innym.",
+    "tweet-loading": "Ładuję tweety",
+    "join-us": "Dołącz do nas"
   }
 }

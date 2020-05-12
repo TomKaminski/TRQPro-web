@@ -1,4 +1,5 @@
 import React from "react"
+import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
 
 function render(response, leagueData) {
   if (response != null) {
@@ -6,15 +7,19 @@ function render(response, leagueData) {
       if (leagueData != null && leagueData !== undefined) {
         return (
           <p className={"api-message-success"}>
-            Dziękujemy za zapisanie się do ligi. Wybrana liga jest rozgrywana w
-            dniach od {new Date(leagueData.startDate).toLocaleString()} do{" "}
-            {new Date(leagueData.endDate).toLocaleString()}. <b>Powodzenia!</b>
+            <FormattedMessage id="league-api-response.success-part-1" />{" "}
+            {new Date(leagueData.startDate).toLocaleString()}{" "}
+            <FormattedMessage id="league-api-response.success-part-2" />{" "}
+            {new Date(leagueData.endDate).toLocaleString()}.{" "}
+            <b>
+              <FormattedMessage id="league-api-response.success-part-3" />
+            </b>
           </p>
         )
       } else {
         return (
           <p className={"api-message-success"}>
-            Dziękujemy za zapisanie się do ligi. <b>Powodzenia!</b>
+            <FormattedMessage id="league-api-response.success-alternate" />
           </p>
         )
       }
@@ -30,5 +35,6 @@ function render(response, leagueData) {
   }
 }
 
-export const ApiResponse = ({ response, leagueData }) =>
-  render(response, leagueData)
+const ApiResponse = ({ response, leagueData }) => render(response, leagueData)
+
+export default injectIntl(ApiResponse)

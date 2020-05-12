@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layouts/layout"
 import "../styles/article/article.scss"
@@ -12,6 +12,7 @@ import marked from "marked"
 import Share from "../components/share"
 import mediumZoom from "medium-zoom"
 import OurChannels from "../components/article/our_channels"
+import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
 
 // Get reference
 const renderer = new marked.Renderer()
@@ -40,7 +41,9 @@ const renderMeta = (data) => {
   if (data.metadata) {
     return (
       <div className={"article-metadata"}>
-        <h5>Podstawowe informacje</h5>
+        <h5>
+          <FormattedMessage id="article.basic-info" />
+        </h5>
         <Row>
           {data.metadata.meta.map((meta, i) => (
             <Col className={"meta-container"} key={i} xs={6} lg={3}>
@@ -195,7 +198,7 @@ class ArticleTemplate extends React.Component {
   }
 }
 
-export default ArticleTemplate
+export default injectIntl(ArticleTemplate)
 
 export const articleQuery = graphql`
   query ArticleTemplate($id: String!) {

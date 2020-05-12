@@ -1,12 +1,12 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import { apiUrl } from "../../../statics"
 import redCard from "../../../images/red-card.svg"
 import rekt from "../../../images/dead.svg"
+import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
 const axios = require("axios")
 
-export default class IndexSmallLeague extends React.Component {
+class IndexSmallLeague extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -24,7 +24,7 @@ export default class IndexSmallLeague extends React.Component {
     let endpoint = apiUrl + "league/smallLastReading"
     axios
       .get(endpoint)
-      .then(response => {
+      .then((response) => {
         this.setState({
           data: response.data,
           loading: false,
@@ -84,13 +84,15 @@ export default class IndexSmallLeague extends React.Component {
         <div className={"section"}>
           <div className={"section-title-container"}>
             <Link to={`/liga`}>
-              <h2 className={"section-title"}>Liga</h2>
+              <h2 className={"section-title"}>
+                <FormattedMessage id="common.league" />
+              </h2>
             </Link>
           </div>
         </div>
         {this.state.loading ? (
           <h4 className={"margin-top-40 margin-bottom-40 center-margin"}>
-            Ładowanie danych...
+            <FormattedMessage id="league.loading-data" />
           </h4>
         ) : (
           this.renderLeague()
@@ -103,21 +105,27 @@ export default class IndexSmallLeague extends React.Component {
     if (!this.state.data.isLeagueData) {
       return (
         <div>
-          <p>Zapraszamy do zapisów na kolejną ligę.</p>
           <p>
-            Aktualnie zapisanych uczestników:{" "}
+            <FormattedMessage id="small-league-widget.header" />
+          </p>
+          <p>
+            <FormattedMessage id="small-league-widget.participants" />{" "}
             {this.state.data.participantsCount}
           </p>
-          <Link to={`/liga`}>Przejdź do zapisów</Link>
+          <Link to={`/liga`}>
+            <FormattedMessage id="small-league-widget.link" />
+          </Link>
         </div>
       )
     }
     return (
       <div>
         <p>
-          {this.state.data.hasEnded
-            ? "Wyniki ostatniej ligi"
-            : "Aktualne rozgrywki ligowe"}
+          {this.state.data.hasEnded ? (
+            <FormattedMessage id="small-league-widget.last-league" />
+          ) : (
+            <FormattedMessage id="small-league-widget.actual-league" />
+          )}
         </p>
         <table
           className={"table margin-bottom-40 table-responsive-md"}
@@ -151,3 +159,5 @@ export default class IndexSmallLeague extends React.Component {
     )
   }
 }
+
+export default injectIntl(IndexSmallLeague)

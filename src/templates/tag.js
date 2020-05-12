@@ -1,11 +1,12 @@
 import React from "react"
-import { graphql, navigate } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../components/layouts/layout"
 import IndexPager from "../components/index/shared/indexPager"
 import SEO from "../components/seo"
 import "../styles/tagCategoryResults.scss"
 import { Row, Col } from "react-bootstrap"
 import MiniArticleImageWrapper from "../components/index/shared/miniArticleImageWrapper"
+import { injectIntl, navigate, FormattedMessage } from "gatsby-plugin-intl"
 
 class TagTemplate extends React.Component {
   getTagName() {
@@ -23,7 +24,7 @@ class TagTemplate extends React.Component {
         <h1>{`TRQPro - ${this.getTagName()}`}</h1>
         <br></br>
         <p className="categoryTagResults">
-          Wyniki wpisów pod tagiem:{" "}
+          <FormattedMessage id="article.tag-results" />:{" "}
           <span className={"name"}>{this.getTagName()}</span>{" "}
         </p>
         <Row>
@@ -40,7 +41,7 @@ class TagTemplate extends React.Component {
           <IndexPager
             activePageIndex={this.props.pageContext.currentPage - 1}
             pageCount={this.props.data.allStrapiArticle.pageInfo.pageCount}
-            onPageChangeCallback={page => {
+            onPageChangeCallback={(page) => {
               if (page === 0) {
                 navigate(`/tag/${this.props.pageContext.key}`)
               } else {
@@ -58,7 +59,7 @@ class TagTemplate extends React.Component {
   }
 }
 
-export default TagTemplate
+export default injectIntl(TagTemplate)
 
 export const tagQuery = graphql`
   query TagTemplate($key: String!, $skip: Int!, $limit: Int!, $date: Date) {
