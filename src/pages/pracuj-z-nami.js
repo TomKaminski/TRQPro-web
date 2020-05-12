@@ -18,11 +18,13 @@ class WorkWithUsPage extends React.Component {
 export default WorkWithUsPage
 
 export const workWithUsPageQuery = graphql`
-  query WorkWithUsQuery {
+  query WorkWithUsQuery($isDefaultLanguage: Boolean!) {
     allStrapiStatic(filter: { key: { eq: "pracujznami" } }, limit: 1) {
       nodes {
-        title
-        content
+        title @include(if: $isDefaultLanguage)
+        title_en @skip(if: $isDefaultLanguage)
+        content @include(if: $isDefaultLanguage)
+        content_en @skip(if: $isDefaultLanguage)
       }
     }
   }

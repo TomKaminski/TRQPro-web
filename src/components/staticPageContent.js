@@ -22,13 +22,16 @@ class StaticPageContent extends React.Component {
     let data = this.guardData()
     return (
       <Layout>
-        <SEO title={this.props.title} pathname={`/${this.props.titlepath}`} />
-        <h1>{this.props.title}</h1>
+        <SEO
+          title={this.props.intl.locale === "en" ? data.title_en : data.title}
+          pathname={`/${this.props.titlepath}`}
+        />
+        <h1>{this.props.intl.locale === "en" ? data.title_en : data.title}</h1>
 
         <div
           dangerouslySetInnerHTML={{
             __html: marked(
-              this.props.intl.locale == "en" ? data.content_en : data.content
+              this.props.intl.locale === "en" ? data.content_en : data.content
             ),
           }}
         ></div>

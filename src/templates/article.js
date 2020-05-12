@@ -90,13 +90,20 @@ class ArticleTemplate extends React.Component {
     const image = this.props.data.strapiArticle.image
       ? this.props.data.strapiArticle.image.childImageSharp.fluid
       : null
-    const metaDesc = this.props.data.strapiArticle.content
-      .substring(0, 160)
-      .concat("...")
+    const metaDesc =
+      this.props.intl.locale === "en"
+        ? this.props.data.strapiArticle.content_en
+            .substring(0, 160)
+            .concat("...")
+        : this.props.data.strapiArticle.content.substring(0, 160).concat("...")
     return (
       <Layout title={siteTitle}>
         <SEO
-          title={this.props.data.strapiArticle.title}
+          title={
+            this.props.intl.locale === "en"
+              ? this.props.data.strapiArticle.title_en
+              : this.props.data.strapiArticle.title
+          }
           pathname={this.props.path}
           description={metaDesc}
           image={image}
@@ -169,7 +176,10 @@ class ArticleTemplate extends React.Component {
                       .twitterHandle,
                     config: {
                       url: `${this.props.data.site.siteMetadata.url}${this.props.data.strapiArticle.fields.slug}`,
-                      title: this.props.data.strapiArticle.title,
+                      title:
+                        this.props.intl.locale === "en"
+                          ? this.props.data.strapiArticle.title_en
+                          : this.props.data.strapiArticle.title,
                     },
                   }}
                 />
@@ -178,9 +188,14 @@ class ArticleTemplate extends React.Component {
               <div
                 //className={"js-toc-content"}
                 dangerouslySetInnerHTML={{
-                  __html: marked(this.props.data.strapiArticle.content, {
-                    renderer: renderer,
-                  }),
+                  __html: marked(
+                    this.props.intl.locale === "en"
+                      ? this.props.data.strapiArticle.content_en
+                      : this.props.data.strapiArticle.content,
+                    {
+                      renderer: renderer,
+                    }
+                  ),
                 }}
               ></div>
             </div>
@@ -188,7 +203,9 @@ class ArticleTemplate extends React.Component {
             <DiscussionEmbed
               {...disqusConfig(
                 this.props.data.strapiArticle.id,
-                this.props.data.strapiArticle.title
+                this.props.intl.locale === "en"
+                  ? this.props.data.strapiArticle.title_en
+                  : this.props.data.strapiArticle.title
               )}
             />
           </Col>
@@ -201,7 +218,7 @@ class ArticleTemplate extends React.Component {
 export default injectIntl(ArticleTemplate)
 
 export const articleQuery = graphql`
-  query ArticleTemplate($id: String!) {
+  query ArticleTemplate($id: String!, $isDefaultLanguage: Boolean!) {
     site {
       siteMetadata {
         url
@@ -210,8 +227,10 @@ export const articleQuery = graphql`
     }
     strapiArticle(id: { eq: $id }) {
       id
-      title
-      content
+      title @include(if: $isDefaultLanguage)
+      title_en @skip(if: $isDefaultLanguage)
+      content @include(if: $isDefaultLanguage)
+      content_en @skip(if: $isDefaultLanguage)
       publishedAt
       metadata {
         meta {
