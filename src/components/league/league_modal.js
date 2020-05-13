@@ -9,7 +9,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 import { FormErrors } from "./formErrors"
 import Loader from "react-loader-spinner"
-import { ApiResponse } from "./apiResponse"
+import ApiResponse from "./apiResponse"
 import { apiUrl } from "../../statics"
 import CheckboxWithTitle from "./checkboxWithTitle"
 
@@ -17,7 +17,7 @@ import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
 
 const axios = require("axios")
 
-class LeagueModal extends Component {
+class LeagueModal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -226,7 +226,7 @@ class LeagueModal extends Component {
               <h3>
                 <FormattedMessage id="league-dialog.title" />
               </h3>
-              <p>
+              <div>
                 <FormattedMessage id="league-dialog.ref-requirements" />
                 <br />
                 <ul>
@@ -258,7 +258,7 @@ class LeagueModal extends Component {
                     </a>
                   </li>
                 </ul>
-              </p>
+              </div>
               <p>
                 <FormattedMessage id="league-dialog.league-desc-1" />
                 <b>

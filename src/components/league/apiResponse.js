@@ -1,7 +1,7 @@
 import React from "react"
 import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
 
-function render(response, leagueData) {
+const ApiResponse = ({ response, leagueData }) => {
   if (response != null) {
     if (response.isValid) {
       if (leagueData != null && leagueData !== undefined) {
@@ -34,7 +34,5 @@ function render(response, leagueData) {
     return <div></div>
   }
 }
-
-const ApiResponse = ({ response, leagueData }) => render(response, leagueData)
 
 export default injectIntl(ApiResponse)

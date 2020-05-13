@@ -8,7 +8,10 @@
     "league": "League",
     "cryptocurrency": "Cryptocurrency",
     "at": "Technical analysis",
-    "academy": "Academy"
+    "academy": "Academy",
+    "rest": "Rest of articles",
+    "share": "Share",
+    "search": "Search..."
   },
   "footer": {
     "about-us": "About us",
@@ -42,7 +45,7 @@
     "no-upcoming-leagues": "No upcoming tournaments, check back later.",
     "title": "Do you want to join the league? Sign up now!",
     "ref-requirements": "The requirement of participation in the League is to set up an account from one of the following links: ",
-    "league-desc-1": "The next league begins",
+    "league-desc-1": "The next league begins ",
     "league-desc-2": ", just enter your api key to read the league account status (how to do this?*).  ",
     "league-desc-3": "Deadline to sign-up: ",
     "form-title-nick": "Nick from Telegram",

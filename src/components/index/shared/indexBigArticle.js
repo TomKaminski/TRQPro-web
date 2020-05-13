@@ -24,10 +24,20 @@ class IndexBigArticle extends React.Component {
           />
         </div>
         <Link to={`/${this.props.article.fields.slug}`}>
-          <h5 className="link-title">{this.props.article.title}</h5>
+          <h5 className="link-title">
+            {this.props.intl.locale === "en"
+              ? this.props.article.title_en
+              : this.props.article.title}
+          </h5>
         </Link>
         <p className={"description"}>
-          {removeMd(this.props.article.content.substring(0, 400).concat("..."))}
+          {this.props.intl.locale === "en"
+            ? removeMd(
+                this.props.article.content_en.substring(0, 400).concat("...")
+              )
+            : removeMd(
+                this.props.article.content.substring(0, 400).concat("...")
+              )}
         </p>
       </div>
     )

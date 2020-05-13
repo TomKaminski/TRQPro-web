@@ -68,6 +68,7 @@ export const categoryQuery = graphql`
     $skip: Int!
     $limit: Int!
     $date: Date
+    $isDefaultLanguage: Boolean!
   ) {
     allStrapiArticle(
       filter: { publishedAt: { lte: $date }, category: { key: { eq: $key } } }
@@ -78,10 +79,12 @@ export const categoryQuery = graphql`
       edges {
         node {
           id
-          title
           publishedAt
           strapiId
-          content
+          title @include(if: $isDefaultLanguage)
+          title_en @skip(if: $isDefaultLanguage)
+          content @include(if: $isDefaultLanguage)
+          content_en @skip(if: $isDefaultLanguage)
           image {
             publicURL
             childImageSharp {
@@ -95,7 +98,8 @@ export const categoryQuery = graphql`
           }
           category {
             key
-            name
+            name @include(if: $isDefaultLanguage)
+            name_en @skip(if: $isDefaultLanguage)
           }
           author {
             id

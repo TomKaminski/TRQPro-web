@@ -8,7 +8,10 @@
     "league": "Liga",
     "cryptocurrency": "Kryptowaluty",
     "at": "Analizy",
-    "academy": "Akademia"
+    "academy": "Akademia",
+    "rest": "Pozostałe",
+    "share": "Udostępnij",
+    "search": "Wyszukaj..."
   },
   "footer": {
     "about-us": "O nas",

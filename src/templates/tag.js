@@ -62,7 +62,13 @@ class TagTemplate extends React.Component {
 export default injectIntl(TagTemplate)
 
 export const tagQuery = graphql`
-  query TagTemplate($key: String!, $skip: Int!, $limit: Int!, $date: Date) {
+  query TagTemplate(
+    $key: String!
+    $skip: Int!
+    $limit: Int!
+    $date: Date
+    $isDefaultLanguage: Boolean!
+  ) {
     allStrapiArticle(
       filter: {
         publishedAt: { lte: $date }
@@ -75,10 +81,12 @@ export const tagQuery = graphql`
       edges {
         node {
           id
-          title
           publishedAt
           strapiId
-          content
+          title @include(if: $isDefaultLanguage)
+          title_en @skip(if: $isDefaultLanguage)
+          content @include(if: $isDefaultLanguage)
+          content_en @skip(if: $isDefaultLanguage)
           image {
             publicURL
             childImageSharp {
@@ -92,7 +100,8 @@ export const tagQuery = graphql`
           }
           category {
             key
-            name
+            name @include(if: $isDefaultLanguage)
+            name_en @skip(if: $isDefaultLanguage)
           }
           author {
             id

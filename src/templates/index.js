@@ -91,7 +91,7 @@ class IndexPage extends React.Component {
           <Row style={{ visibility: "hidden", height: "1px" }}>
             <Col>
               <h1>
-                S<FormattedMessage id="article.trq-header" />
+                <FormattedMessage id="article.trq-header" />
               </h1>
               <p>
                 <i>
@@ -152,7 +152,9 @@ class IndexPage extends React.Component {
                 </Col>
               </Row>
               <IndexCurrenciesSection
-                sectionName="Kryptowaluty"
+                sectionName={this.props.intl.formatMessage({
+                  id: "common.cryptocurrency",
+                })}
                 articles={this.getArticlesForCryptocurrenciesSection()}
               />
             </Col>
@@ -176,7 +178,9 @@ class IndexPage extends React.Component {
           <Row>
             <Col xs={12} lg={9}>
               <IndexAcademySection
-                sectionName="Akademia"
+                sectionName={this.props.intl.formatMessage({
+                  id: "common.academy",
+                })}
                 articles={this.getArticlesForAcademySection()}
               />
             </Col>
@@ -187,13 +191,17 @@ class IndexPage extends React.Component {
           <Row>
             <Col xs={12}>
               <IndexMarketAnalysisSection
-                sectionName="Analizy"
+                sectionName={this.props.intl.formatMessage({
+                  id: "common.at",
+                })}
                 articles={this.getArticlesForMarketAnalysisSection()}
               />
 
               {restArticles.length > 0 && (
                 <IndexRestSection
-                  sectionName="Pozostałe"
+                  sectionName={this.props.intl.formatMessage({
+                    id: "common.rest",
+                  })}
                   articles={restArticles}
                 />
               )}
@@ -248,7 +256,7 @@ class IndexPage extends React.Component {
 export default injectIntl(IndexPage)
 
 export const indexQuery = graphql`
-  query IndexQuery1($date: Date) {
+  query IndexQuery1($date: Date, $isDefaultLanguage: Boolean!) {
     allStrapiArticle(
       sort: { fields: publishedAt, order: DESC }
       filter: { publishedAt: { lte: $date } }
@@ -259,13 +267,16 @@ export const indexQuery = graphql`
         edges {
           node {
             id
-            title
             publishedAt
             strapiId
-            content
+            title @include(if: $isDefaultLanguage)
+            title_en @skip(if: $isDefaultLanguage)
+            content @include(if: $isDefaultLanguage)
+            content_en @skip(if: $isDefaultLanguage)
             category {
               key
-              name
+              name @include(if: $isDefaultLanguage)
+              name_en @skip(if: $isDefaultLanguage)
             }
             fields {
               slug

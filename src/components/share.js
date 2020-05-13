@@ -1,6 +1,7 @@
 import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { FacebookShareButton, TwitterShareButton } from "react-share"
+import { injectIntl } from "gatsby-plugin-intl"
 
 class Share extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class Share extends React.Component {
         }`}
       >
         <button
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault()
             e.stopPropagation()
             this.setState({
@@ -27,7 +28,9 @@ class Share extends React.Component {
           }}
         >
           <FontAwesomeIcon icon="share-alt" size={"1x"} />{" "}
-          {this.state.expanded ? "" : "udostępnij"}
+          {this.state.expanded
+            ? ""
+            : this.props.intl.formatMessage({ id: "common.share" })}
         </button>
         {this.state.expanded ? (
           <div className="post-social">
@@ -60,4 +63,4 @@ class Share extends React.Component {
   }
 }
 
-export default Share
+export default injectIntl(Share)

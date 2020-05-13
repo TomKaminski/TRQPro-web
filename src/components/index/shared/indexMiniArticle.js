@@ -22,16 +22,27 @@ class IndexMiniArticle extends React.Component {
         <Row>
           <Col xs={12} md={6} lg={4}>
             <Link to={`/${this.props.article.fields.slug}`}>
-              <h5 className={"link-title"}>{this.props.article.title}</h5>
+              <h5 className={"link-title"}>
+                {this.props.intl.locale === "en"
+                  ? this.props.article.title_en
+                  : this.props.article.title}
+              </h5>
             </Link>
           </Col>
           <Col xs={12} md={6} lg={8}>
             <p className={"description"}>
-              {removeMd(
-                this.props.article.content
-                  .substring(0, this.props.articleLength || 250)
-                  .concat("...")
-              )}
+              {this.props.intl.locale === "en"
+                ? removeMd(
+                    this.props.article.content_en
+                      .substring(0, this.props.articleLength || 250)
+                      .concat("...")
+                  )
+                : removeMd(
+                    this.props.article.content.substring(
+                      0,
+                      this.props.articleLength || 250
+                    )
+                  )}
             </p>
           </Col>
         </Row>

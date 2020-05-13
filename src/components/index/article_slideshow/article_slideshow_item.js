@@ -1,11 +1,11 @@
 import React from "react"
-import { Link } from "gatsby"
+import { injectIntl, Link } from "gatsby-plugin-intl"
 import Img from "gatsby-image"
 import { Container, Row, Col } from "react-bootstrap"
 import TimeAndAuthor from "../shared/timeAndAuthor"
 import removeMd from "remove-markdown"
 
-export default class ArticleSlideshowItem extends React.Component {
+class ArticleSlideshowItem extends React.Component {
   render() {
     return (
       <Container fluid={true}>
@@ -16,17 +16,27 @@ export default class ArticleSlideshowItem extends React.Component {
             className="slide-content-container"
           >
             <p className={"slide-category"}>
-              {this.props.article.category.name}
+              {this.props.intl.locale === "en"
+                ? this.props.article.category.name_en
+                : this.props.article.category.name}
             </p>
             <Link to={`/${this.props.article.fields.slug}`}>
               <h5 className={"link-title white-text"}>
-                {this.props.article.title}
+                {this.props.intl.locale === "en"
+                  ? this.props.article.title_en
+                  : this.props.article.title}
               </h5>
             </Link>
             <p className={"description"}>
-              {removeMd(
-                this.props.article.content.substring(0, 250).concat("...")
-              )}
+              {this.props.intl.locale === "en"
+                ? removeMd(
+                    this.props.article.content_en
+                      .substring(0, 250)
+                      .concat("...")
+                  )
+                : removeMd(
+                    this.props.article.content.substring(0, 250).concat("...")
+                  )}
             </p>
             <TimeAndAuthor
               author={this.props.article.author}
@@ -51,3 +61,5 @@ export default class ArticleSlideshowItem extends React.Component {
     )
   }
 }
+
+export default injectIntl(ArticleSlideshowItem)

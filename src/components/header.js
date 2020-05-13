@@ -66,7 +66,11 @@ class Header extends React.Component {
               <Link
                 to={`/kategoria/cat-cryptocurrency`}
                 className={"nav-link-black nav-link"}
-                state={{ categoryName: "Kryptowaluty" }}
+                state={{
+                  categoryName: this.props.intl.formatMessage({
+                    id: "common.cryptocurrency",
+                  }),
+                }}
               >
                 <FormattedMessage
                   id="common.cryptocurrency"
@@ -76,14 +80,22 @@ class Header extends React.Component {
               <Link
                 to={`/kategoria/cat-at`}
                 className={"nav-link-black nav-link"}
-                state={{ categoryName: "Analizy" }}
+                state={{
+                  categoryName: this.props.intl.formatMessage({
+                    id: "common.at",
+                  }),
+                }}
               >
                 <FormattedMessage id="common.at" defaultMessage="Analizy" />
               </Link>
               <Link
                 to={`/kategoria/cat-academy`}
                 className={"nav-link-black nav-link"}
-                state={{ categoryName: "Akademia" }}
+                state={{
+                  categoryName: this.props.intl.formatMessage({
+                    id: "common.academy",
+                  }),
+                }}
               >
                 <FormattedMessage
                   id="common.academy"

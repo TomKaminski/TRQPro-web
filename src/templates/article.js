@@ -136,7 +136,9 @@ class ArticleTemplate extends React.Component {
                       categoryName: this.props.data.strapiArticle.category.name,
                     }}
                   >
-                    {this.props.data.strapiArticle.category.name.toUpperCase()}
+                    {this.props.intl.locale === "en"
+                      ? this.props.data.strapiArticle.category.name_en.toUpperCase()
+                      : this.props.data.strapiArticle.category.name.toUpperCase()}
                   </Link>
                 </div>
 
@@ -162,9 +164,16 @@ class ArticleTemplate extends React.Component {
                       <Link
                         to={`/tag/${tag.key}`}
                         key={tag.key}
-                        state={{ tagName: tag.name }}
+                        state={{
+                          tagName:
+                            this.props.intl.locale === "en"
+                              ? tag.name_en
+                              : tag.name,
+                        }}
                       >
-                        {tag.name + ", "}
+                        {this.props.intl.locale === "en"
+                          ? tag.name_en + ", "
+                          : tag.name + ", "}
                       </Link>
                     ))}
                   </div>
@@ -247,7 +256,8 @@ export const articleQuery = graphql`
         }
       }
       category {
-        name
+        name @include(if: $isDefaultLanguage)
+        name_en @skip(if: $isDefaultLanguage)
         key
       }
       author {
@@ -256,7 +266,8 @@ export const articleQuery = graphql`
       }
       tags {
         key
-        name
+        name @include(if: $isDefaultLanguage)
+        name_en @skip(if: $isDefaultLanguage)
       }
       fields {
         slug
