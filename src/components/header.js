@@ -8,7 +8,18 @@ import logoImg from "../images/brand_logo.png"
 import Search from "./search"
 import MobileSidebar from "./mobile_sidebar"
 
-import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
+import {
+  injectIntl,
+  Link,
+  FormattedMessage,
+  changeLocale,
+  IntlContextConsumer,
+} from "gatsby-plugin-intl"
+
+const languageName = {
+  en: "EN",
+  pl: "PL",
+}
 
 class Header extends React.Component {
   constructor(props) {
@@ -53,6 +64,26 @@ class Header extends React.Component {
                 className={"icon"}
               />
             </Nav.Link>
+            <IntlContextConsumer>
+              {({ languages, language: currentLocale }) =>
+                languages.map((language) => (
+                  <a
+                    key={language}
+                    onClick={() => changeLocale(language)}
+                    className={"nav-link nav-link-black  d-block d-lg-none"}
+                    style={{
+                      color: currentLocale === language ? `black` : `grey`,
+                      textDecoration:
+                        currentLocale === language ? `underline` : `none`,
+                      fontWeight: currentLocale === language ? `bold` : `thin`,
+                      cursor: `pointer`,
+                    }}
+                  >
+                    {languageName[language]}
+                  </a>
+                ))
+              }
+            </IntlContextConsumer>
           </Nav>
 
           <Navbar.Collapse className={"justify-content-end"}>
@@ -136,6 +167,26 @@ class Header extends React.Component {
                   />
                 )}
               />
+              <IntlContextConsumer>
+                {({ languages, language: currentLocale }) =>
+                  languages.map((language) => (
+                    <a
+                      key={language}
+                      onClick={() => changeLocale(language)}
+                      className={"nav-link-black"}
+                      style={{
+                        color: currentLocale === language ? `black` : `grey`,
+                        margin: 10,
+                        textDecoration:
+                          currentLocale === language ? `underline` : `none`,
+                        cursor: `pointer`,
+                      }}
+                    >
+                      {languageName[language]}
+                    </a>
+                  ))
+                }
+              </IntlContextConsumer>
             </Nav>
           </Navbar.Collapse>
         </Container>

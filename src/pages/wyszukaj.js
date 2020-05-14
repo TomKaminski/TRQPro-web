@@ -47,7 +47,9 @@ class SearchPage extends React.Component {
     return (
       <Layout>
         <SEO
-          title={`TRQPro - Wyszukaj - ${this.searchPhrase}`}
+          title={`${this.props.intl.formatMessage({ id: "common.search" })} - ${
+            this.searchPhrase
+          }`}
           pathname={`/wyszukaj?fraza=${this.searchPhrase}`}
         />
         <h2 className={"margin-top-base margin-bottom-40 search-heading"}>
@@ -70,9 +72,16 @@ class SearchPage extends React.Component {
                     to={`/kategoria/${category.key}`}
                     className={"underlined-black-text"}
                     key={category.key}
-                    state={{ categoryName: category.name }}
+                    state={{
+                      categoryName:
+                        this.props.intl.locale === "en"
+                          ? category.name_en
+                          : category.name,
+                    }}
                   >
-                    {category.name}
+                    {this.props.intl.locale === "en"
+                      ? category.name_en
+                      : category.name}
                   </Link>
                 </div>
               ))}
@@ -98,9 +107,14 @@ class SearchPage extends React.Component {
                     to={`/tag/${tag.key}`}
                     className={"underlined-black-text"}
                     key={tag.key}
-                    state={{ tagName: tag.name }}
+                    state={{
+                      tagName:
+                        this.props.intl.locale === "en"
+                          ? tag.name_en
+                          : tag.name,
+                    }}
                   >
-                    {tag.name}
+                    {this.props.intl.locale === "en" ? tag.name_en : tag.name}
                   </Link>
                 </div>
               ))}

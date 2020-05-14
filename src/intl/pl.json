@@ -127,7 +127,10 @@
     "search-results-for": "Wyniki wyszukiwania dla",
     "found-categories": "Znalezione kategorie",
     "found-tags": "Znalezione tagi",
-    "all-articles": "Wszystkie artykułu"
+    "all-articles": "Wszystkie artykuły",
+    "find-all-for": "Znajdź wszystko dla: ",
+    "tags": "TAGI",
+    "categories": "KATEGORIE"
   },
   "seo-suffix": "Trading, Analizy, Liga",
   "our-channels": {
@@ -168,5 +171,15 @@
     "trq-description-3": "Wszystko po to, aby wspólnie zarabiać na giełdzie. Co ważne – robimy to wszystko za darmo, dlatego, że zarabiamy na rynkach, nie szkoleniach. W zamian za pomoc, oczekujemy jedynie zaangażowania w grupę i pomocy innym.",
     "tweet-loading": "Ładuję tweety",
     "join-us": "Dołącz do nas"
+  },
+  "api-error-codes": {
+    "WRONG-LEAGUE-ID": "Zły identyfikator ligi.",
+    "WRONG-API-KEYS": "Podane klucze API są nieprawidłowe.",
+    "WRONG-DATA": "Nieprawidłowe dane.",
+    "LEAGUE-ENDED": "Zapisy na wybraną ligę są zakończone.",
+    "DUPLICATED-DATA": "Niektóre dane powielają się z już zapisanym uczestnikiem.",
+    "WRONG-REF-BITMEX": "Konto nie jest podpięte pod odpowiedni reflink.",
+    "WRONG-PERMISSION-BYBIT": "Podany klucz API nie jest ustawiony jako tylko do odczytu (readonly).",
+    "WRONG-VALID-UNTIL-DATE-BYBIT": "Podany klucz API wygasa przed końcem ligi. Proszę wygenerować nowy klucz."
   }
 }

@@ -1,7 +1,7 @@
 import React from "react"
 import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
 
-const ApiResponse = ({ response, leagueData }) => {
+const ApiResponse = ({ response, leagueData, intl }) => {
   if (response != null) {
     if (response.isValid) {
       if (leagueData != null && leagueData !== undefined) {
@@ -26,7 +26,7 @@ const ApiResponse = ({ response, leagueData }) => {
     } else {
       return (
         <p style={{ color: "red", textDecoration: "underline" }}>
-          {response.error}
+          {intl.formatMessage({ id: "api-error-codes." + response.error })}
         </p>
       )
     }

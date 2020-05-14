@@ -74,7 +74,7 @@ class LeagueModal extends React.Component {
   processLeagueOptions(data) {
     return data.map((val) => {
       return {
-        label: val.name,
+        label: this.props.intl.locale === "en" ? val.name_en : val.name,
         value: val.id,
       }
     })

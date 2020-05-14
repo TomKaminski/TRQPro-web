@@ -85,7 +85,9 @@ class IndexPage extends React.Component {
     let restArticles = this.getArticlesForRestSection()
     return (
       <LayoutIndex>
-        <SEO title="Strona główna" />
+        <SEO
+          title={this.props.intl.formatMessage({ id: "header.home-title" })}
+        />
         <ArticleSlideshow articles={this.getArticlesForSlideshow()} />
         <Container fluid={true} id="main-container" className={"page-padding"}>
           <Row style={{ visibility: "hidden", height: "1px" }}>

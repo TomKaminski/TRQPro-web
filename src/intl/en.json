@@ -127,7 +127,10 @@
     "search-results-for": "Search results for",
     "found-categories": "Found categories",
     "found-tags": "Found tags",
-    "all-articles": "All articles"
+    "all-articles": "All articles",
+    "find-all-for": "Find all for phrase: ",
+    "tags": "TAGS",
+    "categories": "CATEGORIES"
   },
   "seo-suffix": "Trading, Analysis, League",
   "our-channels": {
@@ -168,5 +171,15 @@
     "trq-description-3": "Everything we do is to make money together on the stock exchange. What's important - we do all this for free, because we earn in the markets, not training. In exchange for help, we only expect involvement in the group and help to others.",
     "tweet-loading": "tweet loading",
     "join-us": "Join us"
+  },
+  "api-error-codes": {
+    "WRONG-LEAGUE-ID": "Wrong league identifier.",
+    "WRONG-API-KEYS": "Provided API Keys are invalid.",
+    "WRONG-DATA": "Invalid data.",
+    "LEAGUE-ENDED": "Registration for selected league has ended.",
+    "DUPLICATED-DATA": "Some data is duplicated with an already registered participant.",
+    "WRONG-REF-BITMEX": "The account is not connected to the appropriate reflink.",
+    "WRONG-PERMISSION-BYBIT": "The API key provided is not set as readonly.",
+    "WRONG-VALID-UNTIL-DATE-BYBIT": "The API key provided expires before the end of the league. Please generate a new key."
   }
 }

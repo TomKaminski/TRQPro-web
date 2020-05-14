@@ -2,10 +2,9 @@ import React, { Component } from "react"
 import { Index } from "elasticlunr"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import IndexMiniArticle from "./index/shared/indexMiniArticle"
-import { Link, navigate } from "gatsby"
 
 import Modal from "./modal"
-import { injectIntl } from "gatsby-plugin-intl"
+import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
 class Search extends Component {
   constructor(props) {
     super(props)
@@ -103,7 +102,9 @@ class Search extends Component {
 
             {categories.length > 0 ? (
               <div className={"search-category-tag"}>
-                <h5>KATEGORIE</h5>
+                <h5>
+                  <FormattedMessage id="search.categories" />
+                </h5>
                 <div className={"search-category-tag-flex-container"}>
                   {categories.map((category) => (
                     <div className={"category-tag"} key={category.key}>
@@ -112,9 +113,16 @@ class Search extends Component {
                         to={`/kategoria/${category.key}`}
                         className={"underlined-black-text"}
                         key={category.key}
-                        state={{ categoryName: category.name }}
+                        state={{
+                          categoryName:
+                            this.props.intl.locale === "en"
+                              ? category.name_en
+                              : category.name,
+                        }}
                       >
-                        {category.name}
+                        {this.props.intl.locale === "en"
+                          ? category.name_en
+                          : category.name}
                       </Link>
                     </div>
                   ))}
@@ -126,7 +134,9 @@ class Search extends Component {
 
             {tags.length > 0 ? (
               <div className={"search-category-tag"}>
-                <h5>TAGI</h5>
+                <h5>
+                  <FormattedMessage id="search.tags" />
+                </h5>
                 <div className={"search-category-tag-flex-container"}>
                   {tags.map((tag) => (
                     <div className={"category-tag"} key={tag.key}>
@@ -136,9 +146,16 @@ class Search extends Component {
                         to={`/tag/${tag.key}`}
                         className={"underlined-black-text"}
                         key={tag.key}
-                        state={{ tagName: tag.name }}
+                        state={{
+                          tagName:
+                            this.props.intl.locale === "en"
+                              ? tag.name_en
+                              : tag.name,
+                        }}
                       >
-                        {tag.name}
+                        {this.props.intl.locale === "en"
+                          ? tag.name_en
+                          : tag.name}
                       </Link>
                     </div>
                   ))}
@@ -147,23 +164,19 @@ class Search extends Component {
             ) : (
               <div />
             )}
-            <a
-              href={`/wyszukaj?fraza=${this.state.query}`}
+            <Link
+              to={`/wyszukaj?fraza=${this.state.query}`}
               className={"search-all"}
-              onClick={(e) => {
-                e.preventDefault()
-                navigate(`/wyszukaj?fraza=${this.state.query}`)
-                this.setState({
-                  query: "",
-                })
-              }}
             >
               {this.state.query !== "" ? (
-                <div>Znajdź wszystko dla: {this.state.query}</div>
+                <div>
+                  <FormattedMessage id="search.find-all-for" />{" "}
+                  {this.state.query}
+                </div>
               ) : (
                 <div></div>
               )}
-            </a>
+            </Link>
           </div>
         </div>
       </Modal>
