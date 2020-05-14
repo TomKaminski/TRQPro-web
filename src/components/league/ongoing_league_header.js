@@ -1,6 +1,7 @@
 import React from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import winner from "../../images/winner.svg"
+import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
 
 const OngoingLeagueHeader = ({
   startDate,
@@ -13,16 +14,22 @@ const OngoingLeagueHeader = ({
     <Container fluid={true} className={"league-stat-container"}>
       <Row>
         <Col xs={6} md={3}>
-          <p className={"league-stat-header"}>Data rozpoczęcia:</p>
+          <p className={"league-stat-header"}>
+            <FormattedMessage id="league.start-date" />:
+          </p>
           <p className={"league-stat"}>
             {new Date(startDate).toLocaleString()}
           </p>
         </Col>
         <Col xs={6} md={3}>
-          <p className={"league-stat-header"}>Następny odczyt:</p>
+          <p className={"league-stat-header"}>
+            <FormattedMessage id="league.next-reading" />:
+          </p>
           <p className={"league-stat"}>
             {hasEnded ? (
-              <span style={{ color: "green" }}>Liga zakończona</span>
+              <span style={{ color: "green" }}>
+                <FormattedMessage id="league.finished" />:
+              </span>
             ) : (
               new Date(nextReadingDate).toLocaleString()
             )}
@@ -30,7 +37,9 @@ const OngoingLeagueHeader = ({
         </Col>
         <Col xs={6} md={3} style={{ display: "flex", alignItems: "end" }}>
           <div>
-            <p className={"league-stat-header"}>Data zakończenia:</p>
+            <p className={"league-stat-header"}>
+              <FormattedMessage id="league.end-date" />:
+            </p>
             <p className={"league-stat"}>
               {new Date(endDate).toLocaleString()}
             </p>
@@ -39,7 +48,9 @@ const OngoingLeagueHeader = ({
         </Col>
 
         <Col xs={6} md={3}>
-          <p className={"league-stat-header"}>Ilość uczestników:</p>
+          <p className={"league-stat-header"}>
+            <FormattedMessage id="league.participants" />:
+          </p>
           <p className={"league-stat"}>{participantsLength}</p>
         </Col>
       </Row>
@@ -47,4 +58,4 @@ const OngoingLeagueHeader = ({
   )
 }
 
-export default OngoingLeagueHeader
+export default injectIntl(OngoingLeagueHeader)

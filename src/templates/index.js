@@ -18,8 +18,9 @@ import telegramForex from "../images/forex.png"
 
 import IndexSmallLeague from "../components/index/sections/indexSmallLeague"
 import BinanceWidget from "../components/binance_widget"
+import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
 
-export default class IndexPage extends React.Component {
+class IndexPage extends React.Component {
   getArticlesForSlideshow() {
     var computingArray = []
     this.props.data.allStrapiArticle.group.forEach((groupOfArticles) => {
@@ -84,26 +85,22 @@ export default class IndexPage extends React.Component {
     let restArticles = this.getArticlesForRestSection()
     return (
       <LayoutIndex>
-        <SEO title="Strona główna" />
+        <SEO
+          title={this.props.intl.formatMessage({ id: "header.home-title" })}
+        />
         <ArticleSlideshow articles={this.getArticlesForSlideshow()} />
         <Container fluid={true} id="main-container" className={"page-padding"}>
           <Row style={{ visibility: "hidden", height: "1px" }}>
             <Col>
-              <h1>Społeczność TRQPro - trading, analizy, liga</h1>
+              <h1>
+                <FormattedMessage id="article.trq-header" />
+              </h1>
               <p>
                 <i>
-                  została stworzona przez Traderów dla Traderów. Znajdziesz tu
-                  kompendium wiedzy na każdy możliwy temat dotyczący spekulacji
-                  wyłożone w prosty sposób. Dzielimy się swoimi taktykami
-                  rozgrywania pozycji, strategiami, analizami technicznymi i
-                  informacjami dotyczącymi walorów, które znamy i na których
-                  gramy. Pomagamy w zapoznaniu się z platformami, na których
-                  gramy, aby w głupi sposób nie tracić pieniędzy. Tropimy
-                  nieuczciwe grupy sygnałowe i ujawniając oszustwa przestrzegamy
-                  innych uczestników. Wszystko po to, aby wspólnie zarabiać na
-                  giełdzie. Co ważne – robimy to wszystko za darmo, dlatego, że
-                  zarabiamy na rynkach, nie szkoleniach. W zamian za pomoc,
-                  oczekujemy jedynie zaangażowania w grupę i pomocy innym.
+                  <FormattedMessage id="article.trq-description" />{" "}
+                  <FormattedMessage id="article.trq-description-1" />{" "}
+                  <FormattedMessage id="article.trq-description-2" />{" "}
+                  <FormattedMessage id="article.trq-description-3" />
                 </i>
               </p>
             </Col>
@@ -112,7 +109,9 @@ export default class IndexPage extends React.Component {
             <Col xs={12} lg={9}>
               <Row>
                 <Col xs={6} md={12} className={"flex-telegram-title-container"}>
-                  <h5>Dołącz do nas!</h5>
+                  <h5>
+                    <FormattedMessage id="article.join-us" />
+                  </h5>
                 </Col>
                 <Col
                   xs={6}
@@ -155,7 +154,9 @@ export default class IndexPage extends React.Component {
                 </Col>
               </Row>
               <IndexCurrenciesSection
-                sectionName="Kryptowaluty"
+                sectionName={this.props.intl.formatMessage({
+                  id: "common.cryptocurrency",
+                })}
                 articles={this.getArticlesForCryptocurrenciesSection()}
               />
             </Col>
@@ -164,7 +165,11 @@ export default class IndexPage extends React.Component {
               <TwitterTimelineEmbed
                 sourceType="profile"
                 screenName="trqpro"
-                placeholder={<p>Ładuję tweety...</p>}
+                placeholder={
+                  <p>
+                    <FormattedMessage id="article.tweet-loading" />
+                  </p>
+                }
                 lang="pl"
                 noFooter
                 options={{ height: 700 }}
@@ -175,7 +180,9 @@ export default class IndexPage extends React.Component {
           <Row>
             <Col xs={12} lg={9}>
               <IndexAcademySection
-                sectionName="Akademia"
+                sectionName={this.props.intl.formatMessage({
+                  id: "common.academy",
+                })}
                 articles={this.getArticlesForAcademySection()}
               />
             </Col>
@@ -186,13 +193,17 @@ export default class IndexPage extends React.Component {
           <Row>
             <Col xs={12}>
               <IndexMarketAnalysisSection
-                sectionName="Analizy"
+                sectionName={this.props.intl.formatMessage({
+                  id: "common.at",
+                })}
                 articles={this.getArticlesForMarketAnalysisSection()}
               />
 
               {restArticles.length > 0 && (
                 <IndexRestSection
-                  sectionName="Pozostałe"
+                  sectionName={this.props.intl.formatMessage({
+                    id: "common.rest",
+                  })}
                   articles={restArticles}
                 />
               )}
@@ -210,7 +221,11 @@ export default class IndexPage extends React.Component {
                 screenName="trqpro"
                 lang="pl"
                 noFooter
-                placeholder={<p>Ładuję tweety...</p>}
+                placeholder={
+                  <p>
+                    <FormattedMessage id="article.join-us" />
+                  </p>
+                }
                 options={{ height: 700 }}
               />
             </Col>
@@ -221,21 +236,15 @@ export default class IndexPage extends React.Component {
 
           <Row>
             <Col>
-              <h1>Społeczność TRQPro - trading, analizy, liga</h1>
+              <h1>
+                <FormattedMessage id="article.trq-header" />
+              </h1>
               <p>
                 <i>
-                  została stworzona przez Traderów dla Traderów. Znajdziesz tu
-                  kompendium wiedzy na każdy możliwy temat dotyczący spekulacji
-                  wyłożone w prosty sposób. Dzielimy się swoimi taktykami
-                  rozgrywania pozycji, strategiami, analizami technicznymi i
-                  informacjami dotyczącymi walorów, które znamy i na których
-                  gramy. Pomagamy w zapoznaniu się z platformami, na których
-                  gramy, aby w głupi sposób nie tracić pieniędzy. Tropimy
-                  nieuczciwe grupy sygnałowe i ujawniając oszustwa przestrzegamy
-                  innych uczestników. Wszystko po to, aby wspólnie zarabiać na
-                  giełdzie. Co ważne – robimy to wszystko za darmo, dlatego, że
-                  zarabiamy na rynkach, nie szkoleniach. W zamian za pomoc,
-                  oczekujemy jedynie zaangażowania w grupę i pomocy innym.
+                  <FormattedMessage id="article.trq-description" />{" "}
+                  <FormattedMessage id="article.trq-description-1" />{" "}
+                  <FormattedMessage id="article.trq-description-2" />{" "}
+                  <FormattedMessage id="article.trq-description-3" />
                 </i>
               </p>
             </Col>
@@ -246,8 +255,10 @@ export default class IndexPage extends React.Component {
   }
 }
 
+export default injectIntl(IndexPage)
+
 export const indexQuery = graphql`
-  query IndexQuery1($date: Date) {
+  query IndexQuery1($date: Date, $isDefaultLanguage: Boolean!) {
     allStrapiArticle(
       sort: { fields: publishedAt, order: DESC }
       filter: { publishedAt: { lte: $date } }
@@ -258,13 +269,16 @@ export const indexQuery = graphql`
         edges {
           node {
             id
-            title
             publishedAt
             strapiId
-            content
+            title @include(if: $isDefaultLanguage)
+            title_en @skip(if: $isDefaultLanguage)
+            content @include(if: $isDefaultLanguage)
+            content_en @skip(if: $isDefaultLanguage)
             category {
               key
-              name
+              name @include(if: $isDefaultLanguage)
+              name_en @skip(if: $isDefaultLanguage)
             }
             fields {
               slug

@@ -26,7 +26,7 @@ class AuthorTemplate extends React.Component {
           <IndexPager
             activePageIndex={this.props.pageContext.currentPage - 1}
             pageCount={this.props.data.allStrapiArticle.pageInfo.pageCount}
-            onPageChangeCallback={page => {
+            onPageChangeCallback={(page) => {
               if (page === 0) {
                 navigate(`/autor/${this.props.pageContext.key}`)
               } else {
@@ -47,7 +47,13 @@ class AuthorTemplate extends React.Component {
 export default AuthorTemplate
 
 export const authorQuery = graphql`
-  query AuthorTemplate($key: Int!, $skip: Int!, $limit: Int!, $date: Date) {
+  query AuthorTemplate(
+    $key: Int!
+    $skip: Int!
+    $limit: Int!
+    $date: Date
+    $isDefaultLanguage: Boolean!
+  ) {
     strapiUser(strapiId: { eq: $key }) {
       username
     }
@@ -60,10 +66,12 @@ export const authorQuery = graphql`
       edges {
         node {
           id
-          title
           publishedAt
           strapiId
-          content
+          title @include(if: $isDefaultLanguage)
+          title_en @skip(if: $isDefaultLanguage)
+          content @include(if: $isDefaultLanguage)
+          content_en @skip(if: $isDefaultLanguage)
           image {
             publicURL
             childImageSharp {
@@ -74,7 +82,8 @@ export const authorQuery = graphql`
           }
           category {
             key
-            name
+            name @include(if: $isDefaultLanguage)
+            name_en @skip(if: $isDefaultLanguage)
           }
           fields {
             slug

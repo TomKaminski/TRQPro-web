@@ -9,13 +9,15 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 import { FormErrors } from "./formErrors"
 import Loader from "react-loader-spinner"
-import { ApiResponse } from "./apiResponse"
+import ApiResponse from "./apiResponse"
 import { apiUrl } from "../../statics"
 import CheckboxWithTitle from "./checkboxWithTitle"
 
+import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
+
 const axios = require("axios")
 
-export default class LeagueModal extends Component {
+class LeagueModal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -57,22 +59,22 @@ export default class LeagueModal extends Component {
     let endpoint = apiUrl + "league/comingLeagues"
     axios
       .get(endpoint)
-      .then(response => {
+      .then((response) => {
         this.setState({
           rawLeaguesData: response.data,
           nearestLeague: response.data[0],
           leagueOptions: this.processLeagueOptions(response.data),
         })
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
   }
 
   processLeagueOptions(data) {
-    return data.map(val => {
+    return data.map((val) => {
       return {
-        label: val.name,
+        label: this.props.intl.locale === "en" ? val.name_en : val.name,
         value: val.id,
       }
     })
@@ -111,8 +113,8 @@ export default class LeagueModal extends Component {
         league: league.value,
         exchange: exchange.value,
       })
-      .then(response => {
-        let joinedLeague = this.state.rawLeaguesData.find(item => {
+      .then((response) => {
+        let joinedLeague = this.state.rawLeaguesData.find((item) => {
           return item.id === this.state.formData.league.value
         })
 
@@ -152,7 +154,7 @@ export default class LeagueModal extends Component {
           })
         }
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({
           isLoading: false,
           lastApiResponse: {
@@ -182,7 +184,7 @@ export default class LeagueModal extends Component {
       <Modal>
         <div
           className={"modal-overlay"}
-          onClick={e => {
+          onClick={(e) => {
             if (e.target.className === "modal-overlay") {
               this.setState({
                 isActive: false,
@@ -213,15 +215,20 @@ export default class LeagueModal extends Component {
           {date === null ? (
             <div className={"modal-content"}>
               <h3>
-                Brak nadchodzących rozgrywek, sprawdź w późniejszym terminie.
+                <FormattedMessage
+                  id="league-dialog.no-upcoming-leagues"
+                  defaultMessage="Brak nadchodzących rozgrywek, sprawdź w późniejszym terminie."
+                />
               </h3>
             </div>
           ) : (
             <div className={"modal-content"}>
-              <h3>Chcesz dołączyć do ligi? Zapisz się juz teraz!</h3>
-              <p>
-                Warunkiem uczestnictwa w Lidze jest założenie konta z jednego z
-                ponizszych reflinków: <br />
+              <h3>
+                <FormattedMessage id="league-dialog.title" />
+              </h3>
+              <div>
+                <FormattedMessage id="league-dialog.ref-requirements" />
+                <br />
                 <ul>
                   <li>
                     <a
@@ -251,15 +258,15 @@ export default class LeagueModal extends Component {
                     </a>
                   </li>
                 </ul>
-              </p>
+              </div>
               <p>
-                Najbliższa liga rozpoczyna się{" "}
+                <FormattedMessage id="league-dialog.league-desc-1" />
                 <b>
                   <u>{date.toLocaleDateString()}</u>
                 </b>
-                , wystarczy podać swoje api do odczytu stanu konta ligowego (jak
-                to zrobić?*). <br />
-                Ostateczny termin zapisów:{" "}
+                <FormattedMessage id="league-dialog.league-desc-2" />
+                <br />
+                <FormattedMessage id="league-dialog.league-desc-3" />
                 {new Date(
                   this.state.nearestLeague.signingLimitDate
                 ).toLocaleString()}
@@ -292,10 +299,12 @@ export default class LeagueModal extends Component {
                       <Row>
                         <Col xs={12} md={6}>
                           <InputWithTitle
-                            title={"Nick z telegrama"}
+                            title={this.props.intl.formatMessage({
+                              id: "league-dialog.form-title-nick",
+                            })}
                             name={"nickname"}
                             value={this.state.formData.nickname}
-                            onChange={e => {
+                            onChange={(e) => {
                               let name = e.target.name
                               let value = e.target.value
                               this.setState(
@@ -314,10 +323,12 @@ export default class LeagueModal extends Component {
                         </Col>
                         <Col xs={12} md={6}>
                           <InputWithTitle
-                            title={"adres email"}
+                            title={this.props.intl.formatMessage({
+                              id: "league-dialog.form-title-email",
+                            })}
                             name="email"
                             value={this.state.formData.email}
-                            onChange={e => {
+                            onChange={(e) => {
                               let name = e.target.name
                               let value = e.target.value
                               this.setState(
@@ -336,10 +347,12 @@ export default class LeagueModal extends Component {
                         </Col>
                         <Col xs={12} md={6}>
                           <InputWithTitle
-                            title={"API key"}
+                            title={this.props.intl.formatMessage({
+                              id: "league-dialog.form-title-apikey",
+                            })}
                             name="apiKey"
                             value={this.state.formData.apiKey}
-                            onChange={e => {
+                            onChange={(e) => {
                               let name = e.target.name
                               let value = e.target.value
                               this.setState(
@@ -359,10 +372,12 @@ export default class LeagueModal extends Component {
 
                         <Col xs={12} md={6}>
                           <InputWithTitle
-                            title={"API secret"}
+                            title={this.props.intl.formatMessage({
+                              id: "league-dialog.form-title-apisecret",
+                            })}
                             name="apiSecret"
                             value={this.state.formData.apiSecret}
-                            onChange={e => {
+                            onChange={(e) => {
                               let name = e.target.name
                               let value = e.target.value
                               this.setState(
@@ -381,7 +396,9 @@ export default class LeagueModal extends Component {
                         </Col>
                         <Col xs={12} md={6}>
                           <div className={"input-with-title"}>
-                            <p>Giełda</p>
+                            <p>
+                              <FormattedMessage id="league-dialog.form-title-exchange" />
+                            </p>
                             <Dropdown
                               options={[
                                 {
@@ -397,7 +414,7 @@ export default class LeagueModal extends Component {
                                   value: "bybit",
                                 },
                               ]}
-                              onChange={opt => {
+                              onChange={(opt) => {
                                 this.setState(
                                   {
                                     formData: {
@@ -411,16 +428,21 @@ export default class LeagueModal extends Component {
                                 )
                               }}
                               value={this.state.formData.exchange}
-                              placeholder="Wybierz giełdę"
+                              placeholder={this.props.intl.formatMessage({
+                                id:
+                                  "league-dialog.form-title-exchange-placeholder",
+                              })}
                             />
                           </div>
                         </Col>
                         <Col xs={12} md={6}>
                           <div className={"input-with-title"}>
-                            <p>Liga</p>
+                            <p>
+                              <FormattedMessage id="common.league" />
+                            </p>
                             <Dropdown
                               options={this.state.leagueOptions}
-                              onChange={opt => {
+                              onChange={(opt) => {
                                 this.setState(
                                   {
                                     formData: {
@@ -434,19 +456,23 @@ export default class LeagueModal extends Component {
                                 )
                               }}
                               value={this.state.formData.league}
-                              placeholder="Wybierz ligę"
+                              placeholder={this.props.intl.formatMessage({
+                                id:
+                                  "league-dialog.form-title-league-placeholder",
+                              })}
                             />
                           </div>
                           <CheckboxWithTitle
-                            title={
-                              "Zapisz mnie na wszystkie pozostałe ligi w tym kwartale"
-                            }
+                            title={this.props.intl.formatMessage({
+                              id:
+                                "league-dialog.form-all-quarter-leagues-checkbox",
+                            })}
                             name="saveForAllLeaguesAtCurrentQuarter"
                             checked={
                               this.state.formData
                                 .saveForAllLeaguesAtCurrentQuarter
                             }
-                            onChange={e => {
+                            onChange={(e) => {
                               let value = e.target.checked
                               this.setState({
                                 formData: {
@@ -466,7 +492,9 @@ export default class LeagueModal extends Component {
                             type="submit"
                             disabled={!this.state.validation.formValid}
                             className={"form-submit-button"}
-                            value="Dołącz do ligi"
+                            value={this.props.intl.formatMessage({
+                              id: "league.join-league-shout",
+                            })}
                           />
                         </Col>
                       </Row>
@@ -475,9 +503,11 @@ export default class LeagueModal extends Component {
                 </div>
               )}
 
-              <h3>Bitmex - instrukcja generowania API Key</h3>
+              <h3>
+                <FormattedMessage id="league-dialog.bitmex-tutorial-header" />
+              </h3>
               <p>
-                Idź do{" "}
+                <FormattedMessage id="league-dialog.tutorial-exchanges-go-to" />{" "}
                 <a
                   href="https://www.bitmex.com/app/apiKeys"
                   target="_blank"
@@ -485,26 +515,31 @@ export default class LeagueModal extends Component {
                 >
                   https://www.bitmex.com/app/apiKeys
                 </a>{" "}
-                i postępuj zgodnie z instrukcją:
+                <FormattedMessage id="league-dialog.tutorial-exchanges-go-to-suffix" />
               </p>
               <ol>
-                <li>W polu Name wpisz "nick-z-telegrama" np. "Janusz",</li>
-                <li>CID - to pole pozostawiamy puste,</li>
                 <li>
-                  Key Permissions - tutaj wybieramy (-), nie jest wymagane ani
-                  "Order", ani "Order cancel",
+                  <FormattedMessage id="league-dialog.bitmex-tutorial-rule-1" />
                 </li>
-                <li>Pole "Withdraw" pozostawiamy puste, bez zmian,</li>
                 <li>
-                  Utwórz klucz i przepisz dla nas klucz "ID" oraz "Secret"
-                  (zapisz "Secret" w bezpiecznym miejscu, widzisz go tylko
-                  podczas tworzenia klucza!).
+                  <FormattedMessage id="league-dialog.bitmex-tutorial-rule-2" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.bitmex-tutorial-rule-3" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.bitmex-tutorial-rule-4" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.bitmex-tutorial-rule-5" />
                 </li>
               </ol>
 
-              <h3>Bybit - instrukcja generowania API Key</h3>
+              <h3>
+                <FormattedMessage id="league-dialog.bybit-tutorial-header" />
+              </h3>
               <p>
-                Idź do{" "}
+                <FormattedMessage id="league-dialog.tutorial-exchanges-go-to" />{" "}
                 <a
                   href="https://www.bybit.com/app/user/api-management"
                   target="_blank"
@@ -512,27 +547,42 @@ export default class LeagueModal extends Component {
                 >
                   https://www.bybit.com/app/user/api-management
                 </a>{" "}
-                i postępuj zgodnie z instrukcją:
+                <FormattedMessage id="league-dialog.tutorial-exchanges-go-to-suffix" />
               </p>
               <ol>
-                <li>Kliknij na "Create New Key",</li>
-                <li>Wybierz typ klucza: "Api Transaction",</li>
-                <li>W polu "Name" wpisz Twój nick,</li>
-                <li>Pole "Connect with IP" pozostawiamy puste, bez zmian,</li>
                 <li>
-                  Pole "Key permissions" wybieramy{" "}
-                  <b>Active orders and positions,</b>
+                  <FormattedMessage id="league-dialog.bybit-tutorial-rule-1" />
                 </li>
                 <li>
-                  <b>Zaznaczamy pole readonly,</b>
+                  <FormattedMessage id="league-dialog.bybit-tutorial-rule-2" />
                 </li>
-                <li>Przepisujemy kod z naszego 2FA,</li>
-                <li>Zatwierdzamy przyciskiem Confirm.</li>
+                <li>
+                  <FormattedMessage id="league-dialog.bybit-tutorial-rule-3" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.bybit-tutorial-rule-4" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.bybit-tutorial-rule-5" />
+                </li>
+                <li>
+                  <b>
+                    <FormattedMessage id="league-dialog.bybit-tutorial-rule-6" />
+                  </b>
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.bybit-tutorial-rule-7" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.bybit-tutorial-rule-8" />
+                </li>
               </ol>
 
-              <h3>Binance - instrukcja generowania API Key</h3>
+              <h3>
+                <FormattedMessage id="league-dialog.binance-tutorial-header" />
+              </h3>
               <p>
-                Idź do{" "}
+                <FormattedMessage id="league-dialog.tutorial-exchanges-go-to" />{" "}
                 <a
                   href="https://www.binance.com/en/usercenter/settings/api-management"
                   target="_blank"
@@ -540,28 +590,32 @@ export default class LeagueModal extends Component {
                 >
                   https://www.binance.com/en/usercenter/settings/api-management
                 </a>{" "}
-                i postępuj zgodnie z instrukcją:
+                <FormattedMessage id="league-dialog.tutorial-exchanges-go-to-suffix" />
               </p>
               <ol>
-                <li>Wprowadź nazwę klucza API, następnie kliknij Create,</li>
-                <li>Wprowadź kod 2FA,</li>
-                <li>Potwierdź utworzenie klucza na swoim emailu,</li>
                 <li>
-                  Kliknij na przycisk "Edit restrictions", aby zmienić
-                  uprawnienia klucza,
+                  <FormattedMessage id="league-dialog.binance-tutorial-rule-1" />
                 </li>
                 <li>
-                  Upewnij się, że zaznaczone są tylko pola{" "}
-                  <b>Read Only oraz Enable Future</b>,
+                  <FormattedMessage id="league-dialog.binance-tutorial-rule-2" />
                 </li>
                 <li>
-                  Pod sekcją IP access restrictions zaznaczamy{" "}
-                  <b>Unrestricted</b>,
+                  <FormattedMessage id="league-dialog.binance-tutorial-rule-3" />
                 </li>
-                <li>Zmiany zapisujemy przyciskiem u góry "Save",</li>
                 <li>
-                  Przekopiuj API Key oraz Secret Key w odpowiednie pola w
-                  formularzu, gotowe.
+                  <FormattedMessage id="league-dialog.binance-tutorial-rule-4" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.binance-tutorial-rule-5" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.binance-tutorial-rule-6" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.binance-tutorial-rule-7" />
+                </li>
+                <li>
+                  <FormattedMessage id="league-dialog.binance-tutorial-rule-8" />
                 </li>
               </ol>
             </div>
@@ -586,37 +640,49 @@ export default class LeagueModal extends Component {
         )
         fieldValidationErrors.email = validation.emailValid
           ? ""
-          : "Adres email jest niepoprawny"
+          : this.props.intl.formatMessage({
+              id: "league-dialog.form-title-email-error",
+            })
         break
       case "nickname":
         validation.nickValid = value.length > 0
         fieldValidationErrors.nickname = validation.nickValid
           ? ""
-          : "Nick jest wymagany"
+          : this.props.intl.formatMessage({
+              id: "league-dialog.form-title-nick-error",
+            })
         break
       case "apiKey":
         validation.apiKeyValid = value.length > 0
         fieldValidationErrors.apiKey = validation.apiKeyValid
           ? ""
-          : "Klucz API jest wymagany"
+          : this.props.intl.formatMessage({
+              id: "league-dialog.form-title-apikey-error",
+            })
         break
       case "apiSecret":
         validation.apiSecretValid = value.length > 0
         fieldValidationErrors.apiSecret = validation.apiSecretValid
           ? ""
-          : "API Secret jest wymagany"
+          : this.props.intl.formatMessage({
+              id: "league-dialog.form-title-apisecret-error",
+            })
         break
       case "league":
         validation.leagueValid = value != null
         fieldValidationErrors.league = validation.leagueValid
           ? ""
-          : "Liga jest wymagana"
+          : this.props.intl.formatMessage({
+              id: "league-dialog.form-title-league-error",
+            })
         break
       case "exchange":
         validation.exchangeValid = value != null
         fieldValidationErrors.exchange = validation.exchangeValid
           ? ""
-          : "Giełda jest wymagana"
+          : this.props.intl.formatMessage({
+              id: "league-dialog.form-title-exchange-error",
+            })
         break
       default:
         break
@@ -645,3 +711,5 @@ export default class LeagueModal extends Component {
     })
   }
 }
+
+export default injectIntl(LeagueModal)

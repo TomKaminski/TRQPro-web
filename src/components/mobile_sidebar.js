@@ -1,11 +1,12 @@
 import React from "react"
-import { Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ReactDOM from "react-dom"
 
+import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
+
 import "../styles/mobile-sidebar.scss"
 
-export default class MobileSidebar extends React.Component {
+class MobileSidebar extends React.Component {
   constructor(props) {
     super(props)
     this.el = document.createElement("div")
@@ -27,22 +28,47 @@ export default class MobileSidebar extends React.Component {
           className={this.props.expanded ? "expanded" : ""}
         >
           <ul>
-            <li className={"sidebar-title"}>Ogólne</li>
-            <li>
-              <Link to={`/`}>Strona główna</Link>
+            <li className={"sidebar-title"}>
+              <FormattedMessage
+                id="common.common-title"
+                defaultMessage="Ogólne"
+              />
             </li>
             <li>
-              <Link to={`/liga`}>Liga</Link>
+              <Link to={`/`}>
+                <FormattedMessage
+                  id="header.home-title"
+                  defaultMessage="Strona główna"
+                  description="Header home title"
+                />
+              </Link>
+            </li>
+            <li>
+              <Link to={`/liga`}>
+                <FormattedMessage
+                  id="common.league"
+                  defaultMessage="Liga"
+                  description="Header league category title"
+                />
+              </Link>
             </li>
           </ul>
           <ul>
-            <li className={"sidebar-title"}>Informacje</li>
+            <li className={"sidebar-title"}>
+              <FormattedMessage
+                id="common.informations-title"
+                defaultMessage="Informacje"
+              />
+            </li>
             <li>
               <Link
                 to={`/kategoria/cat-cryptocurrency`}
                 state={{ categoryName: "Kryptowaluty" }}
               >
-                Kryptowaluty
+                <FormattedMessage
+                  id="common.cryptocurrency"
+                  defaultMessage="Kryptowaluty"
+                />
               </Link>
             </li>
             <li>
@@ -50,7 +76,7 @@ export default class MobileSidebar extends React.Component {
                 to={`/kategoria/cat-at`}
                 state={{ categoryName: "Analizy" }}
               >
-                Analizy
+                <FormattedMessage id="common.at" defaultMessage="Analizy" />
               </Link>
             </li>
             <li>
@@ -58,7 +84,10 @@ export default class MobileSidebar extends React.Component {
                 to={`/kategoria/cat-academy`}
                 state={{ categoryName: "Akademia" }}
               >
-                Akademia
+                <FormattedMessage
+                  id="common.academy"
+                  defaultMessage="Akademia"
+                />
               </Link>
             </li>
           </ul>
@@ -76,11 +105,6 @@ export default class MobileSidebar extends React.Component {
                 Twitter
               </a>
             </li>
-            {/* <li>
-              <a href="https://www.facebook.com/TRQPro/">
-                <FontAwesomeIcon icon={["fab", "youtube"]} /> Youtube
-              </a>
-            </li> */}
           </ul>
         </div>
       </div>,
@@ -88,3 +112,5 @@ export default class MobileSidebar extends React.Component {
     )
   }
 }
+
+export default injectIntl(MobileSidebar)

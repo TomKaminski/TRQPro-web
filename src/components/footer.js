@@ -1,12 +1,13 @@
 import React from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Link } from "gatsby"
 import "../styles/footer.scss"
 import logoImg from "../images/comparic_logo.png"
 import logoBithubImg from "../images/bithub_logo.png"
 
 import Brands from "./brands"
+
+import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
 
 const Footer = () => {
   return (
@@ -16,45 +17,91 @@ const Footer = () => {
         <Container fluid={true} className={"page-padding"}>
           <Row>
             <Col md={3} sm={6} xs={12}>
-              <p>O nas</p>
+              <p>
+                <FormattedMessage id="footer.about-us" defaultMessage="O nas" />
+              </p>
               <ul className="nav-list">
                 <li>
-                  <Link to={"/polityka-prywatnosci"}>Polityka prywatności</Link>
+                  <Link to={"/polityka-prywatnosci"}>
+                    <FormattedMessage
+                      id="footer.privacy-policy"
+                      defaultMessage="Polityka prywatności"
+                    />
+                  </Link>
                 </li>
                 <li>
-                  <Link to={"/regulamin"}>Regulamin</Link>
+                  <Link to={"/regulamin"}>
+                    <FormattedMessage
+                      id="footer.rules"
+                      defaultMessage="Regulamin"
+                    />
+                  </Link>
                 </li>
                 <li>
-                  <Link to={"/kontakt"}>Kontakt</Link>
+                  <Link to={"/kontakt"}>
+                    <FormattedMessage
+                      id="footer.contact"
+                      defaultMessage="Kontakt"
+                    />
+                  </Link>
                 </li>
                 <li>
-                  <Link to={"/pracuj-z-nami"}>Pracuj z nami</Link>
+                  <Link to={"/pracuj-z-nami"}>
+                    <FormattedMessage
+                      id="footer.work-with-us"
+                      defaultMessage="Pracuj z nami"
+                    />
+                  </Link>
                 </li>
               </ul>
             </Col>
             <Col md={3} sm={6} xs={12}>
-              <p>Liga</p>
+              <p>
+                <FormattedMessage id="common.league" defaultMessage="Liga" />
+              </p>
               <ul className="nav-list">
-                {/* <li>
-                <Link to={"/wyslij-nam-tips"}>Wyślij nam tips</Link>
-              </li> */}
                 <li>
-                  <Link to={"/liga-regulamin"}>Regulamin</Link>
+                  <Link to={"/liga-regulamin"}>
+                    <FormattedMessage
+                      id="footer.rules"
+                      defaultMessage="Regulamin"
+                    />
+                  </Link>
                 </li>
                 <li>
-                  <Link to={"/liga"}>Aktualna liga</Link>
+                  <Link to={"/liga"}>
+                    <FormattedMessage
+                      id="footer.actual-league"
+                      defaultMessage="Aktualna liga"
+                    />
+                  </Link>
                 </li>
                 <li>
-                  <Link to={"/liga-ranking"}>Ranking ligowy</Link>
+                  <Link to={"/liga-ranking"}>
+                    <FormattedMessage
+                      id="footer.league-rank"
+                      defaultMessage="Ranking ligowy"
+                    />
+                  </Link>
                 </li>
                 <li>
-                  <Link to={"/liga-historia"}>Historia rozgrywek</Link>
+                  <Link to={"/liga-historia"}>
+                    <FormattedMessage
+                      id="footer.league-history"
+                      defaultMessage="Historia rozgrywek"
+                    />
+                  </Link>
                 </li>
               </ul>
             </Col>
             <Col md={3} sm={6} xs={12}></Col>
             <Col md={3} sm={6} xs={12}>
-              <p>Patroni informacyjni</p>
+              <p>
+                <FormattedMessage
+                  id="footer.media-patrons"
+                  defaultMessage="Patroni informacyjni"
+                />
+              </p>
               <ul className="nav-list">
                 <li>
                   <a
@@ -122,4 +169,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default injectIntl(Footer)

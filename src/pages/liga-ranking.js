@@ -1,5 +1,6 @@
 import React from "react"
-import { Link } from "gatsby"
+
+import { injectIntl, FormattedMessage, Link } from "gatsby-plugin-intl"
 
 import Layout from "../components/layouts/layout"
 import SEO from "../components/seo"
@@ -26,39 +27,13 @@ class LeaguePage extends React.Component {
 
   componentDidMount() {
     this.getData()
-    // let endpoint = apiUrl + "leaguehistory/selectorData"
-    // axios
-    //   .get(endpoint)
-    //   .then(response => {
-    //     this.setState(
-    //       {
-    //         leagueOptions: this.processLeagueOptions(response.data),
-    //         selectedLeague: response.data[response.data.length - 1],
-    //       },
-    //       () => {
-    //         this.getData()
-    //       }
-    //     )
-    //   })
-    //   .catch(error => {
-    //     console.log(error)
-    //   })
   }
-
-  // processLeagueOptions(data) {
-  //   return data.map(val => {
-  //     return {
-  //       label: val.substring(0, val.length - 5),
-  //       value: val,
-  //     }
-  //   })
-  // }
 
   getData() {
     let endpoint = apiUrl + "league/getLadderForYear?year=2020"
     axios
       .get(endpoint)
-      .then(response => {
+      .then((response) => {
         if (response.data) {
           this.setState({
             data: response.data,
@@ -69,15 +44,19 @@ class LeaguePage extends React.Component {
           this.setState({
             data: null,
             loading: false,
-            error: "Nie udało się załadować rankingu",
+            error: this.props.intl.formatMessage({
+              id: "league-ranking.loading-error",
+            }),
           })
         }
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({
           data: null,
           loading: false,
-          error: "Nie udało się załadować rankingu",
+          error: this.props.intl.formatMessage({
+            id: "league-ranking.loading-error",
+          }),
         })
       })
   }
@@ -87,40 +66,29 @@ class LeaguePage extends React.Component {
       <Layout>
         <SEO title="Liga - ranking" pathname={`/liga-ranking`} />
         <div>
-          <h1>Liga TRQPro - ranking rozgrywek</h1>
+          <h1>
+            <FormattedMessage id="league-ranking.header" />
+          </h1>
           <h5>
-            W tym miejscu znajdziesz tabele z punktacją kwartalną oraz roczną.
+            <FormattedMessage id="league-ranking.description" />
           </h5>
         </div>
-        {/* 
-        <Col xs={12} md={6} style={{ paddingLeft: 0, marginBottom: "20px" }}>
-          <p style={{ marginBottom: "2px" }}>Wybierz ligę</p>
-          <Dropdown
-            options={this.state.leagueOptions}
-            onChange={opt => {
-              this.setState(
-                {
-                  selectedLeague: opt.value,
-                },
-                () => {
-                  this.getData()
-                }
-              )
-            }}
-            value={this.state.selectedLeague}
-            placeholder="-"
-          />
-        </Col> */}
 
         <Row className="league-link-container">
           <Col xs={6} md={3} className="margin-top-base">
-            <Link to={"/liga-regulamin"}>przejdź do regulaminu ligi</Link>
+            <Link to={"/liga-regulamin"}>
+              <FormattedMessage id="league-links.rules" />
+            </Link>
           </Col>
           <Col xs={6} md={3} className="margin-top-base">
-            <Link to={"/liga"}>przejdź do aktualnej ligi</Link>
+            <Link to={"/liga"}>
+              <FormattedMessage id="league-links.actual-league" />
+            </Link>
           </Col>
           <Col xs={6} md={3} className="margin-top-base">
-            <Link to={"/liga-historia"}>przejdź do historii rozgrywek</Link>
+            <Link to={"/liga-historia"}>
+              <FormattedMessage id="league-links.history" />
+            </Link>
           </Col>
           <Col xs={6} md={3}></Col>
         </Row>
@@ -169,7 +137,7 @@ class LeaguePage extends React.Component {
       return (
         <Container>
           <h4 className={"margin-top-40 margin-bottom-40 center-margin"}>
-            Nie znaleziono danych wybranego roku.
+            <FormattedMessage id="league-ranking.no-data-for-year" />
           </h4>
         </Container>
       )
@@ -177,7 +145,7 @@ class LeaguePage extends React.Component {
 
     return (
       <div>
-        {this.state.data.map(ladder => {
+        {this.state.data.map((ladder) => {
           return (
             <div>
               <p className="categoryTagResults">{ladder.ladder_public_name}</p>
@@ -190,12 +158,24 @@ class LeaguePage extends React.Component {
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nick</th>
-                    <th scope="col">Punkty</th>
-                    <th scope="col">Średnie roe</th>
-                    <th scope="col">Najwyższe roe</th>
-                    <th scope="col">Rozegrane ligi</th>
-                    <th scope="col">Łączny kapitał startowy</th>
-                    <th scope="col">Łączny kapitał końcowy</th>
+                    <th scope="col">
+                      <FormattedMessage id="league-ranking.column-points" />
+                    </th>
+                    <th scope="col">
+                      <FormattedMessage id="league-ranking.column-average-roe" />
+                    </th>
+                    <th scope="col">
+                      <FormattedMessage id="league-ranking.column-highest-roe" />
+                    </th>
+                    <th scope="col">
+                      <FormattedMessage id="league-ranking.column-leagues-count" />
+                    </th>
+                    <th scope="col">
+                      <FormattedMessage id="league-ranking.column-overall-starting-balance" />
+                    </th>
+                    <th scope="col">
+                      <FormattedMessage id="league-ranking.column-overall-ending-balance" />
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -256,4 +236,4 @@ class LeaguePage extends React.Component {
   }
 }
 
-export default LeaguePage
+export default injectIntl(LeaguePage)

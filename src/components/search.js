@@ -2,11 +2,10 @@ import React, { Component } from "react"
 import { Index } from "elasticlunr"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import IndexMiniArticle from "./index/shared/indexMiniArticle"
-import { Link, navigate } from "gatsby"
 
 import Modal from "./modal"
-
-export default class Search extends Component {
+import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
+class Search extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -39,20 +38,20 @@ export default class Search extends Component {
   }
 
   getArticles() {
-    let articles = this.state.results.filter(element =>
+    let articles = this.state.results.filter((element) =>
       element.id.startsWith("Article_")
     )
     return articles.slice(articles.length - 3, articles.length)
   }
 
   getCategories() {
-    return this.state.results.filter(element =>
+    return this.state.results.filter((element) =>
       element.id.startsWith("Category_")
     )
   }
 
   getTags() {
-    return this.state.results.filter(element => element.id.startsWith("Tag_"))
+    return this.state.results.filter((element) => element.id.startsWith("Tag_"))
   }
 
   renderResults() {
@@ -69,11 +68,13 @@ export default class Search extends Component {
               <FontAwesomeIcon icon="search" className={"icon"} />
               <input
                 type="text"
-                placeholder="Wyszukaj.."
+                placeholder={this.props.intl.formatMessage({
+                  id: "common.search",
+                })}
                 name="search"
                 className="mr-sm-2 modal-input-field"
                 value={this.state.query}
-                onChange={e => {
+                onChange={(e) => {
                   e.stopPropagation()
                   this.search(e)
                 }}
@@ -81,7 +82,7 @@ export default class Search extends Component {
               <FontAwesomeIcon
                 icon="times"
                 className={"icon"}
-                onClick={e => {
+                onClick={(e) => {
                   e.stopPropagation()
                   this.setState({
                     query: "",
@@ -92,7 +93,7 @@ export default class Search extends Component {
             </div>
 
             <ul className={"result-list"}>
-              {this.getArticles().map(page => (
+              {this.getArticles().map((page) => (
                 <li key={page.id}>
                   <IndexMiniArticle article={page} />
                 </li>
@@ -101,18 +102,27 @@ export default class Search extends Component {
 
             {categories.length > 0 ? (
               <div className={"search-category-tag"}>
-                <h5>KATEGORIE</h5>
+                <h5>
+                  <FormattedMessage id="search.categories" />
+                </h5>
                 <div className={"search-category-tag-flex-container"}>
-                  {categories.map(category => (
+                  {categories.map((category) => (
                     <div className={"category-tag"} key={category.key}>
                       <FontAwesomeIcon icon="folder" className={"icon"} />
                       <Link
                         to={`/kategoria/${category.key}`}
                         className={"underlined-black-text"}
                         key={category.key}
-                        state={{ categoryName: category.name }}
+                        state={{
+                          categoryName:
+                            this.props.intl.locale === "en"
+                              ? category.name_en
+                              : category.name,
+                        }}
                       >
-                        {category.name}
+                        {this.props.intl.locale === "en"
+                          ? category.name_en
+                          : category.name}
                       </Link>
                     </div>
                   ))}
@@ -124,9 +134,11 @@ export default class Search extends Component {
 
             {tags.length > 0 ? (
               <div className={"search-category-tag"}>
-                <h5>TAGI</h5>
+                <h5>
+                  <FormattedMessage id="search.tags" />
+                </h5>
                 <div className={"search-category-tag-flex-container"}>
-                  {tags.map(tag => (
+                  {tags.map((tag) => (
                     <div className={"category-tag"} key={tag.key}>
                       <FontAwesomeIcon icon="hashtag" className={"icon"} />
 
@@ -134,9 +146,16 @@ export default class Search extends Component {
                         to={`/tag/${tag.key}`}
                         className={"underlined-black-text"}
                         key={tag.key}
-                        state={{ tagName: tag.name }}
+                        state={{
+                          tagName:
+                            this.props.intl.locale === "en"
+                              ? tag.name_en
+                              : tag.name,
+                        }}
                       >
-                        {tag.name}
+                        {this.props.intl.locale === "en"
+                          ? tag.name_en
+                          : tag.name}
                       </Link>
                     </div>
                   ))}
@@ -145,23 +164,19 @@ export default class Search extends Component {
             ) : (
               <div />
             )}
-            <a
-              href={`/wyszukaj?fraza=${this.state.query}`}
+            <Link
+              to={`/wyszukaj?fraza=${this.state.query}`}
               className={"search-all"}
-              onClick={e => {
-                e.preventDefault()
-                navigate(`/wyszukaj?fraza=${this.state.query}`)
-                this.setState({
-                  query: "",
-                })
-              }}
             >
               {this.state.query !== "" ? (
-                <div>Znajdź wszystko dla: {this.state.query}</div>
+                <div>
+                  <FormattedMessage id="search.find-all-for" />{" "}
+                  {this.state.query}
+                </div>
               ) : (
                 <div></div>
               )}
-            </a>
+            </Link>
           </div>
         </div>
       </Modal>
@@ -174,7 +189,7 @@ export default class Search extends Component {
       : // Create an elastic lunr index and hydrate with graphql query results
         Index.load(this.props.searchIndex)
 
-  search = evt => {
+  search = (evt) => {
     const query = evt.target.value
     this.index = this.getOrCreateIndex()
     this.setState({
@@ -187,3 +202,5 @@ export default class Search extends Component {
     })
   }
 }
+
+export default injectIntl(Search)

@@ -1,8 +1,16 @@
 import React from "react"
 import { Title, Meta } from "react-head"
 import { useStaticQuery, graphql } from "gatsby"
+import { injectIntl } from "gatsby-plugin-intl"
 
-const SEO = ({ description, title, pathname, image: metaImage, isArticle }) => {
+const SEO = ({
+  description,
+  title,
+  pathname,
+  image: metaImage,
+  isArticle,
+  intl,
+}) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -29,7 +37,8 @@ const SEO = ({ description, title, pathname, image: metaImage, isArticle }) => {
   return (
     <>
       <Title>
-        {title} | {site.siteMetadata.title} | Trading, Analizy, Liga
+        {title} | {site.siteMetadata.title} |{" "}
+        {intl.formatMessage({ id: "seo-suffix" })}
       </Title>
       {/* <Link rel="canonical" href={canonical} /> */}
       <Meta
@@ -39,7 +48,7 @@ const SEO = ({ description, title, pathname, image: metaImage, isArticle }) => {
       <Meta name="description" content={metaDescription} />
       <Meta
         name="keywords"
-        content="trq, trqpro, liga trq, bitcoin trq, altcoin trq, liga bitmex, liga binance, liga bybit, trading trq, trq telegram, trq pro, społeczność trq, analizy krypto, analizy forex, analizy trq, forex, kryptowaluty, altcoin"
+        content="trq, trqpro, liga trq, bitcoin trq, altcoin trq, liga bitmex, liga binance, liga bybit, trading trq, trq telegram, trq pro, społeczność trq, analizy krypto, analizy forex, analizy trq, forex, kryptowaluty, altcoin, league trq, bitmex league, league crypto, trading contest trq"
       />
       {/* Facebook og tags */}
       {/* <Meta property="og:url" content={canonical} /> */}
@@ -65,4 +74,4 @@ const SEO = ({ description, title, pathname, image: metaImage, isArticle }) => {
   )
 }
 
-export default SEO
+export default injectIntl(SEO)

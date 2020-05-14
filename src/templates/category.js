@@ -1,11 +1,12 @@
 import React from "react"
-import { graphql, navigate } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../components/layouts/layout"
 import IndexPager from "../components/index/shared/indexPager"
 import SEO from "../components/seo"
 import "../styles/tagCategoryResults.scss"
 import { Row, Col } from "react-bootstrap"
 import MiniArticleImageWrapper from "../components/index/shared/miniArticleImageWrapper"
+import { injectIntl, FormattedMessage, navigate } from "gatsby-plugin-intl"
 
 class CategoryTemplate extends React.Component {
   getCategoryName() {
@@ -24,7 +25,7 @@ class CategoryTemplate extends React.Component {
         <h1>{`TRQPro - ${this.getCategoryName()}`}</h1>
         <br></br>
         <p className="categoryTagResults">
-          Wyniki wpisów pod kategorią:{" "}
+          <FormattedMessage id="article.category-results" />:{" "}
           <span className={"name"}>{this.getCategoryName()}</span>
         </p>
         <Row>
@@ -41,7 +42,7 @@ class CategoryTemplate extends React.Component {
           <IndexPager
             activePageIndex={this.props.pageContext.currentPage - 1}
             pageCount={this.props.data.allStrapiArticle.pageInfo.pageCount}
-            onPageChangeCallback={page => {
+            onPageChangeCallback={(page) => {
               if (page === 0) {
                 navigate(`/kategoria/${this.props.pageContext.key}`)
               } else {
@@ -59,7 +60,7 @@ class CategoryTemplate extends React.Component {
   }
 }
 
-export default CategoryTemplate
+export default injectIntl(CategoryTemplate)
 
 export const categoryQuery = graphql`
   query CategoryTemplate(
@@ -67,6 +68,7 @@ export const categoryQuery = graphql`
     $skip: Int!
     $limit: Int!
     $date: Date
+    $isDefaultLanguage: Boolean!
   ) {
     allStrapiArticle(
       filter: { publishedAt: { lte: $date }, category: { key: { eq: $key } } }
@@ -77,10 +79,12 @@ export const categoryQuery = graphql`
       edges {
         node {
           id
-          title
           publishedAt
           strapiId
-          content
+          title @include(if: $isDefaultLanguage)
+          title_en @skip(if: $isDefaultLanguage)
+          content @include(if: $isDefaultLanguage)
+          content_en @skip(if: $isDefaultLanguage)
           image {
             publicURL
             childImageSharp {
@@ -94,7 +98,8 @@ export const categoryQuery = graphql`
           }
           category {
             key
-            name
+            name @include(if: $isDefaultLanguage)
+            name_en @skip(if: $isDefaultLanguage)
           }
           author {
             id

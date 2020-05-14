@@ -37,7 +37,7 @@ const makeRequest = (graphql, request) =>
   new Promise((resolve, reject) => {
     // Query for nodes to use in creating pages.
     resolve(
-      graphql(request).then(result => {
+      graphql(request).then((result) => {
         if (result.errors) {
           reject(result.errors)
         }
@@ -78,9 +78,10 @@ exports.createPages = ({ actions, graphql }) => {
       }
     }
     `
-  ).then(result => {
+  ).then((result) => {
     // Create pages for each article.
     result.data.allStrapiArticle.edges.forEach(({ node }) => {
+      console.log(node)
       createPage({
         path: `/${node.fields.slug}`,
         component: path.resolve(`src/templates/article.js`),
@@ -105,14 +106,14 @@ exports.createPages = ({ actions, graphql }) => {
       }
     }
     `
-  ).then(result => {
+  ).then((result) => {
     if (result.errors) {
       reject(result.errors)
     }
     // ...
     // Create paged categories based on page count lol.
     const postsPerPage = 7
-    result.data.allStrapiArticle.group.forEach(articleGroup => {
+    result.data.allStrapiArticle.group.forEach((articleGroup) => {
       Array.from({ length: articleGroup.pageInfo.pageCount }).forEach(
         (_, i) => {
           createPage({
@@ -149,14 +150,14 @@ exports.createPages = ({ actions, graphql }) => {
       }
     }
     `
-  ).then(result => {
+  ).then((result) => {
     if (result.errors) {
       reject(result.errors)
     }
     // ...
     // Create paged categories based on page count lol.
     const postsPerPage = 7
-    result.data.allStrapiArticle.group.forEach(articleGroup => {
+    result.data.allStrapiArticle.group.forEach((articleGroup) => {
       Array.from({ length: articleGroup.pageInfo.pageCount }).forEach(
         (_, i) => {
           createPage({
@@ -193,14 +194,14 @@ exports.createPages = ({ actions, graphql }) => {
       }
     }
     `
-  ).then(result => {
+  ).then((result) => {
     if (result.errors) {
       reject(result.errors)
     }
     // ...
     // Create paged categories based on page count lol.
     const postsPerPage = 7
-    result.data.allStrapiArticle.group.forEach(articleGroup => {
+    result.data.allStrapiArticle.group.forEach((articleGroup) => {
       Array.from({ length: articleGroup.pageInfo.pageCount }).forEach(
         (_, i) => {
           createPage({

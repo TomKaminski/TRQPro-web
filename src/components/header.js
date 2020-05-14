@@ -1,14 +1,27 @@
 import React from "react"
 import { Navbar, Nav, Container } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { StaticQuery, graphql, Link } from "gatsby"
+import { StaticQuery, graphql } from "gatsby"
 
 import "../styles/header.scss"
 import logoImg from "../images/brand_logo.png"
 import Search from "./search"
 import MobileSidebar from "./mobile_sidebar"
 
-export default class Header extends React.Component {
+import {
+  injectIntl,
+  Link,
+  FormattedMessage,
+  changeLocale,
+  IntlContextConsumer,
+} from "gatsby-plugin-intl"
+
+const languageName = {
+  en: "EN",
+  pl: "PL",
+}
+
+class Header extends React.Component {
   constructor(props) {
     super(props)
     this.state = { sidebarExpanded: false, searchActive: false }
@@ -51,36 +64,77 @@ export default class Header extends React.Component {
                 className={"icon"}
               />
             </Nav.Link>
+            <IntlContextConsumer>
+              {({ languages, language: currentLocale }) =>
+                languages.map((language) => (
+                  <a
+                    key={language}
+                    onClick={() => changeLocale(language)}
+                    className={"nav-link nav-link-black  d-block d-lg-none"}
+                    style={{
+                      color: currentLocale === language ? `black` : `grey`,
+                      textDecoration:
+                        currentLocale === language ? `underline` : `none`,
+                      fontWeight: currentLocale === language ? `bold` : `thin`,
+                      cursor: `pointer`,
+                    }}
+                  >
+                    {languageName[language]}
+                  </a>
+                ))
+              }
+            </IntlContextConsumer>
           </Nav>
 
           <Navbar.Collapse className={"justify-content-end"}>
             <Nav>
               <Link to={`/`} className={"nav-link-black nav-link"}>
-                Strona główna
+                <FormattedMessage
+                  id="header.home-title"
+                  defaultMessage="Strona główna"
+                />
               </Link>
               <Link
                 to={`/kategoria/cat-cryptocurrency`}
                 className={"nav-link-black nav-link"}
-                state={{ categoryName: "Kryptowaluty" }}
+                state={{
+                  categoryName: this.props.intl.formatMessage({
+                    id: "common.cryptocurrency",
+                  }),
+                }}
               >
-                Kryptowaluty
+                <FormattedMessage
+                  id="common.cryptocurrency"
+                  defaultMessage="Kryptowaluty"
+                />
               </Link>
               <Link
                 to={`/kategoria/cat-at`}
                 className={"nav-link-black nav-link"}
-                state={{ categoryName: "Analizy" }}
+                state={{
+                  categoryName: this.props.intl.formatMessage({
+                    id: "common.at",
+                  }),
+                }}
               >
-                Analizy
+                <FormattedMessage id="common.at" defaultMessage="Analizy" />
               </Link>
               <Link
                 to={`/kategoria/cat-academy`}
                 className={"nav-link-black nav-link"}
-                state={{ categoryName: "Akademia" }}
+                state={{
+                  categoryName: this.props.intl.formatMessage({
+                    id: "common.academy",
+                  }),
+                }}
               >
-                Akademia
+                <FormattedMessage
+                  id="common.academy"
+                  defaultMessage="Akademia"
+                />
               </Link>
               <Link to={`/liga`} className={"nav-link-black nav-link"}>
-                Liga
+                <FormattedMessage id="common.league" defaultMessage="Liga" />
               </Link>
               <Nav.Link
                 href="https://www.facebook.com/TRQPro/"
@@ -106,13 +160,33 @@ export default class Header extends React.Component {
                     }
                   }
                 `}
-                render={data => (
+                render={(data) => (
                   <Search
                     searchIndex={data.siteSearchIndex.index}
                     searchActive={this.state.searchActive}
                   />
                 )}
               />
+              <IntlContextConsumer>
+                {({ languages, language: currentLocale }) =>
+                  languages.map((language) => (
+                    <a
+                      key={language}
+                      onClick={() => changeLocale(language)}
+                      className={"nav-link-black"}
+                      style={{
+                        color: currentLocale === language ? `black` : `grey`,
+                        margin: 10,
+                        textDecoration:
+                          currentLocale === language ? `underline` : `none`,
+                        cursor: `pointer`,
+                      }}
+                    >
+                      {languageName[language]}
+                    </a>
+                  ))
+                }
+              </IntlContextConsumer>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -124,3 +198,5 @@ export default class Header extends React.Component {
     )
   }
 }
+
+export default injectIntl(Header)

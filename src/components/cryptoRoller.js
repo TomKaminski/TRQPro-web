@@ -34,19 +34,19 @@ export default class CryptoRoller extends React.Component {
   getData() {
     axios
       .get(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=PLN&ids=bitcoin%2Cethereum%2Cripple%2Ctether%2Cbitcoin-cash%2Clitecoin%2Ceos%2Cbinancecoin%2Cbitcoin-cash-sv%2Cstellar&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&ids=bitcoin%2Cethereum%2Cripple%2Ctether%2Cbitcoin-cash%2Clitecoin%2Ceos%2Cbinancecoin%2Cbitcoin-cash-sv%2Cstellar&order=market_cap_desc&per_page=100&page=1&sparkline=false"
       )
-      .then(response => {
+      .then((response) => {
         this.setState({
           elements: response.data,
         })
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error)
       })
       .finally(() => {
         this.timeoutId = setTimeout(
-          function() {
+          function () {
             this.getData()
           }.bind(this),
           60000
@@ -59,7 +59,7 @@ export default class CryptoRoller extends React.Component {
       <div className={"element"} key={item.name}>
         <span className={"title"}>{item.name}</span>
         <span className={"value"}>
-          {Math.round(item.current_price * 100) / 100} PLN
+          {Math.round(item.current_price * 100) / 100} USD
         </span>
         {item.price_change_percentage_24h < 0 ? (
           <FontAwesomeIcon icon="sort-down" className={"arrow-down"} />
@@ -80,7 +80,7 @@ export default class CryptoRoller extends React.Component {
   }
 
   render() {
-    var currencyList = this.state.elements.map(item => {
+    var currencyList = this.state.elements.map((item) => {
       return this.renderItem(item)
     })
 

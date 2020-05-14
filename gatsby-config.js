@@ -14,6 +14,15 @@ module.exports = {
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-head`,
     {
+      resolve: `gatsby-plugin-intl`,
+      options: {
+        path: `${__dirname}/src/intl`,
+        languages: [`en`, `pl`],
+        defaultLanguage: `pl`,
+        redirect: false,
+      },
+    },
+    {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         host: "https://www.trqpro.pl",
@@ -59,24 +68,31 @@ module.exports = {
     {
       resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
       options: {
-        fields: [`title`, `tags`, `category`, `name`],
+        fields: [`title`, `tags`, `category`, `name`, `title_en`, `name_en`],
         resolvers: {
           StrapiArticle: {
             title: (node) => node.title,
+            title_en: (node) => node.title_en,
             category: (node) => node.category.name,
+            category_en: (node) => node.category.name_en,
             tags: (node) => node.tags.map((tag) => tag.name).join(", "),
+            tags_en: (node) => node.tags.map((tag) => tag.name_en).join(", "),
             path: (node) => node.id,
             content: (node) => node.content.substring(0, 350).concat("..."),
+            content_en: (node) =>
+              node.content_en.substring(0, 350).concat("..."),
             author: (node) => node.author,
             publishedAt: (node) => node.publishedAt,
             fields: (node) => node.fields,
           },
           StrapiCategory: {
             name: (node) => node.name,
+            name_en: (node) => node.name_en,
             key: (node) => node.key,
           },
           StrapiTag: {
             name: (node) => node.name,
+            name_en: (node) => node.name_en,
             key: (node) => node.key,
           },
         },

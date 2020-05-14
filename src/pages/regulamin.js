@@ -18,11 +18,13 @@ class RulesPage extends React.Component {
 export default RulesPage
 
 export const rulesPageQuery = graphql`
-  query RulesQuery {
+  query RulesQuery($isDefaultLanguage: Boolean!) {
     allStrapiStatic(filter: { key: { eq: "regulamin" } }, limit: 1) {
       nodes {
-        title
-        content
+        title @include(if: $isDefaultLanguage)
+        title_en @skip(if: $isDefaultLanguage)
+        content @include(if: $isDefaultLanguage)
+        content_en @skip(if: $isDefaultLanguage)
       }
     }
   }

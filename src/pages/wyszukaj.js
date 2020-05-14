@@ -5,12 +5,12 @@ import Layout from "../components/layouts/layout"
 import SEO from "../components/seo"
 import "url-search-params-polyfill"
 import { Index } from "elasticlunr"
-import { Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import IndexMiniArticle from "../components/index/shared/indexMiniArticle"
 import "../styles/wyszukaj/wyszukaj.scss"
+import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
 
-export default class SearchPage extends React.Component {
+class SearchPage extends React.Component {
   constructor(props) {
     super(props)
     this.searchPhrase = new URLSearchParams(this.props.location.search).get(
@@ -29,15 +29,15 @@ export default class SearchPage extends React.Component {
   }
 
   getArticles() {
-    return this.results.filter(element => element.id.startsWith("Article_"))
+    return this.results.filter((element) => element.id.startsWith("Article_"))
   }
 
   getCategories() {
-    return this.results.filter(element => element.id.startsWith("Category_"))
+    return this.results.filter((element) => element.id.startsWith("Category_"))
   }
 
   getTags() {
-    return this.results.filter(element => element.id.startsWith("Tag_"))
+    return this.results.filter((element) => element.id.startsWith("Tag_"))
   }
 
   render() {
@@ -47,29 +47,41 @@ export default class SearchPage extends React.Component {
     return (
       <Layout>
         <SEO
-          title={`TRQPro - Wyszukaj - ${this.searchPhrase}`}
+          title={`${this.props.intl.formatMessage({ id: "common.search" })} - ${
+            this.searchPhrase
+          }`}
           pathname={`/wyszukaj?fraza=${this.searchPhrase}`}
         />
         <h2 className={"margin-top-base margin-bottom-40 search-heading"}>
-          Wyniki wyszukiwania dla "{this.searchPhrase}"
+          <FormattedMessage id="search.search-results-for" /> "
+          {this.searchPhrase}"
         </h2>
 
         {categories.length > 0 ? (
           <div
             className={"search-category-tag margin-top-base margin-bottom-40"}
           >
-            <h5>Znalezione kategorie</h5>
+            <h5>
+              <FormattedMessage id="search.found-categories" />
+            </h5>
             <div className={"search-category-tag-flex-container"}>
-              {categories.map(category => (
+              {categories.map((category) => (
                 <div className={"category-tag"} key={category.key}>
                   <FontAwesomeIcon icon="folder" className={"icon"} />
                   <Link
                     to={`/kategoria/${category.key}`}
                     className={"underlined-black-text"}
                     key={category.key}
-                    state={{ categoryName: category.name }}
+                    state={{
+                      categoryName:
+                        this.props.intl.locale === "en"
+                          ? category.name_en
+                          : category.name,
+                    }}
                   >
-                    {category.name}
+                    {this.props.intl.locale === "en"
+                      ? category.name_en
+                      : category.name}
                   </Link>
                 </div>
               ))}
@@ -83,9 +95,11 @@ export default class SearchPage extends React.Component {
           <div
             className={"search-category-tag margin-top-base margin-bottom-40"}
           >
-            <h5>Znalezione tagi</h5>
+            <h5>
+              <FormattedMessage id="search.found-tags" />
+            </h5>
             <div className={"search-category-tag-flex-container"}>
-              {tags.map(tag => (
+              {tags.map((tag) => (
                 <div className={"category-tag"} key={tag.key}>
                   <FontAwesomeIcon icon="hashtag" className={"icon"} />
 
@@ -93,9 +107,14 @@ export default class SearchPage extends React.Component {
                     to={`/tag/${tag.key}`}
                     className={"underlined-black-text"}
                     key={tag.key}
-                    state={{ tagName: tag.name }}
+                    state={{
+                      tagName:
+                        this.props.intl.locale === "en"
+                          ? tag.name_en
+                          : tag.name,
+                    }}
                   >
-                    {tag.name}
+                    {this.props.intl.locale === "en" ? tag.name_en : tag.name}
                   </Link>
                 </div>
               ))}
@@ -105,9 +124,11 @@ export default class SearchPage extends React.Component {
           <div />
         )}
 
-        <h5>Wszystkie artykuły</h5>
+        <h5>
+          <FormattedMessage id="search.all-articles" />
+        </h5>
         <ul className={"search-result-list"}>
-          {this.getArticles().map(page => (
+          {this.getArticles().map((page) => (
             <li key={page.id}>
               <IndexMiniArticle article={page} />
             </li>
@@ -117,6 +138,8 @@ export default class SearchPage extends React.Component {
     )
   }
 }
+
+export default injectIntl(SearchPage)
 
 export const searchQuery = graphql`
   query WyszukajIndexQuery {

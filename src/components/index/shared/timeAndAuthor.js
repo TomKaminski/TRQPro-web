@@ -1,12 +1,12 @@
 import React from "react"
-import { Link } from "gatsby"
+import { injectIntl, Link } from "gatsby-plugin-intl"
 
-const formatDate = dateString => {
+const formatDate = (dateString) => {
   let date = new Date(dateString)
   return date.toLocaleString()
 }
 
-const TimeAndAuthor = props => {
+const TimeAndAuthor = (props) => {
   return (
     <div className={"time-and-author"}>
       <Link
@@ -21,4 +21,4 @@ const TimeAndAuthor = props => {
   )
 }
 
-export default TimeAndAuthor
+export default injectIntl(TimeAndAuthor)

@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { injectIntl } from "gatsby-plugin-intl"
 
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { fab } from "@fortawesome/free-brands-svg-icons"
@@ -65,4 +66,4 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default Layout
+export default injectIntl(Layout)
