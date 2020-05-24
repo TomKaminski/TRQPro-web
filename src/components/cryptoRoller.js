@@ -41,9 +41,7 @@ export default class CryptoRoller extends React.Component {
           elements: response.data,
         })
       })
-      .catch(function (error) {
-        console.log(error)
-      })
+      .catch(function (error) {})
       .finally(() => {
         this.timeoutId = setTimeout(
           function () {
