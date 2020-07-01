@@ -23,6 +23,7 @@
     "gatsby-plugin-intl": "https://github.com/TomKaminski/gatsby-plugin-intl.git",
     "gatsby-plugin-manifest": "^2.3.4",
     "gatsby-plugin-react-head": "^1.1.0",
+    "gatsby-plugin-remove-serviceworker": "^1.0.0",
     "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sass": "^2.2.2",
     "gatsby-plugin-sharp": "^2.5.5",

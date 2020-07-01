@@ -13,6 +13,7 @@ module.exports = {
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-head`,
+    `gatsby-plugin-remove-serviceworker`,
     {
       resolve: `gatsby-plugin-intl`,
       options: {
