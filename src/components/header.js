@@ -153,7 +153,7 @@ class Header extends React.Component {
                 <FontAwesomeIcon icon={["fab", "twitter"]} size={"lg"} />
               </Nav.Link>
               <Nav.Link
-                href="https://t.me/TRQProligalewar"
+                href="https://t.me/TRQProAnalizy"
                 className={"nav-link-black"}
                 target="_blank"
                 rel="noopener noreferrer"

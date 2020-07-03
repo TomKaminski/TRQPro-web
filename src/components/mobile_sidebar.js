@@ -115,7 +115,7 @@ class MobileSidebar extends React.Component {
             </li>
             <li>
               <a
-                href="https://t.me/TRQProligalewar"
+                href="https://t.me/TRQProAnalizy"
                 target="_blank"
                 rel="noopener noreferrer"
               >
