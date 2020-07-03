@@ -8,11 +8,11 @@ import brave from "../images/brands/brave.png"
 import deribit from "../images/brands/deribit.png"
 import icmarkets from "../images/brands/icmarkets.png"
 import kucoin from "../images/brands/kucoin.png"
-import ledger from "../images/brands/ledger.png"
 import maklerska from "../images/brands/maklerska.png"
 import bitbay from "../images/brands/bitbay.png"
 import bybit from "../images/brands/bybit.png"
 import binanceFutures from "../images/brands/binance_futures_logo.svg"
+import dpm from "../images/brands/dpm.png"
 
 const Brands = () => {
   return (
@@ -87,11 +87,11 @@ const Brands = () => {
               <img src={kucoin} alt="trq kucoin refferal link" />
             </a>
             <a
-              href="https://shop.ledger.com/?r=fb95c418f05d"
+              href="https://deepmarketlevel.com/register?ref=a1546f23f5eb5adc56f1bb7d698ef467c46e4796"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={ledger} alt="trq ledger refferal link" />
+              <img src={dpm} alt="trq dpm refferal link" />
             </a>
             <a
               href="https://maklerska.pl/ref/TRQPro/"

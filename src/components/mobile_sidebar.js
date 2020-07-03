@@ -94,15 +94,33 @@ class MobileSidebar extends React.Component {
           <ul>
             <li className={"sidebar-title"}>Social</li>
             <li>
-              <a href="https://www.facebook.com/TRQPro/">
+              <a
+                href="https://www.facebook.com/TRQPro/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={["fab", "facebook-f"]} size={"lg"} />{" "}
                 Facebook
               </a>
             </li>
             <li>
-              <a href="https://www.facebook.com/TRQPro/">
+              <a
+                href="https://www.facebook.com/TRQPro/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={["fab", "twitter"]} size={"lg"} />{" "}
                 Twitter
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://t.me/TRQProligalewar"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={["fab", "telegram"]} size={"lg"} />{" "}
+                Telegram
               </a>
             </li>
           </ul>

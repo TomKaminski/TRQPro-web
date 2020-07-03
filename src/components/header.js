@@ -152,6 +152,14 @@ class Header extends React.Component {
               >
                 <FontAwesomeIcon icon={["fab", "twitter"]} size={"lg"} />
               </Nav.Link>
+              <Nav.Link
+                href="https://t.me/TRQProligalewar"
+                className={"nav-link-black"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={["fab", "telegram"]} size={"lg"} />
+              </Nav.Link>
               <StaticQuery
                 query={graphql`
                   query SearchIndexQuery {
