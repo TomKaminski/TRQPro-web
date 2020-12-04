@@ -92,7 +92,10 @@
   "league-table": {
     "column-starting-balance": "Starting balance",
     "column-current-balance": "Current balance",
-    "column-current-roe": "Current roe"
+    "column-current-roe": "Current roe",
+    "column-income-outcome": "Balance in/out",
+    "column-ending-balance": "Ending balance",
+    "column-ending-roe": "Ending ROE"
   },
   "league-links": {
     "rules": "Go to the rules",

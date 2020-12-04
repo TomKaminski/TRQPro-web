@@ -371,6 +371,9 @@ class LeaguePage extends React.Component {
                 <FormattedMessage id="league-table.column-ending-balance" />
               </th>
               <th scope="col">
+                <FormattedMessage id="league-table.column-income-outcome" />
+              </th>
+              <th scope="col">
                 <FormattedMessage id="league-table.column-ending-roe" />
               </th>
               <th scope="col">1d</th>
@@ -396,6 +399,7 @@ class LeaguePage extends React.Component {
                 tooLowBalance,
                 exchange,
                 isZombie,
+                incomeOutcome,
                 roes,
               } = this.state.data.participants[key]
               return (
@@ -425,6 +429,15 @@ class LeaguePage extends React.Component {
                       tooLowBalance,
                       exchange,
                       balance
+                    )}
+                  </td>
+                  <td>
+                    {this.getBalanceContent(
+                      isRekt,
+                      isRetarded,
+                      tooLowBalance,
+                      exchange,
+                      incomeOutcome == null ? 0 : incomeOutcome
                     )}
                   </td>
                   <td>
@@ -492,8 +505,15 @@ class LeaguePage extends React.Component {
                     {index + 1 + this.state.data.participants.length}
                   </th>
                   <td>{username}</td>
-                  <td>0 BTC</td>
-                  <td>0 BTC</td>
+                  <td>                    
+                    <div>-</div>
+                  </td>
+                  <td>                    
+                    <div>-</div>
+                  </td>
+                  <td>                    
+                    <div>-</div>
+                  </td>
                   <td>
                     <div>
                       <img src={redCard} alt="redCard" />
