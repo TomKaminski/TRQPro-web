@@ -92,10 +92,7 @@
   "league-table": {
     "column-starting-balance": "Kapitał startowy",
     "column-current-balance": "Kapitał obecny",
-    "column-current-roe": "Obecne roe",
-    "column-income-outcome": "Bilans wpłat/wypłat",
-    "column-ending-balance": "Kapitał końcowy",
-    "column-ending-roe": "Końcowe roe"
+    "column-current-roe": "Obecne roe"
   },
   "league-links": {
     "rules": "przejdź do regulaminu",

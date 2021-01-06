@@ -314,37 +314,6 @@ function LeagueTable({ leagueData, intl }) {
       },
       {
         Header: intl.formatMessage({
-          id: "league-table.column-income-outcome",
-        }),
-        Cell: ({ row }) => {
-          if (row.original.exchange !== "bitmex") {
-            return (
-              <span>
-                {row.original.isRekt ||
-                row.original.isRetarded ||
-                row.original.tooLowBalance
-                  ? 0
-                  : row.original.incomeOutcome.toFixed(2)}{" "}
-                USDT
-              </span>
-            )
-          } else {
-            return (
-              <span>
-                {row.original.isRekt ||
-                row.original.isRetarded ||
-                row.original.tooLowBalance
-                  ? 0
-                  : convertSatoshiToBTC(row.original.incomeOutcome)}{" "}
-                BTC
-              </span>
-            )
-          }
-        },
-        accessor: "incomeOutcome",
-      },
-      {
-        Header: intl.formatMessage({
           id: "league-table.column-current-roe",
         }),
         Cell: ({ row }) =>
