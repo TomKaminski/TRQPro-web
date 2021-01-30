@@ -133,7 +133,7 @@ class LeaguePage extends React.Component {
   }
 
   renderLadder() {
-    if (this.state.data === null) {
+    if (this.state.data === null || this.state.data === {}) {
       return (
         <Container>
           <h4 className={"margin-top-40 margin-bottom-40 center-margin"}>
