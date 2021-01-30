@@ -30,7 +30,7 @@ class LeaguePage extends React.Component {
   }
 
   getData() {
-    let endpoint = apiUrl + "league/getLadderForYear?year=2020"
+    let endpoint = apiUrl + "league/getLadderForYear?year=" + new Date().getFullYear();
     axios
       .get(endpoint)
       .then((response) => {
