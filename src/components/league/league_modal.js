@@ -31,6 +31,7 @@ class LeagueModal extends React.Component {
         email: "",
         apiKey: "",
         apiSecret: "",
+        accountId: null,
         saveForAllLeaguesAtCurrentQuarter: false,
         league: null,
       },
@@ -102,6 +103,7 @@ class LeagueModal extends React.Component {
       saveForAllLeaguesAtCurrentQuarter,
       exchange,
       league,
+      accountId,
     } = this.state.formData
     axios
       .post(apiUrl + "League/joinLeague", {
@@ -109,6 +111,7 @@ class LeagueModal extends React.Component {
         email,
         apiKey,
         apiSecret,
+        accountId: accountId ?? null,
         saveForAllLeaguesAtCurrentQuarter,
         league: league.value,
         exchange: exchange.value,
@@ -134,6 +137,7 @@ class LeagueModal extends React.Component {
               email: "",
               apiKey: "",
               apiSecret: "",
+              accountId: null,
               saveForAllLeaguesAtCurrentQuarter: false,
               league: null,
             },
@@ -196,6 +200,7 @@ class LeagueModal extends React.Component {
                   email: "",
                   apiKey: "",
                   apiSecret: "",
+                  accountId: null,
                   saveForAllLeaguesAtCurrentQuarter: false,
                   league: null,
                 },
@@ -415,11 +420,13 @@ class LeagueModal extends React.Component {
                                 },
                               ]}
                               onChange={(opt) => {
+                                let accountId = opt.value == 'binance' ? this.state.formData.accountId : null
                                 this.setState(
                                   {
                                     formData: {
                                       ...this.state.formData,
                                       exchange: opt,
+                                      accountId
                                     },
                                   },
                                   () => {
@@ -497,6 +504,27 @@ class LeagueModal extends React.Component {
                             })}
                           />
                         </Col>
+                        {this.state.formData.exchange != null && this.state.formData.exchange.value == 'binance' ? <Col xs={12} md={6}>
+                          <InputWithTitle
+                            title={this.props.intl.formatMessage({
+                              id: "league-dialog.form-binance-account-id",
+                            })}
+                            name="accountId"
+                            value={this.state.formData.accountId}
+                            onChange={(e) => {
+                              let name = e.target.name
+                              let value = e.target.value
+                              this.setState(
+                                {
+                                  formData: {
+                                    ...this.state.formData,
+                                    accountId: value,
+                                  },
+                                }
+                              )
+                            }}
+                          />
+                        </Col> : null}
                       </Row>
                     </form>
                   )}

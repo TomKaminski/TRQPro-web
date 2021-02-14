@@ -164,7 +164,7 @@ class LeaguePage extends React.Component {
         <br></br>
         <Col xs={12} md={6} style={{ paddingLeft: 0, marginBottom: "20px" }}>
           <p style={{ marginBottom: "2px" }}>
-            <FormattedMessage id="league-dialog.form-title-exchange-placeholder" />
+            <FormattedMessage id="league-dialog.form-title-league-placeholder" />
           </p>
           <Dropdown
             options={this.state.leagueOptions}
