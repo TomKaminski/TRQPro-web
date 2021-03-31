@@ -244,7 +244,7 @@ class LeagueModal extends React.Component {
                       Bitmex
                     </a>
                   </li>
-                  <li>
+                  {/* <li>
                     <a
                       href="https://www.bybit.com/app/register?affiliate_id=5089&language=en&group_id=0&group_type=1"
                       target="_blank"
@@ -252,7 +252,7 @@ class LeagueModal extends React.Component {
                     >
                       Bybit
                     </a>
-                  </li>
+                  </li> */}
                   <li>
                     <a
                       href="https://www.binance.com/en/futures/ref/trqpro"
@@ -413,11 +413,7 @@ class LeagueModal extends React.Component {
                                 {
                                   label: "Binance",
                                   value: "binance",
-                                },
-                                {
-                                  label: "Bybit",
-                                  value: "bybit",
-                                },
+                                }
                               ]}
                               onChange={(opt) => {
                                 let accountId = opt.value == 'binance' ? this.state.formData.accountId : null
@@ -563,7 +559,7 @@ class LeagueModal extends React.Component {
                 </li>
               </ol>
 
-              <h3>
+              {/* <h3>
                 <FormattedMessage id="league-dialog.bybit-tutorial-header" />
               </h3>
               <p>
@@ -604,7 +600,7 @@ class LeagueModal extends React.Component {
                 <li>
                   <FormattedMessage id="league-dialog.bybit-tutorial-rule-8" />
                 </li>
-              </ol>
+              </ol> */}
 
               <h3>
                 <FormattedMessage id="league-dialog.binance-tutorial-header" />
