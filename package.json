@@ -51,7 +51,7 @@
     "react-twitter-embed": "^3.0.3",
     "remove-markdown": "^0.3.0",
     "slick-carousel": "^1.8.1",
-    "swiper": "^5.4.5",
+    "swiper": "^6.5.1",
     "url-search-params-polyfill": "^8.1.0"
   },
   "devDependencies": {
