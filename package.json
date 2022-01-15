@@ -31,7 +31,7 @@
     "gatsby-source-filesystem": "^2.3.32",
     "gatsby-source-strapi": "0.0.12",
     "gatsby-transformer-sharp": "^2.5.16",
-    "marked": "^0.8.2",
+    "marked": "^4.0.10",
     "medium-zoom": "^1.0.6",
     "moment": "^2.29.0",
     "node-sass": "^4.14.1",
